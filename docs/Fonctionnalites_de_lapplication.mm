@@ -1,4 +1,4 @@
-<map version="0.8.1">
+<map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1323243781156" ID="Freemind_Link_1009117782" MODIFIED="1323243811607" TEXT="Fonctionnalit&#xe9; de l&apos;application ">
 <node CREATED="1323243842501" ID="Freemind_Link_1150733497" MODIFIED="1323243863656" POSITION="right" TEXT="Sorties">
@@ -30,6 +30,7 @@
 <node CREATED="1323244233431" ID="Freemind_Link_1446926159" MODIFIED="1323244236674" TEXT="Station m&#xe9;t&#xe9;o"/>
 <node CREATED="1323244245660" ID="Freemind_Link_456479959" MODIFIED="1323244250897" TEXT="Humidit&#xe9;"/>
 <node CREATED="1323244251422" ID="Freemind_Link_1775780029" MODIFIED="1323244253376" TEXT="Temp&#xe9;rature"/>
+<node CREATED="1323247625134" ID="ID_811535740" MODIFIED="1323247631995" TEXT="Identification NFC"/>
 </node>
 <node CREATED="1323244338872" ID="Freemind_Link_29931966" MODIFIED="1323244348216" TEXT="Service disponible sur le web">
 <node CREATED="1323244329983" ID="Freemind_Link_517682729" MODIFIED="1323244336353" TEXT="Pr&#xe9;vision m&#xe9;t&#xe9;o"/>
@@ -50,6 +51,7 @@
 <node CREATED="1323245661049" ID="Freemind_Link_1738525086" MODIFIED="1323245727596" TEXT="Moteur de suggestion d&apos;action pour l&apos;&#xe9;conomie d&apos;&#xe9;nergie"/>
 <node CREATED="1323245728215" ID="Freemind_Link_1826076746" MODIFIED="1323245738335" TEXT="Fonctionnement semi-automatique"/>
 <node CREATED="1323245739145" ID="Freemind_Link_1374029076" MODIFIED="1323245751051" TEXT="Fonctionnement full automatique"/>
+<node CREATED="1323247113037" ID="ID_1236631825" MODIFIED="1323247113037" TEXT=""/>
 </node>
 </node>
 </map>
