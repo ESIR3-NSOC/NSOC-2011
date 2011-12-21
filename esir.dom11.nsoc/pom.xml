@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>esir.dom11.nsoc</groupId>
+    <artifactId>esir.dom11.nsoc</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>NSOC</name>
+
+    <modules>
+        <module>esir.dom11.nsoc.model</module>
+        <module>esir.dom11.nsoc.datactrl</module>
+        <module>esir.dom11.nsoc.service</module>
+    </modules>
+
+    <properties>
+        <!-- Testing Properties -->
+        <junit.version>4.10</junit.version>
+        <!-- Kevoree Properties -->
+        <kevoree.version>1.4.2</kevoree.version>
+        <!-- Logging Properties -->
+        <slf4j.version>1.6.4</slf4j.version>
+    </properties>
+
+</project>
