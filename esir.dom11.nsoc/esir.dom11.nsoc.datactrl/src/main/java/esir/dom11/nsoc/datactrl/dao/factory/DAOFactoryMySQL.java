@@ -11,7 +11,7 @@ import java.util.Properties;
 public class DAOFactoryMySQL extends DAOFactory {
 
     protected DAOFactoryMySQL(Properties dbProperties) {
-        _connectionDb = new ConnectionDbMySQL(_dbProperties);
+        _connectionDb = new ConnectionDbMySQL(dbProperties);
         _connectionDb.connect();
     }
 

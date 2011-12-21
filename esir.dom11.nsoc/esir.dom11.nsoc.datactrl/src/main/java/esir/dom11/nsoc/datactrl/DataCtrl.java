@@ -29,7 +29,9 @@ import java.util.Properties;
         // Db password
         @DictionaryAttribute(name = "dbPwd", defaultValue = ""),
         // Db name
-        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11")
+        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11"),
+        // Db type
+        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL")
 })
 @Library(name = "DataCtrl")
 @ComponentType
@@ -64,7 +66,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         dbProperties.put("user", getDictionary().get("dbUser"));
         dbProperties.put("pwd", getDictionary().get("dbPwd"));
         dbProperties.put("name", getDictionary().get("dbName"));
-        dbProperties.put("type", FactoryType.DAO_MYSQL);
+        dbProperties.put("type",  getDictionary().get("dbType"));
 
         _daoFactory = DAOFactory.getFactory(dbProperties);
         /*User user = _daoFactory.getUserDAO().retrieve("test3_id");

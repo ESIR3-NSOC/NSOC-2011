@@ -12,7 +12,6 @@ public abstract class DAOFactory {
      * Attributes
      */
 
-    protected Properties _dbProperties;
     protected ConnectionDb _connectionDb;
 
     /*
@@ -20,7 +19,7 @@ public abstract class DAOFactory {
      */
 
     public static DAOFactory getFactory(Properties dbProperties){
-        FactoryType type = (FactoryType)dbProperties.get("type");
+        FactoryType type = FactoryType.valueOf(dbProperties.getProperty("type"));
         if(type.equals(FactoryType.DAO_MYSQL)) {
             return new DAOFactoryMySQL(dbProperties);
         }

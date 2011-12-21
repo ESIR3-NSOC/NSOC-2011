@@ -33,9 +33,11 @@ public class ConnectionDbMySQL extends ConnectionDb {
         try{
             new com.mysql.jdbc.Driver();
             _connection = java.sql.DriverManager.getConnection(
-                    //_properties.getProperty("url") + "/" + _properties.getProperty("name") + "?user=" + _properties.getProperty("user") + "&password=" + _properties.getProperty("pwd"));
-                    "jdbc:mysql://localhost/nsoc11?user=root&password=");
-                    logger.info("database connect success");
+                    _properties.getProperty("url") + "/" +
+                            _properties.getProperty("name") +
+                            "?user=" + _properties.getProperty("user") +
+                            "&password=" + _properties.getProperty("pwd"));
+            logger.info("database connect success");
         } catch(Exception exception){
             logger.error("Database connect error", exception);
         }
