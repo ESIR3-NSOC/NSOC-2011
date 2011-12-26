@@ -1,7 +1,8 @@
 package esir.dom11.nsoc.datactrl.dao.model.mysql;
 
-import esir.dom11.nsoc.datactrl.dao.DAO;
+import esir.dom11.nsoc.datactrl.dao.dao.DAO;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbMySQL;
+import esir.dom11.nsoc.datactrl.dao.dao.UserDAO;
 import esir.dom11.nsoc.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAOMySQL implements DAO<String,User> {
+public class UserDAOMySQL implements UserDAO {
 
     /*
     * Class Attributes

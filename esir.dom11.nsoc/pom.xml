@@ -14,6 +14,8 @@
         <module>esir.dom11.nsoc.model</module>
         <module>esir.dom11.nsoc.datactrl</module>
         <module>esir.dom11.nsoc.service</module>
+        <module>esir.dom11.nsoc.conflictmgt</module>
+        <module>esir.dom11.nsoc.scheduler</module>
     </modules>
 
     <properties>
@@ -24,5 +26,19 @@
         <!-- Logging Properties -->
         <slf4j.version>1.6.4</slf4j.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>kevoree-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>kevoree-plugin-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

@@ -1,10 +1,14 @@
 package esir.dom11.nsoc.datactrl.dao.factory;
 
-import esir.dom11.nsoc.datactrl.dao.DAO;
+import esir.dom11.nsoc.datactrl.dao.dao.DAO;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDb;
+import esir.dom11.nsoc.datactrl.dao.dao.TaskDAO;
+import esir.dom11.nsoc.datactrl.dao.dao.UserDAO;
+import esir.dom11.nsoc.model.Task;
 import esir.dom11.nsoc.model.User;
 
 import java.util.Properties;
+import java.util.UUID;
 
 public abstract class DAOFactory {
 
@@ -30,7 +34,9 @@ public abstract class DAOFactory {
      * Abstract Methods
      */
     
-    public abstract DAO<String,User> getUserDAO();
+    public abstract UserDAO getUserDAO();
+
+    public abstract TaskDAO getTaskDAO();
 
     /*
      * Getters / Setters
@@ -47,6 +53,8 @@ public abstract class DAOFactory {
     public DAO getDAO(Class daoClass) {
         if(daoClass.equals(User.class)) {
             return getUserDAO();
+        } else if(daoClass.equals(Task.class)) {
+            return getTaskDAO();
         }
         return null;
     }

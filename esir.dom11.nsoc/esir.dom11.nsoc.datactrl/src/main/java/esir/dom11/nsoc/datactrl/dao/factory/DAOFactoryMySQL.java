@@ -1,10 +1,10 @@
 package esir.dom11.nsoc.datactrl.dao.factory;
 
-
-import esir.dom11.nsoc.datactrl.dao.DAO;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbMySQL;
+import esir.dom11.nsoc.datactrl.dao.dao.TaskDAO;
+import esir.dom11.nsoc.datactrl.dao.dao.UserDAO;
+import esir.dom11.nsoc.datactrl.dao.model.mysql.TaskDAOMySQL;
 import esir.dom11.nsoc.datactrl.dao.model.mysql.UserDAOMySQL;
-import esir.dom11.nsoc.model.User;
 
 import java.util.Properties;
 
@@ -16,7 +16,12 @@ public class DAOFactoryMySQL extends DAOFactory {
     }
 
     @Override
-    public DAO<String,User> getUserDAO() {
+    public UserDAO getUserDAO() {
         return new UserDAOMySQL((ConnectionDbMySQL)_connectionDb);
+    }
+
+    @Override
+    public TaskDAO getTaskDAO() {
+        return new TaskDAOMySQL((ConnectionDbMySQL)_connectionDb);
     }
 }

@@ -18,6 +18,14 @@
         <relativePath>..</relativePath>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>esir.dom11.nsoc</groupId>
+            <artifactId>esir.dom11.nsoc.model</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

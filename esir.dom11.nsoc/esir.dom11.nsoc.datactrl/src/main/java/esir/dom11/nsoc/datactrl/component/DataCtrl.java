@@ -1,18 +1,23 @@
-package esir.dom11.nsoc.datactrl;
+package esir.dom11.nsoc.datactrl.component;
 
 // Kevoree imports
-import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
-import esir.dom11.nsoc.datactrl.dao.factory.FactoryType;
-import esir.dom11.nsoc.model.User;
-import esir.dom11.nsoc.service.IDbService;
+import esir.dom11.nsoc.datactrl.process.RequestMgt;
+import esir.dom11.nsoc.model.Task;
+import esir.dom11.nsoc.model.TaskState;
+import esir.dom11.nsoc.service.RequestResult;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
+
+import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
+import esir.dom11.nsoc.service.IDbService;
 
 // Logger
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
 import java.util.Properties;
+import java.util.UUID;
 
 @Provides({
     @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class)/*,
@@ -33,7 +38,7 @@ import java.util.Properties;
         // Db type
         @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL")
 })
-@Library(name = "DataCtrl")
+@Library(name = "NSOC_2011")
 @ComponentType
 public class DataCtrl extends AbstractComponentType implements IDbService {
 
@@ -73,6 +78,13 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         if (_daoFactory.getUserDAO().delete(user.getId())) {
             logger.warn(".............. delete ................");
         }*/
+
+        //Task task = _daoFactory.getTaskDAO().retrieve(UUID.fromString("e1f4f0a9-2d56-11e1-8e5b-0021cc4198bb"));
+
+        LinkedList<Task> taskList = _daoFactory.getTaskDAO().findByState(TaskState.WAITING);
+        for ( Task task : taskList) {
+            logger.warn(task.toString());
+        }
     }
 
     @Stop
@@ -120,6 +132,14 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         }
     }
 
+    @Override
+    @Port(name = "dbService", method = "get")
+    public RequestResult get(String methodName, String className, LinkedList<Object> params) {
+        Object[] p = params.toArray();
+        RequestMgt requestMgt = new RequestMgt(_daoFactory,methodName,className,p);
+        return requestMgt.getResult();
+    }
+
     /*@Port(name = "subscribe")
     public void subscribe(Object object) {
 
@@ -131,6 +151,6 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
     /*public void broadcast(HashMap<String, String> params) {
         logger.debug("Broadcast :" + params);
-        getPortByName("brodcast", MessagePort.class).process(params);
+        getPortByName("broadcast", MessagePort.class).process(params);
     } */
 }

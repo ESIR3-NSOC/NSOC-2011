@@ -1,4 +1,4 @@
-package esir.dom11.nsoc.datactrl.dao;
+package esir.dom11.nsoc.datactrl.dao.dao;
 
 public interface DAO<TId, TObject> {
 
