@@ -23,7 +23,7 @@
         <!-- Testing Properties -->
         <junit.version>4.10</junit.version>
         <!-- Kevoree Properties -->
-        <kevoree.version>1.4.2</kevoree.version>
+        <kevoree.version>1.5.0-RC1</kevoree.version>
         <!-- Logging Properties -->
         <slf4j.version>1.6.4</slf4j.version>
     </properties>
