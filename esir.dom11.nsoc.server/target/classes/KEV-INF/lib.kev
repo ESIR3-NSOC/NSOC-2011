@@ -1,0 +1,16 @@
+<kevoree:ContainerRoot xmlns:xml="http://www.omg.org/XMI" xmlns:xsi="http://wwww.w3.org/2001/XMLSchema-instance" xmlns:kevoree="http://kevoree/1.0" xmi:version="2.0" xsi:type="kevoree:ContainerRoot">
+ <typeDefinitions updateMethod="updateComponent" startMethod="startComponent" factoryBean="esir.server.ServerComponentFactory" xsi:type="kevoree:ComponentType" name="ServerComponent" bean="esir.server.ServerComponent" stopMethod="stopComponent" deployUnits="//@deployUnits.0">
+  <required noDependency="true" name="toConsole" xsi:type="kevoree:PortTypeRef" optional="true" ref="//@typeDefinitions.2"></required>
+  <required noDependency="true" name="fromIhm" xsi:type="kevoree:PortTypeRef" optional="true" ref="//@typeDefinitions.2"></required>
+  <provided noDependency="false" name="toIhm" xsi:type="kevoree:PortTypeRef" optional="false" ref="//@typeDefinitions.2">
+   <mappings beanMethodName="receiveToIhm" xsi:type="kevoree:PortTypeMapping" serviceMethodName="process"></mappings>
+  </provided>
+ </typeDefinitions>
+ <typeDefinitions xsi:type="kevoree:NodeType" name="JavaSENode"></typeDefinitions>
+ <typeDefinitions name="org.kevoree.framework.MessagePort" xsi:type="kevoree:MessagePortType" synchrone="false"></typeDefinitions>
+ <repositories xsi:type="kevoree:Repository" url="http://maven.kevoree.org/release"></repositories>
+ <repositories xsi:type="kevoree:Repository" url="http://maven.kevoree.org/snapshots"></repositories>
+ <repositories xsi:type="kevoree:Repository" url="http://repo1.maven.org/maven2"></repositories>
+ <deployUnits requiredLibs="//@deployUnits.1" version="1.5.0-RC1" groupName="esir.dom11.nsoc.server" xsi:type="kevoree:DeployUnit" unitName="esir.dom11.nsoc.server" hashcode="201201081609849" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits version="1.0.0" groupName="esir" xsi:type="kevoree:DeployUnit" unitName="restlet" targetNodeType="//@typeDefinitions.1"></deployUnits>
+</kevoree:ContainerRoot>
