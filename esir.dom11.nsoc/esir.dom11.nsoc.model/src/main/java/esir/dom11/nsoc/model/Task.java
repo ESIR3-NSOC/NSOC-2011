@@ -11,7 +11,8 @@ public class Task {
     
     private UUID _id;
     private String _description;
-    private Date _date;
+    private Date _createDate;
+    private Date _expireDate;
     private TaskState _taskState;
     private String _script;
     
@@ -22,17 +23,19 @@ public class Task {
     public Task() {
     }
     
-    public Task(String description, Date date, String script) {
+    public Task(String description, Date createDate, Date expireDate, String script) {
         _id = UUID.randomUUID();
         _description = description;
-        _date = date;
+        _createDate = createDate;
+        _expireDate = expireDate;
         _script = script;
     }
     
-    public Task(UUID id, String description, Date date, String script, TaskState taskState) {
+    public Task(UUID id, String description, Date createDate, Date expireDate, String script, TaskState taskState) {
         _id = id;
         _description = description;
-        _date = date;
+        _createDate = createDate;
+        _expireDate = expireDate;
         _taskState = taskState;
         _script = script;
     }
@@ -61,12 +64,20 @@ public class Task {
         this._taskState = taskState;
     }
 
-    public Date getDate() {
-        return _date;
+    public Date getCreateDate() {
+        return _createDate;
     }
 
-    public void setDate(Date date) {
-        this._date = date;
+    public void setCreateDate(Date createDate) {
+        _createDate = createDate;
+    }
+
+    public Date getExpireDate() {
+        return _expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        _expireDate = expireDate;
     }
 
     public String getScript() {
@@ -74,7 +85,7 @@ public class Task {
     }
 
     public void setScript(String script) {
-        this._script = script;
+        _script = script;
     }
     
     /*
@@ -85,8 +96,13 @@ public class Task {
     public String toString() {
         return "\n* * * Task " + getId() + " * * *"
                         + "\nDescription: " + getDescription()
-                        + "\nDate: " + getDate()
+                        + "\nCreate Date: " + getCreateDate()
+                        + "\nExpire Date: " + getExpireDate()
                         + "\nState: " + getTaskState()
                         + "\nScript:\n" + getScript() + "\n";
     }
+
+    /*
+     * Methods
+     */
 }

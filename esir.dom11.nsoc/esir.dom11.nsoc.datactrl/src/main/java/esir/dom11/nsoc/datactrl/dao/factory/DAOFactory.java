@@ -1,11 +1,8 @@
 package esir.dom11.nsoc.datactrl.dao.factory;
 
-import esir.dom11.nsoc.datactrl.dao.dao.DAO;
+import esir.dom11.nsoc.datactrl.dao.dao.*;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDb;
-import esir.dom11.nsoc.datactrl.dao.dao.TaskDAO;
-import esir.dom11.nsoc.datactrl.dao.dao.UserDAO;
-import esir.dom11.nsoc.model.Task;
-import esir.dom11.nsoc.model.User;
+import esir.dom11.nsoc.model.*;
 
 import java.util.Properties;
 import java.util.UUID;
@@ -33,10 +30,19 @@ public abstract class DAOFactory {
     /*
      * Abstract Methods
      */
-    
-    public abstract UserDAO getUserDAO();
+
+    public abstract ActionDAO getActionDAO();
+
+    public abstract CategoryDAO getCategoryDAO();
+
+    public abstract CommandDAO getCommandDAO();
+
+    public abstract DataDAO getDataDAO();
 
     public abstract TaskDAO getTaskDAO();
+
+    public abstract UserDAO getUserDAO();
+
 
     /*
      * Getters / Setters
@@ -51,10 +57,18 @@ public abstract class DAOFactory {
      */
 
     public DAO getDAO(Class daoClass) {
-        if(daoClass.equals(User.class)) {
-            return getUserDAO();
+        if(daoClass.equals(Action.class)) {
+            return getActionDAO();
+        } else if(daoClass.equals(Category.class)) {
+            return getCategoryDAO();
+        } else if(daoClass.equals(Command.class)) {
+            return getCommandDAO();
+        } else if(daoClass.equals(Data.class)) {
+            return getDataDAO();
         } else if(daoClass.equals(Task.class)) {
             return getTaskDAO();
+        } else if(daoClass.equals(User.class)) {
+            return getUserDAO();
         }
         return null;
     }
