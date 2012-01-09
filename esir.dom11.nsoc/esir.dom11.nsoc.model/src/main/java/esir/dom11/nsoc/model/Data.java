@@ -3,7 +3,7 @@ package esir.dom11.nsoc.model;
 import java.util.Date;
 import java.util.UUID;
 
-public class Data {
+public class Data implements Comparable<Data> {
 
     /*
      * Attribute
@@ -84,13 +84,30 @@ public class Data {
 
     @Override
     public String toString() {
-        return "\n* * * Task " + getId() + " * * *"
+        return "\n* * * Data " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
+<<<<<<< HEAD
                 + "\nRole: " + getRole()
+=======
+                + "\nValue: " + getValue()
+                + "\nSensor: " + getIdSensor()
+>>>>>>> origin/master
                 + "\nDate: " + getDate() + "\n";
+    }
+
+    @Override
+    public int compareTo(Data data) {
+        if ( data.getValue() > getValue() ) {
+            return 1;
+        } else if ( data.getValue() < getValue() ) {
+            return -1;
+        }
+        return 0;
     }
 
     /*
      * Methods
      */
+
+
 }
