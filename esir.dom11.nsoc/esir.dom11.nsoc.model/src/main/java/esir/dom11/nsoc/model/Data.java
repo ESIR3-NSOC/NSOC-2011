@@ -3,7 +3,7 @@ package esir.dom11.nsoc.model;
 import java.util.Date;
 import java.util.UUID;
 
-public final class Data implements Comparable<Data> {
+public class Data implements Comparable<Data> {
 
     /*
      * Attributes
@@ -21,7 +21,7 @@ public final class Data implements Comparable<Data> {
 
     public Data() {
         // default constructor
-        _id = UUID.randomUUID();
+        _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
         _dataType = DataType.TEMPERATURE;
         _role = "";
         _value = 0.0;

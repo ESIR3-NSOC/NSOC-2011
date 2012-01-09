@@ -44,17 +44,16 @@ public class DataDAOMySQL implements DataDAO {
     @Override
     public Data create(Data data) {
         Data newData = retrieve(data.getId());
-        if (newData.getId()==null) {
+        if (newData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
+                String statement = "INSERT INTO datas (id, data_type, role, value, date)"
+                        + " VALUES('" + data.getId() + "',"
+                        + " '" + data.getDataType().getValue() + "',"
+                        + " '" + data.getRole() + "',"
+                        + " '" + data.getValue() + "',"
+                        + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
-                        .prepareStatement(
-                                "INSERT INTO datas (id, data_type, id_sensor, value, date)"
-                                        + " VALUES('" + data.getId() + "',"
-                                        + " '" + data.getDataType().getValue() + "',"
-                                        + " '" + data.getIdSensor() + "',"
-                                        + " '" + data.getValue() + "',"
-                                        + " '" + new Timestamp(data.getDate().getTime()) + "')"
-                        );
+                        .prepareStatement(statement);
                 prepare.executeUpdate();
                 newData = retrieve(data.getId());
             } catch (SQLException exception) {
@@ -73,7 +72,7 @@ public class DataDAOMySQL implements DataDAO {
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.first()) {
                 data = new Data(id, DataType.valueOf(result.getString("data_type")),
-                        UUID.fromString(result.getString("id_sensor")),result.getDouble("value"),result.getDate("date"));
+                        result.getString("role"),result.getDouble("value"),result.getDate("date"));
             }
         } catch (SQLException exception) {
             logger.error("Data retrieve error", exception);
@@ -81,22 +80,11 @@ public class DataDAOMySQL implements DataDAO {
         return data;
     }
 
+    /**
+     * No change for update data
+     */
     @Override
     public Data update(Data data) {
-        try {
-            _connection.getConnection()
-                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeUpdate(
-                            "UPDATE datas SET data_type = '" + data.getDataType() + "',"
-                                    + "id_sensor = '" + data.getIdSensor() + "',"
-                                    + "value = '" + data.getValue() + "',"
-                                    + "date = '" + new Timestamp(data.getDate().getTime()) + "'"
-                    );
-
-            data = this.retrieve(data.getId());
-        } catch (SQLException exception) {
-            logger.error("Data update error",exception);
-        }
         return data;
     }
 
@@ -114,21 +102,21 @@ public class DataDAOMySQL implements DataDAO {
     }
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, UUID idSensor) {
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String role) {
         LinkedList<Data> dataList = new LinkedList<Data>();
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeQuery("SELECT * FROM datas " +
                                     "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
-                                        "AND id_sensor='" + idSensor + "' " +
+                                        "AND role='" + role + "' " +
                                         "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
             result.beforeFirst();
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString("id")),
                                         DataType.valueOf(result.getString("data_type")),
-                                        UUID.fromString(result.getString("id_sensor")),
+                                        result.getString("role"),
                                         result.getDouble("value"),result.getDate("date")));
             }
         } catch (SQLException exception) {

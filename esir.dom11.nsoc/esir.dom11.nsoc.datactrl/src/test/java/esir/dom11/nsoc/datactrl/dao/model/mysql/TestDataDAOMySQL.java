@@ -45,7 +45,7 @@ public class TestDataDAOMySQL extends TestCase {
      */
 
     public void testCRUDData() {
-        Data data = new Data(DataType.TEMPERATURE,UUID.randomUUID(),19.6, new Date());
+        Data data = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date());
         logger.info("New Data:" + data.toString());
 
         Data createData = _daoFactory.getDataDAO().create(data);
@@ -56,33 +56,24 @@ public class TestDataDAOMySQL extends TestCase {
         assertNotNull(retrieveData);
         logger.info("Data Retrieve:" + retrieveData.toString());
 
-        data.setValue(20.1);
-        data.setDate(new Date());
-        Data updateData = _daoFactory.getDataDAO().update(data);
-        logger.info(updateData.toString());
-        assertNotNull(retrieveData);
-        assertEquals(updateData.getValue(),data.getValue());
-        logger.info("Data Update:\n" + data.toString());
-
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
     }
     
     public void testFindByDate() {
-        UUID idSensor = UUID.randomUUID();
-        Data data1 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098200720")));
-        Data data2 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098202743")));
-        Data data3 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098204754")));
-        Data data4 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098206765")));
-        Data data5 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098208787")));
+        Data data1 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098200720")));
+        Data data2 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098202743")));
+        Data data3 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098204754")));
+        Data data4 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098206765")));
+        Data data5 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098208787")));
 
-        _daoFactory.getDataDAO().create(data1);
+        System.out.println(_daoFactory.getDataDAO().create(data1));
         _daoFactory.getDataDAO().create(data2);
         _daoFactory.getDataDAO().create(data3);
         _daoFactory.getDataDAO().create(data4);
         _daoFactory.getDataDAO().create(data5);
 
-        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),idSensor);
+        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),"temp-int-salle930");
         System.out.println(dataList.size());
         assertTrue(dataList.size()==3);
 
