@@ -6,6 +6,9 @@ import esir.dom11.nsoc.model.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 public class ActionDAOMySQL implements ActionDAO {
@@ -36,21 +39,71 @@ public class ActionDAOMySQL implements ActionDAO {
 
     @Override
     public Action create(Action action) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Action newAction = retrieve(action.getId());
+        if (newAction.getId()==null) {
+            try {
+                PreparedStatement prepare = _connection.getConnection()
+                        .prepareStatement(
+                                "INSERT INTO actions (id, id_actuator, value, time_out)"
+                                        + " VALUES('" + action.getId() + "',"
+                                        + " '" + action.getIdActuator() + "',"
+                                        + " '" + action.getValue() + "',"
+                                        + " '" + action.getTimeOut() + "')"
+                        );
+                prepare.executeUpdate();
+                newAction = retrieve(action.getId());
+            } catch (SQLException exception) {
+                logger.error("Action insert error", exception);
+            }
+        }
+        return newAction;
     }
 
     @Override
-    public Action retrieve(UUID uuid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Action retrieve(UUID id) {
+        Action action = new Action();
+        try {
+            ResultSet result = _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery("SELECT * FROM actions WHERE id = '" + id + "'");
+            if(result.first()) {
+                action = new Action(id, UUID.fromString(result.getString("id_actuator")),
+                        result.getDouble("value"),result.getInt("time_out"));
+            }
+        } catch (SQLException exception) {
+            logger.error("Action retrieve error", exception);
+        }
+        return action;
     }
 
     @Override
     public Action update(Action action) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeUpdate(
+                            "UPDATE actions SET id_actuator = '" + action.getIdActuator() + "',"
+                                    + "value = '" + action.getValue() + "',"
+                                    + "time_out = '" + action.getTimeOut() + "'"
+                    );
+
+            action = this.retrieve(action.getId());
+        } catch (SQLException exception) {
+            logger.error("Action update error",exception);
+        }
+        return action;
     }
 
     @Override
-    public boolean delete(UUID uuid) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    public boolean delete(UUID id) {
+        try {
+            _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeUpdate("DELETE FROM actions WHERE id = '" + id + "'");
+            return true;
+        } catch (SQLException exception) {
+            logger.error("Action delete error",exception);
+        }
+        return false;
     }
 }

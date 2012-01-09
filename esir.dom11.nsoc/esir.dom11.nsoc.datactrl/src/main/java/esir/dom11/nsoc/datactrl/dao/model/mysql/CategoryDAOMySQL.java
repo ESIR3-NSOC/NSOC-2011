@@ -6,6 +6,9 @@ import esir.dom11.nsoc.model.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 public class CategoryDAOMySQL implements CategoryDAO {
@@ -36,21 +39,67 @@ public class CategoryDAOMySQL implements CategoryDAO {
 
     @Override
     public Category create(Category category) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Category newCategory = retrieve(category.getId());
+        if (newCategory.getId()==null) {
+            try {
+                PreparedStatement prepare = _connection.getConnection()
+                        .prepareStatement(
+                                "INSERT INTO categories (id, name, lock)"
+                                        + " VALUES('" + category.getId() + "',"
+                                        + " '" + category.getName() + "',"
+                                        + " '" + category.getLock() + "')"
+                        );
+                prepare.executeUpdate();
+                newCategory = retrieve(category.getId());
+            } catch (SQLException exception) {
+                logger.error("Data insert error", exception);
+            }
+        }
+        return newCategory;
     }
 
     @Override
-    public Category retrieve(UUID uuid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Category retrieve(UUID id) {
+        Category category = new Category();
+        try {
+            ResultSet result = _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery("SELECT * FROM categories WHERE id = '" + id + "'");
+            if(result.first()) {
+                category = new Category(id, result.getString("name"),result.getInt("lock"));
+            }
+        } catch (SQLException exception) {
+            logger.error("Category retrieve error", exception);
+        }
+        return category;
     }
 
     @Override
     public Category update(Category category) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeUpdate(
+                            "UPDATE categories SET name = '" + category.getName() + "', lock = '" + category.getLock() + "'"
+                    );
+
+            category = this.retrieve(category.getId());
+        } catch (SQLException exception) {
+            logger.error("Category update error",exception);
+        }
+        return category;
     }
 
     @Override
-    public boolean delete(UUID uuid) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    public boolean delete(UUID id) {
+        try {
+            _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeUpdate("DELETE FROM categories WHERE id = '" + id + "'");
+            return true;
+        } catch (SQLException exception) {
+            logger.error("Category delete error",exception);
+        }
+        return false;
     }
 }

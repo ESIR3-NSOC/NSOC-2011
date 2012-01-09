@@ -1,12 +1,15 @@
 package esir.dom11.nsoc.datactrl.component;
 
-// Kevoree imports
+
 import esir.dom11.nsoc.datactrl.process.RequestMgt;
-import esir.dom11.nsoc.model.Task;
-import esir.dom11.nsoc.model.TaskState;
 import esir.dom11.nsoc.service.RequestResult;
+
+
+// Kevoree imports
 import org.kevoree.annotation.*;
-import org.kevoree.framework.AbstractComponentType;
+import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Port;
+import org.kevoree.framework.*;
 
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
 import esir.dom11.nsoc.service.IDbService;
@@ -17,7 +20,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.Properties;
-import java.util.UUID;
 
 @Provides({
     @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class)/*,
@@ -81,10 +83,10 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
         //Task task = _daoFactory.getTaskDAO().retrieve(UUID.fromString("e1f4f0a9-2d56-11e1-8e5b-0021cc4198bb"));
 
-        LinkedList<Task> taskList = _daoFactory.getTaskDAO().findByState(TaskState.WAITING);
+        /*LinkedList<Task> taskList = _daoFactory.getTaskDAO().findByState(TaskState.WAITING);
         for ( Task task : taskList) {
             logger.warn(task.toString());
-        }
+        }*/
     }
 
     @Stop

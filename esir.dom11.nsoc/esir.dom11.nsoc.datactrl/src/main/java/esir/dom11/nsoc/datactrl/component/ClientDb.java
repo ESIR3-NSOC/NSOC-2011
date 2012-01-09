@@ -33,6 +33,9 @@ public class ClientDb extends AbstractComponentType {
     @Start
     public void start() {
         logger.info("**** clientdb start ****");
+        
+        logger.info("*** save data sample ***");
+        
         /*User userRetrieve = (User)getPortByName("dbService", IDbService.class).retrieve(User.class.getName(),"test_externe_id");
         logger.warn("**** User retrieved: "+ userRetrieve +" ****");
         userRetrieve.setPwd("new_pwd");
