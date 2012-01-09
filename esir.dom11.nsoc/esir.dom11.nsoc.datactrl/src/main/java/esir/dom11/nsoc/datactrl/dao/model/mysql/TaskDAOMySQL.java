@@ -1,6 +1,5 @@
 package esir.dom11.nsoc.datactrl.dao.model.mysql;
 
-import esir.dom11.nsoc.datactrl.dao.dao.DAO;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbMySQL;
 import esir.dom11.nsoc.datactrl.dao.dao.TaskDAO;
 import esir.dom11.nsoc.model.Task;
@@ -8,6 +7,7 @@ import esir.dom11.nsoc.model.TaskState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,16 +47,16 @@ public class TaskDAOMySQL implements TaskDAO {
             try {
                 PreparedStatement prepare = _connection.getConnection()
                         .prepareStatement(
-                                "INSERT INTO tasks (id, description, date, taskstate, script)"
+                                "INSERT INTO tasks (id, description, create_date, expire_date, taskstate, script)"
                                 + " VALUES('" + task.getId() + "',"
                                 + " '" + task.getDescription() + "',"
-                                + " '" + task.getDate() + "',"
+                                + " '" + new java.sql.Date(task.getCreateDate().getTime()) + "',"
+                                + " '" + new java.sql.Date(task.getExpireDate().getTime()) + "',"
                                 + " '" + task.getTaskState() + "',"
                                 + " '" + task.getScript() + "')"
                         );
                 prepare.executeUpdate();
                 newTask = retrieve(task.getId());
-                logger.info("Task insert success: " + task.toString());
             } catch (SQLException exception) {
                 logger.error("Task insert error", exception);
             }
@@ -73,7 +73,7 @@ public class TaskDAOMySQL implements TaskDAO {
                     .executeQuery("SELECT * FROM tasks WHERE id = '" + id + "'");
             if(result.first()) {
                 task = new Task(id,result.getString("description"),
-                        result.getDate("date"),result.getString("script"),
+                        result.getDate("create_date"),result.getDate("expire_date"),result.getString("script"),
                         TaskState.valueOf(result.getString("taskstate")));
             }
         } catch (SQLException exception) {
@@ -89,7 +89,7 @@ public class TaskDAOMySQL implements TaskDAO {
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeUpdate(
                             "UPDATE tasks SET description = '" + task.getDescription() + "',"
-                                    + "date = '" + task.getDate() + "',"
+                                    + "expire_date = '" + task.getExpireDate() + "',"
                                     + "taskstate = '" + task.getTaskState() + "',"
                                     + "script = '" + task.getScript() + "',"
                                     + " WHERE id = '" +task.getId() + "'"
@@ -125,7 +125,7 @@ public class TaskDAOMySQL implements TaskDAO {
             while (result.next()) {
                 taskList.add(new Task(UUID.fromString(result.getString("id")),
                                     result.getString("description"),
-                                    result.getDate("date"),result.getString("script"),
+                                    result.getDate("create_date"),result.getDate("expire_date"),result.getString("script"),
                                     TaskState.valueOf(result.getString("taskstate"))));
             }
         } catch (SQLException exception) {
