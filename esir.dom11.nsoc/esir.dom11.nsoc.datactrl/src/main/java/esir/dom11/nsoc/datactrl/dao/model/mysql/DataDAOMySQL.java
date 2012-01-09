@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class DataDAOMySQL implements DataDAO {
                                         + " '" + data.getDataType().getValue() + "',"
                                         + " '" + data.getIdSensor() + "',"
                                         + " '" + data.getValue() + "',"
-                                        + " '" + new java.sql.Date(data.getDate().getTime()) + "')"
+                                        + " '" + new Timestamp(data.getDate().getTime()) + "')"
                         );
                 prepare.executeUpdate();
                 newData = retrieve(data.getId());
@@ -89,7 +90,7 @@ public class DataDAOMySQL implements DataDAO {
                             "UPDATE datas SET data_type = '" + data.getDataType() + "',"
                                     + "id_sensor = '" + data.getIdSensor() + "',"
                                     + "value = '" + data.getValue() + "',"
-                                    + "date = '" + data.getDate() + "'"
+                                    + "date = '" + new Timestamp(data.getDate().getTime()) + "'"
                     );
 
             data = this.retrieve(data.getId());
@@ -119,9 +120,10 @@ public class DataDAOMySQL implements DataDAO {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeQuery("SELECT * FROM datas " +
-                                    "WHERE date>'" + startDate + "' " +
+                                    "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
                                         "AND id_sensor='" + idSensor + "' " +
-                                        "AND date<'" + endDate + "' ");
+                                        "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
+            System.out.println(new Timestamp(endDate.getTime()));
             result.beforeFirst();
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString("id")),

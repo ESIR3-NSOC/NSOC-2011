@@ -70,15 +70,27 @@ public class TestDataDAOMySQL extends TestCase {
     
     public void testFindByDate() {
         UUID idSensor = UUID.randomUUID();
-        /*_daoFactory.getDataDAO().create(new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(1326033456)));
-        _daoFactory.getDataDAO().create(new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(1326043456)));
-        _daoFactory.getDataDAO().create(new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(1326053456)));
-        _daoFactory.getDataDAO().create(new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(1326063456)));
-        _daoFactory.getDataDAO().create(new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(1326073456))); */
-        System.out.println((new Date(1326040000)));
-        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(1326040000),new Date(1326060656),idSensor);
+        Data data1 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098200720")));
+        Data data2 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098202743")));
+        Data data3 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098204754")));
+        Data data4 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098206765")));
+        Data data5 = new Data(DataType.TEMPERATURE,idSensor,19.6, new Date(new Long("1326098208787")));
+
+        _daoFactory.getDataDAO().create(data1);
+        _daoFactory.getDataDAO().create(data2);
+        _daoFactory.getDataDAO().create(data3);
+        _daoFactory.getDataDAO().create(data4);
+        _daoFactory.getDataDAO().create(data5);
+
+        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),idSensor);
         System.out.println(dataList.size());
-        assertTrue(dataList.size()==1);
+        assertTrue(dataList.size()==3);
+
+        _daoFactory.getDataDAO().delete(data1.getId());
+        _daoFactory.getDataDAO().delete(data2.getId());
+        _daoFactory.getDataDAO().delete(data3.getId());
+        _daoFactory.getDataDAO().delete(data4.getId());
+        _daoFactory.getDataDAO().delete(data5.getId());
     }
 
     /*

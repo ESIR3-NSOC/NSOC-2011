@@ -6,7 +6,7 @@ import java.util.UUID;
 public final class Data implements Comparable<Data> {
 
     /*
-     * Attribute
+     * Attributes
      */
 
     private final UUID _id;           // dao key
