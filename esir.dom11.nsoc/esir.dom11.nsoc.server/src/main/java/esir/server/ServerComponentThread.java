@@ -21,6 +21,6 @@ public class ServerComponentThread extends Thread{
 
     public void run(){
         System.out.println("Thread lance!");
-        sc.sendMessage(port, message);
+        sc.sendMessage(message);
     }
 }

@@ -31,11 +31,9 @@ public class ConnectionManager {
      * Demarre le serveur REST pour l'IHM
      */
     public void createServer(){
-        new ServerComponentThread("toConsole", "Creation du serveur").start();
         serv = new Server(Protocol.HTTP, portServer, ConnectionManager.class);
         try{
-            System.out.println();
-            new ServerComponentThread("toConsole", "lancement du serveur").start();
+            System.out.println("/** Lancement du serveur **/");
             serv.start();
         } catch (Exception e){
             e.printStackTrace();
@@ -47,7 +45,7 @@ public class ConnectionManager {
      */
     public void killServer(){
         try{
-            new ServerComponentThread("toConsole", "Arret du serveur").start();
+            System.out.println("/** Arret du serveur **/");
             serv.stop();
         } catch (Exception e){
             e.printStackTrace();
