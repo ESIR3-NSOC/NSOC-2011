@@ -11,28 +11,29 @@ public class Data {
 
     private UUID _id;           // dao key
     private DataType _dataType;
-    private UUID _idSensor;
+    private String _role;     // example : "temp-int-salle930"
     private double _value;
     private Date _date;
-    
-    /*
-     * Constructors
-     */
-    
-    public Data() {}
 
-    public Data(DataType dataType, UUID idSensor, double value, Date date) {
+    /*
+    * Constructors
+    */
+
+    public Data() {
+    }
+
+    public Data(DataType dataType, String role, double value, Date date) {
         _id = UUID.randomUUID();
         _dataType = dataType;
-        _idSensor = idSensor;
+        _role = role;
         _value = value;
         _date = date;
     }
-    
-    public Data(UUID id, DataType dataType, UUID idSensor, double value, Date date) {
+
+    public Data(UUID id, DataType dataType, String role, double value, Date date) {
         _id = id;
         _dataType = dataType;
-        _idSensor = idSensor;
+        _role = role;
         _value = value;
         _date = date;
     }
@@ -53,15 +54,15 @@ public class Data {
         _dataType = dataType;
     }
 
-    public UUID getIdSensor() {
-        return _idSensor;
+    public String getRole() {
+        return _role;
     }
 
-    public void setIdSensor(UUID idSensor) {
-        _idSensor = idSensor;
+    public void setRole(String role) {
+        _role = role;
     }
 
-    public Object getValue() {
+    public double getValue() {
         return _value;
     }
 
@@ -85,7 +86,7 @@ public class Data {
     public String toString() {
         return "\n* * * Task " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
-                + "\nSensor: " + getIdSensor()
+                + "\nRole: " + getRole()
                 + "\nDate: " + getDate() + "\n";
     }
 
