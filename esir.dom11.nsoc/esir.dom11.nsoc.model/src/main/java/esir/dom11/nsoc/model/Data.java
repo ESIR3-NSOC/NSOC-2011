@@ -3,23 +3,29 @@ package esir.dom11.nsoc.model;
 import java.util.Date;
 import java.util.UUID;
 
-public class Data implements Comparable<Data> {
+public final class Data implements Comparable<Data> {
 
     /*
      * Attribute
      */
 
-    private UUID _id;           // dao key
-    private DataType _dataType;
-    private String _role;     // example : "temp-int-salle930"
-    private double _value;
-    private Date _date;
+    private final UUID _id;           // dao key
+    private final DataType _dataType;
+    private final String _role;     // example : "temp-int-salle930"
+    private final double _value;
+    private final Date _date;
 
     /*
     * Constructors
     */
 
     public Data() {
+        // default constructor
+        _id = UUID.randomUUID();
+        _dataType = DataType.TEMPERATURE;
+        _role = "";
+        _value = 0.0;
+        _date = new Date();
     }
 
     public Data(DataType dataType, String role, double value, Date date) {
@@ -50,32 +56,16 @@ public class Data implements Comparable<Data> {
         return _dataType;
     }
 
-    public void setDataType(DataType dataType) {
-        _dataType = dataType;
-    }
-
     public String getRole() {
         return _role;
-    }
-
-    public void setRole(String role) {
-        _role = role;
     }
 
     public double getValue() {
         return _value;
     }
 
-    public void setValue(double value) {
-        _value = value;
-    }
-
     public Date getDate() {
         return _date;
-    }
-
-    public void setDate(Date date) {
-        _date = date;
     }
 
     /*
