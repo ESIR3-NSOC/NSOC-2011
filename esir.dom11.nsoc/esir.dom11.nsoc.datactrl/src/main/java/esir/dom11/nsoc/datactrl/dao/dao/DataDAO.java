@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface DataDAO extends DAO<UUID,Data> {
     
-    LinkedList<Data> findByDate(Date startDate, Date endDate, UUID idSensor);
+    LinkedList<Data> findByDate(Date startDate, Date endDate, String role);
     
 }
