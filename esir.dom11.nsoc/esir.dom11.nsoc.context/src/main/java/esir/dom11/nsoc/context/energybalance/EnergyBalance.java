@@ -1,32 +1,15 @@
 package esir.dom11.nsoc.context.energybalance;
 
-import org.kevoree.annotation.*;
-import org.kevoree.framework.AbstractComponentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * author: nicolas riche
+ *      This class generate a report about energy balance ( local production - consumption )
  */
-@Library(name = "NSOC_2011")
-@ComponentType
-@Provides({
-        @ProvidedPort(name = "consumption", type = PortType.MESSAGE),
-        @ProvidedPort(name = "production", type = PortType.MESSAGE)
-})
-@Requires({
-        @RequiredPort(name = "balance", type = PortType.MESSAGE, optional = true)
-})
-public class EnergyBalance extends AbstractComponentType {
+public class EnergyBalance {
 
-    /*
-    * Class Attributes
-    */
     private static Logger logger = LoggerFactory.getLogger(EnergyBalance.class);
 
-    /*
-    * Attributes
-    */
     private double _consumption;
     private double _production;
 
@@ -35,46 +18,29 @@ public class EnergyBalance extends AbstractComponentType {
         _production = 0.0;
     }
 
-    /*
-     * Getters / Setters
-     */
-
-    /*
-    * Overrides
-    */
-
-    @Start
-    public void start() {
-        logger.info("= = = = = start context-production/consumption report = = = = = =");
+    public EnergyBalance(double consumption, double production) {
+        _consumption = consumption;
+        _production = production;
     }
 
-    @Stop
-    public void stop() {
-        logger.info("= = = = = stop context-production/consumption report = = = = = =");
+    public double getConsumption() {
+        return _consumption;
     }
 
-    @Update
-    public void update() {
-        logger.info("= = = = = update context-production/consumption report = = = = = =");
+    public void setConsumption(double consumption) {
+        _consumption = consumption;
     }
 
-
-    @Port(name = "consumption")
-    public void energyConsumption(Object obj) {
-        try {
-            _consumption = (Double) obj;
-        } catch (Exception ex) {
-            logger.error(ex.toString());
-        }
+    public double getProduction() {
+        return _production;
     }
 
-    @Port(name = "production")
-    public void energyProduction(Object obj) {
-        try {
-            _production = (Double) obj;
-        } catch (Exception ex) {
-            logger.error(ex.toString());
-        }
+    public void setProduction(double production) {
+        _production = production;
     }
 
+    public double getEnergyBalance() {
+        return _production - _consumption;
+    }
 }
+
