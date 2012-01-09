@@ -86,16 +86,11 @@ public class Data implements Comparable<Data> {
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
-<<<<<<< HEAD
                 + "\nRole: " + getRole()
-=======
                 + "\nValue: " + getValue()
-                + "\nSensor: " + getIdSensor()
->>>>>>> origin/master
                 + "\nDate: " + getDate() + "\n";
     }
 
-    @Override
     public int compareTo(Data data) {
         if ( data.getValue() > getValue() ) {
             return 1;
