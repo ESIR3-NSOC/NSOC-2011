@@ -34,7 +34,8 @@ public class HelperSetupMySQL extends HelperSetup {
         StringBuilder sb = new StringBuilder();
 
         try {
-            FileReader fr = new FileReader(new File("dbMySQL.sql"));
+            System.out.println(this.getClass().getClassLoader().getResource("db/dbMySQL.sql").getFile());
+            FileReader fr = new FileReader(this.getClass().getClassLoader().getResource("db/dbMySQL.sql").getFile());
             BufferedReader br = new BufferedReader(fr);
 
             while((s = br.readLine()) != null) {

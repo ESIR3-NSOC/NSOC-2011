@@ -75,7 +75,7 @@ public class ClientDb extends AbstractComponentType {
         logger.info(" - End date: "+ new Date(new Long("1326098207775")));
         logger.info(" - Role: "+ "temp-int-salle930");
 
-        RequestResult result = getPortByName("dbService", IDbService.class).get("findByDate", Data.class.getName(), params);
+        RequestResult result = dbService.get("findByDate", Data.class.getName(), params);
         logger.info("Data retrieve:\n");
         if (result.isSuccess()) {
             for ( Data data : (LinkedList<Data>)result.getResult()) {
