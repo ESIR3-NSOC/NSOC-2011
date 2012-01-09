@@ -2,11 +2,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>esir.dom11.nsoc.server</groupId>
+    <groupId>esir.dom11.nsoc</groupId>
     <artifactId>esir.dom11.nsoc.server</artifactId>
     <packaging>bundle</packaging>
     <version>1.5.0-RC1</version>
     <name>esir.dom11.nsoc.server</name>
+
+    <parent>
+        <artifactId>esir.dom11.nsoc</artifactId>
+        <groupId>esir.dom11.nsoc</groupId>
+        <version>1.0</version>
+    </parent>
 
     <properties>
         <kevoree.version>1.5.0-RC1</kevoree.version>
