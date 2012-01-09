@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
-import java.util.UUID;
 
 public class TestDataDAOMySQL extends TestCase {
 
@@ -38,6 +37,8 @@ public class TestDataDAOMySQL extends TestCase {
         super.setUp();
         initProperties();
         _daoFactory = DAOFactory.getFactory(_dbProperties);
+        _daoFactory.getHelperSetup().setupTable();
+        _daoFactory.getHelperSetup().setupData();
     }
 
     /*

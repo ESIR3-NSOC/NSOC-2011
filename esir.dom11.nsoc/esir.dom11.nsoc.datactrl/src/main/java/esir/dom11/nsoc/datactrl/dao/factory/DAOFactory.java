@@ -2,6 +2,7 @@ package esir.dom11.nsoc.datactrl.dao.factory;
 
 import esir.dom11.nsoc.datactrl.dao.dao.*;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDb;
+import esir.dom11.nsoc.datactrl.helper.HelperSetup;
 import esir.dom11.nsoc.model.*;
 
 import java.util.Properties;
@@ -14,6 +15,7 @@ public abstract class DAOFactory {
      */
 
     protected ConnectionDb _connectionDb;
+    protected HelperSetup _helperSetup;
 
     /*
      * Class Methods
@@ -50,6 +52,10 @@ public abstract class DAOFactory {
 
     public ConnectionDb getConnectionDb() {
         return _connectionDb;
+    }
+
+    public HelperSetup getHelperSetup() {
+        return _helperSetup;
     }
 
     /*

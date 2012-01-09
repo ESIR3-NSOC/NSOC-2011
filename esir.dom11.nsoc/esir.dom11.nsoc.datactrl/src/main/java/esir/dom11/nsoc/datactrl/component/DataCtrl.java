@@ -1,6 +1,5 @@
 package esir.dom11.nsoc.datactrl.component;
 
-
 import esir.dom11.nsoc.datactrl.process.RequestMgt;
 import esir.dom11.nsoc.service.RequestResult;
 
@@ -76,6 +75,8 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         dbProperties.put("type",  getDictionary().get("dbType"));
 
         _daoFactory = DAOFactory.getFactory(dbProperties);
+        _daoFactory.getHelperSetup().setupTable();
+        _daoFactory.getHelperSetup().setupData();
         /*User user = _daoFactory.getUserDAO().retrieve("test3_id");
         if (_daoFactory.getUserDAO().delete(user.getId())) {
             logger.warn(".............. delete ................");
