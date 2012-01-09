@@ -12,7 +12,7 @@ import org.kevoree.annotation.Port;
 import org.kevoree.framework.*;
 
 @Requires({
-        @RequiredPort(name = "toConsole", type = PortType.MESSAGE, optional = true)
+        @RequiredPort(name = "fromIhm", type = PortType.MESSAGE, optional = true)
 })
 
 //le port d'envoi de donnees (Ctrl -> IHM)
@@ -31,7 +31,7 @@ public class ServerComponent extends AbstractComponentType{
 
     @Stop
     public void stopComponent(){
-        sgui.hideGui();
+        sgui.stopGui();
     }
 
     @Update
@@ -46,7 +46,7 @@ public class ServerComponent extends AbstractComponentType{
     }
 
      public void sendMessage(String mess){
-        MessagePort prodPort = getPortByName("toConsole", MessagePort.class);
+        MessagePort prodPort = getPortByName("fromIhm", MessagePort.class);
         if(prodPort != null){
             prodPort.process(mess);
         }

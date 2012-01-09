@@ -6,7 +6,7 @@
     <artifactId>esir.dom11.nsoc.server</artifactId>
     <packaging>bundle</packaging>
     <version>1.5.0-RC1</version>
-    <name>esir.dom11.nsoc.server</name>
+    <name>NSOC SERVER</name>
 
     <parent>
         <artifactId>esir.dom11.nsoc</artifactId>
@@ -29,12 +29,18 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-         <dependency>
+        <!--<dependency>
            <groupId>esir</groupId>
            <artifactId>restlet</artifactId>
            <version>1.0.0</version>
            <scope>provided</scope>
-       </dependency>
+       </dependency> -->
+       <dependency>
+   <groupId>org.restlet.jse</groupId>
+   <artifactId>org.restlet</artifactId>
+   <version>2.0.0</version>
+</dependency>
+
     </dependencies>
 
 
@@ -86,6 +92,11 @@
         <repository>
             <id>kevoree-snapshot</id>
             <url>http://maven.kevoree.org/snapshots</url>
+        </repository>
+        <repository>
+            <id>maven-restlet</id>
+            <name>Public online Restlet repository</name>
+            <url>http://maven.restlet.org</url>
         </repository>
     </repositories>
     <pluginRepositories>

@@ -16,13 +16,13 @@ import java.awt.event.WindowEvent;
  */
 public class ServerGui {
     JFrame fenetre;
-    ConnectionManager cm;
+    ServerManager cm;
 
     JButton buttonStart;
     JButton buttonStop;
 
     public ServerGui(){
-        cm = new ConnectionManager();
+        cm = new ServerManager();
         fenetre = new JFrame();
         JPanel panel = new JPanel();
 
@@ -42,8 +42,8 @@ public class ServerGui {
         JLabel ipServer = new JLabel(cm.getIpServer());
         JLabel portServer = new JLabel(cm.getPortServer());
 
-        buttonStart = new JButton("Start");
-        buttonStop = new JButton("Stop");
+        buttonStart = new JButton("Start server");
+        buttonStop = new JButton("Stop server");
         buttonStop.setEnabled(false);
 
 
@@ -51,7 +51,7 @@ public class ServerGui {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cm.createServer();
+                cm.startServer();
                 buttonStart.setEnabled(false);
                 buttonStop.setEnabled(true);
             }
@@ -60,7 +60,7 @@ public class ServerGui {
         buttonStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cm.killServer();
+                cm.stopServer();
                 buttonStart.setEnabled(true);
                 buttonStop.setEnabled(false);
             }
@@ -71,7 +71,7 @@ public class ServerGui {
 			public void windowClosing(WindowEvent winEvt) {
 
 				//on tue le client
-				cm.killServer();
+				cm.stopServer();
 				// on ferme la fenetre
 				System.exit(0);
 			}
@@ -93,7 +93,8 @@ public class ServerGui {
     /*
      * cache la fenetre lors du stop
      */
-    public void hideGui(){
+    public void stopGui(){
+        cm.stopServer();
         fenetre.setVisible(false);
     }
 

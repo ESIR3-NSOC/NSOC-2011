@@ -5,6 +5,7 @@ import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
+import org.restlet.resource.ServerResource;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -19,19 +20,19 @@ import java.net.UnknownHostException;
  */
 
 
-public class ConnectionManager {
+public class ServerManager extends ServerResource{
     private Server serv;
     private Integer portServer;
 
-    public ConnectionManager(){
+    public ServerManager(){
         this.portServer = 8182;
     }
 
     /*
      * Demarre le serveur REST pour l'IHM
      */
-    public void createServer(){
-        serv = new Server(Protocol.HTTP, portServer, ConnectionManager.class);
+    public void startServer(){
+        serv = new Server(Protocol.HTTP, portServer, ServerManager.class);
         try{
             System.out.println("/** Lancement du serveur **/");
             serv.start();
@@ -43,7 +44,7 @@ public class ConnectionManager {
     /*
      * Arrete le serveur REST pour l'IHM
      */
-    public void killServer(){
+    public void stopServer(){
         try{
             System.out.println("/** Arret du serveur **/");
             serv.stop();
@@ -78,13 +79,13 @@ public class ConnectionManager {
     }
 
     @Get
-    public String getRequest(){
+    public String requestGet(){
         return "Connexion Client/Serveur etablie";
     }
 
     @Post
-    public void postRequest(){}
+    public void requestPost(){}
 
     @Put
-    public void putRequest(){}
+    public void requestPut(){}
 }
