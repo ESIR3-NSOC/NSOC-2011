@@ -12,7 +12,7 @@
     <name>NSOC SERVICE</name>
 
     <parent>
-        <artifactId>esir.dom11.nsoc</artifactId>
+        <artifactId>esir.dom11.nsoc-core</artifactId>
         <groupId>esir.dom11.nsoc</groupId>
         <version>1.0</version>
         <relativePath>..</relativePath>

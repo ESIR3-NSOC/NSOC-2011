@@ -8,11 +8,13 @@
 
 #import "nsocAppDelegate.h"
 #import "nsocViewController.h"
+#import "RKRequeteClient.h"
 
 @implementation nsocAppDelegate
 
 @synthesize window;
 @synthesize viewController;
+@synthesize client;
 
 
 #pragma mark -
@@ -29,6 +31,18 @@
     return YES;
 }
 
+//methode appelee lors de l'appui sur le bouton connexion
+-(void) createServer: (NSString *) ipServer{
+	NSString *adresseIp = [[NSString alloc] initWithFormat:@"http://%@:8182", ipServer];
+	NSLog(@"adresse ip: %@", adresseIp);
+	
+	client = [RKClient clientWithBaseURL: adresseIp];
+	NSLog(@"client: %@", client);
+	
+	//envoi d'une requet GET
+	RKRequeteClient *rkGetClient = [RKRequeteClient alloc];
+	[rkGetClient sendGetRequest];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*

@@ -6,7 +6,9 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "nsocAppDelegate.h"
 #import "nsocViewController.h"
+#import "RKRequeteClient.h"
 
 @implementation nsocViewController
 
@@ -29,13 +31,16 @@
 */
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-*/
 
+	//Creation d'un delegate pour lancer la fonction
+	nsocAppDelegate *appDel = [nsocAppDelegate alloc];
+	[appDel createServer: @"148.60.83.56"];
+
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
