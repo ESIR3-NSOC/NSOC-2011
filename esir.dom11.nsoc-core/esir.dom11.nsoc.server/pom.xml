@@ -9,7 +9,7 @@
     <name>NSOC SERVER</name>
 
     <parent>
-        <artifactId>esir.dom11.nsoc</artifactId>
+        <artifactId>esir.dom11.nsoc-core</artifactId>
         <groupId>esir.dom11.nsoc</groupId>
         <version>1.0</version>
     </parent>
@@ -29,17 +29,17 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
            <groupId>esir</groupId>
            <artifactId>restlet</artifactId>
            <version>1.0.0</version>
            <scope>provided</scope>
-       </dependency> -->
-       <dependency>
-   <groupId>org.restlet.jse</groupId>
-   <artifactId>org.restlet</artifactId>
-   <version>2.0.0</version>
-</dependency>
+       </dependency>
+       <!--<dependency>
+            <groupId>org.restlet.jse</groupId>
+            <artifactId>org.restlet</artifactId>
+            <version>2.0.0</version>
+        </dependency>-->
 
     </dependencies>
 
