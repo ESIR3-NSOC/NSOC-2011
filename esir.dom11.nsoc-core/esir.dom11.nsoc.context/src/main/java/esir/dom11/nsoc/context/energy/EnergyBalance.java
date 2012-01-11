@@ -1,4 +1,4 @@
-package esir.dom11.nsoc.context.energybalance;
+package esir.dom11.nsoc.context.energy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
