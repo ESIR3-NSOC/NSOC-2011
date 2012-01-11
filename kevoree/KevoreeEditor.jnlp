@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><jnlp spec="1.0" codebase="http://dist.kevoree.org/" >
+   <information>
+      <title>Kevoree Model Editor</title>
+      <vendor>IRISA / INRIA Centre Rennes Bretagne Atlantique</vendor>
+      <icon href="icon/kev-logo-full.png" width="64" height="64"/>
+    <!-- allow app to run without Internet access -->
+    <offline-allowed/>
+    <shortcut online="false">
+      <desktop/>
+      <menu submenu="Kevoree"/>
+    </shortcut>
+	  <association mime-type="application-x/kevmodel" extensions="kev"/>
+   </information>
+   <resources>
+      <jar href="http://maven.kevoree.org/release/org/kevoree/tools/org.kevoree.tools.ui.editor.standalone/1.5.0-RC1/org.kevoree.tools.ui.editor.standalone-1.5.0-RC1.jar" main="true" />   </resources>
+
+   
+      <application-desc name="KevEditor" main-class="org.kevoree.tools.ui.editor.standalone.App">
+   		<update check="background" policy="prompt-update"/>
+   		</application-desc>
+   
+   
+   <security>
+     <all-permissions/>
+  </security>
+</jnlp>

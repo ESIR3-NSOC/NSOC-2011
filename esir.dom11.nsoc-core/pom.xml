@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>esir.dom11.nsoc</groupId>
-    <artifactId>esir.dom11.nsoc</artifactId>
+    <artifactId>esir.dom11.nsoc-core</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
     <name>NSOC</name>
