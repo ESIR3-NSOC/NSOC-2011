@@ -1,10 +1,7 @@
 package esir.dom11.nsoc.conflictmgt;
 
 /*
- TODO: thread gestion temps lock
-    save list cmd et action dans bd (30min)
-     gérer condition actuator free
-     gérer catégorie
+ TODO: thread gestion temps lock, save list cmd et action dans bd (30min), gérer condition actuator free, gérer catégorie
   */
 
 import esir.dom11.nsoc.model.Action;
@@ -39,8 +36,8 @@ public class ConflictMgt extends AbstractComponentType {
     * Attributes
     */
 
-    private LinkedList<Command> _commandBufferList;
-    private HashMap<UUID,Action> _lastActuatorActionMap;
+    private LinkedList<Command> _commandBufferList;         //buffer des dernières commandes reçues avant traitement et sauvegarde
+    private HashMap<UUID,Action> _lastActuatorActionMap;    //list des actions acceptées et envoyées pour gestion des conflits
 
     /*
      * Getters / Setters
@@ -53,6 +50,8 @@ public class ConflictMgt extends AbstractComponentType {
     @Start
     public void start() {
         logger.info("= = = = = start conflict manager = = = = = =");
+
+        //Initialisation
         _lastActuatorActionMap = new HashMap<UUID, Action>();
         _commandBufferList = new LinkedList<Command>();
     }
@@ -73,7 +72,11 @@ public class ConflictMgt extends AbstractComponentType {
 
     @Port(name = "cmdFromCtrl")
     public void cmdFromCtrl(Command command) {
+
+        //Sauvegarde de la commande à traiter
         _commandBufferList.add(command);
+
+        //v1, autorise les actions qui agissent sur un actionneur non présent dans _lastActuatorActionMap
         for (Action action : command.getActionList()) {
             if (isActuatorFree(action)) {
                 _lastActuatorActionMap.put(action.getIdActuator(),action);
@@ -87,9 +90,18 @@ public class ConflictMgt extends AbstractComponentType {
      * Methods
      */
 
+    /**
+     * isActuatorFree
+     * @param action
+     * @return "true" si l'IdActuator de l'action n'est pas dans le _lastActuatorActionMap
+     */
     private boolean isActuatorFree(Action action) {
-        // TODO
-        return true;
+        if (_lastActuatorActionMap.containsKey(action.getIdActuator())){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     private void saveInDb() {
