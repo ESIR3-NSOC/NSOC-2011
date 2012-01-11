@@ -3,4 +3,5 @@
 *.iws
 *.ipr
 *.project
+config.properties
 */target/*
