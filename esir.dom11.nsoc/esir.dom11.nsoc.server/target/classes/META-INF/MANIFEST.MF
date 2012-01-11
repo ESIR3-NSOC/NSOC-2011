@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Export-Package: esir.server.kevgen.JavaSENode;uses:="org.kevoree.frame
+ work,org.kevoree.framework.osgi,scala.reflect,scala,esir.server,org.s
+ lf4j,scala.collection.immutable,org.kevoree.framework.port,scala.runt
+ ime,scala.actors";version="1.5.0.RC1",esir.server;uses:="org.kevoree.
+ framework,org.kevoree.annotation,javax.swing,org.restlet.data,org.res
+ tlet.resource,org.restlet";version="1.5.0.RC1"
+Built-By: Pierre
+Build-Jdk: 1.6.0_26
+Bundle-Version: 1.5.0.RC1
+Tool: Bnd-1.43.0
+Bundle-Name: NSOC SERVER
+Bnd-LastModified: 1326125207338
+Created-By: Apache Maven Bundle Plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: esir.dom11.nsoc.esir.dom11.nsoc.server
+Import-Package: javax.swing,org.kevoree.annotation;version="[1.5,2)",o
+ rg.kevoree.framework,org.kevoree.framework.osgi,org.kevoree.framework
+ .port,org.restlet,org.restlet.data,org.restlet.resource,org.slf4j;ver
+ sion="[1.6,2)",scala,scala.actors,scala.collection.immutable,scala.re
+ flect,scala.runtime
+
