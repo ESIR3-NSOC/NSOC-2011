@@ -12,7 +12,7 @@
     <name>NSOC SERVICE</name>
 
     <parent>
-        <artifactId>esir.dom11.nsoc</artifactId>
+        <artifactId>esir.dom11.nsoc-core</artifactId>
         <groupId>esir.dom11.nsoc</groupId>
         <version>1.0</version>
         <relativePath>..</relativePath>
@@ -38,6 +38,17 @@
                         <Bundle-ClassPath>.</Bundle-ClassPath>
                         <Export-Package>esir.dom11.nsoc.service.*</Export-Package>
                     </instructions>
+                </configuration>
+            </plugin>
+            <!-- Java compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF8</encoding>
                 </configuration>
             </plugin>
         </plugins>
