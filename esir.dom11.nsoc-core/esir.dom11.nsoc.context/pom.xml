@@ -3,8 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+<<<<<<< HEAD
         <artifactId>esir.dom11.nsoc-core</artifactId>
+=======
+>>>>>>> 3eb82c764f759b5544c6f335892e8ffec97dbe7c
         <groupId>esir.dom11.nsoc</groupId>
+        <artifactId>esir.dom11.nsoc-core</artifactId>
         <version>1.0</version>
     </parent>
 
