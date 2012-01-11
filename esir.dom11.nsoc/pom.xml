@@ -18,6 +18,7 @@
         <module>esir.dom11.nsoc.scheduler</module>
         <module>esir.dom11.nsoc.context</module>
         <module>esir.dom11.nsoc.server</module>
+        <module>esir.dom11.nsoc.ctrl</module>
     </modules>
 
     <properties>
@@ -42,5 +43,23 @@
             <url>http://maven.kevoree.org/release</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>nsoc2011-repo</id>
+            <url>ftp://ftp.alwaysdata.com/www/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <extensions>
+            <!-- Enabling the use of FTP -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+    </build>
 
 </project>
