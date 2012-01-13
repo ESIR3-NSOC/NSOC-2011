@@ -32,9 +32,9 @@
 }
 
 //methode appelee lors de l'appui sur le bouton connexion
--(void) createServer: (NSString *) ipServer{
-	NSString *adresseIp = [[NSString alloc] initWithFormat:@"http://%@:8182", ipServer];
-	NSLog(@"adresse ip: %@", adresseIp);
+- (void) createServer: (NSString *) ipServer :(NSString *) portServer{
+	NSLog(@"Connexion au server: http://%@:%@",ipServer, portServer);
+	NSString *adresseIp = [[NSString alloc] initWithFormat:@"http://%@:%@", ipServer, portServer];
 	
 	client = [RKClient clientWithBaseURL: adresseIp];
 	NSLog(@"client: %@", client);
@@ -43,6 +43,11 @@
 	RKRequeteClient *rkGetClient = [RKRequeteClient alloc];
 	[rkGetClient sendGetRequest];
 }
+
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*

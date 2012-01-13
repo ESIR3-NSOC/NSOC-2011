@@ -24,6 +24,8 @@
 		8F37FE6314BDE01000DD8D58 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F37FE6214BDE01000DD8D58 /* MobileCoreServices.framework */; };
 		8F37FE6714BDE01800DD8D58 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F37FE6614BDE01800DD8D58 /* CoreData.framework */; };
 		8F37FEB814BDEAA300DD8D58 /* RKRequeteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F37FEB714BDEAA300DD8D58 /* RKRequeteClient.m */; };
+		8FEF9F2314BF565B0082DC3E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEF9F2114BF565B0082DC3E /* HomeViewController.m */; };
+		8FEF9F2414BF565B0082DC3E /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEF9F2214BF565B0082DC3E /* HomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,9 @@
 		8F37FE6214BDE01000DD8D58 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8F37FE6614BDE01800DD8D58 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8F37FEB714BDEAA300DD8D58 /* RKRequeteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKRequeteClient.m; sourceTree = "<group>"; };
+		8FEF9F2014BF565B0082DC3E /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
+		8FEF9F2114BF565B0082DC3E /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
+		8FEF9F2214BF565B0082DC3E /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,11 +165,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8F37FEB714BDEAA300DD8D58 /* RKRequeteClient.m */,
-				1D3623240D0F684500981E51 /* nsocAppDelegate.h */,
-				1D3623250D0F684500981E51 /* nsocAppDelegate.m */,
+				8FEF9F2014BF565B0082DC3E /* HomeViewController.h */,
+				8FEF9F2114BF565B0082DC3E /* HomeViewController.m */,
 				28D7ACF60DDB3853001CB0EB /* nsocViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* nsocViewController.m */,
+				1D3623240D0F684500981E51 /* nsocAppDelegate.h */,
+				1D3623250D0F684500981E51 /* nsocAppDelegate.m */,
+				8F37FEB714BDEAA300DD8D58 /* RKRequeteClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -206,6 +213,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8FEF9F2214BF565B0082DC3E /* HomeViewController.xib */,
 				2899E5210DE3E06400AC0155 /* nsocViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* nsoc-Info.plist */,
@@ -379,6 +387,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* nsocViewController.xib in Resources */,
+				8FEF9F2414BF565B0082DC3E /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +402,7 @@
 				1D3623260D0F684500981E51 /* nsocAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* nsocViewController.m in Sources */,
 				8F37FEB814BDEAA300DD8D58 /* RKRequeteClient.m in Sources */,
+				8FEF9F2314BF565B0082DC3E /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

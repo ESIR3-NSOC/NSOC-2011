@@ -18,7 +18,7 @@
 }
 
 -(void) sendPostRequest: (NSDictionary *) dictionary;
--(void) createServer: (NSString *) ipServer;
+-(void) createServer: (NSString *)ipServer :(NSString *)portServer;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet nsocViewController *viewController;

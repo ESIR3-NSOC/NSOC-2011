@@ -1,12 +1,2 @@
-In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:11:
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:10:28: error: RestKit/RestKit.h: No such file or directory
-In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:11:
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:13: error: cannot find protocol declaration for 'RKRequestDelegate'
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:19: error: expected ')' before 'RKRequest'
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:19: error: expected ')' before 'RKResponse'
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:17: error: no declaration of property 'client' found in the interface
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m: In function '-[nsocAppDelegate createServer:]':
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:39: error: 'client' undeclared (first use in this function)
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:39: error: (Each undeclared identifier is reported only once
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:39: error: for each function it appears in.)
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:39: error: 'RKClient' undeclared (first use in this function)
+/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:107: warning: incomplete implementation of class 'nsocAppDelegate'
+/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/nsocAppDelegate.m:107: warning: method definition for '-sendPostRequest:' not found
