@@ -1,53 +1,45 @@
 //
-//  nsocAppDelegate.m
-//  nsoc
+//  NsocAppDelegate.m
+//  Nsoc
 //
-//  Created by Pierre BARON on 11/01/12.
+//  Created by Pierre BARON on 14/01/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "nsocAppDelegate.h"
-#import "nsocViewController.h"
-#import "RKRequeteClient.h"
+#import "NsocAppDelegate.h"
 
-@implementation nsocAppDelegate
+@implementation NsocAppDelegate
 
 @synthesize window;
-@synthesize viewController;
-@synthesize client;
+@synthesize tabBarController;
+@synthesize savedIp;
+@synthesize savedPort;
 
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
     // Override point for customization after application launch.
-
-    // Add the view controller's view to the window and display.
-    [window addSubview:viewController.view];
+	self.savedIp = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedIp"];
+	self.savedPort = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedPort"];
+	
+	if (savedIp == nil) {
+		savedIp = @"0";
+		NSDictionary *savedIpDict = [NSDictionary dictionaryWithObject:savedIp forKey:@"getSavedIp"];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:savedIpDict];
+	} else if(savedPort == nil){
+		savedPort = @"0";
+		NSDictionary *savedPortDict = [NSDictionary dictionaryWithObject:savedPort forKey:@"getSavedPort"];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:savedPortDict];
+	}
+	
+    // Add the tab bar controller's view to the window and display.
+    [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 
     return YES;
 }
-
-//methode appelee lors de l'appui sur le bouton connexion
-- (void) createServer: (NSString *) ipServer :(NSString *) portServer{
-	NSLog(@"Connexion au server: http://%@:%@",ipServer, portServer);
-	NSString *adresseIp = [[NSString alloc] initWithFormat:@"http://%@:%@", ipServer, portServer];
-	
-	client = [RKClient clientWithBaseURL: adresseIp];
-	NSLog(@"client: %@", client);
-	
-	//envoi d'une requet GET
-	RKRequeteClient *rkGetClient = [RKRequeteClient alloc];
-	[rkGetClient sendGetRequest];
-}
-
-
-
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -80,11 +72,29 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+	[[NSUserDefaults standardUserDefaults] setObject:savedIp forKey:@"getSavedIp"];
+	[[NSUserDefaults standardUserDefaults] setObject:savedPort forKey:@"getSavedPort"];
     /*
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
 }
+
+
+#pragma mark -
+#pragma mark UITabBarControllerDelegate methods
+
+/*
+// Optional UITabBarControllerDelegate method.
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+}
+*/
+
+/*
+// Optional UITabBarControllerDelegate method.
+- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
+}
+*/
 
 
 #pragma mark -
@@ -98,10 +108,10 @@
 
 
 - (void)dealloc {
-    [viewController release];
+    [tabBarController release];
     [window release];
     [super dealloc];
 }
 
-
 @end
+

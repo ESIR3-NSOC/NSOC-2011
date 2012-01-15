@@ -70,13 +70,13 @@ public class ServerManager extends ServerResource{
 	}
 
     @Get
-    public String requestGet(){
+    public String receiveGetRequest(){
         return "Connexion Client/Serveur etablie";
     }
 
     @Post
-    public void requestPost(){}
+    public void receivePostRequest(){}
 
     @Put
-    public void requestPut(){}
+    public void receivePutRequest(){}
 }

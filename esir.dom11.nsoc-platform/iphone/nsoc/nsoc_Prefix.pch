@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'nsoc' target in the 'nsoc' project
+// Prefix header for all source files of the 'Nsoc' target in the 'Nsoc' project
 //
 
 #ifdef __OBJC__

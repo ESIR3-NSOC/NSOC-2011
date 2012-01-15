@@ -1,17 +1,17 @@
 //
 //  main.m
-//  nsoc
+//  Nsoc
 //
-//  Created by Pierre BARON on 11/01/12.
+//  Created by Pierre BARON on 14/01/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 int main(int argc, char *argv[]) {
-    
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
     return retVal;
 }
+

@@ -1,28 +1,26 @@
 //
-//  nsocAppDelegate.h
-//  nsoc
+//  NsocAppDelegate.h
+//  Nsoc
 //
-//  Created by Pierre BARON on 11/01/12.
+//  Created by Pierre BARON on 14/01/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <RestKit/RestKit.h>
+//#import <RestKit/RestKit.h>
 
-@class nsocViewController;
-
-@interface nsocAppDelegate : NSObject <UIApplicationDelegate> {
-	RKClient *client;
+@interface NsocAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
-    nsocViewController *viewController;
+    UITabBarController *tabBarController;
+	
+	NSString *savedIp;
+	NSString *savedPort;
 }
 
--(void) sendPostRequest: (NSDictionary *) dictionary;
--(void) createServer: (NSString *)ipServer :(NSString *)portServer;
-
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet nsocViewController *viewController;
-@property (nonatomic, retain) IBOutlet RKClient *client;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+
+@property (nonatomic, retain) NSString *savedIp;
+@property (nonatomic, retain) NSString *savedPort;
 
 @end
-
