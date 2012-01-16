@@ -65,9 +65,9 @@
 		8FDFC0DA14C1E43E005C6FCE /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailsViewController.h; path = Classes/DetailsViewController.h; sourceTree = "<group>"; };
 		8FDFC0DB14C1E43E005C6FCE /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailsViewController.m; path = Classes/DetailsViewController.m; sourceTree = "<group>"; };
 		8FDFC0DC14C1E43E005C6FCE /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = Classes/DetailsViewController.xib; sourceTree = "<group>"; };
-		8FDFC0E114C1E451005C6FCE /* CommandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandsViewController.h; sourceTree = "<group>"; };
-		8FDFC0E214C1E451005C6FCE /* CommandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsViewController.m; sourceTree = "<group>"; };
-		8FDFC0E314C1E451005C6FCE /* CommandsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandsViewController.xib; sourceTree = "<group>"; };
+		8FDFC0E114C1E451005C6FCE /* CommandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandsViewController.h; path = Classes/CommandsViewController.h; sourceTree = "<group>"; };
+		8FDFC0E214C1E451005C6FCE /* CommandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandsViewController.m; path = Classes/CommandsViewController.m; sourceTree = "<group>"; };
+		8FDFC0E314C1E451005C6FCE /* CommandsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommandsViewController.xib; path = Classes/CommandsViewController.xib; sourceTree = "<group>"; };
 		8FDFC0E814C1E461005C6FCE /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigViewController.h; path = Classes/ConfigViewController.h; sourceTree = "<group>"; };
 		8FDFC0E914C1E461005C6FCE /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigViewController.m; path = Classes/ConfigViewController.m; sourceTree = "<group>"; };
 		8FDFC0EA14C1E461005C6FCE /* ConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConfigViewController.xib; path = Classes/ConfigViewController.xib; sourceTree = "<group>"; };
@@ -149,13 +149,7 @@
 		29B97314FDCFA39411CA2CEA /* Nsoc */ = {
 			isa = PBXGroup;
 			children = (
-				8F1DEE5714C33664004E1A6D /* Lib */,
-				8FDFC18014C1ED48005C6FCE /* Infos View */,
-				8FDFC18114C1ED55005C6FCE /* Details View */,
-				8FDFC18214C1ED5F005C6FCE /* Commands View */,
-				8FDFC18314C1ED69005C6FCE /* Config View */,
-				8FDFC18414C1ED77005C6FCE /* Credits View */,
-				080E96DDFE201D6D7F000001 /* Application Delegate */,
+				8FB9F01414C4706300A77634 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -219,6 +213,22 @@
 			name = Lib;
 			sourceTree = "<group>";
 		};
+		8FB9F01414C4706300A77634 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8F1DEE5714C33664004E1A6D /* Lib */,
+				8FDFC18014C1ED48005C6FCE /* Infos View */,
+				8FDFC18114C1ED55005C6FCE /* Details View */,
+				8FDFC18214C1ED5F005C6FCE /* Commands View */,
+				8FDFC18314C1ED69005C6FCE /* Config View */,
+				8FDFC0E814C1E461005C6FCE /* ConfigViewController.h */,
+				8FDFC0E914C1E461005C6FCE /* ConfigViewController.m */,
+				8FDFC18414C1ED77005C6FCE /* Credits View */,
+				080E96DDFE201D6D7F000001 /* Application Delegate */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		8FDFC18014C1ED48005C6FCE /* Infos View */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,8 +259,6 @@
 		8FDFC18314C1ED69005C6FCE /* Config View */ = {
 			isa = PBXGroup;
 			children = (
-				8FDFC0E814C1E461005C6FCE /* ConfigViewController.h */,
-				8FDFC0E914C1E461005C6FCE /* ConfigViewController.m */,
 			);
 			name = "Config View";
 			sourceTree = "<group>";
