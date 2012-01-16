@@ -1,4 +1,4 @@
-package esir.ctrl;
+package esir.dom11.nsoc.ctrl;
 
 /**
  * Created by IntelliJ IDEA.
@@ -8,7 +8,7 @@ package esir.ctrl;
  * To change this template use File | Settings | File Templates.
  */
 public interface crtlInterface {
-    //
+    // Ctrl qui envoie vers l'IHM
     void send2IHM();
     void send2DAO();
     void send2Conflict();
