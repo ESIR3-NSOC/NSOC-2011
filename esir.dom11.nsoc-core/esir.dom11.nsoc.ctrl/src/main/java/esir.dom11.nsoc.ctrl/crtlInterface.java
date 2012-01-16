@@ -8,6 +8,7 @@ package esir.ctrl;
  * To change this template use File | Settings | File Templates.
  */
 public interface crtlInterface {
+    //
     void send2IHM();
     void send2DAO();
     void send2Conflict();
