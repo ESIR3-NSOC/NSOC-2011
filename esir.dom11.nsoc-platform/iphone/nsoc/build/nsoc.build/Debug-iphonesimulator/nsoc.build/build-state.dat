@@ -1,43 +1,43 @@
 TNsoc
 v7
 r0
-t348352868.357958
+t348415371.221596
 cCheck dependencies
-cProcessInfoPlistFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist Nsoc-Info.plist
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/MainWindow.xib
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/InfosViewController.xib
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.xib
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.xib
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.xib
+cProcessInfoPlistFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist Nsoc-Info.plist
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/MainWindow.xib
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/InfosViewController.xib
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.xib
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.xib
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.xib
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_040_stats.png glyphicons_040_stats.png
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_041_charts.png glyphicons_041_charts.png
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_232_cardio.png glyphicons_232_cardio.png
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_280_settings.png glyphicons_280_settings.png
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_026_home.png glyphicons_026_home.png
-cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.xib
+cCompileXIB /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.xib
 cCpResource build/Debug-iphonesimulator/Nsoc.app/credits.png credits.png
 cCpResource build/Debug-iphonesimulator/Nsoc.app/glyphicons_033_cogwheels.png glyphicons_033_cogwheels.png
-cProcessPCH /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch.gch Nsoc_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/NsocAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/InfosViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataCompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataDecompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDownloadCache.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIFormDataRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIHTTPRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIInputStream.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASINetworkQueue.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Reachability.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ELCTextfieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc normal i386
-cGenerateDSYMFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
-cTouch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app
+cProcessPCH /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch Nsoc_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc normal i386
+cGenerateDSYMFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
+cTouch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app
 
 N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk
 c000000004C6C30170000000000000110
@@ -184,6 +184,153 @@ c00000000000000000000000000000000
 t2
 s0
 
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.h
+c000000004F1423800000000000000453
+t1326719872
+s1107
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m
+c000000004F1423800000000000003F4A
+t1326719872
+s16202
+i"ASIAuthenticationDialog.h"
+i"ASIHTTPRequest.h"
+i<QuartzCore/QuartzCore.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASICacheDelegate.h
+c000000004F142380000000000000141F
+t1326719872
+s5151
+i<Foundation/Foundation.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.h
+c000000004F142380000000000000072C
+t1326719872
+s1836
+i<Foundation/Foundation.h>
+i<zlib.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m
+c000000004F1423800000000000001A63
+t1326719872
+s6755
+i"ASIDataCompressor.h"
+i"ASIHTTPRequest.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.h
+c000000004F14238000000000000006A3
+t1326719872
+s1699
+i<Foundation/Foundation.h>
+i<zlib.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m
+c000000004F1423800000000000001916
+t1326719872
+s6422
+i"ASIDataDecompressor.h"
+i"ASIHTTPRequest.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.h
+c000000004F14238000000000000007CC
+t1326719872
+s1996
+i<Foundation/Foundation.h>
+i"ASICacheDelegate.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m
+c000000004F1423800000000000004561
+t1326719872
+s17761
+i"ASIDownloadCache.h"
+i"ASIHTTPRequest.h"
+i<CommonCrypto/CommonHMAC.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.h
+c000000004F1423800000000000000A85
+t1326719872
+s2693
+i<Foundation/Foundation.h>
+i"ASIHTTPRequest.h"
+i"ASIHTTPRequestConfig.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m
+c000000004F1423800000000000002C02
+t1326719872
+s11266
+i"ASIFormDataRequest.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.h
+c000000004F142380000000000000AFE9
+t1326719872
+s45033
+i<Foundation/Foundation.h>
+i<CFNetwork/CFNetwork.h>
+i<UIKit/UIKit.h>
+i<stdio.h>
+i"ASIHTTPRequestConfig.h"
+i"ASIHTTPRequestDelegate.h"
+i"ASIProgressDelegate.h"
+i"ASICacheDelegate.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m
+c000000004F142380000000000002D11F
+t1326719872
+s184607
+i"ASIHTTPRequest.h"
+i"Reachability.h"
+i"ASIAuthenticationDialog.h"
+i<MobileCoreServices/MobileCoreServices.h>
+i<SystemConfiguration/SystemConfiguration.h>
+i"ASIInputStream.h"
+i"ASIDataDecompressor.h"
+i"ASIDataCompressor.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequestConfig.h
+c000000004F1423800000000000000511
+t1326719872
+s1297
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequestDelegate.h
+c000000004F142380000000000000063E
+t1326719872
+s1598
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.h
+c000000004F14238000000000000003C9
+t1326719872
+s969
+i<Foundation/Foundation.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m
+c000000004F1423800000000000000C32
+t1326719872
+s3122
+i"ASIInputStream.h"
+i"ASIHTTPRequest.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.h
+c000000004F142380000000000000120D
+t1326719872
+s4621
+i<Foundation/Foundation.h>
+i"ASIHTTPRequestDelegate.h"
+i"ASIProgressDelegate.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m
+c000000004F1423800000000000002C8D
+t1326719872
+s11405
+i"ASINetworkQueue.h"
+i"ASIHTTPRequest.h"
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIProgressDelegate.h
+c000000004F1423800000000000000678
+t1326719872
+s1656
+
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/../CommandsViewController.m
 c000000004F11ACD100000000000005AC
 t1326558417
@@ -197,55 +344,58 @@ s1443
 i"ThirdViewController.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.h
-c000000004F11B8A60000000000000153
-t1326561446
-s339
+c000000004F1423800000000000000410
+t1326719872
+s1040
 i<UIKit/UIKit.h>
 i"CreditsViewController.h"
+i"ELCTextfieldCell.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m
-c000000004F11F40F00000000000008CF
-t1326576655
-s2255
+c000000004F142E060000000000002BD6
+t1326722566
+s11222
+i"NsocAppDelegate.h"
 i"ConfigViewController.h"
+i"ASIHTTPRequest.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.xib
-c000000004F11F1E000000000000043BE
-t1326576096
-s17342
+c000000004F142380000000000000517C
+t1326719872
+s20860
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.h
-c000000004F120DAC0000000000000266
-t1326583212
-s614
+c000000004F1423800000000000000267
+t1326719872
+s615
 i<UIKit/UIKit.h>
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m
-c000000004F120F330000000000000787
-t1326583603
-s1927
+c000000004F1423800000000000000788
+t1326719872
+s1928
 i"CreditsViewController.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.xib
-c000000004F120EB2000000000000A01A
-t1326583474
-s40986
+c000000004F142380000000000000A02C
+t1326719872
+s41004
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.h
-c000000004F11ACBE00000000000000EC
-t1326558398
+c000000004F14238000000000000000EC
+t1326719872
 s236
 i<UIKit/UIKit.h>
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m
-c000000004F11ACBE00000000000005A9
-t1326558398
+c000000004F14238000000000000005A9
+t1326719872
 s1449
 i"DetailsViewController.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.xib
-c000000004F11F20100000000000041EC
-t1326576129
+c000000004F14238000000000000041EC
+t1326719872
 s16876
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/FirstViewController.h
@@ -261,14 +411,14 @@ s1455
 i"FirstViewController.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.h
-c000000004F11ACB300000000000000E8
-t1326558387
+c000000004F14238000000000000000E8
+t1326719872
 s232
 i<UIKit/UIKit.h>
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m
-c000000004F11ACAE00000000000005AF
-t1326558382
+c000000004F14238000000000000005AF
+t1326719872
 s1455
 i"InfosViewController.h"
 
@@ -279,26 +429,32 @@ s465
 i<UIKit/UIKit.h>
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m
-c000000004F11AB630000000000000C2A
-t1326558051
-s3114
+c000000004F1423800000000000000F5C
+t1326719872
+s3932
 i"NsocAppDelegate.h"
 
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/nsocAppDelegate.h
+c000000004F1423800000000000000280
+t1326719872
+s640
+i<UIKit/UIKit.h>
+
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.h
-c000000004F11ACD100000000000000EE
-t1326558417
+c000000004F14238000000000000000EE
+t1326719872
 s238
 i<UIKit/UIKit.h>
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m
-c000000004F11ACD100000000000005AC
-t1326558417
+c000000004F14238000000000000005AC
+t1326719872
 s1452
 i"CommandsViewController.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.xib
-c000000004F11F1F60000000000004AA9
-t1326576118
+c000000004F1423800000000000004AA9
+t1326719872
 s19113
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CreditsView.xib
@@ -311,27 +467,60 @@ c000000004F11AB6300000000000049CC
 t1326558051
 s18892
 
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.h
+c000000004F14238000000000000002E3
+t1326719872
+s739
+i<UIKit/UIKit.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m
+c000000004F1423800000000000000D3E
+t1326719872
+s3390
+i"ELCTextfieldCell.h"
+
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/FirstView.xib
 c000000004F11AB6300000000000049CE
 t1326558051
 s18894
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/InfosViewController.xib
-c000000004F11F20E0000000000004AA7
-t1326576142
+c000000004F1423800000000000004AA7
+t1326719872
 s19111
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/MainWindow.xib
-c000000004F11F41D000000000000A806
-t1326576669
-s43014
+c000000004F142380000000000000ACF6
+t1326719872
+s44278
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc_Prefix.pch
-c000000004F11AB6300000000000000B1
-t1326558051
+c000000004F14238400000000000000B1
+t1326719876
 s177
 i<Foundation/Foundation.h>
 i<UIKit/UIKit.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.h
+c000000004F1423800000000000001D25
+t1326719872
+s7461
+i<Foundation/Foundation.h>
+i<SystemConfiguration/SystemConfiguration.h>
+i<netinet/in.h>
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m
+c000000004F1423800000000000005E0C
+t1326719872
+s24076
+i<sys/socket.h>
+i<netinet/in.h>
+i<netinet6/in6.h>
+i<arpa/inet.h>
+i<ifaddrs.h>
+i<netdb.h>
+i<CoreFoundation/CoreFoundation.h>
+i"Reachability.h"
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/SecondView.xib
 c000000004F11AB6300000000000049CC
@@ -356,11 +545,11 @@ t1326558088
 s6260
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app
-t1326583662
-s680
+t1326722571
+s714
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM
-t1326583662
+t1326722571
 s102
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/122-stats.png
@@ -376,23 +565,23 @@ t2
 s0
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/CommandsViewController.nib
-t1326576198
+t1326719872
 s3042
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/ConfigViewController.nib
-t1326576198
-s1949
+t1326719872
+s2509
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/CreditsView.nib
 t2
 s0
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/CreditsViewController.nib
-t1326583540
-s6585
+t1326719872
+s6589
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/DetailsViewController.nib
-t1326576198
+t1326719872
 s1951
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/FirstView.nib
@@ -400,23 +589,23 @@ t1326558063
 s2879
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist
-t1326559399
+t1326719955
 s630
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/InfosViewController.nib
-t1326576197
+t1326719872
 s2874
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/MainWindow.nib
-t1326580643
-s5484
+t1326719872
+s5501
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
-t1326583662
-s27308
+t1326722571
+s434776
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/PkgInfo
-t1326559399
+t1326719955
 s8
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/SecondView.nib
@@ -428,31 +617,31 @@ t1326558135
 s1231
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/credits.png
-t1326580643
+t1326719872
 s1224
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_026_home.png
-t1326559364
+t1326719872
 s1255
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_033_cogwheels.png
-t2
-s0
+t1326719872
+s1503
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_040_stats.png
-t1326559258
+t1326719872
 s1479
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_041_charts.png
-t1326559258
+t1326719872
 s1197
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_232_cardio.png
-t1326559258
+t1326719872
 s1420
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/glyphicons_280_settings.png
-t1326559258
+t1326719872
 s1421
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o
@@ -496,39 +685,112 @@ N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/i
 t1326558064
 s6404
 
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o
+t1326719960
+s105860
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o
+t1326719960
+s23404
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o
+t1326719960
+s23364
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o
+t1326719960
+s60896
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o
+t1326719960
+s48124
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o
+t1326719963
+s514404
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o
+t1326719960
+s29316
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o
+t1326719961
+s61556
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o
+t1326719959
+s34760
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o
+t1326722571
+s87124
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o
+t1326719959
+s43192
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o
+t1326719959
+s34756
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o
+t1326719962
+s51344
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o
+t1326719959
+s34512
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Nsoc.LinkFileList
+c000000004F1423D30000000000000BF1
+t1326719955
+s3057
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o
+t1326719959
+s56224
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o
+t1326719961
+s33996
+
+N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o
+t1326719959
+s6404
+
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/credits.png
-c000000004F1201E900000000000004C8
-t1326580201
+c000000004F14238000000000000004C8
+t1326719872
 s1224
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_026_home.png
-c000000004DC6C6BC00000000000004E7
-t1304872636
+c000000004F14238000000000000004E7
+t1326719872
 s1255
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_033_cogwheels.png
-c000000004DC6C8EE00000000000005DF
-t1304873198
+c000000004F14238000000000000005DF
+t1326719872
 s1503
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_040_stats.png
-c000000004DC6CB3100000000000005C7
-t1304873777
+c000000004F14238000000000000005C7
+t1326719872
 s1479
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_041_charts.png
-c000000004DC6CB8000000000000004AD
-t1304873856
+c000000004F14238000000000000004AD
+t1326719872
 s1197
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_232_cardio.png
-c000000004DC70A1C000000000000058C
-t1304889884
+c000000004F142380000000000000058C
+t1326719872
 s1420
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_280_settings.png
-c000000004DC71A59000000000000058D
-t1304894041
+c000000004F142380000000000000058D
+t1326719872
 s1421
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/lib/RestKit/Build/Debug-iphonesimulator/libRestKitCoreData.a
@@ -562,8 +824,8 @@ t1326637659
 s125088
 
 N/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m
-c000000004F11AB630000000000000163
-t1326558051
+c000000004F1423840000000000000163
+t1326719876
 s355
 i<UIKit/UIKit.h>
 
@@ -1375,7 +1637,7 @@ t1326637666
 s15211536
 
 N/var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch
-t1326558064
+t1326719958
 s15211536
 
 N/var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch.gch
@@ -1383,13 +1645,13 @@ t1326621947
 s15211536
 
 NNsoc-Info.plist
-c000000004F11B0A200000000000003A4
-t1326559394
+c000000004F14238400000000000003A4
+t1326719876
 s932
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies348352867#348352867#0(0"0(0#1#0"8624188672#0"0#
+lSLF07#2@18"Check dependencies348415370#348415370#0(0"0(0#1#0"8615198336#0"0#
 
 CCompileC build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/../CommandsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348251280.306296
@@ -1524,6 +1786,26 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@104"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m348250864#348250864#0(0"0(0#0#96"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m8599630400#2477"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.635559
+e348412760.372377
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m: In function '+[ASIAuthenticationDialog dismiss]':
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: (Messages without a matching method signature
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: will be assumed to return 'id' and accept
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: '...' as arguments.)
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m: In function '-[ASIAuthenticationDialog dismiss]':
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:240: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'
+lSLF07#2@123"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m348412759#348412760#0(1239"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m: In function '+[ASIAuthenticationDialog dismiss]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: (Messages without a matching method signature/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: will be assumed to return 'id' and accept/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:220: warning: '...' as arguments.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m: In function '-[ASIAuthenticationDialog dismiss]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m:240: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'3(22@72"'ASIAuthenticationDialog' may not respond to '-presentingViewController'348412760#167#203#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m348412672#220#0#220#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)348412760#370#176#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m348412672#220#0#220#0#0"0(22@72"'ASIAuthenticationDialog' may not respond to '-presentingViewController'348412760#1036#203#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m348412672#240#0#240#0#26"'*' may not respond to '*'0(0#0#115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m8603502304#2515"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIAuthenticationDialog.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334283.941518
 e348334284.416647
@@ -1544,6 +1826,19 @@ o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/i
 o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:240: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'
 lSLF07#2@123"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m348334283#348334284#0(1239"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m: In function '+[ASIAuthenticationDialog dismiss]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:220: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:220: warning: (Messages without a matching method signature/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:220: warning: will be assumed to return 'id' and accept/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:220: warning: '...' as arguments.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m: In function '-[ASIAuthenticationDialog dismiss]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m:240: warning: 'ASIAuthenticationDialog' may not respond to '-presentingViewController'3(22@72"'ASIAuthenticationDialog' may not respond to '-presentingViewController'348334284#167#203#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m348254536#220#0#220#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)348334284#370#176#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m348254536#220#0#220#0#0"0(22@72"'ASIAuthenticationDialog' may not respond to '-presentingViewController'348334284#1036#203#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m348254536#240#0#240#0#26"'*' may not respond to '*'0(0#0#115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m8638305440#2515"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIAuthenticationDialog.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIAuthenticationDialog.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.833302
+e348412760.011237
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@117"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m348412759#348412760#0(0"0(0#0#109"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m8602677312#2503"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataCompressor.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataCompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.030713
 e348334284.208829
@@ -1556,6 +1851,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@117"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataCompressor.m348334284#348334284#0(0"0(0#0#109"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataCompressor.m8637805952#2503"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataCompressor.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataCompressor.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.011338
+e348412760.102369
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@119"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m348412760#348412760#0(0"0(0#0#111"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m8603721504#2507"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDataDecompressor.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataDecompressor.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.208935
@@ -1570,6 +1878,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@119"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataDecompressor.m348334284#348334284#0(0"0(0#0#111"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataDecompressor.m8638928352#2507"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDataDecompressor.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDataDecompressor.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.103616
+e348412760.448182
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@116"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m348412760#348412760#0(0"0(0#0#108"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m8603992992#2501"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIDownloadCache.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDownloadCache.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.388421
 e348334284.762342
@@ -1582,6 +1903,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@116"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDownloadCache.m348334284#348334284#0(0"0(0#0#108"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDownloadCache.m8637904800#2501"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIDownloadCache.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIDownloadCache.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.372488
+e348412760.713062
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@118"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m348412760#348412760#0(0"0(0#0#110"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m8604985952#2505"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIFormDataRequest.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIFormDataRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.416754
@@ -1596,6 +1930,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@118"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIFormDataRequest.m348334284#348334284#0(0"0(0#0#110"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIFormDataRequest.m8637789664#2505"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIFormDataRequest.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIFormDataRequest.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.448363
+e348412763.032871
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@114"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m348412760#348412763#0(0"0(0#0#106"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m8592120992#2497"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIHTTPRequest.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIHTTPRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.619601
 e348334285.955424
@@ -1608,6 +1955,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@114"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIHTTPRequest.m348334284#348334285#0(0"0(0#0#106"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIHTTPRequest.m8639694528#2497"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIHTTPRequest.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIHTTPRequest.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.713268
+e348412760.867727
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@114"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m348412760#348412760#0(0"0(0#0#106"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m8602777024#2497"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASIInputStream.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIInputStream.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.762451
@@ -1622,6 +1982,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@114"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIInputStream.m348334284#348334284#0(0"0(0#0#106"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIInputStream.m8638363040#2497"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASIInputStream.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASIInputStream.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412760.867835
+e348412761.115815
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@115"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m348412760#348412761#0(0"0(0#0#107"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m8604805536#2499"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ASINetworkQueue.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASINetworkQueue.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334284.894345
 e348334285.089884
@@ -1635,6 +2008,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@115"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASINetworkQueue.m348334284#348334285#0(0"0(0#0#107"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASINetworkQueue.m8631667648#2499"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ASINetworkQueue.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ASINetworkQueue.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.249353
+e348412759.465627
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@122"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m348412759#348412759#0(0"0(0#0#114"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m8599736320#2513"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/CommandsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334283.663643
 e348334283.829249
@@ -1647,6 +2033,25 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@122"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.m348334283#348334283#0(0"0(0#0#114"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.m8630783392#2513"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/CommandsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CommandsViewController.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348415370.624563
+e348415371.052214
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m: In function '-[ConfigViewController connectionToServer:]':
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: 'UILabel' may not respond to '-rightTextField'
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: (Messages without a matching method signature
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: will be assumed to return 'id' and accept
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: '...' as arguments.)
+o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:109: warning: 'UILabel' may not respond to '-rightTextField'
+lSLF07#2@128"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m348415370#348415371#0(1059"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m: In function '-[ConfigViewController connectionToServer:]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: 'UILabel' may not respond to '-rightTextField'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: (Messages without a matching method signature/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: will be assumed to return 'id' and accept/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:108: warning: '...' as arguments.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m:109: warning: 'UILabel' may not respond to '-rightTextField'3(22@46"'UILabel' may not respond to '-rightTextField'348415370#181#182#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m348415366#108#0#108#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)348415370#363#181#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m348415366#108#0#108#0#0"0(22@46"'UILabel' may not respond to '-rightTextField'348415370#877#182#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m348415366#109#0#109#0#26"'*' may not respond to '*'0(0#0#120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m8616994976#2517"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/ConfigViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348352867.752404
@@ -1670,6 +2075,19 @@ o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/i
 o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:199: warning: type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol
 lSLF07#2@128"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352867#348352868#0(1709"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m: In function '-[ConfigViewController connectionToServer:]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: 'UILabel' may not respond to '-rightTextField'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: (Messages without a matching method signature/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: will be assumed to return 'id' and accept/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: '...' as arguments.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:109: warning: 'UILabel' may not respond to '-rightTextField'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:124: warning: type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m: In function '-[ConfigViewController configureCell:atIndexPath:]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:199: warning: type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol5(22@46"'UILabel' may not respond to '-rightTextField'348352867#181#182#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352831#108#0#108#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)348352867#363#181#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352831#108#0#108#0#0"0(22@46"'UILabel' may not respond to '-rightTextField'348352867#877#182#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352831#109#0#109#0#26"'*' may not respond to '*'0(22@95"Type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol348352867#1059#231#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352831#124#0#124#0#45"type '*' does not conform to the '*' protocol0(22@95"Type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol348352868#1478#231#0(6@120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m348352831#199#0#199#0#45"type '*' does not conform to the '*' protocol0(0#0#120"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m8622879200#2517"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ConfigViewController.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.465728
+e348412759.635461
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@129"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m348412759#348412759#0(0"0(0#0#121"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m8603658048#2519"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/CreditsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334283.829477
 e348334283.939647
@@ -1683,6 +2101,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@129"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.m348334283#348334283#0(0"0(0#0#121"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.m8638856928#2519"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/CreditsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/CreditsViewController.o0#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.197788
+e348412759.329185
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@129"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m348412759#348412759#0(0"0(0#0#121"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m8602079616#2519"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/DetailsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334283.553327
 e348334283.756918
@@ -1695,6 +2126,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@129"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.m348334283#348334283#0(0"0(0#0#121"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.m8632195712#2519"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/DetailsViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/DetailsViewController.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412761.767441
+e348412762.030432
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@116"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m348412761#348412762#0(0"0(0#0#108"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m8604176960#2501"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/ELCTextfieldCell.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/ELCTextfieldCell.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/ELCTextfieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348342427.383985
@@ -1712,6 +2156,19 @@ lSLF07#2@116"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.d
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/EditableDetailCell.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/EditableDetailCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
 r0
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412759.073488
+e348412759.197688
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@127"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m348412759#348412759#0(0"0(0#0#119"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m8603140480#2515"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/InfosViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/InfosViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334283.483214
 e348334283.663535
@@ -1724,6 +2181,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@127"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/InfosViewController.m348334283#348334283#0(0"0(0#0#119"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/InfosViewController.m8632847008#2515"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/InfosViewController.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/InfosViewController.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412758.904426
+e348412759.249244
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@123"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m348412758#348412759#0(0"0(0#0#115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m8604217696#2507"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Classes/NsocAppDelegate.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/NsocAppDelegate.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/NsocAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348352813.385326
@@ -1773,6 +2243,19 @@ o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/i
 o/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:52: warning: no '-bodyAsString' method found
 lSLF07#2@123"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348334283#348334284#0(3586"In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:9:/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:10:28: error: RestKit/RestKit.h: No such file or directoryIn file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:9:/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:13: error: cannot find protocol declaration for 'RKRequestDelegate'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:19: error: expected ')' before 'RKRequest'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h:19: error: expected ')' before 'RKResponse'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m: In function '-[RKRequeteClient sendPostRequest:]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:18: error: 'RKClient' undeclared (first use in this function)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:18: error: (Each undeclared identifier is reported only once/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:18: error: for each function it appears in.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m: In function '-[RKRequeteClient sendGetRequest]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:23: error: 'RKClient' undeclared (first use in this function)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m: At top level:/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:27: error: expected ')' before 'RKRequest'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:27: error: expected ')' before 'RKResponse'/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m: In function '-[RKRequeteClient request:didLoadResponse:]':/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:28: warning: no '-isGET' method found/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:28: warning: (Messages without a matching method signature/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:28: warning: will be assumed to return 'id' and accept/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:28: warning: '...' as arguments.)/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:29: warning: no '-bodyAsString' method found/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m:52: warning: no '-bodyAsString' method found13(4@44"RestKit/RestKit.h: No such file or directory348334283#141#175#2(7@137"In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#9#0#9#0#0"0(13@163"RestKit/RestKit.h: No such file or directory in /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#10#0#10#0#0"0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#10#0#10#0#28"*: No such file or directory0(4@56"Cannot find protocol declaration for 'RKRequestDelegate'348334283#457#184#2(7@137"In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#9#0#9#0#0"0(13@175"Cannot find protocol declaration for 'RKRequestDelegate' in /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#13#0#13#0#0"0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#13#0#13#0#0"0(4@31"Expected ')' before 'RKRequest'348334283#641#159#2(7@137"In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#9#0#9#0#0"0(13@150"Expected ')' before 'RKRequest' in /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#19#0#19#0#0"0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#19#0#19#0#19"expected * before *0(4@32"Expected ')' before 'RKResponse'348334283#800#160#2(7@137"In file included from /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#9#0#9#0#0"0(13@151"Expected ')' before 'RKResponse' in /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348334283#18446744073709551615#0#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#19#0#19#0#0"0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.h348332882#19#0#19#0#19"expected * before *0(4@50"'RKClient' undeclared (first use in this function)348334283#1128#178#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#18#0#18#0#43"'*' undeclared (first use in this function)0(4@50"'RKClient' undeclared (first use in this function)348334283#1810#178#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#23#0#23#0#43"'*' undeclared (first use in this function)0(23@13"At top level:348334283#1988#131#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#0#0#0#0#0"0(4@31"Expected ')' before 'RKRequest'348334283#2119#159#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#27#0#27#0#19"expected * before *0(4@32"Expected ')' before 'RKResponse'348334283#2278#160#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#27#0#27#0#19"expected * before *0(22@24"No '-isGET' method found348334283#2614#154#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#28#0#28#0#19"no '*' method found0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)348334283#2768#175#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#28#0#28#0#0"0(22@31"No '-bodyAsString' method found348334283#3264#161#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#29#0#29#0#19"no '*' method found0(22@31"No '-bodyAsString' method found348334283#3425#161#0(6@115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m348332873#52#0#52#0#19"no '*' method found0(0#0#115"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m8638510720#2507"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/RKRequeteClient.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/RKRequeteClient.o1#
 
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412761.115918
+e348412761.767332
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@112"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m348412761#348412761#0(0"0(0#0#104"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m8604862560#2493"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Reachability.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o0#
+
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Reachability.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334285.089993
 e348334285.262357
@@ -1785,6 +2268,19 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@112"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Reachability.m348334285#348334285#0(0"0(0#0#104"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Reachability.m8638544352#2493"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Reachability.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Reachability.o0#
+
+CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s348412758.902146
+e348412759.073381
+r1
+xCompileC
+xbuild/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o
+x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@104"Compile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m348412758#348412759#0(0"0(0#0#96"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m8605025472#2477"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -include /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/main.m -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o0#
 
 CCompileC build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/main.o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s348334282.279719
@@ -2015,13 +2511,13 @@ xglyphicons_280_settings.png
 lSLF07#2@32"Copy glyphicons_280_settings.png348252058#348252058#0(0"0(0#0#117"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_280_settings.png8609181056#683"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/glyphicons_280_settings.png /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app0#
 
 CGenerateDSYMFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
-s348276462.836954
-e348276462.949727
+s348415371.139407
+e348415371.204721
 r1
 xGenerateDSYMFile
 x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM
 x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
-lSLF07#2@100"GenerateDSYMFile build/Debug-iphonesimulator/Nsoc.app.dSYM build/Debug-iphonesimulator/Nsoc.app/Nsoc348276462#348276462#0(0"0(0#0#131"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc8618720416#589"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM0#
+lSLF07#2@100"GenerateDSYMFile build/Debug-iphonesimulator/Nsoc.app.dSYM build/Debug-iphonesimulator/Nsoc.app/Nsoc348415371#348415371#0(0"0(0#0#131"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc8614829312#589"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM0#
 
 CGenerateDSYMFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
 s348352868.246073
@@ -2033,14 +2529,14 @@ x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/i
 lSLF07#2@100"GenerateDSYMFile build/Debug-iphonesimulator/Nsoc.app.dSYM build/Debug-iphonesimulator/Nsoc.app/Nsoc348352868#348352868#0(0"0(0#0#131"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc8626091200#589"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app.dSYM0#
 
 CLd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc normal i386
-s348276462.542947
-e348276462.836852
+s348415371.052336
+e348415371.139302
 r1
 xLd
 x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc
 xnormal
 xi386
-lSLF07#2@136"Link /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc348276462#348276462#0(0"0(0#0#0"8617701024#1202"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -L/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -filelist /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Nsoc.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc0#
+lSLF07#2@136"Link /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc348415371#348415371#0(0"0(0#0#0"8613787200#1288"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -L/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -filelist /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Nsoc.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CFNetwork -framework MobileCoreServices -framework SystemConfiguration -lz -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc0#
 
 CLd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc normal i386
 s348352868.131103
@@ -2053,13 +2549,13 @@ xi386
 lSLF07#2@136"Link /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc348352868#348352868#0(0"0(0#0#0"8626228736#1288"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -L/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -filelist /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Objects-normal/i386/Nsoc.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CFNetwork -framework MobileCoreServices -framework SystemConfiguration -lz -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Nsoc0#
 
 CProcessInfoPlistFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist Nsoc-Info.plist
-s348252199.647965
-e348252199.659638
+s348412755.359819
+e348412755.394873
 r1
 xProcessInfoPlistFile
 x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist
 xNsoc-Info.plist
-lSLF07#2@23"Process Nsoc-Info.plist348252199#348252199#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc-Info.plist8607420864#685"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility Nsoc-Info.plist -genpkginfo /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist0#
+lSLF07#2@23"Process Nsoc-Info.plist348412755#348412755#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc-Info.plist21955250054365296#685"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility Nsoc-Info.plist -genpkginfo /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist0#
 
 CProcessInfoPlistFile /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app/Info.plist Nsoc-Info.plist
 r0
@@ -2078,8 +2574,8 @@ xcom.apple.compilers.gcc.4_2
 lSLF07#2@26"Precompile Nsoc_Prefix.pch348330465#348330466#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Nsoc_Prefix.pch8638444064#2341"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -Ilib/RestKit/Build -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Nsoc_Prefix.pch -o /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-curvqpqsouodlpbzprqrjdqltbbr/Nsoc_Prefix.pch.gch0#
 
 CProcessPCH /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch Nsoc_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s348250863.284726
-e348250864.380353
+s348412755.396251
+e348412758.901942
 r1
 xProcessPCH
 x/var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch
@@ -2088,7 +2584,7 @@ xnormal
 xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
-lSLF07#2@26"Precompile Nsoc_Prefix.pch348250863#348250864#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc_Prefix.pch8603130176#2321"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc_Prefix.pch -o /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch0#
+lSLF07#2@26"Precompile Nsoc_Prefix.pch348412755#348412758#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc_Prefix.pch7594869363256026112#2321"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/Nsoc_Prefix.pch -o /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-fnmuqxgohrajpvcnbeqkpxdywaky/Nsoc_Prefix.pch.gch0#
 
 CProcessPCH /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch.gch Nsoc_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
 s348314745.208151
@@ -2104,12 +2600,12 @@ xcom.apple.compilers.gcc.4_2
 lSLF07#2@26"Precompile Nsoc_Prefix.pch348314745#348314747#0(0"0(0#0#105"/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Nsoc_Prefix.pch8612902208#2321"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-generated-files.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-own-target-headers.hmap -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-all-target-headers.hmap -iquote /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/Nsoc-project-headers.hmap -F/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/include -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources/i386 -I/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/nsoc.build/Debug-iphonesimulator/Nsoc.build/DerivedSources -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Nsoc_Prefix.pch -o /var/folders/UT/UTGIIVAgFqWu1Lq2X93mx++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Nsoc_Prefix-gkoamhinqdzuicblrgvzscrgaaeb/Nsoc_Prefix.pch.gch0#
 
 CTouch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app
-s348276462.949823
-e348276462.952647
+s348415371.204810
+e348415371.221510
 r1
 xTouch
 x/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app
-lSLF07#2@132"Touch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app348276462#348276462#0(0"0(0#0#0"8618932928#439"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app0#
+lSLF07#2@132"Touch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app348415371#348415371#0(0"0(0#0#0"8615045248#439"    cd /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/Nsoc/build/Debug-iphonesimulator/Nsoc.app0#
 
 CTouch /Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/build/Debug-iphonesimulator/Nsoc.app
 s348352868.354691

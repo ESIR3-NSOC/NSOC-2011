@@ -90,7 +90,7 @@
 									   [statusLabel.text sizeWithFont:statusLabel.font].width, 
 									   [statusLabel.text sizeWithFont:statusLabel.font].height);		
 	} else {
-		statusLabel.text = @"not Connected";
+		statusLabel.text = @"Not connected";
 		statusLabel.textColor = [UIColor colorWithRed:(205.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:1.0];
 		statusLabel.frame = CGRectMake(310 - [statusLabel.text sizeWithFont:statusLabel.font].width, 
 									   connectionToServerBtn.frame.origin.y + connectionToServerBtn.frame.size.height + 20, 
@@ -114,16 +114,17 @@
 		
 	   && [self testEntryWithRegex:labelPortServer.text
 						regex:@"^[0-9]{4,5}$"]){
-							
-		NSURL *url = [NSURL URLWithString:@"http://192.168.1.10:8182"];
+
+		NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", labelIpServer.text, labelPortServer.text];
+		NSURL *url = [NSURL URLWithString:http];
 		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 		[request setDelegate:self];
 		[request startAsynchronous];
 
 		//save the data in the iPhone   
-		NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
-		appDel.savedIp = labelIpServer.text;
-		appDel.savedPort = labelPortServer.text;
+		//NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+		//appDel.savedIp = labelIpServer.text;
+		//appDel.savedPort = labelPortServer.text;
 		   
 	} else{
 		//display an error

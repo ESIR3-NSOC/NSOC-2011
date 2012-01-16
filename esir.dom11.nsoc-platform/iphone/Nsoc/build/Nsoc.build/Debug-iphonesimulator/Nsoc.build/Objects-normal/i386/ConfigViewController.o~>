@@ -1,7 +1,0 @@
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m: In function '-[ConfigViewController connectionToServer:]':
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: 'UILabel' may not respond to '-rightTextField'
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: (Messages without a matching method signature
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: will be assumed to return 'id' and accept
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:108: warning: '...' as arguments.)
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:109: warning: 'UILabel' may not respond to '-rightTextField'
-/Users/Pierre/Documents/ESIR3/Semestre9/NSOC/project/esir.dom11.nsoc-platform/iphone/nsoc/Classes/ConfigViewController.m:124: warning: type 'id <UIApplicationDelegate>' does not conform to the 'UITabBarControllerDelegate' protocol
