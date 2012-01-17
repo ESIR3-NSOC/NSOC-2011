@@ -16,6 +16,4 @@ public interface crtlInterface {
     void send2Context();
     void receiveIHM();
     void receiveConflict();
-
-
 }
