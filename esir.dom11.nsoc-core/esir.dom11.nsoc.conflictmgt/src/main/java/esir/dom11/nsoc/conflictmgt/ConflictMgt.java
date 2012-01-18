@@ -39,8 +39,9 @@ public class ConflictMgt extends AbstractComponentType {
     private static int AUTO = 2;
     
     private LinkedList<Command> _commandBufferList;         // buffer of the last received command, before process and save
+    private LinkedList<Command> _commandWithTimeout;        // buffer of the last received command, before process and save
     private HashMap<UUID,Action> _lastActuatorActionMap;    // list of accepted and send actions, for conflict management
-    private HashMap<UUID,Long> _lockActuatoMap;             // list of locks on the actuator, updated all the 60s by default
+    private HashMap<UUID,Long> _lockActuatorMap;             // list of locks on the actuator, updated all the 60s by default
     private Timer timer;
     
     /*
@@ -61,17 +62,19 @@ public class ConflictMgt extends AbstractComponentType {
         //Initialisation
         _lastActuatorActionMap = new HashMap<UUID, Action>();
         _commandBufferList = new LinkedList<Command>();
+        _commandWithTimeout = new LinkedList<Command>();
+        _lockActuatorMap = new HashMap<UUID, Long>();
 
         //Timer initialisation
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for(Map.Entry<UUID,Long> temp: _lockActuatoMap.entrySet()){
+                for(Map.Entry<UUID,Long> temp: _lockActuatorMap.entrySet()){
                     if (temp.getValue()!=0){
-                        _lockActuatoMap.put(temp.getKey(),temp.getValue()-lockUpdateDelay);
+                        _lockActuatorMap.put(temp.getKey(),temp.getValue()-lockUpdateDelay);
                     }
                     else {
-                        _lockActuatoMap.remove(temp.getKey());}
+                        _lockActuatorMap.remove(temp.getKey());}
                 }
             }
         }, lockUpdateDelay);
@@ -98,18 +101,30 @@ public class ConflictMgt extends AbstractComponentType {
     @Port(name = "cmdFromCtrl")
     public void cmdFromCtrl(Command command) {
 
+        boolean commandToSave = false;
+
         // Save of the command to process
         _commandBufferList.add(command);
 
         // Retrieve lock times and send authored actions
         for (Action action : command.getActionList()) {
 
-            _lockActuatoMap.put(action.getIdActuator(),command.getLock());
+            _lockActuatorMap.put(action.getIdActuator(), command.getLock());
 
             if (isActuatorFree(action)) {
                 _lastActuatorActionMap.put(action.getIdActuator(),action);
                 getPortByName("actToActuator",MessagePort.class).process(action);
             }
+
+            // if one action can't be done, don't check the others of the command
+            else {
+                commandToSave = true;
+                break;}
+        }
+
+        // if the command can't be done and if the timeout isn't zero, save the command in _commandWithTimeout
+        if (commandToSave && command.getTimeOut()!=0){
+            _commandWithTimeout.push(command);
         }
 
     }

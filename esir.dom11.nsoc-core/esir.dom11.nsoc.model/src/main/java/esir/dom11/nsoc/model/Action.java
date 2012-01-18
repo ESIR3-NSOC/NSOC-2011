@@ -18,13 +18,13 @@ public class Action {
     
     public Action() {}
     
-    public Action(UUID idActuator, double value, int timeOut) {
+    public Action(UUID idActuator, double value) {
         _id = UUID.randomUUID();
         _idActuator = idActuator;
         _value = value;
     }
 
-    public Action(UUID id, UUID idActuator, double value, int timeOut) {
+    public Action(UUID id, UUID idActuator, double value) {
         _id = id;
         _idActuator = idActuator;
         _value = value;
