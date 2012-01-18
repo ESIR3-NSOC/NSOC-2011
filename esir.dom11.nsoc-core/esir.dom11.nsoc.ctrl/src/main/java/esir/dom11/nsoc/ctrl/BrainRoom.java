@@ -27,8 +27,7 @@ public class BrainRoom {
     
     /*method 1 : Algorithm of light control
     @param: String info; info relate of up or down
-    
-     */
+    */
     private void lightControl(String info){
         if(info.equals("up")){
 
@@ -38,10 +37,9 @@ public class BrainRoom {
         }
     }
     
-    /* method 2 : Algorithm temperatureControl
-       @param: String info; info relate of up or down
-    
-     */
+    /*method 2 : Algorithm temperatureControl
+    @param: String info; info relate of up or down
+    */
     private void temperatureControl(String info){
         if(info.equals("up")){
 
@@ -50,15 +48,15 @@ public class BrainRoom {
 
         }
     }
-    /*  method 3 : leaving scenario
+    /*method 3 : leaving scenario
 
-     */
+    */
     private void leavingScenario(){
 
     }
-    /*  method 4 : coming scenario
+    /*method 4 : coming scenario
 
-     */
+    */
     private void comingScenario(){
 
     }
@@ -66,6 +64,7 @@ public class BrainRoom {
     public String getRoom(){
         return room;
     }
+
     public String getBuilding(){
         return building;
     }
