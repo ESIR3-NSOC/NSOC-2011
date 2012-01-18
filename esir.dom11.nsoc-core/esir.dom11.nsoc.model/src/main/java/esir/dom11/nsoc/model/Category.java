@@ -10,7 +10,7 @@ public class Category {
     
     private UUID _id;       // dao key
     private String _name;
-    private int _lock;
+    private long _lock;     //lock time, in ms (min 60s)
     
     /*
      * Constructors
@@ -46,7 +46,7 @@ public class Category {
         _name = name;
     }
 
-    public int getLock() {
+    public long getLock() {
         return _lock;
     }
 

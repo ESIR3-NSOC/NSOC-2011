@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.text.NumberFormat;
 
 
 /**
@@ -20,6 +21,7 @@ public class ServerGui {
 
     JButton buttonStart;
     JButton buttonStop;
+    JTextField portServer;
 
     public ServerGui(){
         cm = new ServerManager();
@@ -40,7 +42,7 @@ public class ServerGui {
         JLabel labelPortServer = new JLabel("Port du serveur : ");
 
         JLabel ipServer = new JLabel(cm.getIpServer());
-        JLabel portServer = new JLabel(cm.getPortServer());
+        portServer = new JTextField("8182");
 
         buttonStart = new JButton("Start server");
         buttonStop = new JButton("Stop server");
@@ -51,18 +53,26 @@ public class ServerGui {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cm.startServer();
-                buttonStart.setEnabled(false);
-                buttonStop.setEnabled(true);
+                if(portServer.getText().matches("^[\\d]{4,5}$")){
+                    if(cm.startServer(Integer.parseInt(portServer.getText()))){
+                        buttonStart.setEnabled(false);
+                        buttonStop.setEnabled(true);
+                    }
+                } else {
+                    System.out.println("ERROR :: Vous n'avez pas entre un port");
+
+                }
+
             }
         });
 
         buttonStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cm.stopServer();
-                buttonStart.setEnabled(true);
-                buttonStop.setEnabled(false);
+                if(cm.stopServer()){
+                    buttonStart.setEnabled(true);
+                    buttonStop.setEnabled(false);
+                }
             }
         });
 

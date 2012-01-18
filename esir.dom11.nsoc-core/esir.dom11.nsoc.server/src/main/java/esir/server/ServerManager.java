@@ -22,34 +22,34 @@ import java.net.UnknownHostException;
 
 public class ServerManager extends ServerResource{
     private Server serv;
-    private Integer portServer;
-
-    public ServerManager(){
-        this.portServer = 8182;
-    }
 
     /*
      * Demarre le serveur REST pour l'IHM
      */
-    public void startServer(){
-        serv = new Server(Protocol.HTTP, portServer, ServerManager.class);
+    public Boolean startServer(Integer port){
+        serv = new Server(Protocol.HTTP, port, ServerManager.class);
         try{
             System.out.println("/** Lancement du serveur **/");
+            System.out.println("Server cree : http://"+this.getIpServer()+":"+port);
             serv.start();
+            return true;
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 
     /*
      * Arrete le serveur REST pour l'IHM
      */
-    public void stopServer(){
+    public Boolean stopServer(){
         try{
             System.out.println("/** Arret du serveur **/");
             serv.stop();
+            return true;
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -69,23 +69,14 @@ public class ServerManager extends ServerResource{
 		return addr.getHostAddress().toString();
 	}
 
-    /*
-     * Recupere le port de la machine
-     *
-     * @return String le port de la machine
-     */
-    public String getPortServer(){
-        return portServer.toString();
-    }
-
     @Get
-    public String requestGet(){
+    public String receiveGetRequest(){
         return "Connexion Client/Serveur etablie";
     }
 
     @Post
-    public void requestPost(){}
+    public void receivePostRequest(){}
 
     @Put
-    public void requestPut(){}
+    public void receivePutRequest(){}
 }

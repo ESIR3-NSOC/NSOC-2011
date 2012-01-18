@@ -12,9 +12,7 @@ import org.kevoree.framework.MessagePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.UUID;
+import java.util.*;
 
 @Provides({
     @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
@@ -35,10 +33,13 @@ public class ConflictMgt extends AbstractComponentType {
     /*
     * Attributes
     */
+    private long lockUpdateDelay = 60000;
 
     private LinkedList<Command> _commandBufferList;         //buffer des dernières commandes reçues avant traitement et sauvegarde
     private HashMap<UUID,Action> _lastActuatorActionMap;    //list des actions acceptées et envoyées pour gestion des conflits
-
+    private HashMap<UUID,Long> _lockActuatoMap;
+    private Timer timer;
+    
     /*
      * Getters / Setters
      */
@@ -54,6 +55,20 @@ public class ConflictMgt extends AbstractComponentType {
         //Initialisation
         _lastActuatorActionMap = new HashMap<UUID, Action>();
         _commandBufferList = new LinkedList<Command>();
+
+        //Timer initialisation
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                for(Map.Entry<UUID,Long> temp: _lockActuatoMap.entrySet()){
+                    if (temp.getValue()!=0){
+                        _lockActuatoMap.put(temp.getKey(),temp.getValue()-lockUpdateDelay);
+                    }
+                    else {
+                        _lockActuatoMap.remove(temp.getKey());}
+                }
+            }
+        }, lockUpdateDelay);
     }
 
     @Stop
@@ -76,8 +91,11 @@ public class ConflictMgt extends AbstractComponentType {
         //Sauvegarde de la commande à traiter
         _commandBufferList.add(command);
 
-        //v1, autorise les actions qui agissent sur un actionneur non présent dans _lastActuatorActionMap
+        //Recupère les locks time et envoie les actions autorisées
         for (Action action : command.getActionList()) {
+
+            _lockActuatoMap.put(action.getIdActuator(),command.getCategory().getLock());
+
             if (isActuatorFree(action)) {
                 _lastActuatorActionMap.put(action.getIdActuator(),action);
                 getPortByName("actToActuator",MessagePort.class).process(action);
