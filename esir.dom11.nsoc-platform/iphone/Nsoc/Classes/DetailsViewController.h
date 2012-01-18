@@ -10,7 +10,10 @@
 
 
 @interface DetailsViewController : UIViewController {
-
+	UITableView *DetailsTableView;
+	NSArray *detailsArray;
 }
+@property (nonatomic, retain) IBOutlet UITableView *DetailsTableView;
+@property (nonatomic, retain) NSArray *detailsArray;
 
 @end

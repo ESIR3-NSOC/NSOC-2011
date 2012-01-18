@@ -11,8 +11,12 @@
 
 @interface CreditsViewController : UIViewController {
 	id <CreditsViewControllerDelegate> delegate;
+	
+	UIScrollView *scrollView;
 }
+
 @property (nonatomic, assign) id <CreditsViewControllerDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 - (IBAction) done:(id) sender;
 - (void)goToMail: (id)sender;

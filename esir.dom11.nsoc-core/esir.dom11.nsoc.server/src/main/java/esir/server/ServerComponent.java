@@ -11,11 +11,12 @@ import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Port;
 import org.kevoree.framework.*;
 
+// output port (IHM -> CTRL)
 @Requires({
         @RequiredPort(name = "fromIhm", type = PortType.MESSAGE, optional = true)
 })
 
-//le port d'envoi de donnees (Ctrl -> IHM)
+// input port (CTRL -> IHM)
 @Provides({
         @ProvidedPort(name = "toIhm", type = PortType.MESSAGE)
 })

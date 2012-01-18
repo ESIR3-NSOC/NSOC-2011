@@ -24,7 +24,7 @@ public class ServerManager extends ServerResource{
     private Server serv;
 
     /*
-     * Demarre le serveur REST pour l'IHM
+     * Start the REST server for the IHM
      */
     public Boolean startServer(Integer port){
         serv = new Server(Protocol.HTTP, port, ServerManager.class);
@@ -40,7 +40,7 @@ public class ServerManager extends ServerResource{
     }
 
     /*
-     * Arrete le serveur REST pour l'IHM
+     * Stop the REST server for the IHM
      */
     public Boolean stopServer(){
         try{
@@ -54,9 +54,7 @@ public class ServerManager extends ServerResource{
     }
 
     /*
-     * Recupere l'adresse ip de la machine
-     *
-     * @return String l'adresse ip de la machine
+     * @return String the IP address of the computer
      */
     public String getIpServer() {
 		InetAddress addr = null;

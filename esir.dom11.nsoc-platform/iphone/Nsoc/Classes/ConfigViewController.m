@@ -195,7 +195,7 @@
 	
 	cell.leftLabel.text = [self.serverLabels objectAtIndex:indexPath.row];
 	cell.rightTextField.placeholder = [self.serverPlaceholders objectAtIndex:indexPath.row];
-	NSLog(@"info: %@", [[NSUserDefaults standardUserDefaults] objectForKey: [NSString stringWithFormat:@"0"]]);
+	//NSLog(@"info: %@", [[NSUserDefaults standardUserDefaults] objectForKey: [NSString stringWithFormat:@"0"]]);
 	
 	/*
 	NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
@@ -288,11 +288,15 @@
 
 
 
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+/*
+ We don't need to uncomment this method due to the tabBarController, others orientations than portrait don't work
+ 
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+ }
+ */ 
 
 
 - (void)didReceiveMemoryWarning {

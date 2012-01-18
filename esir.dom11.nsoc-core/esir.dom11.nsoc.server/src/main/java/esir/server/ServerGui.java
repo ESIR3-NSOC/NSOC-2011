@@ -28,7 +28,7 @@ public class ServerGui {
         fenetre = new JFrame();
         JPanel panel = new JPanel();
 
-        // Gestion de la fenetre
+        // frame management
         fenetre.setTitle("Server GUI");
 		fenetre.setSize(300, 150);
 		fenetre.setLocationRelativeTo(null);
@@ -37,7 +37,7 @@ public class ServerGui {
         panel.setLayout(new GridLayout(3,2));
 
 
-        //Gestion des composants
+        // components management
         JLabel labelIpServer = new JLabel("Adresse ip du serveur : ");
         JLabel labelPortServer = new JLabel("Port du serveur : ");
 
@@ -49,7 +49,7 @@ public class ServerGui {
         buttonStop.setEnabled(false);
 
 
-        // Gestion des apuis boutons
+        // Button Listener management
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -77,18 +77,19 @@ public class ServerGui {
         });
 
         // lorsque l'on ferme la fenetre (clic sur la croix rouge)
+        // Method launched on the red cross click
 		fenetre.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
 
-				//on tue le client
+                // kill the client
 				cm.stopServer();
-				// on ferme la fenetre
+                // close the window
 				System.exit(0);
 			}
 		});
 
 
-        // Ajout des composants a la fenetre
+        // Add the components to the frame
         panel.add(labelIpServer);
         panel.add(ipServer);
         panel.add(labelPortServer);
@@ -101,7 +102,7 @@ public class ServerGui {
 
 
     /*
-     * cache la fenetre lors du stop
+     * Hide the frame during the stop
      */
     public void stopGui(){
         cm.stopServer();
