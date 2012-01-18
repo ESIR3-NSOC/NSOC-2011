@@ -11,8 +11,7 @@ public class Action {
     private UUID _id;           //  dao key
     private UUID _idActuator;
     private double _value;
-    private int _timeOut;       // in second
-    
+
     /*
      * Constructors
      */
@@ -23,14 +22,12 @@ public class Action {
         _id = UUID.randomUUID();
         _idActuator = idActuator;
         _value = value;
-        _timeOut = timeOut;
     }
 
     public Action(UUID id, UUID idActuator, double value, int timeOut) {
         _id = id;
         _idActuator = idActuator;
         _value = value;
-        _timeOut = timeOut;
     }
 
     /*
@@ -49,14 +46,6 @@ public class Action {
         _idActuator = idActuator;
     }
 
-    public int getTimeOut() {
-        return _timeOut;
-    }
-
-    public void setTimeOut(int timeOut) {
-        _timeOut = timeOut;
-    }
-
     public double getValue() {
         return _value;
     }
@@ -73,8 +62,7 @@ public class Action {
     public String toString() {
         return "\n* * * Action " + getId() + " * * *"
                 + "\nActuator: " + getIdActuator()
-                + "\nValue: " + getValue()
-                + "\nTime out: " + getTimeOut() + "\n";
+                + "\nValue: " + getValue();
     }
 
     /*
