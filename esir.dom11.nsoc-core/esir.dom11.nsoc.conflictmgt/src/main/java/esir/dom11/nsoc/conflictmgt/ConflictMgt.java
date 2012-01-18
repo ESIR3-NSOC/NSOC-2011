@@ -33,7 +33,7 @@ public class ConflictMgt extends AbstractComponentType {
     /*
     * Attributes
     */
-    private long lockUpdateDelay = 60000;                   //time between updates of locks, in ms (60s by befault)
+    private long UpdateDelay = 60000;                   //time between updates of locks, in ms (60s by befault)
     private static int SECURITY = 0;
     private static int USER = 1;
     private static int AUTO = 2;
@@ -69,15 +69,40 @@ public class ConflictMgt extends AbstractComponentType {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for(Map.Entry<UUID,Long> temp: _lockActuatorMap.entrySet()){
-                    if (temp.getValue()!=0){
-                        _lockActuatorMap.put(temp.getKey(),temp.getValue()-lockUpdateDelay);
+                
+                // Manage the timeout options, and update it
+                for(Command cmd: _commandWithTimeout){
+                    boolean[] freedom = new boolean[cmd.getActionList().size()];
+                    
+                    //is all the actuators command now free?
+                    for (Action action : cmd.getActionList()){
+                        if(isActuatorFree(action)){
+                             
+                        }
+                    }
+                                       
+                    //update the timeout if not free
+                    int index = _commandWithTimeout.indexOf(cmd);
+                    if (cmd.getTimeOut()!=0){
+                        cmd.setTimeOut(cmd.getTimeOut()- UpdateDelay);
+                        _commandWithTimeout.remove(index);
+                        _commandWithTimeout.push(cmd);
                     }
                     else {
-                        _lockActuatorMap.remove(temp.getKey());}
+                        _commandWithTimeout.remove(index);
+                    }
+                }
+                
+                // Manage the lock option 
+                for(Map.Entry<UUID,Long> actMap: _lockActuatorMap.entrySet()){
+                    if (actMap.getValue()!=0){
+                        _lockActuatorMap.put(actMap.getKey(),actMap.getValue()- UpdateDelay);
+                    }
+                    else {
+                        _lockActuatorMap.remove(actMap.getKey());}
                 }
             }
-        }, lockUpdateDelay);
+        }, UpdateDelay);
     }
 
     @Stop
@@ -112,8 +137,7 @@ public class ConflictMgt extends AbstractComponentType {
             _lockActuatorMap.put(action.getIdActuator(), command.getLock());
 
             if (isActuatorFree(action)) {
-                _lastActuatorActionMap.put(action.getIdActuator(),action);
-                getPortByName("actToActuator",MessagePort.class).process(action);
+                send2Actuator(action);   
             }
 
             // if one action can't be done, don't check the others of the command
@@ -124,7 +148,7 @@ public class ConflictMgt extends AbstractComponentType {
 
         // if the command can't be done and if the timeout isn't zero, save the command in _commandWithTimeout
         if (commandToSave && command.getTimeOut()!=0){
-            _commandWithTimeout.push(command);
+            _commandWithTimeout.add(command);
         }
 
     }
@@ -133,6 +157,11 @@ public class ConflictMgt extends AbstractComponentType {
      * Methods
      */
 
+    private void send2Actuator(Action action){
+        _lastActuatorActionMap.put(action.getIdActuator(),action);
+        getPortByName("actToActuator",MessagePort.class).process(action);        
+    }
+    
     /**
      * isActuatorFree
      * @param action

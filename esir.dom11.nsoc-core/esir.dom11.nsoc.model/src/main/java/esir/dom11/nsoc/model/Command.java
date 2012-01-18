@@ -77,7 +77,7 @@ public class Command {
         return _timeOut;
     }
 
-    public void setTimeOut(int timeOut) {
+    public void setTimeOut(long timeOut) {
         _timeOut = timeOut;
     }
 
