@@ -9,10 +9,12 @@ public class Command {
      * Attributes
      */
 
-    private UUID _id;                           // dao key
+    private UUID _id;                            // dao key
     private LinkedList<Action> _actionList;
     private Category _category;
-    
+    private long _lock;                          // lock time, in ms (min 60s), O if none
+    private long _timeOut;                       // time for the command to expire, in ms
+
     /*
      * Constructors
      */
@@ -23,12 +25,28 @@ public class Command {
         _id = UUID.randomUUID();
         _actionList = actionList;
         _category = category;
+        _timeOut = 0;
+        _lock = 0;
+
     }
 
-    public Command(UUID id, LinkedList<Action> actionList, Category category) {
+
+    public Command(UUID id, LinkedList<Action> actionList, Category category, long lock) {
         _id = id;
         _actionList = actionList;
         _category = category;
+        _timeOut = 0;
+        _lock = lock;
+
+    }
+
+    public Command(UUID id, LinkedList<Action> actionList, Category category, long lock, long timeOut) {
+        _id = id;
+        _actionList = actionList;
+        _category = category;
+        _timeOut = timeOut;
+        _lock = lock;
+
     }
 
     /*
@@ -55,6 +73,22 @@ public class Command {
         _category = category;
     }
 
+    public long getTimeOut() {
+        return _timeOut;
+    }
+
+    public void setTimeOut(long timeOut) {
+        _timeOut = timeOut;
+    }
+
+    public long getLock() {
+        return _lock;
+    }
+
+    public void setLock(int lock) {
+        _lock = lock;
+    }
+
     /*
     * Overrides
     */
@@ -64,6 +98,9 @@ public class Command {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n* * * Command " + getId() + " * * *"
                                     + "\nCategory: " + getCategory()
+                                    + "\nLock time: " + getLock()
+                                    + "\nTimeout: " + getTimeOut()
+
                                     + "\nActions:\n");
         for (Action action : _actionList) {
             stringBuilder.append(action.toString());

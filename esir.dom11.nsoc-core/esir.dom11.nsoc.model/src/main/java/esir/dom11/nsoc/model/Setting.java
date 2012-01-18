@@ -6,14 +6,14 @@ import java.util.UUID;
 public final class Setting {
 
     private final UUID _id;
-    private final String _role;
+    private final String _location;
     private final double _value;
     private final Date _begin;
     private final Date _end;
 
     public Setting() {
         _id = UUID.randomUUID();
-        _role = "";
+        _location = "";
         _value = 0.0;
         _begin = new Date();
         _end = new Date();
@@ -21,7 +21,7 @@ public final class Setting {
 
     public Setting(String role, double value, Date begin, Date end) {
         _id = UUID.randomUUID();
-        _role = role;
+        _location = role;
         _value = value;
         _begin = begin;
         _end = end;
@@ -32,7 +32,7 @@ public final class Setting {
     }
 
     public String getRole() {
-        return _role;
+        return _location;
     }
 
     public double getValue() {

@@ -1,6 +1,10 @@
 package esir.dom11.nsoc.context;
 
 
+import com.espertech.esper.client.Configuration;
+import com.espertech.esper.client.EPServiceProvider;
+import com.espertech.esper.client.EPServiceProviderManager;
+
 import esir.dom11.nsoc.context.energy.EnergyBalance;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
@@ -22,9 +26,8 @@ import java.util.Date;
         @ProvidedPort(name = "data", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "tempSetting", type = PortType.MESSAGE),
-        @RequiredPort(name = "brightnessSetting", type = PortType.MESSAGE),
-        @RequiredPort(name = "energyBalance", type = PortType.MESSAGE),
+        @RequiredPort(name = "tempSetting", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "energyBalance", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "dbservice", type = PortType.SERVICE, className = IDbService.class, optional = true)
 })
 public class ContextAnalyzer extends AbstractComponentType {
@@ -38,6 +41,8 @@ public class ContextAnalyzer extends AbstractComponentType {
         logger.info("= = = = = start context analyzer = = = = = =");
 
         _energyBalance = new EnergyBalance(0.0, 0.0);
+
+        Configuration configuration = new Configuration();
     }
 
     @Stop
@@ -52,8 +57,9 @@ public class ContextAnalyzer extends AbstractComponentType {
 
 
     @Port(name = "data")
-    public void receiveData(Data data) {
+    public void receiveData(Object obj) {
 
+        Data data = (Data) obj;
         String dType = data.getDataType().getValue();
 
         if (dType.compareTo("TEMPERATURE") == 0) {
