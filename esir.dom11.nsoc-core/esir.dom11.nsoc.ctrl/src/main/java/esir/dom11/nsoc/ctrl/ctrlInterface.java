@@ -33,7 +33,7 @@ public interface ctrlInterface {
     //Use of listeners
     
     //HMI ask us for some data
-    Data receiveHMI();
+    Data receiveHMI(DataType datatype);
     //Conflict ask us for some data
     Data receiveConflict();
     //Context ask us for some data
