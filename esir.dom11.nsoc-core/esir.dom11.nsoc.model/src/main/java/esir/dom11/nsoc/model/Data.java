@@ -11,7 +11,7 @@ public class Data implements Comparable<Data> {
 
     private final UUID _id;           // dao key
     private final DataType _dataType;
-    private final String _role;     // example : "temp-int-salle930"
+    private final String _location;     // example : "/bat7/salle930/"
     private final double _value;
     private final Date _date;
 
@@ -23,7 +23,7 @@ public class Data implements Comparable<Data> {
         // default constructor
         _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
         _dataType = DataType.TEMPERATURE;
-        _role = "";
+        _location = "";
         _value = 0.0;
         _date = new Date();
     }
@@ -31,7 +31,7 @@ public class Data implements Comparable<Data> {
     public Data(DataType dataType, String role, double value, Date date) {
         _id = UUID.randomUUID();
         _dataType = dataType;
-        _role = role;
+        _location = role;
         _value = value;
         _date = date;
     }
@@ -39,7 +39,7 @@ public class Data implements Comparable<Data> {
     public Data(UUID id, DataType dataType, String role, double value, Date date) {
         _id = id;
         _dataType = dataType;
-        _role = role;
+        _location = role;
         _value = value;
         _date = date;
     }
@@ -57,7 +57,7 @@ public class Data implements Comparable<Data> {
     }
 
     public String getRole() {
-        return _role;
+        return _location;
     }
 
     public double getValue() {
