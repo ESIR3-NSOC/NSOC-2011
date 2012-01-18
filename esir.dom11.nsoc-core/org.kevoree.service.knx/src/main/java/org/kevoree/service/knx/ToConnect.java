@@ -1,0 +1,179 @@
+package org.kevoree.service.knx;
+
+
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
+
+import tuwien.auto.calimero.CloseEvent;
+import tuwien.auto.calimero.FrameEvent;
+import tuwien.auto.calimero.GroupAddress;
+import tuwien.auto.calimero.exception.KNXException;
+import tuwien.auto.calimero.exception.KNXFormatException;
+import tuwien.auto.calimero.exception.KNXTimeoutException;
+import tuwien.auto.calimero.knxnetip.Discoverer;
+import tuwien.auto.calimero.knxnetip.KNXnetIPConnection;
+import tuwien.auto.calimero.knxnetip.servicetype.SearchResponse;
+import tuwien.auto.calimero.knxnetip.util.HPAI;
+import tuwien.auto.calimero.link.KNXLinkClosedException;
+import tuwien.auto.calimero.link.KNXNetworkLinkIP;
+import tuwien.auto.calimero.link.event.NetworkLinkListener;
+import tuwien.auto.calimero.link.medium.TPSettings;
+import tuwien.auto.calimero.process.ProcessCommunicator;
+import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
+
+
+public class ToConnect implements IntToConnect {
+    //variables d'instances
+    private String adresseIP_maquette;
+    private String adresseIP_PC;
+    private KNXNetworkLinkIP netLinkIp = null;
+    private ProcessCommunicator pc = null;
+
+    //constructeurs
+    public ToConnect() {
+        this.chercheAdresseMaquette();
+        adresseIP_PC = NSLookup.IPAddress("localhost").toString();
+    }
+
+    public ToConnect(String adressePC, String adresseMaquette) {
+
+        adresseIP_PC = adressePC;
+        adresseIP_maquette = adresseMaquette;
+
+    }
+    //----------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
+
+    //méthodes
+    @Override
+    public void connected() {
+        // TODO Auto-generated method stubadresseIP_PC
+        System.out.println("Tente de se connecter : adresse PC : " + adresseIP_PC + "et adresse maquette : " + adresseIP_maquette);
+        try {
+            netLinkIp = new KNXNetworkLinkIP(KNXNetworkLinkIP.TUNNEL,
+                    new InetSocketAddress(InetAddress.getByName(adresseIP_PC), 0),
+                    new InetSocketAddress(InetAddress.getByName(adresseIP_maquette), KNXnetIPConnection.IP_PORT), false, new TPSettings(false));
+
+            pc = new ProcessCommunicatorImpl(netLinkIp);
+            System.out.println("*** Connected ***");
+
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (KNXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    //--------------------------------------------------------------------------------------------------
+    @Override
+    public void disconnected() {
+        // TODO Auto-generated method stub
+        if (netLinkIp != null) {
+            netLinkIp.close();
+            System.out.println("Connexion closed");
+        } else {
+            System.out.println("Error : pas de tunnel créé!!!");
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------------
+    @Override
+    public void ecrire(String adresseGroupe, boolean bool) {
+        // TODO Auto-generated method stub
+        try {
+            pc.write(new GroupAddress(adresseGroupe), bool);
+        } catch (KNXTimeoutException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (KNXLinkClosedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (KNXFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    //------------------------------------------------------------------------------------------------------
+    @Override
+    public boolean lire(String adresseGroupe) {
+        // TODO Auto-generated method stub
+        boolean valeur = false;
+        try {
+            valeur = pc.readBool(new GroupAddress(adresseGroupe));
+        } catch (KNXFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (KNXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //System.out.println(valeur);
+        return valeur;
+    }
+
+    //------------------------------------------------------------------------
+    //------------------------------------------------------------------------
+    public void listener(final String adresse) {
+        netLinkIp.addLinkListener(new NetworkLinkListener() {
+
+            @Override
+            public void confirmation(FrameEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void indication(FrameEvent arg0) {
+                // TODO Auto-generated method stub
+                String adresseEnvoyee = ((tuwien.auto.calimero.cemi.CEMILData) arg0.getFrame()).getDestination().toString();
+                if (adresseEnvoyee.equals(adresse)) {
+
+                }
+
+            }
+
+            @Override
+            public void linkClosed(CloseEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+    }
+
+    //--------------------------------------------------------------------------
+    //----------------------------------------------------------------------
+    public void chercheAdresseMaquette() {
+        try {
+            System.out.println("recherche des maquettes\n");
+            Discoverer disc = new Discoverer(KNXnetIPConnection.IP_PORT, false);
+            disc.startSearch(1, true);
+            SearchResponse[] resp = disc.getSearchResponses();
+
+            for (SearchResponse r : resp) {
+                HPAI hpai = r.getControlEndpoint();
+                String ipMaq = hpai.getAddress().toString();
+                adresseIP_maquette = ipMaq;
+                System.out.println("adresse maquette:" + ipMaq + "\n");
+            }
+        } catch (KNXException e) {
+            e.printStackTrace();
+            System.out.println("Exception: " + e.toString());
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
