@@ -28,17 +28,21 @@
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.service</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.model</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.espertech</groupId>
             <artifactId>esper</artifactId>
             <version>4.4.0</version>
+            <scope>provided</scope>
         </dependency>
+
     </dependencies>
     <packaging>bundle</packaging>
     <name>NSOC Context Analyser</name>
