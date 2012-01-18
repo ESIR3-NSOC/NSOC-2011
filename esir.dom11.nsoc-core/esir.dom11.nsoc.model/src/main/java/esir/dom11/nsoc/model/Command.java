@@ -30,14 +30,6 @@ public class Command {
 
     }
 
-    public Command(UUID id, LinkedList<Action> actionList, Category category, int timeOut) {
-        _id = id;
-        _actionList = actionList;
-        _category = category;
-        _timeOut = timeOut;
-        _lock =0;
-
-    }
 
     public Command(UUID id, LinkedList<Action> actionList, Category category, long lock) {
         _id = id;
@@ -48,7 +40,7 @@ public class Command {
 
     }
 
-    public Command(UUID id, LinkedList<Action> actionList, Category category, int timeOut, long lock) {
+    public Command(UUID id, LinkedList<Action> actionList, Category category, long lock, long timeOut) {
         _id = id;
         _actionList = actionList;
         _category = category;
