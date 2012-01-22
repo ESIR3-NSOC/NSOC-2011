@@ -30,6 +30,8 @@ import java.util.Properties;
 @DictionaryType({
         // Db url
         @DictionaryAttribute(name = "dbUrl", defaultValue = "jdbc:mysql://localhost"),
+        // Db port
+        @DictionaryAttribute(name = "dbPort", defaultValue = ""),
         // Db user
         @DictionaryAttribute(name = "dbUser", defaultValue = "root"),
         // Db password
@@ -69,6 +71,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
         Properties dbProperties = new Properties();
         dbProperties.put("url", getDictionary().get("dbUrl"));
+        dbProperties.put("port", getDictionary().get("dbPort"));
         dbProperties.put("user", getDictionary().get("dbUser"));
         dbProperties.put("pwd", getDictionary().get("dbPwd"));
         dbProperties.put("name", getDictionary().get("dbName"));

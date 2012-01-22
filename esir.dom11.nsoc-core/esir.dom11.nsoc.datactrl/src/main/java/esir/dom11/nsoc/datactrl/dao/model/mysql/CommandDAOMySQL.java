@@ -59,10 +59,10 @@ public class CommandDAOMySQL implements CommandDAO {
                 }
             }
 
-            _daoFactory.getCategoryDAO().create(command.getCategory());
+            /*_daoFactory.getCategoryDAO().create(command.getCategory());
             statement.append("INSERT INTO commands (id, id_category)"
                     + " VALUES('" + command.getId() + "',"
-                    + " '" + command.getCategory().getId() + "')");
+                    + " '" + command.getCategory().getId() + "')");  */
 
             try {
                 PreparedStatement prepare = _connection.getConnection()
@@ -146,7 +146,7 @@ public class CommandDAOMySQL implements CommandDAO {
                                     "AND id_action='" + result.getString("id_action") + "';");
             }
 
-            _daoFactory.getCategoryDAO().update(command.getCategory());
+            //_daoFactory.getCategoryDAO().update(command.getCategory());
 
             _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)

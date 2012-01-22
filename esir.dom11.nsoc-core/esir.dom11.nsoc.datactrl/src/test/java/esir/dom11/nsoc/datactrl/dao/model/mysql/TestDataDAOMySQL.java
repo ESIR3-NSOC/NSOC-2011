@@ -93,7 +93,7 @@ public class TestDataDAOMySQL extends TestCase {
         _dbProperties = new Properties();
         FileReader fr = null;
         try {
-            fr = new FileReader(getClass().getClassLoader().getResource("config.properties").getFile());
+            fr = new FileReader(getClass().getClassLoader().getResource("configMySQL.properties").getFile());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
