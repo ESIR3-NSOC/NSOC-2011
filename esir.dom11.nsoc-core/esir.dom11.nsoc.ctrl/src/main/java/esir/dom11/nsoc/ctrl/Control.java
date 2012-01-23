@@ -23,29 +23,45 @@ import org.kevoree.framework.MessagePort;
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true)
 })
 
-public class Control implements ctrlInterface {
-	
+public class Control extends AbstractComponentType implements ctrlInterface {
 
-	@Override
+    @Start
+    public void start() {
+
+
+    }
+
+    @Stop
+    public void stop() {
+
+    }
+
+    @Update
+    public void update() {
+
+    }
+
+
+    @Port(name = "HMI")
 	//HMI need some data so...
 	public void send2HMI(Data data) {
 		// TODO Auto-generated method stub
     }
 
-	@Override
+    @Port(name = "DAO")
 	//send everythg that could have been modified
 	public void send2DAO(Data data) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+    @Port(name = "DAO")
 	public void send2DAO(Command command) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+    @Port(name = "Conflict")
 	//Send an actions list (= command) to conflict 
 	public void send2Conflict(Command command) {
 		// TODO Auto-generated method stub
