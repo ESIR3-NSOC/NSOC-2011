@@ -7,7 +7,6 @@ import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
 
-import javax.xml.crypto.Data;
 
 @Library(name = "NSOC_2011")
 @ComponentType
