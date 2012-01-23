@@ -31,6 +31,11 @@ public class DAOFactoryMySQL extends DAOFactory {
     }
 
     @Override
+    public LogDAO getLogDAO() {
+        return new LogDAOMySQL((ConnectionDbMySQL)_connectionDb);
+    }
+
+    @Override
     public TaskDAO getTaskDAO() {
         return new TaskDAOMySQL((ConnectionDbMySQL)_connectionDb);
     }

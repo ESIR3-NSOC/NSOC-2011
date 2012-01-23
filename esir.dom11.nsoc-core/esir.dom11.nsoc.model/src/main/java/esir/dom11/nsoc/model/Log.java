@@ -58,4 +58,16 @@ public class Log {
     public LogLevel getLogLevel() {
         return _logLevel;
     }
+    
+    /*
+     * Overrides
+     */
+
+    @Override
+    public String toString() {
+        return "\n* * * Log " + getId() + " * * *"
+                + "\nLog Lavel: " + getLogLevel().getValue()
+                + "\nDate: " + getDate()
+                + "\nMessage: " + getMessage() + "\n";
+    }
 }

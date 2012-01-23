@@ -40,6 +40,8 @@ public abstract class DAOFactory {
 
     public abstract DataDAO getDataDAO();
 
+    public abstract LogDAO getLogDAO();
+
     public abstract TaskDAO getTaskDAO();
 
     public abstract UserDAO getUserDAO();

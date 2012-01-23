@@ -49,7 +49,7 @@ public class DataDAOMySQL implements DataDAO {
                 String statement = "INSERT INTO datas (id, data_type, role, value, date)"
                         + " VALUES('" + data.getId() + "',"
                         + " '" + data.getDataType().getValue() + "',"
-                        + " '" + data.getRole() + "',"
+                        + " '" + data.getLocation() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
