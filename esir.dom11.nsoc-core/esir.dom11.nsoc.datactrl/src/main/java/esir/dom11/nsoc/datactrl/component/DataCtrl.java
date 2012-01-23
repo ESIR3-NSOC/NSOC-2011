@@ -22,8 +22,8 @@ import java.util.LinkedList;
 import java.util.Properties;
 
 @Provides({
-    @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class),
-    @ProvidedPort(name = "log", type = PortType.MESSAGE)/*,
+        @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class),
+        @ProvidedPort(name = "log", type = PortType.MESSAGE)/*,
     @ProvidedPort(name = "broadcast", type = PortType.MESSAGE)*/
 })
 /*@Requires({
@@ -148,9 +148,11 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         return requestMgt.getResult();
     }
 
-    @Port(name = "log")
-    public void log(Log log) {
-        _daoFactory.getLogDAO().create(log);
+    @Ports({
+        @Port(name = "log")
+    })
+    public void log(Object log) {
+        _daoFactory.getLogDAO().create((Log)log);
     }
 
     /*

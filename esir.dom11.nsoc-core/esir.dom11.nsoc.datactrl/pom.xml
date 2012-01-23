@@ -89,6 +89,7 @@
                 <configuration>
                     <instructions>
                         <Import-Package>com.mysql.jdbc.*,*</Import-Package>
+                        <Export-Package>org.mongodb.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -100,7 +101,7 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
-                    <encoding>UTF8</encoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>

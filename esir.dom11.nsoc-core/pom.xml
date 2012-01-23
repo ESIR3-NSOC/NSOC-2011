@@ -28,6 +28,8 @@
         <kevoree.version>1.5.0-RC1</kevoree.version>
         <!-- Logging Properties -->
         <slf4j.version>1.6.4</slf4j.version>
+        <!-- Encoding Properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <repositories>
