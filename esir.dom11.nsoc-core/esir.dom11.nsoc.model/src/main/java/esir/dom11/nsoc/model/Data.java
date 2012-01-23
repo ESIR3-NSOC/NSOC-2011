@@ -56,7 +56,7 @@ public class Data implements Comparable<Data> {
         return _dataType;
     }
 
-    public String getRole() {
+    public String getLocation() {
         return _location;
     }
 
