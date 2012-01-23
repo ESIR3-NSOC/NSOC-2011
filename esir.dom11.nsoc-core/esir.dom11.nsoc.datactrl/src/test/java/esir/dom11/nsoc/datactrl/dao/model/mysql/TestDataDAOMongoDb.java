@@ -48,17 +48,21 @@ public class TestDataDAOMongoDb extends TestCase {
     public void testCRUDData() {
         /*Data data = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date());
         logger.info("New Data:" + data.toString());
+        System.out.println("New Data:" + data.toString());
 
         Data createData = _daoFactory.getDataDAO().create(data);
         assertNotNull(createData);
         logger.info("Data Saved:" + createData.toString());
+        System.out.println("Data Saved:" + createData.toString());
 
         Data retrieveData = _daoFactory.getDataDAO().retrieve(data.getId());
         assertNotNull(retrieveData);
         logger.info("Data Retrieve:" + retrieveData.toString());
+        System.out.println("Data Retrieve:" + retrieveData.toString());
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
-        logger.info("Data Delete"); */
+        logger.info("Data Delete");
+        System.out.println("Data Delete");*/
     }
 
     /*

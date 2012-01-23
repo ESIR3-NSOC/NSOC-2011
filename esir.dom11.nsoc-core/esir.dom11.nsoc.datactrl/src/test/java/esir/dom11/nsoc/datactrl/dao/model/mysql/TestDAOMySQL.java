@@ -3,6 +3,8 @@ package esir.dom11.nsoc.datactrl.dao.model.mysql;
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.Log;
+import esir.dom11.nsoc.model.LogLevel;
 import junit.framework.TestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +16,13 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
 
-public class TestDataDAOMySQL extends TestCase {
+public class TestDAOMySQL extends TestCase {
 
     /*
     * Class Attributes
     */
 
-    private static Logger logger = LoggerFactory.getLogger(TestDataDAOMySQL.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(TestDAOMySQL.class.getName());
     /*
      * Attributes
      */
@@ -59,6 +61,22 @@ public class TestDataDAOMySQL extends TestCase {
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
+    }
+
+    public void testCRUDLog() {
+        Log log = new Log("Un log de test", LogLevel.INFO);
+        logger.info("New Log:" + log.toString());
+
+        Log createLog = _daoFactory.getLogDAO().create(log);
+        assertNotNull(createLog);
+        logger.info("Log Saved:" + createLog.toString());
+
+        Log retrieveLog = _daoFactory.getLogDAO().retrieve(log.getId());
+        assertNotNull(retrieveLog);
+        logger.info("Log Retrieve:" + retrieveLog.toString());
+
+        assertTrue(_daoFactory.getLogDAO().delete(log.getId()));
+        logger.info("Log Delete");
     }
     
     public void testFindByDate() {

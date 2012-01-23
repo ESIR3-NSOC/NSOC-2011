@@ -53,4 +53,12 @@ public class ConnectionDbMongoDb extends ConnectionDb {
     public void disconnect() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+    
+    /*
+     * Getters
+     */
+    
+    public DB getDb() {
+        return _db;
+    }
 }
