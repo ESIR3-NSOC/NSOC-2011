@@ -1,0 +1,8 @@
+/.idea/
+*.iml
+*.iws
+*.ipr
+*.project
+config.properties
+*/target/*
+*/build/*
