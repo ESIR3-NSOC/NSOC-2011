@@ -76,7 +76,7 @@ public class Data implements Comparable<Data> {
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
-                + "\nRole: " + getRole()
+                + "\nRole: " + getLocation()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
     }
