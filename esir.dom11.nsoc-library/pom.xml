@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>esir.dom11.nsoc</groupId>
+    <artifactId>esir.dom11.nsoc-library</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>NSOC Library</name>
+
+    <modules>
+        <module>esir.dom11.nsoc.mongodb</module>
+    </modules>
+
+    <properties>
+        <!-- Testing Properties -->
+        <junit.version>4.10</junit.version>
+        <!-- Kevoree Properties -->
+        <kevoree.version>1.5.0-RC1</kevoree.version>
+        <!-- Logging Properties -->
+        <slf4j.version>1.6.4</slf4j.version>
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>kevoree-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>kevoree-plugin-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
