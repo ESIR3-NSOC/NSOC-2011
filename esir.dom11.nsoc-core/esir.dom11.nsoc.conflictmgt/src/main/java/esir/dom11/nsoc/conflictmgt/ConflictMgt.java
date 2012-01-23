@@ -1,10 +1,7 @@
 package esir.dom11.nsoc.conflictmgt;
 
-/*
- TODO: thread gestion temps lock, save list cmd et action dans bd (30min), gérer condition actuator free, gérer catégorie
-  */
-
 import esir.dom11.nsoc.model.Action;
+import esir.dom11.nsoc.model.Category;
 import esir.dom11.nsoc.model.Command;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
@@ -33,16 +30,12 @@ public class ConflictMgt extends AbstractComponentType {
     /*
     * Attributes
     */
-    private long UpdateDelay = 60000;                   //time between updates of locks, in ms (60s by befault)
-    private static int SECURITY = 0;
-    private static int USER = 1;
-    private static int AUTO = 2;
+    private long updateDelay = 60000;                       //time between updates of locks, in ms (60s by befault)
 
     private LinkedList<Command> _commandBufferList;         // buffer of the last received command, before process and save
     private LinkedList<Command> _commandWithTimeout;        // buffer of the last received command, before process and save
     private HashMap<UUID,Action> _lastActuatorActionMap;    // list of accepted and send actions, for conflict management
-    private HashMap<UUID,Long> _lockActuatorMap;             // list of locks on the actuator, updated all the 60s by default
-    private Timer timer;
+    private HashMap<UUID,Long> _lockActuatorMap;            // list of locks on the actuator, updated all the 60s by default
 
     /*
     * Getters / Setters
@@ -66,43 +59,14 @@ public class ConflictMgt extends AbstractComponentType {
         _lockActuatorMap = new HashMap<UUID, Long>();
 
         //Timer initialisation
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
-                // Manage the timeout options, and update it
-                for(Command cmd: _commandWithTimeout){
-                    boolean[] freedom = new boolean[cmd.getActionList().size()];
-
-                    //is all the actuators command now free?
-                    for (Action action : cmd.getActionList()){
-                        if(isActuatorFree(action)){
-
-                        }
-                    }
-
-                    //update the timeout if not free
-                    int index = _commandWithTimeout.indexOf(cmd);
-                    if (cmd.getTimeOut()!=0){
-                        cmd.setTimeOut(cmd.getTimeOut()- UpdateDelay);
-                        _commandWithTimeout.remove(index);
-                        _commandWithTimeout.push(cmd);
-                    }
-                    else {
-                        _commandWithTimeout.remove(index);
-                    }
-                }
-
-                // Manage the lock option 
-                for(Map.Entry<UUID,Long> actMap: _lockActuatorMap.entrySet()){
-                    if (actMap.getValue()!=0){
-                        _lockActuatorMap.put(actMap.getKey(),actMap.getValue()- UpdateDelay);
-                    }
-                    else {
-                        _lockActuatorMap.remove(actMap.getKey());}
-                }
+                updateLock();
+                updateTimeout();
             }
-        }, UpdateDelay);
+        }, updateDelay);
     }
 
     @Stop
@@ -121,7 +85,8 @@ public class ConflictMgt extends AbstractComponentType {
 
     /**
      * cmdFromCtrl
-     * @param command
+     *
+     * @param command Command
      */
     @Port(name = "cmdFromCtrl")
     public void cmdFromCtrl(Command command) {
@@ -150,11 +115,16 @@ public class ConflictMgt extends AbstractComponentType {
         if (commandToSave && command.getTimeOut()!=0){
             _commandWithTimeout.add(command);
         }
-
     }
 
     /*
      * Methods
+     */
+
+    /**
+     * send2Actuator, save the last action for the lock option and send it to the actuator
+     *
+     * @param action Action
      */
 
     private void send2Actuator(Action action){
@@ -164,24 +134,73 @@ public class ConflictMgt extends AbstractComponentType {
 
     /**
      * isActuatorFree
-     * @param action
+     *
+     * @param action Action
      * @return "true" if the IdActuator of the action isn't in the _lastActuatorActionMap
      */
     private boolean isActuatorFree(Action action) {
-        if (_lastActuatorActionMap.containsKey(action.getIdActuator())){
-            return false;
+        return !_lastActuatorActionMap.containsKey(action.getIdActuator());
+    }
+
+    /**
+     *  updateLock(), manage the lock option
+     */
+    private void updateLock(){
+        //
+        for(Map.Entry<UUID,Long> actMap: _lockActuatorMap.entrySet()){
+            if (actMap.getValue()!=0){
+                _lockActuatorMap.put(actMap.getKey(),actMap.getValue()- updateDelay);
+            }
+            else {
+                _lockActuatorMap.remove(actMap.getKey());}
         }
-        else {
-            return true;
+    }
+
+    /**
+     *  updateTimeout(), manage the timeout option. Send the
+     */
+    private void updateTimeout(){
+        for(Command cmd: _commandWithTimeout){
+            LinkedList<Boolean> freedom = new LinkedList<Boolean>();
+
+            //is all the actuators' command now free?
+            for (Action action : cmd.getActionList()){
+                freedom.push(isActuatorFree(action));
+            }
+            //if at least one actuator is not free, update the timeout or remove the command
+            if (freedom.contains(false)){
+                int index = _commandWithTimeout.indexOf(cmd);
+                if (cmd.getTimeOut()!=0){
+                    cmd.setTimeOut(cmd.getTimeOut()- updateDelay);
+                    _commandWithTimeout.remove(index);
+                    _commandWithTimeout.push(cmd);
+                }
+                else {
+                    _commandWithTimeout.remove(index);
+                }
+            }
+
+            //TODO send2Actuator in updateTimeout()
         }
     }
 
     private void saveInDb() {
-        // TODO
+        // TODO saveInDb
     }
 
-    private int getPriority() {
-        // TODO
-        return 0;
+    private int getPriority(Command cmd) {
+        int priority;
+        if (cmd.getCategory()==Category.SECURITY){
+            priority=0;
+        }
+        else if (cmd.getCategory()==Category.USER){
+            priority=1;
+        }
+        else {
+            priority=2;   //AUTO priority by default
+        }
+        return priority;
+
+        //TODO implement priority management
     }
 }
