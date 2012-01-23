@@ -28,18 +28,18 @@ public class Data implements Comparable<Data> {
         _date = new Date();
     }
 
-    public Data(DataType dataType, String role, double value, Date date) {
+    public Data(DataType dataType, String location, double value, Date date) {
         _id = UUID.randomUUID();
         _dataType = dataType;
-        _location = role;
+        _location = location;
         _value = value;
         _date = date;
     }
 
-    public Data(UUID id, DataType dataType, String role, double value, Date date) {
+    public Data(UUID id, DataType dataType, String location, double value, Date date) {
         _id = id;
         _dataType = dataType;
-        _location = role;
+        _location = location;
         _value = value;
         _date = date;
     }
@@ -76,7 +76,7 @@ public class Data implements Comparable<Data> {
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
-                + "\nRole: " + getLocation()
+                + "\nLocation: " + getLocation()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
     }
