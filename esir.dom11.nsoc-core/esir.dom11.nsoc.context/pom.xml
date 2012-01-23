@@ -28,18 +28,53 @@
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.service</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.model</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
+
     </dependencies>
     <packaging>bundle</packaging>
     <name>NSOC Context Analyser</name>
 
     <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
+
+            <!-- Scala compiler plugin -->
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.2</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmArgs>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                    </jvmArgs>
+                    <scalaVersion>2.9.1</scalaVersion>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.kevoree.tools</groupId>
                 <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
@@ -68,18 +103,41 @@
                     </instructions>
                 </configuration>
             </plugin>
-            <!-- Java compiler plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF8</encoding>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>codehaus</id>
+            <url>http://repository.codehaus.org</url>
+        </repository>
+
+        <repository>
+            <id>kevoree-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>plugin.scala-tools.org</id>
+            <name>Plugin Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugin.kevoree-github</id>
+            <url>http://maven.kevoree.org/release</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugin.kevoree-snapshots</id>
+            <url>http://maven.kevoree.org/snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

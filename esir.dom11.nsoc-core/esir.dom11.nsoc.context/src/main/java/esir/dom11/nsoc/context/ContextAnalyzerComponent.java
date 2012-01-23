@@ -1,6 +1,5 @@
 package esir.dom11.nsoc.context;
 
-
 import esir.dom11.nsoc.context.energy.EnergyBalance;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
@@ -22,14 +21,13 @@ import java.util.Date;
         @ProvidedPort(name = "data", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "tempSetting", type = PortType.MESSAGE),
-        @RequiredPort(name = "brightnessSetting", type = PortType.MESSAGE),
-        @RequiredPort(name = "energyBalance", type = PortType.MESSAGE),
+        @RequiredPort(name = "tempSetting", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "energyBalance", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "dbservice", type = PortType.SERVICE, className = IDbService.class, optional = true)
 })
-public class ContextAnalyzer extends AbstractComponentType {
+public class ContextAnalyzerComponent extends AbstractComponentType {
 
-    private static Logger logger = LoggerFactory.getLogger(ContextAnalyzer.class);
+    private static Logger logger = LoggerFactory.getLogger(ContextAnalyzerComponent.class);
     private EnergyBalance _energyBalance;
 
 
@@ -38,6 +36,7 @@ public class ContextAnalyzer extends AbstractComponentType {
         logger.info("= = = = = start context analyzer = = = = = =");
 
         _energyBalance = new EnergyBalance(0.0, 0.0);
+
     }
 
     @Stop
@@ -52,8 +51,9 @@ public class ContextAnalyzer extends AbstractComponentType {
 
 
     @Port(name = "data")
-    public void receiveData(Data data) {
+    public void receiveData(Object obj) {
 
+        Data data = (Data) obj;
         String dType = data.getDataType().getValue();
 
         if (dType.compareTo("TEMPERATURE") == 0) {
@@ -61,10 +61,12 @@ public class ContextAnalyzer extends AbstractComponentType {
 
         } else if (dType.compareTo("POWER") == 0) {
             if (data.getRole().compareTo("energyconsumption") == 0) {
-                _energyBalance.setConsumption(data.getValue());
+ //    TODO
+ //               _energyBalance.setConsumption(data.getValue());
                 energyBalanceProduced(_energyBalance.getEnergyBalance());
             } else if (data.getRole().compareTo("energyproduction") == 0) {
-                _energyBalance.setProduction(data.getValue());
+                // TODO
+           //      _energyBalance.setProduction(data.getValue());
                 energyBalanceProduced(_energyBalance.getEnergyBalance());
             }
         }
