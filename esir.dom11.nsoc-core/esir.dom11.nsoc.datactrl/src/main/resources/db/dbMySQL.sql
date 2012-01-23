@@ -105,6 +105,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for `logs`
+--
+
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` varchar(20) COLLATE utf8_bin NOT NULL,
+  `date` datetime NOT NULL,
+  `message` text COLLATE utf8_bin NOT NULL,
+  `log_level` varchar(20) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 
 --

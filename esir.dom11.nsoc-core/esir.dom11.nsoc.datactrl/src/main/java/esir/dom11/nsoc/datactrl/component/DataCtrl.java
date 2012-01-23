@@ -1,5 +1,6 @@
 package esir.dom11.nsoc.datactrl.component;
 
+import esir.dom11.nsoc.datactrl.dao.factory.FactoryType;
 import esir.dom11.nsoc.datactrl.process.RequestMgt;
 import esir.dom11.nsoc.service.RequestResult;
 
@@ -28,16 +29,18 @@ import java.util.Properties;
     @RequiredPort(name = "subscribe", type = PortType.MESSAGE)
 })*/
 @DictionaryType({
+        // Db type
+        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB"}),
         // Db url
         @DictionaryAttribute(name = "dbUrl", defaultValue = "jdbc:mysql://localhost"),
+        // Db port
+        @DictionaryAttribute(name = "dbPort", defaultValue = ""),
         // Db user
         @DictionaryAttribute(name = "dbUser", defaultValue = "root"),
         // Db password
         @DictionaryAttribute(name = "dbPwd", defaultValue = ""),
         // Db name
-        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11"),
-        // Db type
-        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL")
+        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11")
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -69,6 +72,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
         Properties dbProperties = new Properties();
         dbProperties.put("url", getDictionary().get("dbUrl"));
+        dbProperties.put("port", getDictionary().get("dbPort"));
         dbProperties.put("user", getDictionary().get("dbUser"));
         dbProperties.put("pwd", getDictionary().get("dbPwd"));
         dbProperties.put("name", getDictionary().get("dbName"));

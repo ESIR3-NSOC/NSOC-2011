@@ -21,11 +21,6 @@ public class DAOFactoryMySQL extends DAOFactory {
     }
 
     @Override
-    public CategoryDAO getCategoryDAO() {
-        return new CategoryDAOMySQL((ConnectionDbMySQL)_connectionDb);
-    }
-
-    @Override
     public CommandDAO getCommandDAO() {
         return new CommandDAOMySQL((ConnectionDbMySQL)_connectionDb, this);
     }
@@ -33,6 +28,11 @@ public class DAOFactoryMySQL extends DAOFactory {
     @Override
     public DataDAO getDataDAO() {
         return new DataDAOMySQL((ConnectionDbMySQL)_connectionDb);
+    }
+
+    @Override
+    public LogDAO getLogDAO() {
+        return new LogDAOMySQL((ConnectionDbMySQL)_connectionDb);
     }
 
     @Override

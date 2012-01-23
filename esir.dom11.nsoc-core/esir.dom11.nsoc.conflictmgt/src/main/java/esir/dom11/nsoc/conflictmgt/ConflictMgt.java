@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 @Provides({
-    @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
+        @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
 })
 @Requires({
-    @RequiredPort(name = "actToActuator", type = PortType.MESSAGE)
+        @RequiredPort(name = "actToActuator", type = PortType.MESSAGE)
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -37,16 +37,16 @@ public class ConflictMgt extends AbstractComponentType {
     private static int SECURITY = 0;
     private static int USER = 1;
     private static int AUTO = 2;
-    
+
     private LinkedList<Command> _commandBufferList;         // buffer of the last received command, before process and save
     private LinkedList<Command> _commandWithTimeout;        // buffer of the last received command, before process and save
     private HashMap<UUID,Action> _lastActuatorActionMap;    // list of accepted and send actions, for conflict management
     private HashMap<UUID,Long> _lockActuatorMap;             // list of locks on the actuator, updated all the 60s by default
     private Timer timer;
-    
+
     /*
-     * Getters / Setters
-     */
+    * Getters / Setters
+    */
 
     /*
     * Overrides
@@ -69,18 +69,18 @@ public class ConflictMgt extends AbstractComponentType {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                
+
                 // Manage the timeout options, and update it
                 for(Command cmd: _commandWithTimeout){
                     boolean[] freedom = new boolean[cmd.getActionList().size()];
-                    
+
                     //is all the actuators command now free?
                     for (Action action : cmd.getActionList()){
                         if(isActuatorFree(action)){
-                             
+
                         }
                     }
-                                       
+
                     //update the timeout if not free
                     int index = _commandWithTimeout.indexOf(cmd);
                     if (cmd.getTimeOut()!=0){
@@ -92,7 +92,7 @@ public class ConflictMgt extends AbstractComponentType {
                         _commandWithTimeout.remove(index);
                     }
                 }
-                
+
                 // Manage the lock option 
                 for(Map.Entry<UUID,Long> actMap: _lockActuatorMap.entrySet()){
                     if (actMap.getValue()!=0){
@@ -114,10 +114,10 @@ public class ConflictMgt extends AbstractComponentType {
     public void update() {
         logger.info("= = = = = update conflict manager = = = = = =");
     }
-    
+
     /*
-     * Overrides
-     */
+    * Overrides
+    */
 
     /**
      * cmdFromCtrl
@@ -137,7 +137,7 @@ public class ConflictMgt extends AbstractComponentType {
             _lockActuatorMap.put(action.getIdActuator(), command.getLock());
 
             if (isActuatorFree(action)) {
-                send2Actuator(action);   
+                send2Actuator(action);
             }
 
             // if one action can't be done, don't check the others of the command
@@ -159,9 +159,9 @@ public class ConflictMgt extends AbstractComponentType {
 
     private void send2Actuator(Action action){
         _lastActuatorActionMap.put(action.getIdActuator(),action);
-        getPortByName("actToActuator",MessagePort.class).process(action);        
+        getPortByName("actToActuator",MessagePort.class).process(action);
     }
-    
+
     /**
      * isActuatorFree
      * @param action
@@ -179,7 +179,7 @@ public class ConflictMgt extends AbstractComponentType {
     private void saveInDb() {
         // TODO
     }
-    
+
     private int getPriority() {
         // TODO
         return 0;

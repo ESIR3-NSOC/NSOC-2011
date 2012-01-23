@@ -49,7 +49,7 @@ public class DataDAOMySQL implements DataDAO {
                 String statement = "INSERT INTO datas (id, data_type, role, value, date)"
                         + " VALUES('" + data.getId() + "',"
                         + " '" + data.getDataType().getValue() + "',"
-                        + " '" + data.getRole() + "',"
+                        + " '" + data.getLocation() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -118,6 +118,54 @@ public class DataDAOMySQL implements DataDAO {
                                         DataType.valueOf(result.getString("data_type")),
                                         result.getString("role"),
                                         result.getDouble("value"),result.getDate("date")));
+            }
+        } catch (SQLException exception) {
+            logger.error("Data find by date error", exception);
+        }
+        return dataList;
+    }
+
+    @Override
+    public LinkedList<Data> findByDateAndStep(Date startDate, Date endDate, String role, int step) {
+        LinkedList<Data> dataList = new LinkedList<Data>();
+        try {
+            ResultSet result = _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery("SELECT * FROM datas " +
+                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
+                            "AND role='" + role + "' " +
+                            "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
+            System.out.println(new Timestamp(endDate.getTime()));
+            result.beforeFirst();
+            while (result.next()) {
+                dataList.add(new Data(UUID.fromString(result.getString("id")),
+                        DataType.valueOf(result.getString("data_type")),
+                        result.getString("role"),
+                        result.getDouble("value"),result.getDate("date")));
+            }
+        } catch (SQLException exception) {
+            logger.error("Data find by date error", exception);
+        }
+        return dataList;
+    }
+
+    @Override
+    public LinkedList<Data> findByDateAndDataMax(Date startDate, Date endDate, String role, int datMax) {
+        LinkedList<Data> dataList = new LinkedList<Data>();
+        try {
+            ResultSet result = _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery("SELECT * FROM datas " +
+                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
+                            "AND role='" + role + "' " +
+                            "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
+            System.out.println(new Timestamp(endDate.getTime()));
+            result.beforeFirst();
+            while (result.next()) {
+                dataList.add(new Data(UUID.fromString(result.getString("id")),
+                        DataType.valueOf(result.getString("data_type")),
+                        result.getString("role"),
+                        result.getDouble("value"),result.getDate("date")));
             }
         } catch (SQLException exception) {
             logger.error("Data find by date error", exception);

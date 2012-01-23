@@ -56,7 +56,7 @@ public class Data implements Comparable<Data> {
         return _dataType;
     }
 
-    public String getRole() {
+    public String getLocation() {
         return _location;
     }
 
@@ -76,7 +76,7 @@ public class Data implements Comparable<Data> {
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
                 + "\nData Type: " + getDataType().getValue()
-                + "\nRole: " + getRole()
+                + "\nRole: " + getLocation()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
     }
