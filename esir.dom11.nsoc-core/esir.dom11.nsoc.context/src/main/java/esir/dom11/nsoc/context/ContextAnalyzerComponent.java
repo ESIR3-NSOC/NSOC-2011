@@ -60,11 +60,11 @@ public class ContextAnalyzerComponent extends AbstractComponentType {
 
 
         } else if (dType.compareTo("POWER") == 0) {
-            if (data.getRole().compareTo("energyconsumption") == 0) {
+            if (data.getLocation().compareTo("energyconsumption") == 0) {
  //    TODO
  //               _energyBalance.setConsumption(data.getValue());
                 energyBalanceProduced(_energyBalance.getEnergyBalance());
-            } else if (data.getRole().compareTo("energyproduction") == 0) {
+            } else if (data.getLocation().compareTo("energyproduction") == 0) {
                 // TODO
            //      _energyBalance.setProduction(data.getValue());
                 energyBalanceProduced(_energyBalance.getEnergyBalance());
