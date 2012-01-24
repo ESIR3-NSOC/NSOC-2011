@@ -6,3 +6,6 @@
 config.properties
 */target/*
 */build/*
+*/bin/*
+*/.settings/*
+*.classpath
