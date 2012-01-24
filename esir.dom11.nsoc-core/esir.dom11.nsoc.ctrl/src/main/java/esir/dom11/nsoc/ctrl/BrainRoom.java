@@ -19,10 +19,12 @@ public class BrainRoom {
     Initialize the BrainRoom location, building and room
     */
     public BrainRoom(String location){
+        //location
         String[] temp = new String[2];
         temp = location.split("/");
         this.building = temp[0];
         this.room = temp[1];
+
     }
     
     /*method 1 : Algorithm of light control

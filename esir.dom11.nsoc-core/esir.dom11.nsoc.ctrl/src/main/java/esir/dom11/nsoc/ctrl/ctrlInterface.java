@@ -12,8 +12,7 @@ import esir.dom11.nsoc.model.DataType;
  * To change this template use File | Settings | File Templates.
  */
 public interface ctrlInterface {
-	
-    
+
 	//Send2... will allow us to send data to different components
 	
 	//HMI need some data so...

@@ -1,3 +1,11 @@
-/esir.dom11.nsoc-platform/iphone/Nsoc/build/Nsoc.build/Debug-iphonesimulator
-/esir.dom11.nsoc-platform/iphone/Nsoc/build
-/esir.dom11.nsoc-platform/iphone/Nsoc/nsoc.xcodeproj
+*/.idea/*
+*.iml
+*.iws
+*.ipr
+*.project
+config.properties
+*/target/*
+*/build/*
+*/bin/*
+*/.settings/*
+*.classpath

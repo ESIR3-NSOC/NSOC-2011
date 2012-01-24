@@ -5,20 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>esir.dom11.nsoc</groupId>
-    <artifactId>esir.dom11.nsoc-core</artifactId>
+    <artifactId>esir.dom11.nsoc-library</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>NSOC</name>
+    <name>NSOC Library</name>
 
     <modules>
-        <module>esir.dom11.nsoc.model</module>
-        <module>esir.dom11.nsoc.datactrl</module>
-        <module>esir.dom11.nsoc.service</module>
-        <module>esir.dom11.nsoc.conflictmgt</module>
-        <module>esir.dom11.nsoc.scheduler</module>
-        <module>esir.dom11.nsoc.context</module>
-        <module>esir.dom11.nsoc.server</module>
-        <module>esir.dom11.nsoc.ctrl</module>
+        <module>esir.dom11.nsoc.mongodb</module>
     </modules>
 
     <properties>
@@ -28,7 +21,7 @@
         <kevoree.version>1.5.0-RC1</kevoree.version>
         <!-- Logging Properties -->
         <slf4j.version>1.6.4</slf4j.version>
-        <!-- Encoding Properties -->
+        <!-- Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -45,22 +38,4 @@
             <url>http://maven.kevoree.org/release</url>
         </pluginRepository>
     </pluginRepositories>
-
-    <distributionManagement>
-        <repository>
-            <id>nsoc2011-repo</id>
-            <url>ftp://ftp.alwaysdata.com/www/mvn-repo</url>
-        </repository>
-    </distributionManagement>
-
-    <build>
-        <extensions>
-            <!-- Enabling the use of FTP -->
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ftp</artifactId>
-                <version>1.0-beta-6</version>
-            </extension>
-        </extensions>
-    </build>
 </project>

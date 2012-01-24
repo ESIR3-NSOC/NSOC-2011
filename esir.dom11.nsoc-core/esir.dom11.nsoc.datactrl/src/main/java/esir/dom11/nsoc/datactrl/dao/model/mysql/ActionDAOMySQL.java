@@ -44,11 +44,10 @@ public class ActionDAOMySQL implements ActionDAO {
             try {
                 PreparedStatement prepare = _connection.getConnection()
                         .prepareStatement(
-                                "INSERT INTO actions (id, id_actuator, value, time_out)"
+                                "INSERT INTO actions (id, id_actuator, value)"
                                         + " VALUES('" + action.getId() + "',"
                                         + " '" + action.getIdActuator() + "',"
-                                        + " '" + action.getValue() + "',"
-                                        + " '" + action.getTimeOut() + "')"
+                                        + " '" + action.getValue() + "')"
                         );
                 prepare.executeUpdate();
                 newAction = retrieve(action.getId());
@@ -68,7 +67,7 @@ public class ActionDAOMySQL implements ActionDAO {
                     .executeQuery("SELECT * FROM actions WHERE id = '" + id + "'");
             if(result.first()) {
                 action = new Action(id, UUID.fromString(result.getString("id_actuator")),
-                        result.getDouble("value"),result.getInt("time_out"));
+                                        result.getDouble("value"));
             }
         } catch (SQLException exception) {
             logger.error("Action retrieve error", exception);
@@ -83,8 +82,7 @@ public class ActionDAOMySQL implements ActionDAO {
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeUpdate(
                             "UPDATE actions SET id_actuator = '" + action.getIdActuator() + "',"
-                                    + "value = '" + action.getValue() + "',"
-                                    + "time_out = '" + action.getTimeOut() + "'"
+                                    + "value = '" + action.getValue() + "'"
                     );
 
             action = this.retrieve(action.getId());

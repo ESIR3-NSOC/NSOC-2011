@@ -1,7 +1,7 @@
 package esir.dom11.nsoc.ctrl;
 
 import java.util.LinkedList;
-import java.util.List;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,8 +28,7 @@ public class TheBrain {
      * Method to create a brain room
      */
     public void createRoom(String building, String room){
-         BrainRoom
-         roomList.
+
     }
     
 }

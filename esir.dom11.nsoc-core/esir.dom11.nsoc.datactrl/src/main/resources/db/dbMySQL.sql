@@ -7,7 +7,7 @@ SET time_zone = "+00:00";
 --
 
 -- clean database
-DROP TABLE IF EXISTS `commands_actions`, `datas`, `tasks`, `users`, `actions`, `commands`, `categories`;
+DROP TABLE IF EXISTS `commands_actions`, `datas`, `tasks`, `users`, `actions`, `commands`, `logs`;
 
 -- --------------------------------------------------------
 
@@ -19,20 +19,6 @@ CREATE TABLE IF NOT EXISTS `actions` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
   `id_actuator` varchar(36) COLLATE utf8_bin NOT NULL,
   `value` double NOT NULL,
-  `time_out` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Table structure for `categories`
---
-
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `name` varchar(100) COLLATE utf8_bin NOT NULL,
-  `lock` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -44,9 +30,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 CREATE TABLE IF NOT EXISTS `commands` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `id_categorie` varchar(36) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_categorie` (`id_categorie`)
+  `category` varchar(30) COLLATE utf8_bin NOT NULL,
+  `lock` int(11) NOT NULL,
+  `time_out` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -124,12 +111,6 @@ CREATE TABLE IF NOT EXISTS `logs` (
 --
 -- Constraints
 --
-
---
--- Table constraints for `commands`
---
-ALTER TABLE `commands`
-  ADD CONSTRAINT `commands_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id`);
 
 --
 -- Table constraints for `commands_actions`

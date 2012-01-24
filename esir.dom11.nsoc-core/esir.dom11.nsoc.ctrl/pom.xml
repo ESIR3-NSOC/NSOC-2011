@@ -10,6 +10,30 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>esir.dom11.nsoc.ctrl</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>esir.dom11.nsoc</groupId>
+            <artifactId>esir.dom11.nsoc.model</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kevoree.tools</groupId>
+            <artifactId>org.kevoree.tools.javase.framework</artifactId>
+            <version>${kevoree.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kevoree.tools</groupId>
+            <artifactId>org.kevoree.tools.annotation.api</artifactId>
+            <version>${kevoree.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>esir.dom11.nsoc</groupId>
+            <artifactId>esir.dom11.nsoc.service</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
