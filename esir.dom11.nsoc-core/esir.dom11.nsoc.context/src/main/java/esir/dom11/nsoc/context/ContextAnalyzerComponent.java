@@ -1,12 +1,9 @@
 package esir.dom11.nsoc.context;
 
 import esir.dom11.nsoc.context.energy.EnergyBalance;
-import esir.dom11.nsoc.model.Data;
-import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.service.IDbService;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
-import org.kevoree.framework.MessagePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,32 +50,32 @@ public class ContextAnalyzerComponent extends AbstractComponentType {
     @Port(name = "data")
     public void receiveData(Object obj) {
 
-        Data data = (Data) obj;
-        String dType = data.getDataType().getValue();
-
-        if (dType.compareTo("TEMPERATURE") == 0) {
-
-
-        } else if (dType.compareTo("POWER") == 0) {
-            if (data.getLocation().compareTo("energyconsumption") == 0) {
- //    TODO
- //               _energyBalance.setConsumption(data.getValue());
-                energyBalanceProduced(_energyBalance.getEnergyBalance());
-            } else if (data.getLocation().compareTo("energyproduction") == 0) {
-                // TODO
-           //      _energyBalance.setProduction(data.getValue());
-                energyBalanceProduced(_energyBalance.getEnergyBalance());
-            }
-        }
+//        Data data = (Data) obj;
+//        String dType = data.getDataType().getValue();
+//
+//        if (dType.compareTo("TEMPERATURE") == 0) {
+//
+//
+//        } else if (dType.compareTo("POWER") == 0) {
+//            if (data.getLocation().compareTo("energyconsumption") == 0) {
+//                //    TODO
+//                //               _energyBalance.setConsumption(data.getValue());
+//                energyBalanceProduced(_energyBalance.getEnergyBalance());
+//            } else if (data.getLocation().compareTo("energyproduction") == 0) {
+//                // TODO
+//                //      _energyBalance.setProduction(data.getValue());
+//                energyBalanceProduced(_energyBalance.getEnergyBalance());
+//            }
+//        }
 
     }
 
     public void energyBalanceProduced(Double energyBalance) {
-        MessagePort energyBalancePort = getPortByName("energyBalance", MessagePort.class);
-        if (energyBalancePort != null) {
-            Data energyData = new Data(DataType.POWER, "energybalance", energyBalance, new Date());
-            energyBalancePort.process(energyData);
-        }
+//        MessagePort energyBalancePort = getPortByName("energyBalance", MessagePort.class);
+//        if (energyBalancePort != null) {
+//            Data energyData = new Data(DataType.POWER, "energybalance", energyBalance, new Date());
+//            energyBalancePort.process(energyData);
+//        }
     }
 
     // TODO

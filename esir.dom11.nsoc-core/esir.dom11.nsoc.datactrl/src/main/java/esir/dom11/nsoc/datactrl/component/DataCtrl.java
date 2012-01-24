@@ -1,7 +1,7 @@
 package esir.dom11.nsoc.datactrl.component;
 
-import esir.dom11.nsoc.datactrl.dao.factory.FactoryType;
 import esir.dom11.nsoc.datactrl.process.RequestMgt;
+import esir.dom11.nsoc.model.Log;
 import esir.dom11.nsoc.service.RequestResult;
 
 
@@ -22,7 +22,8 @@ import java.util.LinkedList;
 import java.util.Properties;
 
 @Provides({
-    @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class)/*,
+    @ProvidedPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class),
+    @ProvidedPort(name = "log", type = PortType.MESSAGE)/*,
     @ProvidedPort(name = "broadcast", type = PortType.MESSAGE)*/
 })
 /*@Requires({
@@ -147,10 +148,10 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         return requestMgt.getResult();
     }
 
-    /*@Port(name = "subscribe")
-    public void subscribe(Object object) {
-
-    }*/
+    @Port(name = "log")
+    public void log(Log log) {
+        _daoFactory.getLogDAO().create(log);
+    }
 
     /*
     * Methods

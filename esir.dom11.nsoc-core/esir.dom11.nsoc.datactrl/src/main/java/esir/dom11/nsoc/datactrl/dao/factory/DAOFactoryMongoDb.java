@@ -41,6 +41,11 @@ public class DAOFactoryMongoDb extends DAOFactory {
     }
 
     @Override
+    public LogDAO getLogDAO() {
+        return new LogDAOMongoDb((ConnectionDbMongoDb)_connectionDb);
+    }
+
+    @Override
     public TaskDAO getTaskDAO() {
         return new TaskDAOMongoDb((ConnectionDbMongoDb)_connectionDb);
     }

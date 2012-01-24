@@ -59,10 +59,11 @@ public class CommandDAOMySQL implements CommandDAO {
                 }
             }
 
-            /*_daoFactory.getCategoryDAO().create(command.getCategory());
-            statement.append("INSERT INTO commands (id, id_category)"
+            statement.append("INSERT INTO commands (id, id_category, lock, time_out)"
                     + " VALUES('" + command.getId() + "',"
-                    + " '" + command.getCategory().getId() + "')");  */
+                    + " '" + command.getCategory() + "',"
+                    + " '" + command.getLock() + "',"
+                    + " '" + command.getTimeOut() + "')");
 
             try {
                 PreparedStatement prepare = _connection.getConnection()
@@ -82,24 +83,23 @@ public class CommandDAOMySQL implements CommandDAO {
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT id_command, id_action, id_category, name, lock, id_actuator, value, time_out " +
+                    .executeQuery("SELECT id_command, id_action, category, lock, time_out, id_actuator, value " +
                                     "FROM commands c " +
-                                    "JOIN categories cat ON c.id_category=cat.id " +
                                     "JOIN commands_actions ca ON c.id=ca.id_command " +
-                                    "JOIN actions a ON ca.id_ac " +
+                                    "JOIN actions a ON ca.id_action=a.id " +
                                     "WHERE c.id = '" + id + "'");
             result.beforeFirst();
             LinkedList<Action> actionList = new LinkedList<Action>();
             while (result.next()) {
                 actionList.add(new Action(UUID.fromString(result.getString("id_action")),
                                         UUID.fromString(result.getString("id_actuator")),
-                                        result.getDouble("value"),
-                                        result.getInt("time_out")));
+                                        result.getDouble("value")));
             }
 
             if(result.first()) {
-                Category category = new Category(id, result.getString("name"),result.getInt("lock"));
-                command = new Command(id,actionList,category);
+                command = new Command(id,actionList,Category.valueOf(result.getString("category")),
+                                        result.getLong("category"),
+                                        result.getLong("time_out"));
             }
         } catch (SQLException exception) {
             logger.error("Command retrieve error", exception);
@@ -154,7 +154,7 @@ public class CommandDAOMySQL implements CommandDAO {
 
             command = this.retrieve(command.getId());
         } catch (SQLException exception) {
-            logger.error("Data update error",exception);
+            logger.error("Command update error",exception);
         }
         return command;
     }
