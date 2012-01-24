@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'Nsoc' target in the 'Nsoc' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif

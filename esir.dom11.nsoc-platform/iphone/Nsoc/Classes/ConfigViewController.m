@@ -77,6 +77,7 @@
 	statusLabel.backgroundColor = [UIColor clearColor];
 	[self displayConnectionStatus:FALSE];
 
+	ServerTableView.scrollEnabled = NO;
     [super viewDidLoad];
 }
 

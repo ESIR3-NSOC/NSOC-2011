@@ -49,13 +49,6 @@ numberOfRowsInSection:(NSInteger) section{
 	return [detailsArray count];	
 }
 
-// Customize the header of each section
--(NSString *) tableView:(UITableView *)tableView 
-titleForHeaderInSection:(NSInteger)section{
-	return @"Details";
-}
-
-
 // Return a cell containing the text to display at the provided row index
 -(UITableViewCell *)tableView:(UITableView *)tableView 
 		cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,7 +67,6 @@ titleForHeaderInSection:(NSInteger)section{
 	}
 	
 	cell.textLabel.text = [self.detailsArray objectAtIndex:indexPath.row];
-	NSLog(@"%@", cell.textLabel.text);
 	return cell;
 }
 

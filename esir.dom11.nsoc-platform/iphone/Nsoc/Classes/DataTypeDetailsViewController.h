@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatePickerViewController.h"
+#import "ModelData.h"
 
-
-@interface DataTypeDetailsViewController : UIViewController {
-
+@interface DataTypeDetailsViewController : UIViewController <DatePickerViewControllerDelegate> {
+	ModelData *dataFromDate;
 }
+
+@property (nonatomic, retain) ModelData *dataFromDate;
+
+- (IBAction) showDate;
+- (id)initWithDataFromDatePicker:(ModelData *)passedData;
+
 
 @end
