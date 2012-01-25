@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
-  `id` varchar(20) COLLATE utf8_bin NOT NULL,
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
   `date` datetime NOT NULL,
   `from` varchar(200) COLLATE utf8_bin NOT NULL,
   `message` text COLLATE utf8_bin NOT NULL,
