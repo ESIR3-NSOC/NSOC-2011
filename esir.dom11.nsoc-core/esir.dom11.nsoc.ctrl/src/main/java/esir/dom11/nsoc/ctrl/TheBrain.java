@@ -28,6 +28,20 @@ public class TheBrain {
      * Method to create a brain room
      */
     public void createRoom(String building, String room){
+        //create a brainRoom
+
+        //add location to roomList
+        
+    }
+    //send data to room
+    public void sendInfoTo(String location){
+        //room search into roomList
+
+
+        
+        
+    }
+    public void stopTheBrain(){
 
     }
     

@@ -24,16 +24,16 @@ import org.kevoree.framework.MessagePort;
 })
 
 public class Control extends AbstractComponentType implements ctrlInterface {
-
+    private TheBrain theBrain;
     @Start
     public void start() {
-
-
+          theBrain = new TheBrain();
+          theBrain.createRoom("B", "930");
     }
 
     @Stop
     public void stop() {
-
+          theBrain.stopTheBrain();
     }
 
     @Update
