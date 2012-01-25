@@ -22,6 +22,7 @@ public class ServerGui {
     JButton buttonStart;
     JButton buttonStop;
     JTextField portServer;
+    JLabel ipServer;
 
     public ServerGui(){
         cm = new ServerManager();
@@ -41,7 +42,7 @@ public class ServerGui {
         JLabel labelIpServer = new JLabel("Adresse ip du serveur : ");
         JLabel labelPortServer = new JLabel("Port du serveur : ");
 
-        JLabel ipServer = new JLabel(cm.getIpServer());
+        ipServer = new JLabel(cm.getIpServer());
         portServer = new JTextField("8182");
 
         buttonStart = new JButton("Start server");
@@ -55,6 +56,9 @@ public class ServerGui {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(portServer.getText().matches("^[\\d]{4,5}$")){
                     if(cm.startServer(Integer.parseInt(portServer.getText()))){
+                        //update the ip in case of Connections losses
+                        ipServer.setText(cm.getIpServer());
+                        portServer.setEnabled(false);
                         buttonStart.setEnabled(false);
                         buttonStop.setEnabled(true);
                     }
@@ -70,6 +74,9 @@ public class ServerGui {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if(cm.stopServer()){
+                    //update the ip in case of Connections losses
+                    ipServer.setText(cm.getIpServer());
+                    portServer.setEnabled(true);
                     buttonStart.setEnabled(true);
                     buttonStop.setEnabled(false);
                 }

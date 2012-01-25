@@ -20,16 +20,18 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    // Override point for customization after application launch.
+	
+	// check the default prefs for IP and port
 	self.savedIp = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedIp"];
 	self.savedPort = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedPort"];
 	
 	if (savedIp == nil) {
-		savedIp = @"0";
+		savedIp = @"192.168.1.10";
 		NSDictionary *savedIpDict = [NSDictionary dictionaryWithObject:savedIp forKey:@"getSavedIp"];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:savedIpDict];
-	} else if(savedPort == nil){
-		savedPort = @"0";
+	}
+	if(savedPort == nil){
+		savedPort = @"8182";
 		NSDictionary *savedPortDict = [NSDictionary dictionaryWithObject:savedPort forKey:@"getSavedPort"];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:savedPortDict];
 	}

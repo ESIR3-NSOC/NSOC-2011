@@ -49,7 +49,7 @@
 
 	//create the calendar button on the navigation bar
 	UIButton *calendarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[calendarButton setBackgroundImage:[UIImage imageNamed:@"calendar.png"] forState:UIControlStateNormal];
+	[calendarButton setBackgroundImage:[UIImage imageNamed:@"calendar2.png"] forState:UIControlStateNormal];
 	[calendarButton addTarget:self
 					   action:@selector(showDate) 
 			 forControlEvents:UIControlEventTouchUpInside];

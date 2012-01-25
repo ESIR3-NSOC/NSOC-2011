@@ -10,7 +10,11 @@
 
 
 @interface CommandsViewController : UIViewController {
-
+	UITableView *CommandsTableView;
+	NSArray *commandsArray;
 }
+
+@property (nonatomic, retain) IBOutlet UITableView *CommandsTableView;
+@property (nonatomic, retain) NSArray *commandsArray;
 
 @end
