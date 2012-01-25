@@ -1,6 +1,6 @@
 package esir.dom11.nsoc.conflictmgt;
 
-import esir.dom11.nsoc.conflictmgt.Manager;
+//import esir.dom11.nsoc.conflictmgt.Manager;
 
 import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.Category;
