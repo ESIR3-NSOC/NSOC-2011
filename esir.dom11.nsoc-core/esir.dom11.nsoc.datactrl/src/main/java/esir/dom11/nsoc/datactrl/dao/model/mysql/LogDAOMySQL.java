@@ -44,9 +44,10 @@ public class LogDAOMySQL implements LogDAO {
         Log newLog = retrieve(log.getId());
         if (newLog.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
-                String statement = "INSERT INTO logs (id, date, message, log_level)"
+                String statement = "INSERT INTO logs (id, date, `from`, message, log_level)"
                         + " VALUES('" + log.getId() + "',"
                         + " '" + new Timestamp(log.getDate().getTime()) + "',"
+                        + " '" + log.getFrom() + "',"
                         + " '" + log.getMessage() + "',"
                         + " '" + log.getLogLevel() + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -68,7 +69,7 @@ public class LogDAOMySQL implements LogDAO {
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeQuery("SELECT * FROM logs WHERE id = '" + id + "'");
             if(result.first()) {
-                log = new Log(id, result.getDate("date"), result.getString("message"), LogLevel.valueOf(result.getString("log_level")));
+                log = new Log(id, result.getDate("date"), result.getString("from"), result.getString("message"), LogLevel.valueOf(result.getString("log_level")));
             }
         } catch (SQLException exception) {
             logger.error("Log retrieve error", exception);

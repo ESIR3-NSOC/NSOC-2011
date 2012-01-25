@@ -3,8 +3,6 @@ package esir.dom11.nsoc.datactrl.component;
 // Logger
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
-import esir.dom11.nsoc.model.Task;
-import esir.dom11.nsoc.model.TaskState;
 import esir.dom11.nsoc.service.RequestResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

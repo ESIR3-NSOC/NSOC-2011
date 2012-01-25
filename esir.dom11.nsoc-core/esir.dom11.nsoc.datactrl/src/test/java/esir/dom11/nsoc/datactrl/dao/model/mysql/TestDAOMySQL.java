@@ -64,7 +64,7 @@ public class TestDAOMySQL extends TestCase {
     }
 
     public void testCRUDLog() {
-        Log log = new Log("Un log de test", LogLevel.INFO);
+        Log log = new Log("Un log de test", TestDAOMySQL.class.getName(), LogLevel.INFO);
         logger.info("New Log:" + log.toString());
 
         Log createLog = _daoFactory.getLogDAO().create(log);
