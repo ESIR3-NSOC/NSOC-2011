@@ -3,6 +3,8 @@ package esir.dom11.nsoc.conflictmgt;
 import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.Category;
 import esir.dom11.nsoc.model.Command;
+import esir.dom11.nsoc.model.Log;
+import esir.dom11.nsoc.model.LogLevel;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
@@ -30,7 +32,7 @@ public class ConflictMgt extends AbstractComponentType {
     /*
     * Attributes
     */
-    private long updateDelay = 60000;                       //time between updates of locks, in ms (60s by befault)
+    private long updateDelay = 2000;//60000;                       //time between updates of locks, in ms (60s by befault)
 
     private LinkedList<Command> _commandBufferList;         // buffer of the last received command, before process and save
     private LinkedList<Command> _commandWithTimeout;        // buffer of the last received command, before process and save
@@ -64,7 +66,9 @@ public class ConflictMgt extends AbstractComponentType {
             @Override
             public void run() {
                 updateLock();
+                sendLog("Lock times are updated", LogLevel.INFO);
                 updateTimeout();
+                sendLog("Timeouts and command in buffer are updated", LogLevel.INFO);
             }
         }, updateDelay);
     }
@@ -89,17 +93,19 @@ public class ConflictMgt extends AbstractComponentType {
      * @param command Command
      */
     @Port(name = "cmdFromCtrl")
-    public void cmdFromCtrl(Command command) {
+    public void cmdFromCtrl(Object command) {
 
         boolean commandToSave = false;
 
+        Command cmd = (Command)command;
+
         // Save of the command to process
-        _commandBufferList.add(command);
+        _commandBufferList.add(cmd);
 
         // Retrieve lock times and send authored actions
-        for (Action action : command.getActionList()) {
+        for (Action action : cmd.getActionList()) {
 
-            _lockActuatorMap.put(action.getIdActuator(), command.getLock());
+            _lockActuatorMap.put(action.getIdActuator(), cmd.getLock());
 
             if (isActuatorFree(action)) {
                 send2Actuator(action);
@@ -112,25 +118,14 @@ public class ConflictMgt extends AbstractComponentType {
         }
 
         // if the command can't be done and if the timeout isn't zero, save the command in _commandWithTimeout
-        if (commandToSave && command.getTimeOut()!=0){
-            _commandWithTimeout.add(command);
+        if (commandToSave && cmd.getTimeOut()!=0){
+            _commandWithTimeout.add(cmd);
         }
     }
 
     /*
      * Methods
      */
-
-    /**
-     * send2Actuator, save the last action for the lock option and send it to the actuator
-     *
-     * @param action Action
-     */
-
-    private void send2Actuator(Action action){
-        _lastActuatorActionMap.put(action.getIdActuator(),action);
-        getPortByName("actToActuator",MessagePort.class).process(action);
-    }
 
     /**
      * isActuatorFree
@@ -184,6 +179,28 @@ public class ConflictMgt extends AbstractComponentType {
         }
     }
 
+    /**
+     * send2Actuator, save the last action for the lock option and send it to the actuator
+     *
+     * @param action Action
+     */
+
+    private void send2Actuator(Action action){
+        _lastActuatorActionMap.put(action.getIdActuator(),action);
+        getPortByName("actToActuator",MessagePort.class).process(action);
+    }
+
+
+    /**
+     *
+     * @param str
+     * @param lvl
+     */
+    private void sendLog(String str,LogLevel lvl){
+        Log log = new Log(ConflictMgt.class.getName(), str, lvl);
+        getPortByName("actToActuator",MessagePort.class).process(log);
+    }
+    
     private void saveInDb() {
         // TODO saveInDb
     }
