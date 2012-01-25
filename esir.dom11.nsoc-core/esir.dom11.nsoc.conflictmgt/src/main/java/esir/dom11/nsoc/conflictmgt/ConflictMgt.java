@@ -79,7 +79,7 @@ public class ConflictMgt extends AbstractComponentType {
                 updateTimeout();
                 sendLog("Timeouts and commands in buffer are updated", LogLevel.TRACE);
             }
-        }, updateDelay);
+        }, updateDelay, updateDelay);
     }
 
     @Stop
