@@ -3,6 +3,7 @@
 *.iws
 *.ipr
 *.project
+configMySQL.properties
 config.properties
 */target/*
 */build/*
