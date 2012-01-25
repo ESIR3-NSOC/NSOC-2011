@@ -88,8 +88,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Import-Package>com.mysql.jdbc.*,*</Import-Package>
-                        <Export-Package>org.mongodb.*</Export-Package>
+                        <Import-Package>*</Import-Package>
+                        <Private-Package>esir.dom11.nsoc.datactrl.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

@@ -38,7 +38,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${pom.version}</Bundle-Version>
-                        <Import-Package>!com.mongodb.*,*</Import-Package>
+                        <Import-Package>!com.mongodb.*, !org.testng.* ,*</Import-Package>
                         <Export-Package>com.mongodb.*</Export-Package>
                     </instructions>
                 </configuration>

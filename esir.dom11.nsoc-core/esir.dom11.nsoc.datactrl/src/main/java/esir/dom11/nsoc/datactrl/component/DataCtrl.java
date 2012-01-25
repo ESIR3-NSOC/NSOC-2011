@@ -30,8 +30,6 @@ import java.util.Properties;
     @RequiredPort(name = "subscribe", type = PortType.MESSAGE)
 })*/
 @DictionaryType({
-        // Db type
-        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL"),//, optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB"}),
         // Db url
         @DictionaryAttribute(name = "dbUrl", defaultValue = "jdbc:mysql://localhost"),
         // Db port
@@ -41,7 +39,9 @@ import java.util.Properties;
         // Db password
         @DictionaryAttribute(name = "dbPwd", defaultValue = ""),
         // Db name
-        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11")
+        @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11"),
+        // Db type
+        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB"})
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -149,7 +149,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
     }
 
     @Ports({
-        @Port(name = "log")
+            @Port(name = "log")
     })
     public void log(Object log) {
         _daoFactory.getLogDAO().create((Log)log);
