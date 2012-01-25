@@ -1,13 +1,18 @@
 package esir.dom11.nsoc.conflictmgt;
 
+import esir.dom11.nsoc.conflictmgt.Manager;
+
 import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.Category;
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Log;
 import esir.dom11.nsoc.model.LogLevel;
+import esir.dom11.nsoc.service.RequestResult;
+
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +22,9 @@ import java.util.*;
         @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "actToActuator", type = PortType.MESSAGE),
-        @RequiredPort(name = "log", type = PortType.MESSAGE)
+        @RequiredPort(name = "actToActuator", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "log", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "respToCtrl", type = PortType.MESSAGE, optional = true)
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -54,6 +60,7 @@ public class ConflictMgt extends AbstractComponentType {
     @Start
     public void start() {
         logger.info("= = = = = start conflict manager = = = = = =");
+        sendLog("Conflict manager is started", LogLevel.INFO);
 
         //Initialisation
         _lastActuatorActionMap = new HashMap<UUID, Action>();
@@ -66,12 +73,13 @@ public class ConflictMgt extends AbstractComponentType {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                logger.info("= = = = = timer is running = = = = = =");
                 updateLock();
-                sendLog("Lock times are updated", LogLevel.INFO);
+                sendLog("Lock times are updated", LogLevel.TRACE);
                 updateTimeout();
-                sendLog("Timeouts and command in buffer are updated", LogLevel.INFO);
+                sendLog("Timeouts and commands in buffer are updated", LogLevel.TRACE);
             }
-        }, updateDelay);
+        }, updateDelay, updateDelay);
     }
 
     @Stop
@@ -200,6 +208,15 @@ public class ConflictMgt extends AbstractComponentType {
     private void sendLog(String str,LogLevel lvl){
         Log log = new Log(ConflictMgt.class.getName(), str, lvl);
         getPortByName("actToActuator",MessagePort.class).process(log);
+    }
+
+    /**
+     *
+     * @param id
+     * @param resp
+     */
+    private void resp2Ctrl(UUID id, boolean resp){
+        getPortByName("respToCtrl",MessagePort.class).process(new RequestResult(id,resp));
     }
     
     private void saveInDb() {
