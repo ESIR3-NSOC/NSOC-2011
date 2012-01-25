@@ -173,3 +173,15 @@ public class DataDAOMySQL implements DataDAO {
         return dataList;
     }
 }
+
+
+/*
+
+// min time between row
+select id, role, date, value, TO_SECONDS(current_datas.date) - TO_SECONDS((select date from datas prev_datas where current_datas.date>prev_datas.date order by prev_datas.date DESC limit 0,1))
+from datas current_datas
+WHERE (select date from datas prev_datas where current_datas.date>prev_datas.date order by prev_datas.date DESC limit 0,1) IS NULL
+OR TO_SECONDS(current_datas.date) - TO_SECONDS((select date from datas prev_datas where current_datas.date>prev_datas.date order by prev_datas.date DESC limit 0,1)) >=7200
+order by current_datas.date
+
+*/
