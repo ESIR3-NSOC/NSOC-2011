@@ -208,7 +208,7 @@ public class ConflictMgt extends AbstractComponentType {
     private void sendLog(String str,LogLevel lvl){
         Log log = new Log(ConflictMgt.class.getName(), str, lvl);
         logger.info("======== sending log ...... =======");
-        getPortByName("actToActuator",MessagePort.class).process(log);
+        getPortByName("log",MessagePort.class).process(log);
         logger.info("======== ..... log send =======");
     }
 
