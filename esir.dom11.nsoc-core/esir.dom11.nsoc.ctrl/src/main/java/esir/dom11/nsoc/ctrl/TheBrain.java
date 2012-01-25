@@ -1,5 +1,7 @@
 package esir.dom11.nsoc.ctrl;
 
+import esir.dom11.nsoc.model.Command;
+
 import java.util.LinkedList;
 
 
@@ -36,11 +38,12 @@ public class TheBrain {
     //send data to room
     public void sendInfoTo(String location){
         //room search into roomList
-
-
-        
         
     }
+    public void sendCommandTo(String user, Command command){
+
+    }
+    
     public void stopTheBrain(){
 
     }
