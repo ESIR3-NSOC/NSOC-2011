@@ -38,8 +38,8 @@
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${pom.version}</Bundle-Version>
-                        <Dynamic-Import>*</Dynamic-Import>
-                        <Export-Package>org.mongodb.*</Export-Package>
+                        <Import-Package>!com.mongodb.*,*</Import-Package>
+                        <Export-Package>com.mongodb.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
