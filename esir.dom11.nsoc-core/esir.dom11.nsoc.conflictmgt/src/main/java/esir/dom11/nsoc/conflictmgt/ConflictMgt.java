@@ -17,7 +17,8 @@ import java.util.*;
         @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "actToActuator", type = PortType.MESSAGE)
+        @RequiredPort(name = "actToActuator", type = PortType.MESSAGE),
+        @RequiredPort(name = "log", type = PortType.MESSAGE)
 })
 @Library(name = "NSOC_2011")
 @ComponentType
