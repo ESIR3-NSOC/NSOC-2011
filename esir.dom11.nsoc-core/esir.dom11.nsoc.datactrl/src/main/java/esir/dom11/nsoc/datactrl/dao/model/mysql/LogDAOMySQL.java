@@ -44,7 +44,7 @@ public class LogDAOMySQL implements LogDAO {
         Log newLog = retrieve(log.getId());
         if (newLog.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
-                String statement = "INSERT INTO logs (id, date, from, message, log_level)"
+                String statement = "INSERT INTO logs (id, date, `from`, message, log_level)"
                         + " VALUES('" + log.getId() + "',"
                         + " '" + new Timestamp(log.getDate().getTime()) + "',"
                         + " '" + log.getFrom() + "',"

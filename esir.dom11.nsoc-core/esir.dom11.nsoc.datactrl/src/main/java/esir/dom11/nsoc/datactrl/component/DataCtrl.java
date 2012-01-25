@@ -152,7 +152,9 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
             @Port(name = "log")
     })
     public void log(Object log) {
-        _daoFactory.getLogDAO().create((Log)log);
+        logger.info("Saving log...");
+        Log savedLog = _daoFactory.getLogDAO().create((Log)log);
+        logger.info(savedLog.toString());
     }
 
     /*
