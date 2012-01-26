@@ -85,7 +85,7 @@ public class DataDAOMySQL implements DataDAO {
      */
     @Override
     public Data update(Data data) {
-        return data;
+        return retrieve(data.getId());
     }
 
     @Override

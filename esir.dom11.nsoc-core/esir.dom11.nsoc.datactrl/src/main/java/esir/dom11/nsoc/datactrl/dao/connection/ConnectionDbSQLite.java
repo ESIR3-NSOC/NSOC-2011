@@ -1,26 +1,25 @@
 package esir.dom11.nsoc.datactrl.dao.connection;
 
-// Logger
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionDbMySQL extends ConnectionDb {
+public class ConnectionDbSQLite extends ConnectionDb {
 
     /*
     * Class Attributes
     */
 
-    private static Logger logger = LoggerFactory.getLogger(ConnectionDbMySQL.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(ConnectionDbSQLite.class.getName());
 
 
     /*
      *  Constructors
      */
 
-    public ConnectionDbMySQL(Properties properties) {
+    public ConnectionDbSQLite(Properties properties) {
         super(properties);
     }
 
@@ -31,13 +30,10 @@ public class ConnectionDbMySQL extends ConnectionDb {
     @Override
     public void connect() {
         try{
-            new com.mysql.jdbc.Driver();
+            new org.sqlite.JDBC();
             _connection = java.sql.DriverManager.getConnection(
-                    "jdbc:mysql://" + _properties.getProperty("url") + "/" +
-                            _properties.getProperty("name") +
-                            "?user=" + _properties.getProperty("user") +
-                            "&password=" + _properties.getProperty("pwd"));
-            logger.info("database connect success");
+                    "jdbc:sqlite:" + _properties.getProperty("name") );
+            logger.info("Database connect success");
         } catch(Exception exception){
             logger.error("Database connect error", exception);
         }

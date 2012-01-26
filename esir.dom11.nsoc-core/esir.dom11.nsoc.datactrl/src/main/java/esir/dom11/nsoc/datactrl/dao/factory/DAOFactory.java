@@ -26,6 +26,8 @@ public abstract class DAOFactory {
             return new DAOFactoryMySQL(dbProperties);
         } else if (type.equals(FactoryType.DAO_MONGODB)) {
             return new DAOFactoryMongoDb(dbProperties);
+        } else if (type.equals(FactoryType.DAO_SQLITE)) {
+            return new DAOFactorySQLite(dbProperties);
         }
         return null;
     }

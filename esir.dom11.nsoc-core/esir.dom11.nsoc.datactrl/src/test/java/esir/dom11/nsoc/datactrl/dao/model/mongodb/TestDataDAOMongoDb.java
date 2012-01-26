@@ -1,8 +1,6 @@
-package esir.dom11.nsoc.datactrl.dao.model.mysql;
+package esir.dom11.nsoc.datactrl.dao.model.mongodb;
 
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
-import esir.dom11.nsoc.model.Data;
-import esir.dom11.nsoc.model.DataType;
 import junit.framework.TestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
 public class TestDataDAOMongoDb extends TestCase {

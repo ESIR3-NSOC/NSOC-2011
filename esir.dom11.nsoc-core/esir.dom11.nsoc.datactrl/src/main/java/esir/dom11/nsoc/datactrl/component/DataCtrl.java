@@ -31,9 +31,9 @@ import java.util.Properties;
 })*/
 @DictionaryType({
         // Db type
-        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB"}),
+        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB", "DAO_SQLITE"}),
         // Db url
-        @DictionaryAttribute(name = "dbUrl", defaultValue = "jdbc:mysql://localhost"),
+        @DictionaryAttribute(name = "dbUrl", defaultValue = "localhost"),
         // Db port
         @DictionaryAttribute(name = "dbPort", defaultValue = ""),
         // Db user
