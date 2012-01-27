@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
@@ -71,12 +74,16 @@ public class DataDAOSQLite implements DataDAO {
                     .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.next()) {
+                DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
                 data = new Data(id, DataType.valueOf(result.getString("data_type")),
-                        result.getString("location"),result.getDouble("value"),result.getDate("date"));
+                        result.getString("location"),result.getDouble("value"),df.parse(result.getString("date")));
             }
         } catch (SQLException exception) {
             logger.error("Data retrieve error", exception);
             System.out.println("Data retrieve error"+ exception.getMessage());
+        } catch (ParseException exception) {
+            logger.error("Data retrieve error", exception);
+            System.out.println("Data retrieve error" + exception.getMessage());
         }
         return data;
     }
@@ -105,8 +112,29 @@ public class DataDAOSQLite implements DataDAO {
     }
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, String role) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location) {
+        LinkedList<Data> dataList = new LinkedList<Data>();
+        try {
+            ResultSet result = _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
+                    .executeQuery("SELECT * FROM datas " +
+                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
+                            "AND location='" + location + "' " +
+                            "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
+            System.out.println(new Timestamp(endDate.getTime()));
+            DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+            while (result.next()) {
+                dataList.add(new Data(UUID.fromString(result.getString("id")),
+                        DataType.valueOf(result.getString("data_type")),
+                        result.getString("location"),
+                        result.getDouble("value"),df.parse(result.getString("date"))));
+            }
+        } catch (SQLException exception) {
+            logger.error("Data find by date error", exception);
+        } catch (ParseException exception) {
+            logger.error("Data find by date error", exception);
+        }
+        return dataList;
     }
 
     @Override

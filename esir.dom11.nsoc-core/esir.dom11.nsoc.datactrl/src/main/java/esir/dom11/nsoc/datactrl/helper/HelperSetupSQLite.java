@@ -103,7 +103,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             "  `pwd` VARCHAR(32) NOT NULL)");
 
         } catch(SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("HelperSetupSQLite.SetupTable:\nSQLException: " + ex.getMessage());
         }
     }
 

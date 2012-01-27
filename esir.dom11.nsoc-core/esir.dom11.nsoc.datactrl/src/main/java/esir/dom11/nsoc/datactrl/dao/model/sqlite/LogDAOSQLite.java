@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class LogDAOSQLite implements LogDAO {
@@ -69,9 +72,13 @@ public class LogDAOSQLite implements LogDAO {
                     .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
                     .executeQuery("SELECT * FROM logs WHERE id = '" + id + "'");
             if(result.next()) {
-                log = new Log(id, result.getDate("date"), result.getString("from"), result.getString("message"), LogLevel.valueOf(result.getString("log_level")));
+                DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+                log = new Log(id, df.parse(result.getString("date")), result.getString("from"), result.getString("message"), LogLevel.valueOf(result.getString("log_level")));
             }
         } catch (SQLException exception) {
+            logger.error("Log retrieve error", exception);
+            System.out.println("Log retrieve error"+ exception);
+        } catch (ParseException exception) {
             logger.error("Log retrieve error", exception);
             System.out.println("Log retrieve error"+ exception);
         }

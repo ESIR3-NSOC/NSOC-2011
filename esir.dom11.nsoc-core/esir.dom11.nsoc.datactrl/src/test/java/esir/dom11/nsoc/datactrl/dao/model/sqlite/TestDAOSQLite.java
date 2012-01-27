@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Properties;
 
 public class TestDAOSQLite extends TestCase {
@@ -40,6 +41,12 @@ public class TestDAOSQLite extends TestCase {
         _daoFactory = DAOFactory.getFactory(_dbProperties);
         _daoFactory.getHelperSetup().setupTable();
         _daoFactory.getHelperSetup().setupData();
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+        _daoFactory.getConnectionDb().disconnect();
     }
 
     /*
@@ -83,6 +90,30 @@ public class TestDAOSQLite extends TestCase {
 
         assertTrue(_daoFactory.getLogDAO().delete(log.getId()));
         logger.info("Log Delete");
+    }
+
+    public void testFindByDate() {
+        Data data1 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098200720")));
+        Data data2 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098202743")));
+        Data data3 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098204754")));
+        Data data4 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098206765")));
+        Data data5 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098208787")));
+
+        System.out.println(_daoFactory.getDataDAO().create(data1));
+        _daoFactory.getDataDAO().create(data2);
+        _daoFactory.getDataDAO().create(data3);
+        _daoFactory.getDataDAO().create(data4);
+        _daoFactory.getDataDAO().create(data5);
+
+        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),"temp-int-salle930");
+        System.out.println(dataList.size());
+        assertTrue(dataList.size()==3);
+
+        _daoFactory.getDataDAO().delete(data1.getId());
+        _daoFactory.getDataDAO().delete(data2.getId());
+        _daoFactory.getDataDAO().delete(data3.getId());
+        _daoFactory.getDataDAO().delete(data4.getId());
+        _daoFactory.getDataDAO().delete(data5.getId());
     }
 
     /*

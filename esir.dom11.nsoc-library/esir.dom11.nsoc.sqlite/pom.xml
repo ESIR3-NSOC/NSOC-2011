@@ -38,8 +38,8 @@
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${pom.version}</Bundle-Version>
-                        <Import-Package>!org.sqlite.*,*</Import-Package>
-                        <Export-Package>org.sqlite.*</Export-Package>
+                        <Import-Package>!org.sqlite.*,!org.ibex.*,*</Import-Package>
+                        <Export-Package>org.sqlite.*,org.ibex.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
