@@ -110,7 +110,6 @@
 	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];            
 	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];            
 	UILabel *labelIpServer = (UILabel *) [cellIp viewWithTag:10];
- 	
 	UILabel *labelPortServer =  (UILabel *) [cellPort viewWithTag:11]; 	
 	
 	//test if the ip and port are in the good format

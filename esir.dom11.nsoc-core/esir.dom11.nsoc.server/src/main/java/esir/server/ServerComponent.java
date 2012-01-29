@@ -6,10 +6,13 @@ package esir.server; /**
  * To change this template use File | Settings | File Templates.
  */
 
+import esir.dom11.nsoc.model.Data;
 import org.kevoree.annotation.*;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Port;
 import org.kevoree.framework.*;
+
+import java.util.LinkedList;
 
 // output port (IHM -> CTRL)
 @Requires({
@@ -42,14 +45,15 @@ public class ServerComponent extends AbstractComponentType{
     }
 
     @Port(name = "toIhm")
-    public void receiveToIhm(Object o){
-
+    public void receiveToIhm(Object dataList){
+       //make test on the object
+       LocalStorage.getLocalStorageObject().setAllData((LinkedList<Data>) dataList);
     }
 
-     public void sendMessage(String mess){
+     public void sendMessage(Object message){
         MessagePort prodPort = getPortByName("fromIhm", MessagePort.class);
         if(prodPort != null){
-            prodPort.process(mess);
+            prodPort.process(message);
         }
      }
 
