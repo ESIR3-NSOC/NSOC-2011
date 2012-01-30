@@ -3,7 +3,10 @@ package esir.dom11.nsoc.datactrl.component;
 // Logger
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.Log;
+import esir.dom11.nsoc.model.LogLevel;
 import esir.dom11.nsoc.service.RequestResult;
+import org.kevoree.framework.MessagePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +18,8 @@ import java.util.Date;
 import java.util.LinkedList;
 
 @Requires({
-        @RequiredPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true)
+    @RequiredPort(name = "dbService", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true),
+    @RequiredPort(name = "log", type = PortType.MESSAGE, optional = true)
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -87,6 +91,11 @@ public class ClientDb extends AbstractComponentType {
         dbService.delete(Data.class.getName(),data3.getId());
         dbService.delete(Data.class.getName(),data4.getId());
         dbService.delete(Data.class.getName(),data5.getId());
+        
+        // send log
+        Log log = new Log(ClientDb.class.getName(),"Test log", LogLevel.INFO);
+        logger.info("send log");
+        getPortByName("log",MessagePort.class).process(log);
     }
 
     @Stop

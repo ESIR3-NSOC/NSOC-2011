@@ -1,4 +1,4 @@
-package esir.dom11.nsoc.datactrl.dao.model.mysql;
+package esir.dom11.nsoc.datactrl.dao.model.sqlite;
 
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
 import esir.dom11.nsoc.model.Data;
@@ -16,13 +16,13 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
 
-public class TestDAOMySQL extends TestCase {
+public class TestDAOSQLite extends TestCase {
 
     /*
     * Class Attributes
     */
 
-    private static Logger logger = LoggerFactory.getLogger(TestDAOMySQL.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(TestDAOSQLite.class.getName());
     /*
      * Attributes
      */
@@ -43,6 +43,12 @@ public class TestDAOMySQL extends TestCase {
         _daoFactory.getHelperSetup().setupData();
     }
 
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+        _daoFactory.getConnectionDb().disconnect();
+    }
+
     /*
      * Tests
      */
@@ -50,35 +56,42 @@ public class TestDAOMySQL extends TestCase {
     public void testCRUDData() {
         Data data = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date());
         logger.info("New Data:" + data.toString());
+        System.out.println("New data: " + data);
 
         Data createData = _daoFactory.getDataDAO().create(data);
-        assertNotNull(createData);
+        assertNotNull(createData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")!=0);
         logger.info("Data Saved:" + createData.toString());
+        System.out.println("Data Saved: " + createData.toString());
 
         Data retrieveData = _daoFactory.getDataDAO().retrieve(data.getId());
         assertNotNull(retrieveData);
         logger.info("Data Retrieve:" + retrieveData.toString());
+        System.out.println("Data Retrieve:" + retrieveData.toString());
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
     }
 
     public void testCRUDLog() {
-        Log log = new Log( TestDAOMySQL.class.getName(), "Un log de test", LogLevel.INFO);
+        Log log = new Log( TestDAOSQLite.class.getName(), "Un log de test", LogLevel.INFO);
         logger.info("New Log:" + log.toString());
+        System.out.println("New log: " + log);
 
         Log createLog = _daoFactory.getLogDAO().create(log);
         assertNotNull(createLog);
         logger.info("Log Saved:" + createLog.toString());
+        System.out.println("Log Saved: " + createLog);
 
         Log retrieveLog = _daoFactory.getLogDAO().retrieve(log.getId());
         assertNotNull(retrieveLog);
         logger.info("Log Retrieve:" + retrieveLog.toString());
+        System.out.println("Log Retrieve: " + retrieveLog);
+
 
         assertTrue(_daoFactory.getLogDAO().delete(log.getId()));
         logger.info("Log Delete");
     }
-    
+
     public void testFindByDate() {
         Data data1 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098200720")));
         Data data2 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098202743")));
@@ -111,7 +124,7 @@ public class TestDAOMySQL extends TestCase {
         _dbProperties = new Properties();
         FileReader fr = null;
         try {
-            fr = new FileReader(getClass().getClassLoader().getResource("configMySQL.properties").getFile());
+            fr = new FileReader(getClass().getClassLoader().getResource("configSQLite.properties").getFile());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

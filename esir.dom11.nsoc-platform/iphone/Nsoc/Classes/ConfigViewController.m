@@ -8,13 +8,14 @@
 
 #import "NsocAppDelegate.h"
 #import "ConfigViewController.h"
-#import "ASIHTTPRequest.h"
+#import "ConnectionManager.h"
 
 @implementation ConfigViewController
 
 @synthesize ServerTableView;
 @synthesize serverLabels;
 @synthesize serverPlaceholders;
+@synthesize cm;
 
 
 /*
@@ -30,6 +31,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	cm = [[ConnectionManager alloc] init];
 	//create the info button on the navigation bar
 	UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self 
@@ -45,8 +47,6 @@
 	self.serverPlaceholders = [NSArray arrayWithObjects:@"192.168.1.1",
 														@"8182",
 														nil];
-	
-	//arrayServer = [[NSArray alloc] initWithObjects:@"Serveur IP", @"Server port", nil];
 	
 	//create the connection Button
 	connectionToServerBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -77,6 +77,7 @@
 	statusLabel.backgroundColor = [UIColor clearColor];
 	[self displayConnectionStatus:FALSE];
 
+	//we block the scroll for the UITableView
 	ServerTableView.scrollEnabled = NO;
     [super viewDidLoad];
 }
@@ -105,23 +106,25 @@
 // action on the connectionToServer button click.
 - (IBAction)connectionToServer:(id) sender{	
 	
-	//informations from the form
-	UILabel *labelIpServer = [(UILabel *)[self.ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] rightTextField];
-	UILabel *labelPortServer = [(UILabel *)[self.ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] rightTextField];
+	//store the ip and port from the TextField
+	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];            
+	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];            
+	UILabel *labelIpServer = (UILabel *) [cellIp viewWithTag:10];
+	UILabel *labelPortServer =  (UILabel *) [cellPort viewWithTag:11]; 	
 	
-	//test the entries of the server information
+	//test if the ip and port are in the good format
 	if([self testEntryWithRegex:labelIpServer.text
-					 regex: @"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"]
+						  regex: @"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"]
 		
-	   && [self testEntryWithRegex:labelPortServer.text
-						regex:@"^[0-9]{4,5}$"]){
+	&& [self testEntryWithRegex:labelPortServer.text
+						  regex:@"^[0-9]{4,5}$"]){
 
-		NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", labelIpServer.text, labelPortServer.text];
-		NSURL *url = [NSURL URLWithString:http];
-		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-		[request setDelegate:self];
-		[request startAsynchronous];
-
+		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
+		[self displayConnectionStatus:returnStateConnection];
+		
+		NSDictionary *savedIpDict = [NSDictionary dictionaryWithObject:labelIpServer.text forKey:@"getSavedIp"];
+		   [[NSUserDefaults standardUserDefaults] registerDefaults:savedIpDict];
+				
 		//save the data in the iPhone   
 		//NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
 		//appDel.savedIp = labelIpServer.text;
@@ -167,25 +170,6 @@
 	[reg release];
 }
 
-/**
- *	REST Requests
- */
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
-	NSLog(@"%@", responseString);
-	[self displayConnectionStatus:TRUE];
-	
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-	NSError *error = [request error];
-	NSLog(@"%@", error);
-
-	[self displayConnectionStatus:FALSE];
-}
 
 /**
  *	UITableView methods
@@ -194,22 +178,24 @@
 // Create the design of the cells
 - (void)configureCell:(ELCTextfieldCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
+	//we configure the left and right label
 	cell.leftLabel.text = [self.serverLabels objectAtIndex:indexPath.row];
 	cell.rightTextField.placeholder = [self.serverPlaceholders objectAtIndex:indexPath.row];
-	//NSLog(@"info: %@", [[NSUserDefaults standardUserDefaults] objectForKey: [NSString stringWithFormat:@"0"]]);
 	
-	/*
-	NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
-	NSArray *serverInfo = [NSArray arrayWithObjects:appDel.savedIp, appDel.savedPort,nil];
+	//we retrive the value saved in the iPhone
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	
-	//NSLog(@" info: %@", [serverInfo objectAtIndex:indexPath.row]);
-	
-	if([serverInfo objectAtIndex:indexPath.row] != nil){
-		cell.rightTextField.text = [serverInfo objectAtIndex:indexPath.row];
-	}
-	 */
+	if([indexPath row] == 0){
+		cell.rightTextField.text = [prefs stringForKey:@"getSavedIp"];
+		
+	} else if([indexPath row] == 1){
+		cell.rightTextField.text = [prefs stringForKey:@"getSavedPort"];
+	} 
+
+	cell.rightTextField.tag = (10 + [indexPath row]); 
 	cell.indexPath = indexPath;
 	cell.delegate = self;
+	
 	//Disables UITableViewCell from accidentally becoming selected.
 	cell.selectionStyle = UITableViewCellEditingStyleNone;
 	
@@ -237,7 +223,9 @@
 } 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView 
+		 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
 	static NSString *CellIdentifier = @"Cell";
     
     ELCTextfieldCell *cell = (ELCTextfieldCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];

@@ -30,8 +30,10 @@ import java.util.Properties;
     @RequiredPort(name = "subscribe", type = PortType.MESSAGE)
 })*/
 @DictionaryType({
+        // Db type
+        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB", "DAO_SQLITE"}),
         // Db url
-        @DictionaryAttribute(name = "dbUrl", defaultValue = "jdbc:mysql://localhost"),
+        @DictionaryAttribute(name = "dbUrl", defaultValue = "localhost"),
         // Db port
         @DictionaryAttribute(name = "dbPort", defaultValue = ""),
         // Db user
@@ -40,8 +42,10 @@ import java.util.Properties;
         @DictionaryAttribute(name = "dbPwd", defaultValue = ""),
         // Db name
         @DictionaryAttribute(name = "dbName", defaultValue = "nsoc11"),
-        // Db type
-        @DictionaryAttribute(name = "dbType", defaultValue = "DAO_MYSQL", optional = true, vals = {"DAO_MYSQL", "DAO_MONGODB"})
+        // Db setup
+        @DictionaryAttribute(name = "Setup", defaultValue = "CREATE & INSERT FIRST", optional = true, vals = {"CREATE & INSERT", "CREATE & INSERT FIRST", "DO NOTHING"}),
+        // Db transfer
+        @DictionaryAttribute(name = "Transfer", defaultValue = "NO", optional = true, vals = {"NO", "YES"})
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -58,6 +62,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
     */
 
     private DAOFactory _daoFactory;
+    private Properties _dbProperties;
 
     /*
      * Getters / Setters
@@ -69,7 +74,34 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
     @Start
     public void start() {
-        logger.info("= = = = = start dao = = = = = =");
+        logger.info("= = = = = start data controller = = = = = =");
+
+        _dbProperties = new Properties();
+        _dbProperties.put("url", getDictionary().get("dbUrl"));
+        _dbProperties.put("port", getDictionary().get("dbPort"));
+        _dbProperties.put("user", getDictionary().get("dbUser"));
+        _dbProperties.put("pwd", getDictionary().get("dbPwd"));
+        _dbProperties.put("name", getDictionary().get("dbName"));
+        _dbProperties.put("type",  getDictionary().get("dbType"));
+
+        _daoFactory = DAOFactory.getFactory(_dbProperties);
+
+        if (((String)getDictionary().get("Setup")).compareTo("CREATE & INSERT")==0
+                || ((String)getDictionary().get("Setup")).compareTo("CREATE & INSERT FIRST")==0) {
+            _daoFactory.getHelperSetup().setupTable();
+            _daoFactory.getHelperSetup().setupData();
+        }
+    }
+
+    @Stop
+    public void stop() {
+        logger.info("= = = = = stop data controller = = = = = =");
+        _daoFactory.getConnectionDb().disconnect();
+    }
+
+    @Update
+    public void update() {
+        logger.info("= = = = = update data controller = = = = = =");
 
         Properties dbProperties = new Properties();
         dbProperties.put("url", getDictionary().get("dbUrl"));
@@ -79,31 +111,31 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         dbProperties.put("name", getDictionary().get("dbName"));
         dbProperties.put("type",  getDictionary().get("dbType"));
 
-        _daoFactory = DAOFactory.getFactory(dbProperties);
-        //_daoFactory.getHelperSetup().setupTable();
-        //_daoFactory.getHelperSetup().setupData();
-        /*User user = _daoFactory.getUserDAO().retrieve("test3_id");
-        if (_daoFactory.getUserDAO().delete(user.getId())) {
-            logger.warn(".............. delete ................");
-        }*/
+        // check changes
 
-        //Task task = _daoFactory.getTaskDAO().retrieve(UUID.fromString("e1f4f0a9-2d56-11e1-8e5b-0021cc4198bb"));
+        // db type, url, name or port change: new connection
+        if (_dbProperties.getProperty("type").compareTo((String)getDictionary().get("dbType"))!=0
+                || _dbProperties.getProperty("url").compareTo((String)getDictionary().get("dbUrl"))!=0
+                || _dbProperties.getProperty("name").compareTo((String)getDictionary().get("dbName"))!=0
+                || _dbProperties.getProperty("port").compareTo((String)getDictionary().get("dbPort"))!=0) {
 
-        /*LinkedList<Task> taskList = _daoFactory.getTaskDAO().findByState(TaskState.WAITING);
-        for ( Task task : taskList) {
-            logger.warn(task.toString());
-        }*/
-    }
+            DAOFactory daoFactory = DAOFactory.getFactory(dbProperties);
 
-    @Stop
-    public void stop() {
-        logger.info("= = = = = stop dao = = = = = =");
-        _daoFactory.getConnectionDb().disconnect();
-    }
-
-    @Update
-    public void update() {
-        logger.info("= = = = = update dao = = = = = =");
+            // if transfer request
+            if (((String)getDictionary().get("Transfer")).compareTo("YES")==0) {
+                daoFactory.getHelperSetup().importDb(_daoFactory.getHelperSetup().exportDb());
+            } else if (((String)getDictionary().get("Setup")).compareTo("CREATE & INSERT")==0) {
+                daoFactory.getHelperSetup().setupTable();
+                daoFactory.getHelperSetup().setupData();
+            }
+            _daoFactory.getConnectionDb().disconnect();
+            _daoFactory = daoFactory;
+        } else if (_dbProperties.getProperty("user").compareTo((String)getDictionary().get("dbUser"))!=0
+                        || _dbProperties.getProperty("pwd").compareTo((String)getDictionary().get("dbPwd"))!=0) {
+            _daoFactory.getConnectionDb().disconnect();
+            _daoFactory = DAOFactory.getFactory(dbProperties);
+        }
+        _dbProperties = dbProperties;
     }
 
     @Override
@@ -148,9 +180,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         return requestMgt.getResult();
     }
 
-    @Ports({
-            @Port(name = "log")
-    })
+    @Port(name = "log")
     public void log(Object log) {
         logger.info("Saving log...");
         Log savedLog = _daoFactory.getLogDAO().create((Log)log);

@@ -33,4 +33,8 @@ public abstract class HelperSetup {
     public abstract void setupTable();
 
     public abstract void setupData();
+
+    public abstract Database exportDb();
+
+    public abstract void importDb(Database database);
 }

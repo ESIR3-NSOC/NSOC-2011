@@ -11,6 +11,9 @@
 
 @implementation CommandsViewController
 
+@synthesize CommandsTableView;
+@synthesize commandsArray;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -21,12 +24,62 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.commandsArray = [NSArray arrayWithObjects:@"Lighting", @"Blind", @"Temperature", @"Scenarii", nil];
 }
+
+/**
+ *	UITableView methods
+ */
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *) tableView{
+	return 1;
+}
+
+// Customize the number of rows in a UITableView
+-(NSInteger)tableView:(UITableView *)tableView 
+numberOfRowsInSection:(NSInteger) section{
+	return [commandsArray count];	
+}
+
+// Return a cell containing the text to display at the provided row index
+-(UITableViewCell *)tableView:(UITableView *)tableView 
+		cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	//We initialize a NSString
+	static NSString *cellIdentifier = @"DetailsCell";
+	
+	//We create the cell
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	
+	if(cell == nil){
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+									   reuseIdentifier:cellIdentifier] autorelease];
+		
+		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+	}
+	
+	cell.textLabel.text = [self.commandsArray objectAtIndex:indexPath.row];
+	return cell;
+}
+
+// method launched on the click of one of the cell
+//
+// will create the DataTypeDetailsViewController
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	/*DataTypeDetailsViewController *controller = [[DataTypeDetailsViewController alloc] init];
+	
+	[controller setTitle:[self.detailsArray objectAtIndex:indexPath.row]];
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release];
 */
+}
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

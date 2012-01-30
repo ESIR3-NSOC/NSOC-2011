@@ -8,19 +8,18 @@
     <version>1.5.0-RC1</version>
     <name>NSOC SERVER</name>
 
-
-
     <parent>
         <artifactId>esir.dom11.nsoc-core</artifactId>
         <groupId>esir.dom11.nsoc</groupId>
         <version>1.0</version>
     </parent>
 
-    <properties>
-        <kevoree.version>1.5.0-RC1</kevoree.version>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>esir.dom11.nsoc</groupId>
+            <artifactId>esir.dom11.nsoc.model</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>org.kevoree.tools</groupId>
             <artifactId>org.kevoree.tools.javase.framework</artifactId>
@@ -31,12 +30,6 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-       <!-- <dependency>
-           <groupId>esir</groupId>
-           <artifactId>restlet</artifactId>
-           <version>1.0.0</version>
-           <scope>provided</scope>
-       </dependency>-->
        <dependency>
             <groupId>org.restlet.jse</groupId>
             <artifactId>org.restlet</artifactId>
@@ -89,32 +82,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>maven-restlet</id>
-            <name>Public online Restlet repository</name>
-            <url>http://maven.restlet.org</url>
-        </repository>
-        <repository>
-            <id>kevoree-release</id>
-            <url>http://maven.kevoree.org/release</url>
-        </repository>
-        <repository>
-            <id>kevoree-snapshot</id>
-            <url>http://maven.kevoree.org/snapshots</url>
-        </repository>
-
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>kevoree-release</id>
-            <url>http://maven.kevoree.org/release</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>kevoree-snapshot</id>
-            <url>http://maven.kevoree.org/snapshots</url>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
