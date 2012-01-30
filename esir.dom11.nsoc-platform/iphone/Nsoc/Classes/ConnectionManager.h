@@ -23,5 +23,7 @@
 - (void) setSavedIp:(NSString *) ip;
 - (void) setSavedPort:(NSString *) port;
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port;
+- (void) allData;
+- (void) allDataFromDatatype:(NSString *)datatype beginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
 
 @end

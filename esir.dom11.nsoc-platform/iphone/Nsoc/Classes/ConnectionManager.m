@@ -17,36 +17,57 @@
 
 
 - (NSString *) savedIp {
-	return self.savedIp;
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	savedIp = [defaults objectForKey:@"savedIp"];
+	
+	if(savedIp == nil){
+		savedIp = @"192.168.1.1";
+	}
+	return savedIp;
 }
 
 - (NSString *) savedPort {
-	return self.savedPort;
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	savedPort = [defaults objectForKey:@"savedPort"];
+	
+	if(savedPort == nil){
+		savedPort = @"8182";
+	}
+	return savedPort;
 }
 
 - (void) setSavedIp:(NSString *) ip{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:ip forKey:@"savedIp"];
+    [defaults synchronize];	
+	[defaults release];
 	savedIp = ip;
 }
+
 - (void) setSavedPort:(NSString *) port{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:port forKey:@"savedIp"];
+    [defaults synchronize];	
+	[defaults release];
 	savedPort = port;
 }
 
-- (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {
-	//we save the ip and port in the Dictionnary
-	savedIp = ip;
-	savedPort = port;
-
+- (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {	
+    // Store the data in the phone
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:ip forKey:@"savedIp"];
+    [defaults setObject:port forKey:@"savedPort"];
+    [defaults synchronize];	
+	[defaults release];
+		
 	//we create the http string
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", ip, port];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
-	//[request startAsynchronous];
-	//NSLog(@"stateconnection connectionToServer : %@", stateConnection);
-	//return stateConnection;
 	[request startSynchronous];
-	
+		
 	NSError *error = [request error];
 	if (!error) {
 		return YES;
@@ -56,26 +77,51 @@
 
 }
 
+- (void) allData{
+	// client ip : http://@IP:port/all/building/room/
+	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/all/b7/s930", 
+												[self savedIp], 
+												[self savedPort]];
+	NSLog(@"url = %@", http);
+	NSURL *url = [NSURL URLWithString:http];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request setDelegate:self];
+	[request startAsynchronous];
+	
+	
+}
+
+- (void) allDataFromDatatype:(NSString *)datatypeForRequest 
+				   beginDate:(NSDate *)beginDateForRequest 
+					 endDate:(NSDate *)endDateForRequest {
+	
+	// client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
+	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/detail/b7/s930/%3$@/%$4@/%$5@", 
+												[self savedIp], 
+												[self savedPort],
+												datatypeForRequest,
+												beginDateForRequest,
+												endDateForRequest];
+	NSLog(@"url = %@", http);
+	NSURL *url = [NSURL URLWithString:http];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request setDelegate:self];
+	[request startSynchronous];
+}
+
 /**
  *	REST Requests
  */
-/*
+
 - (void) requestFinished:(ASIHTTPRequest *)request {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	NSLog(@"%@", responseString);
-	stateConnection = YES;
-	NSLog(@"stateConnection : %@", stateConnection);
 }
 
 - (void) requestFailed:(ASIHTTPRequest *)request {
-
 	NSError *error = [request error];
 	NSLog(@"%@", error);
-	stateConnection = NO;
-	NSLog(@"stateConnection : %@", stateConnection);
-
 }
-*/
 
 @end

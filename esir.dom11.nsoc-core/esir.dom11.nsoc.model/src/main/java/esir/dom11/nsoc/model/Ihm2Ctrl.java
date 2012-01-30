@@ -1,6 +1,5 @@
 package esir.dom11.nsoc.model;
 
-
 import java.util.Date;
 import java.util.LinkedList;
 

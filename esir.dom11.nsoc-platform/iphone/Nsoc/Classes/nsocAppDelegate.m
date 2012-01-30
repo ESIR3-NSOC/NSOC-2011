@@ -20,23 +20,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	
-	// check the default prefs for IP and port
-	self.savedIp = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedIp"];
-	self.savedPort = [[NSUserDefaults standardUserDefaults] objectForKey: @"getSavedPort"];
-	
-	if (savedIp == nil) {
-		savedIp = @"192.168.1.10";
-		NSDictionary *savedIpDict = [NSDictionary dictionaryWithObject:savedIp forKey:@"getSavedIp"];
-		[[NSUserDefaults standardUserDefaults] registerDefaults:savedIpDict];
-	}
-	if(savedPort == nil){
-		savedPort = @"8182";
-		NSDictionary *savedPortDict = [NSDictionary dictionaryWithObject:savedPort forKey:@"getSavedPort"];
-		[[NSUserDefaults standardUserDefaults] registerDefaults:savedPortDict];
-	}
-	
-    // Add the tab bar controller's view to the window and display.
+	// Add the tab bar controller's view to the window and display.
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 

@@ -17,16 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
-
-/**
- * Created by IntelliJ IDEA.
- * User: Pierre
- * Date: 07/01/12
- * Time: 16:11
- * To change this template use File | Settings | File Templates.
- */
-
-
 public class ServerManager extends ServerResource{
     private Component component;
 
@@ -85,8 +75,13 @@ public class ServerManager extends ServerResource{
 
     @Get
     public Object receiveGetRequest(){
+        System.out.println("Get request received!");
+
         // Collect all the important information of the url sent for a Get Request
         String url =  getReference().getRemainingPart();
+
+        System.out.println(url);
+
         String[] parameters = url.split("/");
 
         // There are 3 kind of GET requests
@@ -106,7 +101,6 @@ public class ServerManager extends ServerResource{
             Ihm2Ctrl ic = new Ihm2Ctrl();
             LinkedList<DataType> datatypes = new LinkedList<DataType>();
             ServerComponent sc = new ServerComponent();
-
 
             // 2. get all current data
             // client ip : http://@IP:port/all/building/room/
@@ -133,8 +127,12 @@ public class ServerManager extends ServerResource{
                 ic.setAction("get");
                 ic.setChoice(parameters[0]);
                 ic.setLocation(building);
-                //pb in the kind of datataypes here
-                //ic.setDataTypes(ic.add(parameters[3]));
+
+                // create the List of all DataTypes (here, we have only one)
+                datatypes.add(DataType.valueOf(parameters[3].toUpperCase()));
+
+                ic.setDataTypes(datatypes);
+
                 try{
                     DateFormat format = new SimpleDateFormat("jj-mm-yyyy");
 

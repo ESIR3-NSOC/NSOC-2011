@@ -5,7 +5,7 @@
     <groupId>esir.dom11.nsoc</groupId>
     <artifactId>esir.dom11.nsoc.server</artifactId>
     <packaging>bundle</packaging>
-    <version>1.5.0-RC1</version>
+    <version>1.0</version>
     <name>NSOC SERVER</name>
 
     <parent>
@@ -19,6 +19,7 @@
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.model</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.kevoree.tools</groupId>

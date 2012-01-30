@@ -7,7 +7,9 @@
 //
 
 #import "CommandsViewController.h"
-
+#import "CommandsLightViewController.h"
+#import "CommandsTemperatureViewController.h"
+#import "CommandsScenariiViewController.h"
 
 @implementation CommandsViewController
 
@@ -29,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.commandsArray = [NSArray arrayWithObjects:@"Lighting", @"Blind", @"Temperature", @"Scenarii", nil];
+	self.commandsArray = [NSArray arrayWithObjects:@"Lights", @"Blinds", @"Temperature", @"Scenarii", nil];
 }
 
 /**
@@ -67,17 +69,40 @@ numberOfRowsInSection:(NSInteger) section{
 	return cell;
 }
 
-// method launched on the click of one of the cell
-//
-// will create the DataTypeDetailsViewController
+/*
+ *	Method fired on the click of one of the cell
+ */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	/*DataTypeDetailsViewController *controller = [[DataTypeDetailsViewController alloc] init];
+
+	//click on Lightings
+	if([indexPath row] == 0){
+		CommandsLightViewController *controller = [[CommandsLightViewController alloc] init];
+		[controller setTitle:[self.commandsArray objectAtIndex:[indexPath row]]];
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}	
 	
-	[controller setTitle:[self.detailsArray objectAtIndex:indexPath.row]];
+	//click on Blinds
+	else if([indexPath row] == 1){
+		
+	}
 	
-	[[self navigationController] pushViewController:controller animated:YES];
-	[controller release];
-*/
+	//click on Temperature
+	else if([indexPath row] == 2){
+		CommandsTemperatureViewController *controller = [[CommandsTemperatureViewController alloc] init];
+		[controller setTitle:[self.commandsArray objectAtIndex:indexPath.row]];
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+	
+	//click on Scenarii
+	else if([indexPath row] == 3){
+		CommandsScenariiViewController *controller = [[CommandsScenariiViewController alloc] init];
+		
+		[controller setTitle:[self.commandsArray objectAtIndex:[indexPath row]]];
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
 }
 
 

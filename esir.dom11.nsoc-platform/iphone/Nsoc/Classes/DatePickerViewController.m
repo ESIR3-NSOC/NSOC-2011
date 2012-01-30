@@ -49,7 +49,7 @@
 	[self.dateArray addObject:currentDate];
 	
 	rangeTableView.scrollEnabled = NO;
-	//[rangeTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:0];
+	[rangeTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:0];
 
 }
 

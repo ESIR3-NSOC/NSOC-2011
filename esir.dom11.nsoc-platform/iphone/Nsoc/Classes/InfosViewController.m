@@ -6,11 +6,13 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "ConnectionManager.h"
 #import "InfosViewController.h"
 
 
 @implementation InfosViewController
 
+@synthesize cm;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -28,12 +30,24 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	cm = [[ConnectionManager alloc] init];
+	[cm allData];
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+											  target:self
+											  action:@selector(refreshInfo:)];	
 }
-*/
+
+
+- (void) refreshInfo:(id)sender {
+	[cm allData];	
+}
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

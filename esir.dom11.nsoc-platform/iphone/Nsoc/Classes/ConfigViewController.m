@@ -6,7 +6,6 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NsocAppDelegate.h"
 #import "ConfigViewController.h"
 #import "ConnectionManager.h"
 
@@ -19,7 +18,8 @@
 
 
 /*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+ // The designated initializer.  
+ Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
@@ -31,7 +31,9 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	//instanciate a ConnectionManager
 	cm = [[ConnectionManager alloc] init];
+	
 	//create the info button on the navigation bar
 	UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self 
@@ -79,7 +81,12 @@
 
 	//we block the scroll for the UITableView
 	ServerTableView.scrollEnabled = NO;
-    [super viewDidLoad];
+	
+	//test the connection with the saved data
+	BOOL returnStateConnection = [cm connectionToServer:[cm savedIp] portServer:[cm savedPort]];
+	[self displayConnectionStatus:returnStateConnection];	
+    
+	[super viewDidLoad];
 }
 
 // Create the UILabel of the connection status
@@ -121,15 +128,7 @@
 
 		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
 		[self displayConnectionStatus:returnStateConnection];
-		
-		NSDictionary *savedIpDict = [NSDictionary dictionaryWithObject:labelIpServer.text forKey:@"getSavedIp"];
-		   [[NSUserDefaults standardUserDefaults] registerDefaults:savedIpDict];
-				
-		//save the data in the iPhone   
-		//NsocAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
-		//appDel.savedIp = labelIpServer.text;
-		//appDel.savedPort = labelPortServer.text;
-		   
+	
 	} else{
 		//display an error
 		UIAlertView *message = [[UIAlertView alloc] initWithTitle: @"Error"  
@@ -144,7 +143,7 @@
 	}
 	
 	//simulate a click on the return button to hide the keyboard
-	[[(ELCTextfieldCell*)[self.ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] rightTextField] resignFirstResponder];
+	//[[(ELCTextfieldCell*)[self.ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] rightTextField] resignFirstResponder];
 
 }
 
@@ -176,20 +175,26 @@
  */
 
 // Create the design of the cells
-- (void)configureCell:(ELCTextfieldCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ELCTextfieldCell *)cell 
+		  atIndexPath:(NSIndexPath *)indexPath {
 	
 	//we configure the left and right label
 	cell.leftLabel.text = [self.serverLabels objectAtIndex:indexPath.row];
 	cell.rightTextField.placeholder = [self.serverPlaceholders objectAtIndex:indexPath.row];
 	
 	//we retrive the value saved in the iPhone
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	//NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
 	
 	if([indexPath row] == 0){
-		cell.rightTextField.text = [prefs stringForKey:@"getSavedIp"];
+		//cell.rightTextField.text = [defaults stringForKey:@"savedIp"];
+		cell.rightTextField.text = [cm savedIp];
+
 		
 	} else if([indexPath row] == 1){
-		cell.rightTextField.text = [prefs stringForKey:@"getSavedPort"];
+		//cell.rightTextField.text = [defaults stringForKey:@"savedPort"];
+		cell.rightTextField.text = [cm savedPort];
+
 	} 
 
 	cell.rightTextField.tag = (10 + [indexPath row]); 
@@ -204,7 +209,8 @@
 }
 
 // Customize the number of rows in a UITableView
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section{
+-(NSInteger)tableView:(UITableView *)tableView 
+numberOfRowsInSection:(NSInteger) section{
 	if (section == 0) {
 		return [serverLabels count];
 	}else {
@@ -214,7 +220,8 @@
 }
 
 // Display the title of a section in a UITableView
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger) section{
+- (NSString *)tableView:(UITableView *)tableView 
+titleForHeaderInSection:(NSInteger) section{
 	if(section == 0){
 		return @"Server settings";
 	} else {
@@ -303,8 +310,13 @@
 
 
 - (void)dealloc {
+	[ServerTableView dealloc];
+	[serverLabels dealloc];
+	[serverPlaceholders dealloc];
+	[cm dealloc];
 	[statusLabel dealloc];
-    [super dealloc];
+   
+	[super dealloc];
 }
 
 
