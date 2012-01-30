@@ -1,5 +1,8 @@
 package esir.dom11.nsoc.ctrl;
 
+import esir.dom11.nsoc.model.Command;
+import esir.dom11.nsoc.model.Data;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Anthony
@@ -14,6 +17,8 @@ public class BrainRoom {
     String building;
     String room;
     
+    boolean fullAuto;
+    
     /*Constructor
     @param: String location: type "Building/Room"
     Initialize the BrainRoom location, building and room
@@ -24,6 +29,7 @@ public class BrainRoom {
         temp = location.split("/");
         this.building = temp[0];
         this.room = temp[1];
+        this.fullAuto = false;
 
     }
     
@@ -31,11 +37,21 @@ public class BrainRoom {
     @param: String info; info relate of up or down
     */
     private void lightControl(String info){
-        if(info.equals("up")){
+        if(fullAuto){
+            if(info.equals("up")){
 
+            }
+            else if(info.equals("down")){
+
+            }
         }
-        else if(info.equals("down")){
+        else{
+            if(info.equals("up")){
 
+            }
+            else if(info.equals("down")){
+
+            }
         }
     }
     
@@ -43,34 +59,100 @@ public class BrainRoom {
     @param: String info; info relate of up or down
     */
     private void temperatureControl(String info){
-        if(info.equals("up")){
+        if(fullAuto){
+            if(info.equals("up")){
 
-        }
-        else if(info.equals("down")){
+            }
+            else if(info.equals("down")){
 
+            }
         }
+        else{
+            if(info.equals("up")){
+
+            }
+            else if(info.equals("down")){
+
+            }
+        }
+
     }
-    /*method 3 : leaving scenario
-
+    /*
+    Scenario
     */
+    // leaving scenario
     private void leavingScenario(){
 
     }
-    /*method 4 : coming scenario
-
-    */
+    // coming scenario
     private void comingScenario(){
+
+
+    }
+    // video conference scenario
+    private void videoConference(){
+        //switch on video projector
+
+        //turn off light
+
+        //close shutters
+
+        //get off screen
 
     }
     
+
+    public void receiveCommand(String user, Command command){
+
+    }
+    public void receiveData(Data data){
+        
+    }
+
+    /*
+     Room properties
+     */
+
+    // to obtain the room
     public String getRoom(){
         return room;
     }
-
+    // to obtain the building
     public String getBuilding(){
         return building;
     }
-    /*Stop brain's room*/
+    //scan the room to have all sensors and actuators
+    public void getAllDevices(){
+
+    }
+    // to have all sensors of the room
+    public void getAllSensors(){
+
+    }
+    // to have all sensors of the room
+    public void getAllActuators(){
+
+    }
+    // to add a sensor or actuator to the room
+    public void addDevice(){
+
+    }
+    // to remove one device of the room
+    public void removeDevice(){
+
+    }
+
+    /*
+     Algorithm methods
+     */
+    public void fullAuto(boolean info){
+        fullAuto = info;
+    }
+
+
+    /*
+     Stop brain's room
+     */
     public void stop(){
         building = null;
         room = null;

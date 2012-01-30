@@ -15,11 +15,10 @@ import java.util.UUID;
 @Library(name = "NSOC_2011")
 @ComponentType
 @Provides({
-        @ProvidedPort(name = "HMI", type = PortType.MESSAGE) ,
-        @ProvidedPort(name = "Context", type = PortType.MESSAGE) ,
-        @ProvidedPort(name = "DAO", type = PortType.MESSAGE)  ,
-        @ProvidedPort(name = "Conflict", type = PortType.MESSAGE),
-        @ProvidedPort(name = "Sensors", type = PortType.MESSAGE)
+        @ProvidedPort(name = "RHMI", type = PortType.MESSAGE) ,
+        @ProvidedPort(name = "RContext", type = PortType.MESSAGE) ,
+        @ProvidedPort(name = "RConflict", type = PortType.MESSAGE),
+        @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
         @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true),
@@ -93,7 +92,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         getPortByName("Sensors",MessagePort.class).process(dataType);
     }
 
-    @Port(name = "HMI")
+    @Port(name = "RHMI")
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
 		System.out.println("Control : HMI data receive : ");
@@ -102,7 +101,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         System.out.println("Control : HMI command send to theBrain");
 	}
 
-	@Port(name = "Conflict")
+	@Port(name = "RConflict")
 	//Conflict ask us for some data
 	public void receiveConflict(Object o) {
         System.out.println("Control : Conflict data receive : ");
@@ -121,18 +120,18 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         }
 	}
 	
-	@Port(name = "Context")
+	@Port(name = "RContext")
 	//The context ask for a precise variable saved in database (eg : temp sensor from a room )
 	public void receiveFromContext(Object o) {
         System.out.println("Control : Context data receive : ");
 	}
 
-    @Port(name = "Sensors")
+    @Port(name = "RSensors")
     public void receiveSensors(Object o){
         System.out.println("Control : Sensors data receive");
         if(o != null){
             Data sensor = (Data) o;
-            theBrain.sendInfoTo(sensor.getLocation());
+            theBrain.sendInfoTo(sensor.getLocation(), sensor);
             System.out.println("Control : Sensor data in " +sensor.getLocation() + " send to theBrain");
         }
     }

@@ -2,14 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>esir.dom11.nsoc</groupId>
+    <artifactId>esir.dom11.nsoc.ctrl</artifactId>
+    <version>1.0</version>
+    <packaging>bundle</packaging>
+    <name>NSOC CONTROL</name>
+
     <parent>
         <artifactId>esir.dom11.nsoc-core</artifactId>
         <groupId>esir.dom11.nsoc</groupId>
         <version>1.0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>esir.dom11.nsoc.ctrl</artifactId>
+
+
     <dependencies>
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
@@ -37,6 +45,30 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.kevoree.tools</groupId>
+                <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
+                <extensions>true</extensions>
+                <version>${kevoree.version}</version>
+                <configuration>
+                    <nodeTypeNames>JavaSENode</nodeTypeNames>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Felix BnD plugin : allow Bundle packaging : generate OSGi JAR -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.5</version>
+                <extensions>true</extensions>
+            </plugin>
             <!-- Java compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
