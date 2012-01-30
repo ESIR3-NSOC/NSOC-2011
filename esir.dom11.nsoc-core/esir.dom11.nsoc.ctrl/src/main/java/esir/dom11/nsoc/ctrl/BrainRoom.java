@@ -2,6 +2,10 @@ package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.device.Actuator;
+import esir.dom11.nsoc.model.device.Sensor;
+
+import java.util.LinkedList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +20,12 @@ public class BrainRoom {
     //Attribute
     String building;
     String room;
-    
+
+    //list of sensors
+    LinkedList<Sensor> sensorsList;
+    LinkedList<Actuator> actuatorList;
+
+    //mode full auto or semi auto
     boolean fullAuto;
     
     /*Constructor
@@ -30,10 +39,17 @@ public class BrainRoom {
         this.building = temp[0];
         this.room = temp[1];
         this.fullAuto = false;
+    }
+
+    public void receiveCommand(String user, Command command){
+
+    }
+    public void receiveData(Data data){
 
     }
     
-    /*method 1 : Algorithm of light control
+    /*
+    method 1 : Algorithm of light control
     @param: String info; info relate of up or down
     */
     private void lightControl(String info){
@@ -55,7 +71,8 @@ public class BrainRoom {
         }
     }
     
-    /*method 2 : Algorithm temperatureControl
+    /*
+    method 2 : Algorithm temperatureControl
     @param: String info; info relate of up or down
     */
     private void temperatureControl(String info){
@@ -100,14 +117,6 @@ public class BrainRoom {
         //get off screen
 
     }
-    
-
-    public void receiveCommand(String user, Command command){
-
-    }
-    public void receiveData(Data data){
-        
-    }
 
     /*
      Room properties
@@ -123,23 +132,23 @@ public class BrainRoom {
     }
     //scan the room to have all sensors and actuators
     public void getAllDevices(){
-
+        
     }
     // to have all sensors of the room
-    public void getAllSensors(){
-
+    public LinkedList<Sensor> getAllSensors(){
+        return sensorsList;
     }
     // to have all sensors of the room
-    public void getAllActuators(){
-
+    public LinkedList<Actuator> getAllActuators(){
+        return actuatorList;
     }
-    // to add a sensor or actuator to the room
-    public void addDevice(){
-
+    // to add a sensor to the room
+    public void addSensor(Sensor sensor){
+        sensorsList.add(sensor);    
     }
-    // to remove one device of the room
-    public void removeDevice(){
-
+    // to remove one sensor of the room
+    public void removeSensor(Sensor sensor){
+        sensorsList.remove
     }
 
     /*
