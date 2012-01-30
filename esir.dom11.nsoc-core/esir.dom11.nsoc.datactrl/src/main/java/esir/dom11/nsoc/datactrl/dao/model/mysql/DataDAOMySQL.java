@@ -46,7 +46,7 @@ public class DataDAOMySQL implements DataDAO {
         Data newData = retrieve(data.getId());
         if (newData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
-                String statement = "INSERT INTO datas (id, data_type, role, value, date)"
+                String statement = "INSERT INTO datas (id, id_device, value, date)"
                         + " VALUES('" + data.getId() + "',"
                         + " '" + data.getDataType().getValue() + "',"
                         + " '" + data.getLocation() + "',"

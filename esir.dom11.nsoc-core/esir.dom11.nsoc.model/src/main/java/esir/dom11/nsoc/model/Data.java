@@ -1,5 +1,8 @@
 package esir.dom11.nsoc.model;
 
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,7 +13,7 @@ public class Data implements Comparable<Data> {
      */
 
     private final UUID _id;             // dao key
-    private final UUID _idSensor;
+    private final Device _device;
     private final double _value;
     private final Date _date;
 
@@ -21,21 +24,21 @@ public class Data implements Comparable<Data> {
     public Data() {
         // default constructor
         _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        _idSensor = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        _device = new Sensor();
         _value = 0.0;
         _date = new Date();
     }
 
-    public Data(UUID idSensor, double value, Date date) {
+    public Data(Device device, double value, Date date) {
         _id = UUID.randomUUID();
-        _idSensor = idSensor;
+        _device = device;
         _value = value;
         _date = date;
     }
 
-    public Data(UUID id, UUID idSensor, double value, Date date) {
+    public Data(UUID id, Device device, double value, Date date) {
         _id = id;
-        _idSensor = idSensor;
+        _device = device;
         _value = value;
         _date = date;
     }
@@ -48,8 +51,8 @@ public class Data implements Comparable<Data> {
         return _id;
     }
 
-    public UUID getIdSensor() {
-        return _idSensor;
+    public Device getDevice() {
+        return _device;
     }
 
     public double getValue() {
@@ -67,7 +70,7 @@ public class Data implements Comparable<Data> {
     @Override
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
-                + "\nId Sensor: " + getIdSensor()
+                + "\nId Sensor: " + getDevice()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
     }
