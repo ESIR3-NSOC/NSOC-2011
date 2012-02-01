@@ -1,6 +1,4 @@
 package esir.dom11.nsoc.context;
-
-import esir.dom11.nsoc.context.energy.EnergyBalance;
 import esir.dom11.nsoc.service.IDbService;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
@@ -25,14 +23,12 @@ import java.util.Date;
 public class ContextAnalyzerComponent extends AbstractComponentType {
 
     private static Logger logger = LoggerFactory.getLogger(ContextAnalyzerComponent.class);
-    private EnergyBalance _energyBalance;
 
 
     @Start
     public void start() {
         logger.info("= = = = = start context analyzer = = = = = =");
 
-        _energyBalance = new EnergyBalance(0.0, 0.0);
 
     }
 

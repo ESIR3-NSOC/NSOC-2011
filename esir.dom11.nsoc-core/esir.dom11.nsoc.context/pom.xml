@@ -36,50 +36,25 @@
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.kevoree.extra</groupId>
+            <artifactId>org.kevoree.extra.esper</artifactId>
+            <version>4.1.0</version>
+            <type>bundle</type>
+        </dependency>
 
     </dependencies>
     <packaging>bundle</packaging>
     <name>NSOC Context Analyser</name>
 
+
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
-
-            <!-- Scala compiler plugin -->
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.15.2</version>
-                <executions>
-                    <execution>
-                        <id>scala-compile-first</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>scala-test-compile</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmArgs>
-                        <jvmArg>-Xmx1024m</jvmArg>
-                    </jvmArgs>
-                    <scalaVersion>2.9.1</scalaVersion>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.kevoree.tools</groupId>
                 <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
                 <extensions>true</extensions>
-                <version>${kevoree.version}</version>
+                <version>1.5.0-RC1</version>
                 <configuration>
                     <nodeTypeNames>JavaSENode</nodeTypeNames>
                 </configuration>
@@ -100,6 +75,11 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                        <Export-Package>org.kevoree.library.esper</Export-Package>
+                        <Import-Package>*</Import-Package>
+
                     </instructions>
                 </configuration>
             </plugin>
@@ -114,33 +94,26 @@
                     <encoding>UTF8</encoding>
                 </configuration>
             </plugin>
+            <!-- skip test -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.11</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <repositories>
         <repository>
-            <id>codehaus</id>
-            <url>http://repository.codehaus.org</url>
-        </repository>
-
-        <repository>
             <id>kevoree-release</id>
             <url>http://maven.kevoree.org/release</url>
-        </repository>
-
-        <repository>
-            <id>scala-tools.org</id>
-            <name>Scala-tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>plugin.scala-tools.org</id>
-            <name>Plugin Scala-tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </pluginRepository>
         <pluginRepository>
             <id>plugin.kevoree-github</id>
             <url>http://maven.kevoree.org/release</url>
