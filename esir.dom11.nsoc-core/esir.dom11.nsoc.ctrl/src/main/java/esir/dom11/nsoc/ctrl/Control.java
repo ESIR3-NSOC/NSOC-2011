@@ -36,6 +36,20 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     public void start() {
         System.out.println("Control : Start");
 
+        Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+        Date date = new Date();
+        Sensor dev2 = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+        Date date2 = new Date();
+
+        Data data1 = new Data(dev, (double) 10, date) ;
+        Data data2 = new Data(dev2, (double) 13, date2);
+
+        LinkedList<Data> list = new LinkedList<Data>() ;
+        list.add(data1);
+        list.add(data2);
+        System.out.println("send list to HMI");
+        send2HMI(list);
+
 /*        //Brain starting
         theBrain = new TheBrain();
         theBrain.createRoom("B", "930");
