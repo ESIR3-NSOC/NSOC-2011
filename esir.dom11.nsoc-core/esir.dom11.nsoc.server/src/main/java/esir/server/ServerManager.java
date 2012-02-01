@@ -1,6 +1,5 @@
 package esir.server;
 
-import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.Ihm2Ctrl;
 import org.restlet.Component;
@@ -12,6 +11,7 @@ import org.restlet.resource.ServerResource;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +19,9 @@ import java.util.LinkedList;
 
 public class ServerManager extends ServerResource{
     private Component component;
+    private ServerComponent sc = new ServerComponent();
+    private Ihm2Ctrl ic;
+    private LinkedList<DataType> datatypes;
 
     /*
      * Start the REST server for the IHM
@@ -38,6 +41,26 @@ public class ServerManager extends ServerResource{
             // Now, let's start the component!
             // Note that the HTTP server connector is also automatically started.
             component.start();
+
+            //we will fill the data in the LocalStorage
+            ic = new Ihm2Ctrl();
+            datatypes = new LinkedList<DataType>();
+
+            //create the object to send to the Controller
+            ic.setAction("get");
+            ic.setChoice("all");
+            ic.setLocation("b7-s930");
+
+            // add all the dataTypes in the dataTypes list
+            datatypes.add(DataType.TEMPERATURE);
+            datatypes.add(DataType.BRIGHTNESS);
+            datatypes.add(DataType.HUMIDITY);
+            datatypes.add(DataType.POWER);
+            ic.setDataTypes(datatypes);
+            sc.sendMessage(ic);
+
+            System.out.println("Object sent!");
+
             return true;
         } catch (Exception e){
             e.printStackTrace();
@@ -96,20 +119,16 @@ public class ServerManager extends ServerResource{
             return "connected";
         }
         else{
-            String building;
-            Data data;
-            Ihm2Ctrl ic = new Ihm2Ctrl();
-            LinkedList<DataType> datatypes = new LinkedList<DataType>();
-            ServerComponent sc = new ServerComponent();
+            String location;
+            location = parameters[1] + "-" + parameters[2];
 
             // 2. get all current data
             // client ip : http://@IP:port/all/building/room/
             // we set the kind of DataType ine the server
             if(parameters[0].equals("all")){
-                building = parameters[1] + "/" + parameters[2];
                 ic.setAction("get");
                 ic.setChoice(parameters[0]);
-                ic.setLocation(building);
+                ic.setLocation(location);
 
                 // add all the dataTypes in the dataTypes list
                 datatypes.add(DataType.TEMPERATURE);
@@ -123,10 +142,9 @@ public class ServerManager extends ServerResource{
             // 3. get detail for a dataType
             // client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
             else if(parameters[0].equals("detail")){
-                building = parameters[1] + "/" + parameters[2];
                 ic.setAction("get");
                 ic.setChoice(parameters[0]);
-                ic.setLocation(building);
+                ic.setLocation(location);
 
                 // create the List of all DataTypes (here, we have only one)
                 datatypes.add(DataType.valueOf(parameters[3].toUpperCase()));

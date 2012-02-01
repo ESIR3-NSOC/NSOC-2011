@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 /**
  *  This class is a Singleton.
- *  It will save all data from the Controller in this class<+:;,nbvc+pouy@
+ *  It will save all data from the Controller in this class
  */
 public final class LocalStorage {
     private static LocalStorage _reference;
@@ -25,6 +25,8 @@ public final class LocalStorage {
 
     public void setAllData(LinkedList<Data> info){
         _info = info;
+        System.out.println("LocalStorage filled!");
+
     }
 
 }
