@@ -1,6 +1,8 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.RequestResult;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
@@ -94,20 +96,51 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
 		System.out.println("Control : HMI data receive : ");
-        Action HMIAction = (Action) o;
-        LinkedList<Action> temp = new LinkedList<Action>();
-        temp.add(HMIAction);
-        Category cat = Category.USER;
-        long lock = 1;
-        long timeOut = 1;
-        //create command associate
-        Command HMICommand = new Command(temp, cat, lock, timeOut );
-//        theBrain.sendCommandTo("HMI",HMICommand);
+        Ihm2Ctrl HMIAction = (Ihm2Ctrl) o;
+        
+        if(HMIAction.getAction().equals(Ihm2Ctrl.IhmAction.GET)){
+            //HMI ask for data
+            //send request to TheBrain
+    //        theBrain.sendInfoTo(HMIAction.getLocation(), HMIAction.getDataTypes(), HMIAction.getBeginDate(), HMIAction.getEndDate());
+
+            System.out.println("receive GET");
+
+            Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+            Date date = new Date();
+            Sensor dev2 = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+            Date date2 = new Date();
+
+            Data data1 = new Data(dev, (double) 10, date) ;
+            Data data2 = new Data(dev2, (double) 13, date2);
+            
+            LinkedList<Data> list = new LinkedList<Data>() ;
+            list.add(data1);
+            list.add(data2);
+            System.out.println("send list to HMI");
+            send2HMI(list);
+        }
+        else if(HMIAction.getAction().equals(Ihm2Ctrl.IhmAction.POST)){
+            //HMI send action
+            LinkedList<Action> temp = new LinkedList<Action>();
+       /*     HMIAction.
+            temp.add(HMIAction);
+            Category cat = Category.USER;
+            long lock = 1;
+            long timeOut = 1;
+            //create command associate
+            Command HMICommand = new Command(temp, cat, lock, timeOut);
+         */
+
+            //        theBrain.sendCommandTo("HMI",HMICommand);
 //        System.out.println("Control : HMI command send to theBrain");
-        
-        //test    
-        send2Conflict(HMICommand);
-        
+            //test
+//        send2Conflict(HMICommand);
+
+
+        }
+        else{
+            System.out.println("bad action!");
+        }
 	}
 
 	@Port(name = "RConflict")
@@ -140,7 +173,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         System.out.println("Control : Sensors data receive");
         if(o != null){
             Data sensor = (Data) o;
-            theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
+       //     theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
             System.out.println("Control : Sensor data in " +sensor.getDevice().getLocation() + " send to theBrain");
         }
     }

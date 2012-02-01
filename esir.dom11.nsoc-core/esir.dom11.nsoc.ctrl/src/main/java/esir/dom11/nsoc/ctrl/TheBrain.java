@@ -2,7 +2,9 @@ package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.DataType;
 
+import java.util.Date;
 import java.util.LinkedList;
 
 
@@ -39,11 +41,11 @@ public class TheBrain {
     }
 
     //send data of sensors to room
-    public void sendInfoTo(String location, Data data){
+    public void sendInfoTo(String location, LinkedList<DataType> dataTypeList, Date begin, Date end){
         //room search into roomList
         BrainRoom room = searchRoom(location);
         //send data to the brainRoom
-        room.receiveData(data);
+      //  room.receiveData(data);
         
     }
     public void sendCommandTo(String user,Command command){
