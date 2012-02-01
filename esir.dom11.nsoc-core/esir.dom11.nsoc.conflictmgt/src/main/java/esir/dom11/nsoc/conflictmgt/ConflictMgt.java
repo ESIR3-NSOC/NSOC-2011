@@ -17,6 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+import static java.lang.Thread.sleep;
 
 @Provides({
         @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
@@ -39,16 +42,17 @@ public class ConflictMgt extends AbstractComponentType {
     /*
     * Attributes
     */
-    private long updateDelay = 2000;//60000;                       //time between updates of locks, in ms (60s by befault)
-
-    private LinkedList<Command> _commandBufferList;         // buffer of the last received command, before process and save
-    private LinkedList<Command> _commandWithTimeout;        // buffer of the last received command, before process and save
-    private HashMap<UUID,Action> _lastActuatorActionMap;    // list of accepted and send actions, for conflict management
-    private HashMap<UUID,Long> _lockActuatorMap;            // list of locks on the actuator, updated all the 60s by default
+    private long updateDelay = 5000;//60000;      //time between updates of locks, in ms (60s by befault)
+    private ExecTimer t3;
+    private Manager mng;
 
     /*
     * Getters / Setters
     */
+
+    public long getUpdateDelay() {
+        return updateDelay;
+    }
 
     /*
     * Overrides
@@ -58,43 +62,32 @@ public class ConflictMgt extends AbstractComponentType {
      *
      */
     @Start
-    public void start() {
+    public void start() throws InterruptedException {
         logger.info("= = = = = start conflict manager = = = = = =");
         sendLog("Conflict manager is started", LogLevel.INFO);
 
-        //Initialisation
-        _lastActuatorActionMap = new HashMap<UUID, Action>();
-        _commandBufferList = new LinkedList<Command>();
-        _commandWithTimeout = new LinkedList<Command>();
-        _lockActuatorMap = new HashMap<UUID, Long>();
+        //Manager initialisation
+        mng = new Manager(this,updateDelay);
 
         //Timer initialisation
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                logger.info("= = = = = timer is running = = = = = =");
-                updateLock();
-                sendLog("Lock times are updated", LogLevel.TRACE);
-                updateTimeout();
-                sendLog("Timeouts and commands in buffer are updated", LogLevel.TRACE);
-            }
-        }, updateDelay, updateDelay);
+
+        logger.info("= = = = = BEFORE TIMER INIT = = = = = =");
+
+        t3 = new ExecTimer(1,mng,updateDelay);
+
+        logger.info("= = = = = AFTER TIMER INIT = = = = = =");
     }
 
     @Stop
     public void stop() {
         logger.info("= = = = = stop conflict manager = = = = = =");
+        t3.shutdown();
     }
 
     @Update
     public void update() {
         logger.info("= = = = = update conflict manager = = = = = =");
     }
-
-    /*
-    * Overrides
-    */
 
     /**
      * cmdFromCtrl
@@ -105,30 +98,36 @@ public class ConflictMgt extends AbstractComponentType {
     public void cmdFromCtrl(Object command) {
 
         boolean commandToSave = false;
-
-        Command cmd = (Command)command;
+        Command cmd = (Command) command;
 
         // Save of the command to process
-        _commandBufferList.add(cmd);
+        LinkedList<Command> tmp = mng.get_commandBufferList();
+        tmp.add(cmd);
+        mng.set_commandBufferList(tmp);
 
         // Retrieve lock times and send authored actions
         for (Action action : cmd.getActionList()) {
 
-            _lockActuatorMap.put(action.getIdActuator(), cmd.getLock());
+            HashMap<UUID,Long> a = mng.get_lockActuatorMap();
+            a.put(action.getIdActuator(), cmd.getLock());
+            mng.set_lockActuatorMap(a);
 
-            if (isActuatorFree(action)) {
+            if (mng.isActuatorFree(action)) {
                 send2Actuator(action);
             }
 
             // if one action can't be done, don't check the others of the command
             else {
                 commandToSave = true;
-                break;}
+                break;
+            }
         }
 
         // if the command can't be done and if the timeout isn't zero, save the command in _commandWithTimeout
-        if (commandToSave && cmd.getTimeOut()!=0){
-            _commandWithTimeout.add(cmd);
+        if (commandToSave && cmd.getTimeOut() != 0) {
+            LinkedList<Command> cwt = mng.get_commandWithTimeout();
+            cwt.add(cmd);
+            mng.set_commandWithTimeout(cwt);
         }
     }
 
@@ -137,107 +136,35 @@ public class ConflictMgt extends AbstractComponentType {
      */
 
     /**
-     * isActuatorFree
-     *
-     * @param action Action
-     * @return "true" if the IdActuator of the action isn't in the _lastActuatorActionMap
-     */
-    private boolean isActuatorFree(Action action) {
-        return !_lastActuatorActionMap.containsKey(action.getIdActuator());
-    }
-
-    /**
-     *  updateLock(), manage the lock option
-     */
-    private void updateLock(){
-        //
-        for(Map.Entry<UUID,Long> actMap: _lockActuatorMap.entrySet()){
-            if (actMap.getValue()!=0){
-                _lockActuatorMap.put(actMap.getKey(),actMap.getValue()- updateDelay);
-            }
-            else {
-                _lockActuatorMap.remove(actMap.getKey());}
-        }
-    }
-
-    /**
-     *  updateTimeout(), manage the timeout option. Send the
-     */
-    private void updateTimeout(){
-        for(Command cmd: _commandWithTimeout){
-            LinkedList<Boolean> freedom = new LinkedList<Boolean>();
-
-            //is all the actuators' command now free?
-            for (Action action : cmd.getActionList()){
-                freedom.push(isActuatorFree(action));
-            }
-            //if at least one actuator is not free, update the timeout or remove the command
-            if (freedom.contains(false)){
-                int index = _commandWithTimeout.indexOf(cmd);
-                if (cmd.getTimeOut()!=0){
-                    cmd.setTimeOut(cmd.getTimeOut()- updateDelay);
-                    _commandWithTimeout.remove(index);
-                    _commandWithTimeout.push(cmd);
-                }
-                else {
-                    _commandWithTimeout.remove(index);
-                }
-            }
-
-            //TODO send2Actuator in updateTimeout()
-        }
-    }
-
-    /**
      * send2Actuator, save the last action for the lock option and send it to the actuator
      *
      * @param action Action
      */
-
-    private void send2Actuator(Action action){
-        _lastActuatorActionMap.put(action.getIdActuator(),action);
-        getPortByName("actToActuator",MessagePort.class).process(action);
+    public void send2Actuator(Action action) {
+        HashMap<UUID,Action> am = mng.get_lastActuatorActionMap();
+        am.put(action.getIdActuator(), action);
+        mng.set_lastActuatorActionMap(am);
+        getPortByName("actToActuator", MessagePort.class).process(action);
     }
 
-
     /**
-     *
      * @param str
      * @param lvl
      */
-    private void sendLog(String str,LogLevel lvl){
+    public void sendLog(String str, LogLevel lvl) {
         Log log = new Log(ConflictMgt.class.getName(), str, lvl);
-        logger.info("======== sending log ...... =======");
-        getPortByName("log",MessagePort.class).process(log);
-        logger.info("======== ..... log send =======");
+        getPortByName("log", MessagePort.class).process(log);
     }
 
     /**
-     *
      * @param id
      * @param resp
      */
-    private void resp2Ctrl(UUID id, boolean resp){
-        getPortByName("respToCtrl",MessagePort.class).process(new RequestResult(id,resp));
+    public void resp2Ctrl(UUID id, boolean resp) {
+        getPortByName("respToCtrl", MessagePort.class).process(new RequestResult(id, resp));
     }
-    
+
     private void saveInDb() {
         // TODO saveInDb
-    }
-
-    private int getPriority(Command cmd) {
-        int priority;
-        if (cmd.getCategory()==Category.SECURITY){
-            priority=0;
-        }
-        else if (cmd.getCategory()==Category.USER){
-            priority=1;
-        }
-        else {
-            priority=2;   //AUTO priority by default
-        }
-        return priority;
-
-        //TODO implement priority management
     }
 }
