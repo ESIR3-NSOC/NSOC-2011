@@ -47,10 +47,8 @@ public class ServerManager extends ServerResource{
             datatypes = new LinkedList<DataType>();
 
             //create the object to send to the Controller
-            ic.setAction("get");
-            ic.setChoice("all");
+            ic.setAction(Ihm2Ctrl.IhmAction.GET);
             ic.setLocation("b7-s930");
-
             // add all the dataTypes in the dataTypes list
             datatypes.add(DataType.TEMPERATURE);
             datatypes.add(DataType.BRIGHTNESS);
@@ -126,8 +124,7 @@ public class ServerManager extends ServerResource{
             // client ip : http://@IP:port/all/building/room/
             // we set the kind of DataType ine the server
             if(parameters[0].equals("all")){
-                ic.setAction("get");
-                ic.setChoice(parameters[0]);
+                ic.setAction(Ihm2Ctrl.IhmAction.GET);
                 ic.setLocation(location);
 
                 // add all the dataTypes in the dataTypes list
@@ -142,8 +139,7 @@ public class ServerManager extends ServerResource{
             // 3. get detail for a dataType
             // client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
             else if(parameters[0].equals("detail")){
-                ic.setAction("get");
-                ic.setChoice(parameters[0]);
+                ic.setAction(Ihm2Ctrl.IhmAction.GET);
                 ic.setLocation(location);
 
                 // create the List of all DataTypes (here, we have only one)

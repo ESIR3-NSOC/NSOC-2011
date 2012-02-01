@@ -9,29 +9,31 @@ public class Ihm2Ctrl {
      * Attributes
      */
 
-    private String _action;
-    private String _choice;
+    /*
+     * Define the kind of action we send to the controller
+     * "get"  => we want to have the values of the data
+     * "post" => we want to send an action to change the value of an actuator
+     */
+    private IhmAction _action;
     private String _location;
     private LinkedList<DataType> _datatypes;
     private Date _beginDate;
     private Date _endDate;
+
 
     /*
     * Constructors
     */
 
     public Ihm2Ctrl(){
-        _action = new String();
-        _choice = new String();
         _location = new String();
         _datatypes = new LinkedList<DataType>();
         _beginDate = new Date();
         _endDate = new Date();
     }
 
-    public Ihm2Ctrl(String action, String choice, String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
+    public Ihm2Ctrl(IhmAction action, String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
         _action = action;
-        _choice = choice;
         _location = location;
         _datatypes = datatypes;
         _beginDate = beginDate;
@@ -42,12 +44,10 @@ public class Ihm2Ctrl {
      * Getters / Setters
      */
 
-    public String getAction(){
+    public IhmAction getAction(){
         return _action;
     }
-    public String getChoice(){
-        return _choice;
-    }
+
     public String getLocation(){
         return _location;
     }
@@ -61,13 +61,10 @@ public class Ihm2Ctrl {
         return _endDate;
     }
 
-    // indicates the kind of action ("get"/"post" request)
-    public void setAction(String action){
+    public void setAction(IhmAction action){
         _action = action;
     }
-    public void setChoice(String choice){
-        _choice = choice;
-    }
+
     public void setLocation(String location){
         _location = location;
     }
@@ -80,4 +77,14 @@ public class Ihm2Ctrl {
     public void setEndDate(Date endDate){
         _endDate = endDate;
     }
+
+    public enum IhmAction {
+    GET,
+    POST;
+
+        public String getValue() {
+            return this.name();
+        }
+    }
+
 }
