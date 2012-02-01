@@ -3,18 +3,13 @@ package esir.dom11.nsoc.model;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class Ihm2Ctrl {
+public class HmiRequest {
 
     /*
      * Attributes
      */
 
-    /*
-     * Define the kind of action we send to the controller
-     * "get"  => we want to have the values of the data
-     * "post" => we want to send an action to change the value of an actuator
-     */
-    private IhmAction _action;
+    private HmiRequestAction _action;
     private String _location;
     private LinkedList<DataType> _datatypes;
     private Date _beginDate;
@@ -25,14 +20,14 @@ public class Ihm2Ctrl {
     * Constructors
     */
 
-    public Ihm2Ctrl(){
+    public HmiRequest(){
         _location = new String();
         _datatypes = new LinkedList<DataType>();
         _beginDate = new Date();
         _endDate = new Date();
     }
 
-    public Ihm2Ctrl(IhmAction action, String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
+    public HmiRequest(HmiRequestAction action, String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
         _action = action;
         _location = location;
         _datatypes = datatypes;
@@ -44,7 +39,7 @@ public class Ihm2Ctrl {
      * Getters / Setters
      */
 
-    public IhmAction getAction(){
+    public HmiRequestAction getAction(){
         return _action;
     }
 
@@ -61,7 +56,7 @@ public class Ihm2Ctrl {
         return _endDate;
     }
 
-    public void setAction(IhmAction action){
+    public void setAction(HmiRequestAction action){
         _action = action;
     }
 
@@ -78,7 +73,13 @@ public class Ihm2Ctrl {
         _endDate = endDate;
     }
 
-    public enum IhmAction {
+
+    /*
+     * Define the kind of action we send to the controller
+     * "get"  => we want to have the values of the data
+     * "post" => we want to send an action to change the value of an actuator
+     */
+    public enum HmiRequestAction {
     GET,
     POST;
 
