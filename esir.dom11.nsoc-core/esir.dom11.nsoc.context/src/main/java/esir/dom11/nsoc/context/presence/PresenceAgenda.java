@@ -1,4 +1,4 @@
-package esper;
+package esir.dom11.nsoc.context.presence;
 
 /**
  * author: nicolas riche

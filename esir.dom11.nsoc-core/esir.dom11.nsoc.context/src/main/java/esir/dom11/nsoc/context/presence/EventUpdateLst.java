@@ -1,4 +1,4 @@
-package esper;
+package esir.dom11.nsoc.context.presence;
 
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;

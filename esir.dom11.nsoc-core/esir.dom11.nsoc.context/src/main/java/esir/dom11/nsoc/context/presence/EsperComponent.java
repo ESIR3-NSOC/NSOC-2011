@@ -4,7 +4,7 @@
  * Contributor(s) :
  * Author: barais
  */
-package esper;
+package esir.dom11.nsoc.context.presence;
 
 import com.espertech.esper.client.*;
 import org.kevoree.annotation.*;

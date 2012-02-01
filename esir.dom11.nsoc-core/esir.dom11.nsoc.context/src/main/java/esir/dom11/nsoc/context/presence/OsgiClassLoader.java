@@ -1,4 +1,4 @@
-package esper;
+package esir.dom11.nsoc.context.presence;
 
 import org.kevoree.classloader.ClassLoaderInterface;
 import org.osgi.framework.Bundle;
