@@ -5,6 +5,8 @@ import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.Log;
 import esir.dom11.nsoc.model.LogLevel;
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.RequestResult;
 import org.kevoree.framework.MessagePort;
 import org.slf4j.Logger;
@@ -42,13 +44,19 @@ public class ClientDb extends AbstractComponentType {
         logger.info("*** complete save data sample ***");
         // retrieve dbService
         IDbService dbService = getPortByName("dbService", IDbService.class);
+
+        Device device = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
+        System.out.println("New device: "+device);
+        // Save device
+        Device deviceSave = (Device)dbService.create(device);
+        System.out.println("Saved device: "+deviceSave);
         
         // Data samples
-        Data data1 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098200720")));
-        Data data2 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.3, new Date(new Long("1326098202743")));
-        Data data3 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.5, new Date(new Long("1326098204754")));
-        Data data4 = new Data(DataType.TEMPERATURE,"temp-int-salle930",20.3, new Date(new Long("1326098206765")));
-        Data data5 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.8, new Date(new Long("1326098208787")));
+        Data data1 = new Data(device,19.6, new Date(new Long("1326098200720")));
+        Data data2 = new Data(device,19.3, new Date(new Long("1326098202743")));
+        Data data3 = new Data(device,19.5, new Date(new Long("1326098204754")));
+        Data data4 = new Data(device,20.3, new Date(new Long("1326098206765")));
+        Data data5 = new Data(device,19.8, new Date(new Long("1326098208787")));
 
         logger.info("*** *** Save data 1,2,3,4,5 *** ***");
 

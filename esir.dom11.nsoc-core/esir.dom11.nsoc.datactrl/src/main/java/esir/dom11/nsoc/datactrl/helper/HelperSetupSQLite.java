@@ -44,6 +44,8 @@ public class HelperSetupSQLite extends HelperSetup {
                     .executeUpdate("DROP TABLE IF EXISTS `commands`");
             _daofactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `logs`");
+            _daofactory.getConnectionDb().getConnection().createStatement()
+                    .executeUpdate("DROP TABLE IF EXISTS `devices`");
 
             // Action
             _daofactory.getConnectionDb().getConnection().createStatement()
@@ -68,14 +70,22 @@ public class HelperSetupSQLite extends HelperSetup {
                             " FOREIGN KEY (`id_command`) REFERENCES `commands` (`id`) ON DELETE CASCADE," +
                             " FOREIGN KEY (`id_action`) REFERENCES `actions` (`id`) ON DELETE CASCADE)");
 
+            // Device (sensor & actuator)
+            _daofactory.getConnectionDb().getConnection().createStatement()
+                    .executeUpdate("CREATE TABLE IF NOT EXISTS `devices` (" +
+                            "  `id` VARCHAR(36) PRIMARY KEY," +
+                            "  `data_type` VARCHAR(50) NOT NULL," +
+                            "  `location` VARCHAR(100) NOT NULL," +
+                            "  `device_type` VARCHAR(100) NOT NULL)");
+
             // Data
             _daofactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `datas` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
-                            "  `data_type` VARCHAR(50) NOT NULL," +
-                            "  `location` VARCHAR(100) NOT NULL," +
+                            "  `id_device` VARCHAR(36) NOT NULL," +
                             "  `value` DOUBLE NOT NULL," +
-                            "  `date` TEXT NOT NULL)");
+                            "  `date` TEXT NOT NULL," +
+                            "   FOREIGN KEY (`id_device`) REFERENCES `devices` (`id`) ON DELETE CASCADE)");
 
             // Log
             _daofactory.getConnectionDb().getConnection().createStatement()

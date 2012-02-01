@@ -19,7 +19,10 @@ public class Actuator implements Device {
     */
 
     public Actuator() {
-
+        // default constructor
+        _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        _dataType = DataType.UNKNOWN;
+        _location = "";
     }
 
     public Actuator(DataType dataType, String location) {
@@ -51,5 +54,17 @@ public class Actuator implements Device {
     @Override
     public void setLocation(String location) {
         _location = location;
+    }
+
+    @Override
+    public DataType getDataType() {
+        return _dataType;
+    }
+
+    @Override
+    public String toString() {
+        return "\n* * * Actuator " + getId() + " * * *"
+                + "\nLocation: " + getLocation()
+                + "\nDataType: " + getDataType() + "\n";
     }
 }

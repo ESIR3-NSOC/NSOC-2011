@@ -67,8 +67,6 @@ public class DataDAOMongoDb implements DataDAO {
             BasicDBObject saveData = new BasicDBObject();
 
             saveData.put("id", data.getId().toString());
-            saveData.put("location", data.getLocation());
-            saveData.put("dataType", data.getDataType().getValue());
             saveData.put("date", data.getDate().toString());
             saveData.put("value", data.getValue());
 
@@ -83,7 +81,7 @@ public class DataDAOMongoDb implements DataDAO {
 
     @Override
     public Data retrieve(UUID uuid) {
-        DBCollection datasCollection = _connection.getDb().getCollection("datas");
+        /*DBCollection datasCollection = _connection.getDb().getCollection("datas");
         BasicDBObject query = new BasicDBObject();
         System.out.println(datasCollection.getCount());
         System.out.println("collection= " + datasCollection.getCount());
@@ -98,7 +96,7 @@ public class DataDAOMongoDb implements DataDAO {
                                     (String)mongoData.get("role"),
                                     (Double)mongoData.get("value"),
                                     (Date)mongoData.get("date"));
-        }
+        }*/
         return null;
     }
 

@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.model;
 
 public enum DataType {
+    UNKNOWN,
     TEMPERATURE,
     BRIGHTNESS,
     HUMIDITY,

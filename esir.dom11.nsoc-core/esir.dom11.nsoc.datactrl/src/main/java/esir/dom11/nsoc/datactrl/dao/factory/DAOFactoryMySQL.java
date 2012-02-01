@@ -27,7 +27,12 @@ public class DAOFactoryMySQL extends DAOFactory {
 
     @Override
     public DataDAO getDataDAO() {
-        return new DataDAOMySQL((ConnectionDbMySQL)_connectionDb);
+        return new DataDAOMySQL((ConnectionDbMySQL)_connectionDb, this);
+    }
+
+    @Override
+    public DeviceDAO getDeviceDAO() {
+        return new DeviceDAOMySQL((ConnectionDbMySQL)_connectionDb);
     }
 
     @Override

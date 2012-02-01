@@ -42,6 +42,8 @@ public abstract class DAOFactory {
 
     public abstract DataDAO getDataDAO();
 
+    public abstract DeviceDAO getDeviceDAO();
+
     public abstract LogDAO getLogDAO();
 
     public abstract TaskDAO getTaskDAO();
