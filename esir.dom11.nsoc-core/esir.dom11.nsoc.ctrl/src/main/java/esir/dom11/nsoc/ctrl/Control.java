@@ -96,9 +96,9 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
 		System.out.println("Control : HMI data receive : ");
-        Ihm2Ctrl HMIAction = (Ihm2Ctrl) o;
+        HmiRequest HMIAction = (HmiRequest) o;
         
-        if(HMIAction.getAction().equals(Ihm2Ctrl.IhmAction.GET)){
+        if(HMIAction.getAction().equals(HmiRequest.HmiRequestAction.GET)){
             //HMI ask for data
             //send request to TheBrain
     //        theBrain.sendInfoTo(HMIAction.getLocation(), HMIAction.getDataTypes(), HMIAction.getBeginDate(), HMIAction.getEndDate());
@@ -119,7 +119,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
             System.out.println("send list to HMI");
             send2HMI(list);
         }
-        else if(HMIAction.getAction().equals(Ihm2Ctrl.IhmAction.POST)){
+        else if(HMIAction.getAction().equals(HmiRequest.HmiRequestAction.POST)){
             //HMI send action
             LinkedList<Action> temp = new LinkedList<Action>();
        /*     HMIAction.
