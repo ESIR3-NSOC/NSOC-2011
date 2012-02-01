@@ -2,6 +2,7 @@ package esir.dom11.nsoc.datactrl.dao.model.mysql;
 
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbMySQL;
 import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
+import esir.dom11.nsoc.datactrl.dao.factory.DAOFactoryMySQL;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import org.slf4j.Logger;
@@ -28,13 +29,15 @@ public class DataDAOMySQL implements DataDAO {
      */
 
     private ConnectionDbMySQL _connection;
+    private DAOFactoryMySQL _daoFactory;
 
     /*
      * Constructors
      */
 
-    public DataDAOMySQL(ConnectionDbMySQL connectionDbMySQL) {
+    public DataDAOMySQL(ConnectionDbMySQL connectionDbMySQL, DAOFactoryMySQL daoFactoryMySQL) {
         _connection = connectionDbMySQL;
+        _daoFactory = daoFactoryMySQL;
     }
 
     /*
@@ -48,8 +51,7 @@ public class DataDAOMySQL implements DataDAO {
             try {
                 String statement = "INSERT INTO datas (id, id_device, value, date)"
                         + " VALUES('" + data.getId() + "',"
-                        + " '" + data.getDataType().getValue() + "',"
-                        + " '" + data.getLocation() + "',"
+                        + " '" + data.getDevice().getId() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -71,8 +73,11 @@ public class DataDAOMySQL implements DataDAO {
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.first()) {
-                data = new Data(id, DataType.valueOf(result.getString("data_type")),
-                        result.getString("role"),result.getDouble("value"),result.getDate("date"));
+                data = new Data(
+                        id,
+                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
+                        result.getDouble("value"),
+                        result.getDate("date"));
             }
         } catch (SQLException exception) {
             logger.error("Data retrieve error", exception);
@@ -102,21 +107,21 @@ public class DataDAOMySQL implements DataDAO {
     }
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, String role) {
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location) {
         LinkedList<Data> dataList = new LinkedList<Data>();
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT * FROM datas " +
-                                    "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
-                                        "AND role='" + role + "' " +
+                    .executeQuery("SELECT * FROM datas da " +
+                                    "JOIN devices de ON da.id_device=de.id " +
+                                    "WHERE da.date>'" + new Timestamp(startDate.getTime()) + "' " +
+                                        "AND de.location='" + location + "' " +
                                         "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
             result.beforeFirst();
             while (result.next()) {
-                dataList.add(new Data(UUID.fromString(result.getString("id")),
-                                        DataType.valueOf(result.getString("data_type")),
-                                        result.getString("role"),
+                dataList.add(new Data(UUID.fromString(result.getString("da.id")),
+                                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("da.id_device"))),
                                         result.getDouble("value"),result.getDate("date")));
             }
         } catch (SQLException exception) {
@@ -128,48 +133,12 @@ public class DataDAOMySQL implements DataDAO {
     @Override
     public LinkedList<Data> findByDateAndStep(Date startDate, Date endDate, String role, int step) {
         LinkedList<Data> dataList = new LinkedList<Data>();
-        try {
-            ResultSet result = _connection.getConnection()
-                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT * FROM datas " +
-                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
-                            "AND role='" + role + "' " +
-                            "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
-            System.out.println(new Timestamp(endDate.getTime()));
-            result.beforeFirst();
-            while (result.next()) {
-                dataList.add(new Data(UUID.fromString(result.getString("id")),
-                        DataType.valueOf(result.getString("data_type")),
-                        result.getString("role"),
-                        result.getDouble("value"),result.getDate("date")));
-            }
-        } catch (SQLException exception) {
-            logger.error("Data find by date error", exception);
-        }
         return dataList;
     }
 
     @Override
     public LinkedList<Data> findByDateAndDataMax(Date startDate, Date endDate, String role, int datMax) {
         LinkedList<Data> dataList = new LinkedList<Data>();
-        try {
-            ResultSet result = _connection.getConnection()
-                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT * FROM datas " +
-                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
-                            "AND role='" + role + "' " +
-                            "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
-            System.out.println(new Timestamp(endDate.getTime()));
-            result.beforeFirst();
-            while (result.next()) {
-                dataList.add(new Data(UUID.fromString(result.getString("id")),
-                        DataType.valueOf(result.getString("data_type")),
-                        result.getString("role"),
-                        result.getDouble("value"),result.getDate("date")));
-            }
-        } catch (SQLException exception) {
-            logger.error("Data find by date error", exception);
-        }
         return dataList;
     }
 }

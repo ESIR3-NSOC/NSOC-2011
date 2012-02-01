@@ -70,7 +70,7 @@ public class Data implements Comparable<Data> {
     @Override
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
-                + "\nId Sensor: " + getDevice()
+                + "\nDevice: " + getDevice()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
     }

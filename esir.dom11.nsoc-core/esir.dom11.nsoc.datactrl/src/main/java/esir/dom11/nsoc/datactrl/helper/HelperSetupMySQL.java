@@ -41,7 +41,7 @@ public class HelperSetupMySQL extends HelperSetup {
 
             _daofactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `commands_actions`, " +
-                            "`datas`, `tasks`, `users`, `actions`, `commands`, `logs`");
+                            "`datas`, `tasks`, `users`, `actions`, `commands`, `logs`, `devices`");
 
             // Action
             _daofactory.getConnectionDb().getConnection().createStatement()
@@ -70,12 +70,21 @@ public class HelperSetupMySQL extends HelperSetup {
                             "  KEY `id_action` (`id_action`)" +
                             ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin");
 
+            // Device (sensor & actuator)
+            _daofactory.getConnectionDb().getConnection().createStatement()
+                    .executeUpdate("CREATE TABLE IF NOT EXISTS `devices` (" +
+                            "  `id` varchar(36) COLLATE utf8_bin NOT NULL," +
+                            "  `data_type` varchar(50) COLLATE utf8_bin NOT NULL," +
+                            "  `location` varchar(100) COLLATE utf8_bin NOT NULL," +
+                            "  `device_type` varchar(100) COLLATE utf8_bin NOT NULL," +
+                            "  PRIMARY KEY (`id`)" +
+                            ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin");
+
             // Data
             _daofactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `datas` (" +
                             "  `id` varchar(36) COLLATE utf8_bin NOT NULL," +
-                            "  `data_type` varchar(50) COLLATE utf8_bin NOT NULL," +
-                            "  `role` varchar(100) COLLATE utf8_bin NOT NULL," +
+                            "  `id_device` varchar(36) COLLATE utf8_bin NOT NULL," +
                             "  `value` double NOT NULL," +
                             "  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'," +
                             "  PRIMARY KEY (`id`)" +
@@ -122,6 +131,11 @@ public class HelperSetupMySQL extends HelperSetup {
                     .executeUpdate("ALTER TABLE `commands_actions`" +
                             "  ADD CONSTRAINT `commands_actions_ibfk_1` FOREIGN KEY (`id_command`) REFERENCES `commands` (`id`) ON DELETE CASCADE," +
                             "  ADD CONSTRAINT `commands_actions_ibfk_2` FOREIGN KEY (`id_action`) REFERENCES `actions` (`id`) ON DELETE CASCADE");
+
+            // Data -> Device
+            _daofactory.getConnectionDb().getConnection().createStatement()
+                    .executeUpdate("ALTER TABLE `datas`" +
+                            "  ADD CONSTRAINT `datas_ibfk_1` FOREIGN KEY (`id_device`) REFERENCES `devices` (`id`) ON DELETE CASCADE");
 
         } catch(SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());

@@ -41,6 +41,11 @@ public class DAOFactoryMongoDb extends DAOFactory {
     }
 
     @Override
+    public DeviceDAO getDeviceDAO() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public LogDAO getLogDAO() {
         return new LogDAOMongoDb((ConnectionDbMongoDb)_connectionDb);
     }

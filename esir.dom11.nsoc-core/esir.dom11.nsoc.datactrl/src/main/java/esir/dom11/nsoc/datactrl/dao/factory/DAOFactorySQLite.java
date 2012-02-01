@@ -27,7 +27,12 @@ public class DAOFactorySQLite extends DAOFactory {
 
     @Override
     public DataDAO getDataDAO() {
-        return new DataDAOSQLite((ConnectionDbSQLite)_connectionDb);
+        return new DataDAOSQLite((ConnectionDbSQLite)_connectionDb, this);
+    }
+
+    @Override
+    public DeviceDAO getDeviceDAO() {
+        return new DeviceDAOSQLite((ConnectionDbSQLite)_connectionDb);
     }
 
     @Override

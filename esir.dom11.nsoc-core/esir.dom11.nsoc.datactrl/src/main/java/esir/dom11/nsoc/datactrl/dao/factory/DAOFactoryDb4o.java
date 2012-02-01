@@ -39,6 +39,11 @@ public class DAOFactoryDb4o extends DAOFactory {
     }
 
     @Override
+    public DeviceDAO getDeviceDAO() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public LogDAO getLogDAO() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
