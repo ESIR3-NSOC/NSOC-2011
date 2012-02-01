@@ -1,7 +1,7 @@
 package esir.server;
 
 import esir.dom11.nsoc.model.DataType;
-import esir.dom11.nsoc.model.Ihm2Ctrl;
+import esir.dom11.nsoc.model.HmiRequest;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
@@ -11,7 +11,6 @@ import org.restlet.resource.ServerResource;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +19,7 @@ import java.util.LinkedList;
 public class ServerManager extends ServerResource{
     private Component component;
     private ServerComponent sc = new ServerComponent();
-    private Ihm2Ctrl ic;
+    private HmiRequest ic;
     private LinkedList<DataType> datatypes;
 
     /*
@@ -43,11 +42,11 @@ public class ServerManager extends ServerResource{
             component.start();
 
             //we will fill the data in the LocalStorage
-            ic = new Ihm2Ctrl();
+            ic = new HmiRequest();
             datatypes = new LinkedList<DataType>();
 
             //create the object to send to the Controller
-            ic.setAction(Ihm2Ctrl.IhmAction.GET);
+            ic.setAction(HmiRequest.HmiRequestAction.GET);
             ic.setLocation("b7-s930");
             // add all the dataTypes in the dataTypes list
             datatypes.add(DataType.TEMPERATURE);
@@ -108,7 +107,7 @@ public class ServerManager extends ServerResource{
         // There are 3 kind of GET requests
         // 1. connection test between client and server
         // 2. get all current data
-        // 3. get detail for a dataType
+        // 3. get details for a dataType
 
 
         // 1. connection test between client and server
@@ -124,7 +123,7 @@ public class ServerManager extends ServerResource{
             // client ip : http://@IP:port/all/building/room/
             // we set the kind of DataType ine the server
             if(parameters[0].equals("all")){
-                ic.setAction(Ihm2Ctrl.IhmAction.GET);
+                ic.setAction(HmiRequest.HmiRequestAction.GET);
                 ic.setLocation(location);
 
                 // add all the dataTypes in the dataTypes list
@@ -139,7 +138,7 @@ public class ServerManager extends ServerResource{
             // 3. get detail for a dataType
             // client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
             else if(parameters[0].equals("detail")){
-                ic.setAction(Ihm2Ctrl.IhmAction.GET);
+                ic.setAction(HmiRequest.HmiRequestAction.GET);
                 ic.setLocation(location);
 
                 // create the List of all DataTypes (here, we have only one)
@@ -158,7 +157,7 @@ public class ServerManager extends ServerResource{
                 }
             }
 
-            // send the Ihm2Ctrl object to the Controller within the requires port
+            // send the HmiRequest object to the Controller within the requires port
             sc.sendMessage(ic);
 
             return LocalStorage.getLocalStorageObject().getAllData();

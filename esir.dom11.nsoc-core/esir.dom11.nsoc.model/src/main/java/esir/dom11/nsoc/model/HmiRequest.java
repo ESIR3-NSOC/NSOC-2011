@@ -17,8 +17,8 @@ public class HmiRequest {
 
 
     /*
-    * Constructors
-    */
+     * Constructors
+     */
 
     public HmiRequest(){
         _location = new String();
