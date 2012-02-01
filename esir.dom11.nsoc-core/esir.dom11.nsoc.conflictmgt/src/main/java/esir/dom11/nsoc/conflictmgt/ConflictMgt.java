@@ -70,12 +70,7 @@ public class ConflictMgt extends AbstractComponentType {
         mng = new Manager(this,updateDelay);
 
         //Timer initialisation
-
-        logger.info("= = = = = BEFORE TIMER INIT = = = = = =");
-
         t3 = new ExecTimer(1,mng,updateDelay);
-
-        logger.info("= = = = = AFTER TIMER INIT = = = = = =");
     }
 
     @Stop
@@ -87,6 +82,8 @@ public class ConflictMgt extends AbstractComponentType {
     @Update
     public void update() {
         logger.info("= = = = = update conflict manager = = = = = =");
+        t3.shutdown();
+        t3 = new ExecTimer(1,mng,updateDelay);
     }
 
     /**

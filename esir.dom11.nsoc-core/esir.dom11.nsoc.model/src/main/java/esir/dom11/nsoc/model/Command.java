@@ -19,7 +19,9 @@ public class Command {
      * Constructors
      */
     
-    public Command() {}
+    public Command() {
+        _id =UUID.randomUUID();
+    }
     
     public Command(LinkedList<Action> actionList, Category category, long lock, long timeOut) {
         _id = UUID.randomUUID();

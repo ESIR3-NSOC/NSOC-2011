@@ -31,7 +31,8 @@ public class ExecTimer extends ScheduledThreadPoolExecutor {
         this.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                logger.info(" = = = = = = = = Conflict manager is updated (t3) = = = = = = = =");
+                _mng.updateLock();
+                _mng.updateTimeout();
             }
         }, 0, _delay, TimeUnit.MILLISECONDS);
     }

@@ -46,6 +46,17 @@ public class Manager {
         _lockActuatorMap = new HashMap<UUID, Long>();
     }
 
+    public Manager(long delay){
+
+        _delay = delay;
+
+        //Initialisation
+        _lastActuatorActionMap = new HashMap<UUID, Action>();
+        _commandBufferList = new LinkedList<Command>();
+        _commandWithTimeout = new LinkedList<Command>();
+        _lockActuatorMap = new HashMap<UUID, Long>();
+    }
+
     /*
     * Getters / Setters
     */
@@ -100,13 +111,15 @@ public class Manager {
      * updateLock(), manage the lock option
      */
     public void updateLock() {
-        //
+
+        //TODO refactor the "for"
+
         for (Map.Entry<UUID, Long> actMap : _lockActuatorMap.entrySet()) {
-            if (actMap.getValue() != 0) {
-                _lockActuatorMap.put(actMap.getKey(), actMap.getValue() - _delay);
-            } else {
-                _lockActuatorMap.remove(actMap.getKey());
-            }
+
+            _lockActuatorMap.put(actMap.getKey(), actMap.getValue() - _delay);
+                if (actMap.getValue() <= 0){
+                    _lockActuatorMap.remove(actMap.getKey());
+                }
         }
     }
 
