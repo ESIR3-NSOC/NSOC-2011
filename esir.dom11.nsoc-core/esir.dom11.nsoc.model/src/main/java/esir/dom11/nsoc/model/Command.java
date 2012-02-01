@@ -21,21 +21,11 @@ public class Command {
     
     public Command() {}
     
-    public Command(LinkedList<Action> actionList, Category category) {
+    public Command(LinkedList<Action> actionList, Category category, long lock, long timeOut) {
         _id = UUID.randomUUID();
         _actionList = actionList;
         _category = category;
-        _timeOut = 0;
-        _lock = 0;
-
-    }
-
-
-    public Command(UUID id, LinkedList<Action> actionList, Category category, long lock) {
-        _id = id;
-        _actionList = actionList;
-        _category = category;
-        _timeOut = 0;
+        _timeOut = timeOut;
         _lock = lock;
 
     }

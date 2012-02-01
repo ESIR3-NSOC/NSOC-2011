@@ -1,8 +1,6 @@
 package esir.dom11.nsoc.ctrl;
 
-import esir.dom11.nsoc.model.Command;
-import esir.dom11.nsoc.model.Data;
-import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.*;
 import esir.dom11.nsoc.service.RequestResult;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
@@ -96,9 +94,20 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
 		System.out.println("Control : HMI data receive : ");
-        Command HMICommand = (Command) o;
-        theBrain.sendCommandTo("HMI",HMICommand);
-        System.out.println("Control : HMI command send to theBrain");
+        Action HMIAction = (Action) o;
+        LinkedList<Action> temp = new LinkedList<Action>();
+        temp.add(HMIAction);
+        Category cat = Category.USER;
+        long lock = 1;
+        long timeOut = 1;
+        //create command associate
+        Command HMICommand = new Command(temp, cat, lock, timeOut );
+//        theBrain.sendCommandTo("HMI",HMICommand);
+//        System.out.println("Control : HMI command send to theBrain");
+        
+        //test    
+        send2Conflict(HMICommand);
+        
 	}
 
 	@Port(name = "RConflict")
@@ -131,9 +140,8 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         System.out.println("Control : Sensors data receive");
         if(o != null){
             Data sensor = (Data) o;
-            theBrain.sendInfoTo(sensor.getLocation(), sensor);
-            System.out.println("Control : Sensor data in " +sensor.getLocation() + " send to theBrain");
+            theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
+            System.out.println("Control : Sensor data in " +sensor.getDevice().getLocation() + " send to theBrain");
         }
     }
-
 }

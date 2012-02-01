@@ -148,7 +148,7 @@ public class BrainRoom {
     }
     // to remove one sensor of the room
     public void removeSensor(Sensor sensor){
-        sensorsList.remove
+        //sensorsList.remove
     }
 
     /*
