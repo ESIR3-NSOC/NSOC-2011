@@ -9,9 +9,10 @@ public class HmiRequest {
      * Attributes
      */
 
-    private HmiRequestAction _action;
+    private HmiRestRequest _request;
     private String _location;
     private LinkedList<DataType> _datatypes;
+    private Action _action;
     private Date _beginDate;
     private Date _endDate;
 
@@ -20,34 +21,46 @@ public class HmiRequest {
      * Constructors
      */
 
-    public HmiRequest(){
-        _location = new String();
-        _datatypes = new LinkedList<DataType>();
-        _beginDate = new Date();
-        _endDate = new Date();
+    public HmiRequest(){}
+
+    // Constructor for Get all request
+    public HmiRequest(String location, LinkedList<DataType> datatypes) {
+        _request = HmiRestRequest.GET;
+        _location = location;
+        _datatypes = datatypes;
     }
 
-    public HmiRequest(HmiRequestAction action, String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
-        _action = action;
+    // Constructor for Get detail request
+    public HmiRequest(String location, LinkedList<DataType> datatypes, Date beginDate, Date endDate) {
+        _request = HmiRestRequest.GET;
         _location = location;
         _datatypes = datatypes;
         _beginDate = beginDate;
         _endDate = endDate;
     }
 
+    // Constructor for Post request
+    public HmiRequest(String location, Action action){
+        _request = HmiRestRequest.POST;
+        _location = location;
+        _action = action;
+    }
+
     /*
      * Getters / Setters
      */
 
-    public HmiRequestAction getAction(){
-        return _action;
+    public HmiRestRequest getRequest(){
+        return _request;
     }
-
     public String getLocation(){
         return _location;
     }
     public LinkedList<DataType> getDataTypes(){
         return _datatypes;
+    }
+    public Action getAction(){
+        return _action;
     }
     public Date getBeginDate(){
         return _beginDate;
@@ -56,15 +69,17 @@ public class HmiRequest {
         return _endDate;
     }
 
-    public void setAction(HmiRequestAction action){
-        _action = action;
+    public void setRequest(HmiRestRequest request){
+        _request = request;
     }
-
     public void setLocation(String location){
         _location = location;
     }
     public void setDataTypes(LinkedList<DataType> datatypes){
         _datatypes = datatypes;
+    }
+    public void setAction(Action action){
+        _action = action;
     }
     public void setBeginDate(Date beginDate){
         _beginDate = beginDate;
@@ -79,7 +94,7 @@ public class HmiRequest {
      * "get"  => we want to have the values of the data
      * "post" => we want to send an action to change the value of an actuator
      */
-    public enum HmiRequestAction {
+    public enum HmiRestRequest {
     GET,
     POST;
 

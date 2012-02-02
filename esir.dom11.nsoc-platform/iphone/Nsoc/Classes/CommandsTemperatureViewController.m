@@ -7,29 +7,12 @@
 //
 
 #import "CommandsTemperatureViewController.h"
-
+#import "ConnectionManager.h"
 
 @implementation CommandsTemperatureViewController
 
-@synthesize comfortBtn;
-@synthesize ecoBtn;
-@synthesize lessonBtn;
-@synthesize tempSlider;
-@synthesize tempLabel;
-@synthesize COMFORTTEMP;
-
-/*
- // The designated initializer.  
- Override if you create the controller programmatically and 
- want to perform customization that is not appropriate for viewDidLoad.
-
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize comfortBtn, ecoBtn, lessonBtn, tempSlider, tempLabel;
+@synthesize COMFORTTEMP, idActionArray, idActuatorArray;
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -38,29 +21,33 @@
 	
 	//initialize the values
 	COMFORTTEMP = [[NSNumber alloc] initWithInt:20];
+	idActionArray = [[NSArray alloc] initWithObjects:@"8e207b0a-c052-4e55-8aef-840eb73fe3edv", nil];
+	idActuatorArray = [[NSArray alloc] initWithObjects:@"da5ca0b3-3139-48d1-baed-128cb3869568", nil];
+
+	
+	UIBarButtonItem *temperatureButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" 
+																	  style:UIBarButtonItemStylePlain
+																	 target:self 
+																	 action:@selector(sendTemperature:)];      
+	self.navigationItem.rightBarButtonItem = temperatureButton;	
+}
+
+- (void) sendTemperature:(id) sender {
+	ConnectionManager *cm = [[ConnectionManager alloc] init];
+	BOOL command = [cm sendPostrequest:[idActionArray objectAtIndex:0] 
+			 idActuator:[idActuatorArray objectAtIndex:0] 
+				  value:tempSlider.value];
+	
+	if (command) {
+		
+	} else{
+		
+	}
+	
+	[cm release];
 }
 
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 /*
  * Method fired on value change on the slider
@@ -109,6 +96,19 @@
 	tempLabel.text = [NSString stringWithFormat:@"%d", temp];
 }
 
+-
+(void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
 
 - (void)dealloc {
 	[comfortBtn release];
@@ -117,6 +117,8 @@
     [tempSlider release];
 	[tempLabel release];
 	[COMFORTTEMP release];
+	[idActionArray release];
+	[idActuatorArray release];
 	
 	[super dealloc];
 }

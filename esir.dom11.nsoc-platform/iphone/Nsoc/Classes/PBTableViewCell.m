@@ -40,8 +40,6 @@
 		switchOutlet = [[UISwitch alloc] initWithFrame:CGRectZero];
 		switchOutlet.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		switchOutlet.tag = 1;
-		[switchOutlet setDelegate:self];
-
 		[self addSubview:switchOutlet];
     }
 	
