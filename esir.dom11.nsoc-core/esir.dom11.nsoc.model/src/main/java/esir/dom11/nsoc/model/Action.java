@@ -1,5 +1,7 @@
 package esir.dom11.nsoc.model;
 
+import esir.dom11.nsoc.model.device.Actuator;
+
 import java.util.UUID;
 
 public class Action {
@@ -9,7 +11,7 @@ public class Action {
      */
 
     private UUID _id;           //  dao key
-    private UUID _idActuator;
+    private Actuator _actuator;
     private double _value;
 
     /*
@@ -20,15 +22,15 @@ public class Action {
         _id = UUID.randomUUID();
     }
     
-    public Action(UUID idActuator, double value) {
+    public Action(Actuator actuator, double value) {
         _id = UUID.randomUUID();
-        _idActuator = idActuator;
+        _actuator = actuator;
         _value = value;
     }
 
-    public Action(UUID id, UUID idActuator, double value) {
+    public Action(UUID id, Actuator actuator, double value) {
         _id = id;
-        _idActuator = idActuator;
+        _actuator = actuator;
         _value = value;
     }
 
@@ -40,12 +42,12 @@ public class Action {
         return _id;
     }
 
-    public UUID getIdActuator() {
-        return _idActuator;
+    public Actuator getActuator() {
+        return _actuator;
     }
 
-    public void setIdActuator(UUID idActuator) {
-        _idActuator = idActuator;
+    public void setIdActuator(Actuator actuator) {
+        _actuator = actuator;
     }
 
     public double getValue() {
@@ -63,7 +65,7 @@ public class Action {
     @Override
     public String toString() {
         return "\n* * * Action " + getId() + " * * *"
-                + "\nActuator: " + getIdActuator()
+                + "\nActuator: " + getActuator()
                 + "\nValue: " + getValue();
     }
 
