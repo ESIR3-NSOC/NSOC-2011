@@ -1,8 +1,10 @@
 package esir.dom11.nsoc.conflictmgt;
 
+import esir.dom11.nsoc.model.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
 import java.util.concurrent.*;
 
 import static java.lang.Thread.sleep;
@@ -40,7 +42,10 @@ public class ExecTimer extends ScheduledThreadPoolExecutor {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     System.out.println("Exception caught: " + e);
                 }
-                _mng.updateTimeout();
+                LinkedList<Action> actLst = _mng.updateTimeout();
+                for(Action a: actLst){
+                    _mng._conflict.send2Actuator(a);
+                }
             }
         }, 0, _delay, TimeUnit.MILLISECONDS);
     }

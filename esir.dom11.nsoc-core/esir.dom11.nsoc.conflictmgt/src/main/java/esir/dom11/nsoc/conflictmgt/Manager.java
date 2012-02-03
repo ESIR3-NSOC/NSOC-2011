@@ -29,7 +29,8 @@ public class Manager {
     private HashMap<UUID, Action> _lastActuatorActionMap;    // list of accepted and send actions, for conflict management
     private HashMap<UUID, Long> _lockActuatorMap;            // list of locks on the actuator, updated all the 60s by default
     private long _delay = 60000;
-    private ConflictMgt _conflict;
+    public ConflictMgt _conflict;
+    private ExecTimer timer;
 
     /*
      * Constructor
@@ -44,6 +45,9 @@ public class Manager {
         _commandBufferList = new LinkedList<Command>();
         _commandWithTimeout = new LinkedList<Command>();
         _lockActuatorMap = new HashMap<UUID, Long>();
+
+        //Timer initialisation
+        timer = new ExecTimer(1,this,_delay);
     }
 
     public Manager(long delay){
@@ -141,7 +145,6 @@ public class Manager {
      */
     public void updateLock() {
 
-        //TODO refactor the "for"
         LinkedList<UUID> tmp = new LinkedList<UUID>();
 
         for (Map.Entry<UUID, Long> actMap : _lockActuatorMap.entrySet()) {
@@ -161,7 +164,11 @@ public class Manager {
     /**
      * updateTimeout(), manage the timeout option. Send the
      */
-    public void updateTimeout() {
+    public LinkedList<Action> updateTimeout() {
+
+        LinkedList<Integer> tmp1 = new LinkedList<Integer>();
+        LinkedList<Command> tmp2 = new LinkedList<Command>();
+        LinkedList<Action> tmp3 = new LinkedList<Action>();
 
         for (Command cmd : _commandWithTimeout) {
             LinkedList<Boolean> freedom = new LinkedList<Boolean>();
@@ -171,20 +178,31 @@ public class Manager {
                 freedom.push(isActuatorFree(action));
             }
 
-            //if at least one actuator is not free, update the timeout or remove the command
+            //see what actuator is free or not
             if (freedom.contains(false)) {
                 int index = _commandWithTimeout.indexOf(cmd);
-                if (cmd.getTimeOut() != 0) {
+                if (cmd.getTimeOut() > 0) {
+                    tmp1.push(index);        //to remove later
                     cmd.setTimeOut(cmd.getTimeOut() - _delay);
-                    _commandWithTimeout.remove(index);
-                    _commandWithTimeout.push(cmd);
+                    tmp2.push(cmd);          //to update later
                 } else {
-                    _commandWithTimeout.remove(index);
+                    tmp1.push(index);
                 }
-            }
 
-            //TODO send2Actuator in updateTimeout()
+                //remove and update
+                for (int i : tmp1){
+                    _commandWithTimeout.remove(i);
+                }
+                for (Command c : tmp2){
+                    _commandWithTimeout.push(c);
+                }
+                tmp3 = null;
+            }
+            else{
+                tmp3 = cmd.getActionList();
+            }
         }
+        return tmp3;
     }
 
     /**
