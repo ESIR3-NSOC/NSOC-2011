@@ -10,3 +10,4 @@ config.properties
 */bin/*
 */.settings/*
 *.classpath
+/.idea/
