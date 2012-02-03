@@ -36,20 +36,36 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     public void start() {
         System.out.println("Control : Start");
 
-        Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
-        Date date = new Date();
-        Sensor dev2 = new Sensor(DataType.TEMPERATURE, "/B7/930/");
-        Date date2 = new Date();
 
-        Data data1 = new Data(dev, (double) 10, date) ;
-        Data data2 = new Data(dev2, (double) 13, date2);
+        HmiRequest ic = new HmiRequest();
+        LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
-        LinkedList<Data> list = new LinkedList<Data>() ;
-        list.add(data1);
-        list.add(data2);
-        System.out.println("send list to HMI");
-        send2HMI(list);
+        //create the object to send to the Controller
+        ic.setAction(HmiRequest.HmiRequestAction.GET);
+        ic.setLocation("b7-s930");
+        // add all the dataTypes in the dataTypes list
+        datatypes.add(DataType.TEMPERATURE);
+        datatypes.add(DataType.BRIGHTNESS);
+        datatypes.add(DataType.HUMIDITY);
+        datatypes.add(DataType.POWER);
+        ic.setDataTypes(datatypes);
 
+        /*    Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+          Date date = new Date();
+          Sensor dev2 = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+          Date date2 = new Date();
+
+          Data data1 = new Data(dev, (double) 10, date) ;
+          Data data2 = new Data(dev2, (double) 13, date2);
+
+          LinkedList<Data> list = new LinkedList<Data>() ;
+          list.add(data1);
+          list.add(data2);
+          System.out.println("send list to HMI");
+          send2HMI(list);
+        */
+
+        sendMessage(ic);
 /*        //Brain starting
         theBrain = new TheBrain();
         theBrain.createRoom("B", "930");
@@ -136,14 +152,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         else if(HMIAction.getAction().equals(HmiRequest.HmiRequestAction.POST)){
             //HMI send action
             LinkedList<Action> temp = new LinkedList<Action>();
-       /*     HMIAction.
-            temp.add(HMIAction);
+
+        //    temp.add();
             Category cat = Category.USER;
             long lock = 1;
             long timeOut = 1;
             //create command associate
             Command HMICommand = new Command(temp, cat, lock, timeOut);
-         */
+
 
             //        theBrain.sendCommandTo("HMI",HMICommand);
 //        System.out.println("Control : HMI command send to theBrain");
@@ -189,6 +205,16 @@ public class Control extends AbstractComponentType implements ctrlInterface {
             Data sensor = (Data) o;
        //     theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
             System.out.println("Control : Sensor data in " +sensor.getDevice().getLocation() + " send to theBrain");
+        }
+    }
+
+
+
+    public void sendMessage(HmiRequest message){
+        MessagePort prodPort = getPortByName("HMI", MessagePort.class);
+        if(message != null){
+            System.out.println("test");
+            prodPort.process(message);
         }
     }
 }
