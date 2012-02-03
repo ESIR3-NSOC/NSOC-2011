@@ -20,14 +20,14 @@ import org.osgi.framework.Bundle;
 @DictionaryType({
 
 })
-@Library(name = "Kevoree::Esper")
+@Library(name = "NSOC_2011")
 @ComponentType
-public class EsperComponent extends AbstractComponentType implements UpdateListener {
+public class EsperComponent extends AbstractComponentType {
 
     private PresenceManager preMan;
 
     public EsperComponent() {
-
+          
     }
 
 
@@ -42,6 +42,12 @@ public class EsperComponent extends AbstractComponentType implements UpdateListe
 
 
         preMan = new PresenceManager();
+        preMan.addPresenceEventListener(new PresenceListener() {
+            @Override
+            public void presenceEvent(String message) {
+                sendMessage(message);
+            }
+        });
     }
 
     @Stop
@@ -66,10 +72,9 @@ public class EsperComponent extends AbstractComponentType implements UpdateListe
         preMan.getCepRT().sendEvent(agenda);
     }
 
-    @Override
-    public void update(EventBean[] arg0, EventBean[] arg1) {
+    public void sendMessage(String messsage) {
         if (this.isPortBinded("compositeMessage")) {
-            this.getPortByName("compositeMessage", MessagePort.class).process("Event received: " + arg0[0].getUnderlying());
+            this.getPortByName("compositeMessage", MessagePort.class).process(messsage);
         }
     }
 

@@ -2,7 +2,9 @@ package esir.dom11.nsoc.context.presence;
 
 import com.espertech.esper.client.*;
 
-public class PresenceManager {
+import javax.swing.event.EventListenerList;
+
+public class PresenceManager implements PresenceListener {
 
     private boolean presence = false;
     private EPRuntime cepRT;
@@ -14,12 +16,14 @@ public class PresenceManager {
     private EPStatement newPresence;
     private EPStatement endPresence;
     private EPStatement cancel;
+    protected EventListenerList listenerList;
 
     public PresenceManager() {
+        this.listenerList = new EventListenerList();
 
         Configuration cepConfig = new Configuration();
-        cepConfig.addEventType("Presence", "esir.dom.nsoc11.context.presence.Presence");
-        cepConfig.addEventType("PresenceAgenda", "esir.dom.nsoc11.context.presence.PresenceAgenda");
+        cepConfig.addEventType("Presence", "esir.dom11.nsoc.context.presence.Presence");
+        cepConfig.addEventType("PresenceAgenda", "esir.dom11.nsoc.context.presence.PresenceAgenda");
         cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
         cepRT = cep.getEPRuntime();
 
@@ -30,13 +34,13 @@ public class PresenceManager {
         var_presence_false = cepAdm.createEPL("select * from pattern[every Presence(presence=false)]");
         var_presence_true.addListener(new UpdateListener() {
             @Override
-            public void update(EventBean[] eventBeans, EventBean[] eventBeans1) {
+            public void update(EventBean[] newData, EventBean[] oldData){
                 presence = true;
             }
         });
         var_presence_false.addListener(new UpdateListener() {
             @Override
-            public void update(EventBean[] eventBeans, EventBean[] eventBeans1) {
+            public void update(EventBean[] newData, EventBean[] oldData){
                 presence = false;
             }
         });
@@ -66,21 +70,36 @@ public class PresenceManager {
                 "-> timer:interval(1 sec) and not Presence(presence=true) ]");
 
 
-        confirmation.addListener(new EventUpdateLst("confirmation"));
-        cancel.addListener(new EventUpdateLst("cancel"));
-        newPresence.addListener(new UpdateListener() {
+        confirmation.addListener(new UpdateListener() {
             @Override
-            public void update(EventBean[] eventBeans, EventBean[] eventBeans1) {
-                if ((presence)) {
-                    System.out.println("newPresence : " + eventBeans);
+            public void update(EventBean[] newData, EventBean[] oldData){
+                    presenceEvent("- context - confirmation agenda presence");
+            }
+        });
+        cancel.addListener(new UpdateListener() {
+            @Override
+            public void update(EventBean[] newData, EventBean[] oldData){
+                if(!presence) {
+                    presenceEvent("- context - cancel agenda presence");
                 }
             }
         });
-        endPresence.addListener(new EventUpdateLst("endPresence"));
+        newPresence.addListener(new UpdateListener() {
+            @Override
+            public void update(EventBean[] newData, EventBean[] oldData){
+                    presenceEvent("- context - new temporary presence");
+            }
+        });
+        endPresence.addListener(new UpdateListener() {
+            @Override
+            public void update(EventBean[] newData, EventBean[] oldData){
+                    presenceEvent("- context - end presence");
+            }
+        });
     }
 
 
-    public void stop(){
+    public void stop() {
         var_presence.removeAllListeners();
         var_presence_true.removeAllListeners();
         var_presence_false.removeAllListeners();
@@ -88,12 +107,24 @@ public class PresenceManager {
         newPresence.removeAllListeners();
         endPresence.removeAllListeners();
         cancel.removeAllListeners();
-        
+
         cep.destroy();
     }
 
-    public EPRuntime getCepRT(){
+    public EPRuntime getCepRT() {
         return cepRT;
     }
 
+    @Override
+    public void presenceEvent(String message) {
+        PresenceListener[] listeners = (PresenceListener[])
+                listenerList.getListeners(PresenceListener.class);
+        for (int i = listeners.length - 1; i >= 0; i--) {
+            listeners[i].presenceEvent(message);
+        }
+    }
+
+    public void addPresenceEventListener(PresenceListener l) {
+        this.listenerList.add(PresenceListener.class, l);
+    }
 }
