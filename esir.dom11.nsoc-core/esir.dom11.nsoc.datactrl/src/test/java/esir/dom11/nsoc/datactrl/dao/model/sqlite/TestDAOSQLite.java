@@ -123,7 +123,7 @@ public class TestDAOSQLite extends TestCase {
         _daoFactory.getDataDAO().create(data4);
         _daoFactory.getDataDAO().create(data5);
 
-        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),"temp-int-salle930");
+        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),"temp-int-salle930",DataType.TEMPERATURE);
         System.out.println(dataList.size());
         assertTrue(dataList.size()==3);
 

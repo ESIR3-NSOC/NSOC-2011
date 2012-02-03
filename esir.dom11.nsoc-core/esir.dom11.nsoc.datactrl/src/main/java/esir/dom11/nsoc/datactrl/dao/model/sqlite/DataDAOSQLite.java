@@ -117,7 +117,7 @@ public class DataDAOSQLite implements DataDAO {
     }
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location) {
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location, DataType dataType) {
         LinkedList<Data> dataList = new LinkedList<Data>();
         try {
             ResultSet result = _connection.getConnection()
@@ -125,6 +125,7 @@ public class DataDAOSQLite implements DataDAO {
                     .executeQuery("SELECT da.id, da.id_device, value, date FROM datas da " +
                             "JOIN devices de ON da.id_device=de.id " +
                             "WHERE da.date>'" + new Timestamp(startDate.getTime()) + "' " +
+                            "AND de.data_type='" + dataType.getValue() + "' " +
                             "AND de.location='" + location + "' " +
                             "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
