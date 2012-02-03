@@ -6,6 +6,7 @@
     <artifactId>esir.dom11.nsoc.hardware</artifactId>
     <groupId>esir.dom11.nsoc</groupId>
     <version>1.0</version>
+    <packaging>bundle</packaging>
     <name>NSOC HARDWARE</name>
 
     <parent>
@@ -30,22 +31,26 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.4</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>tuwien.auto</groupId>
             <artifactId>calimero</artifactId>
             <version>2.0a4</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>tuwien.auto</groupId>
             <artifactId>calimero-tools</artifactId>
             <version>2.0a2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -76,14 +81,14 @@
                 <version>2.3.5</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <instructions>
-                        <Export-Package>org.kevoree.service.knx.*</Export-Package>
-                        <Import-Package>org.kevoree.*, org.slf4j.*, scala.*,!javax.microedition.*</Import-Package>
-                        <Private-Package> tuwien.auto.calimero.*</Private-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-            <!-- Java compiler plugin -->
+                    <!--         <instructions>
+                    <Export-Package>org.kevoree.service.knx.*</Export-Package>
+                      <Import-Package>org.kevoree.*, org.slf4j.*, scala.*,!javax.microedition.*</Import-Package>
+                      <Private-Package> tuwien.auto.calimero.*</Private-Package>
+                  </instructions>  -->
+            </configuration>
+        </plugin>
+        <!-- Java compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
