@@ -11,3 +11,5 @@ config.properties
 */.settings/*
 *.classpath
 /.idea/
+
+/esir.dom11.nsoc-library/esir.dom11.nsoc.calimero/target
