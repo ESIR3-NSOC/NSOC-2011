@@ -1,4 +1,4 @@
-package esir.server;
+package esir.dom11.nsoc.server;
 
 import esir.dom11.nsoc.model.Data;
 import java.util.LinkedList;

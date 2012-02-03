@@ -2,6 +2,7 @@ package esir.dom11.nsoc.datactrl.dao.model.sqlite;
 
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbSQLite;
 import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
+import esir.dom11.nsoc.datactrl.dao.factory.DAOFactorySQLite;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import org.slf4j.Logger;
@@ -31,13 +32,15 @@ public class DataDAOSQLite implements DataDAO {
      */
 
     private ConnectionDbSQLite _connection;
+    private DAOFactorySQLite _daoFactory;
 
     /*
      * Constructors
      */
 
-    public DataDAOSQLite(ConnectionDbSQLite connectionDbSQLite) {
+    public DataDAOSQLite(ConnectionDbSQLite connectionDbSQLite, DAOFactorySQLite daoFactorySQLite) {
         _connection = connectionDbSQLite;
+        _daoFactory = daoFactorySQLite;
     }
 
     /*
@@ -49,10 +52,9 @@ public class DataDAOSQLite implements DataDAO {
         Data newData = retrieve(data.getId());
         if (newData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
-                String statement = "INSERT INTO datas (id, data_type, location, value, date)"
+                String statement = "INSERT INTO datas (id, id_device, value, date)"
                         + " VALUES('" + data.getId() + "',"
-                        + " '" + data.getDataType().getValue() + "',"
-                        + " '" + data.getLocation() + "',"
+                        + " '" + data.getDevice().getId() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -75,8 +77,11 @@ public class DataDAOSQLite implements DataDAO {
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.next()) {
                 DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
-                data = new Data(id, DataType.valueOf(result.getString("data_type")),
-                        result.getString("location"),result.getDouble("value"),df.parse(result.getString("date")));
+                data = new Data(
+                        id,
+                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
+                        result.getDouble("value"),
+                        df.parse(result.getString("date")));
             }
         } catch (SQLException exception) {
             logger.error("Data retrieve error", exception);
@@ -117,17 +122,17 @@ public class DataDAOSQLite implements DataDAO {
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
-                    .executeQuery("SELECT * FROM datas " +
-                            "WHERE date>'" + new Timestamp(startDate.getTime()) + "' " +
-                            "AND location='" + location + "' " +
+                    .executeQuery("SELECT da.id, da.id_device, value, date FROM datas da " +
+                            "JOIN devices de ON da.id_device=de.id " +
+                            "WHERE da.date>'" + new Timestamp(startDate.getTime()) + "' " +
+                            "AND de.location='" + location + "' " +
                             "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
             DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
             while (result.next()) {
-                dataList.add(new Data(UUID.fromString(result.getString("id")),
-                        DataType.valueOf(result.getString("data_type")),
-                        result.getString("location"),
-                        result.getDouble("value"),df.parse(result.getString("date"))));
+                dataList.add(new Data(UUID.fromString(result.getString(1)),
+                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString(2))),
+                        result.getDouble(3),df.parse(result.getString(4))));
             }
         } catch (SQLException exception) {
             logger.error("Data find by date error", exception);

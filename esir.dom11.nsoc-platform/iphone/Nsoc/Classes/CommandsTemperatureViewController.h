@@ -18,6 +18,8 @@
 	UILabel *tempLabel;
 	
 	NSNumber *COMFORTTEMP;
+	NSArray *idActionArray;
+	NSArray *idActuatorArray;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *comfortBtn;
@@ -27,6 +29,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *tempLabel;
 @property (nonatomic, retain) NSNumber *COMFORTTEMP;
 
+@property (nonatomic, retain) NSArray *idActionArray;
+@property (nonatomic, retain) NSArray *idActuatorArray;
+
+- (void) sendTemperature:(id) sender;
 - (IBAction)sliderValueChanged:(id)sender;
 - (IBAction)setComfortTemperature:(id)sender;
 - (IBAction)setEcoTemperature:(id)sender;

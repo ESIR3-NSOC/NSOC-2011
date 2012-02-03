@@ -16,7 +16,9 @@ public class Action {
      * Constructors
      */
     
-    public Action() {}
+    public Action() {
+        _id = UUID.randomUUID();
+    }
     
     public Action(UUID idActuator, double value) {
         _id = UUID.randomUUID();

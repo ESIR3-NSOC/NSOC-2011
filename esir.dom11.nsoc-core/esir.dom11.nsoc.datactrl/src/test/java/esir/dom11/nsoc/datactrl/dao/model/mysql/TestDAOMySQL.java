@@ -5,6 +5,8 @@ import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.Log;
 import esir.dom11.nsoc.model.LogLevel;
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
 import junit.framework.TestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +50,14 @@ public class TestDAOMySQL extends TestCase {
      */
 
     public void testCRUDData() {
-        Data data = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date());
+
+        Device device = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
+        System.out.println("New device: "+device);
+        // Save device
+        Device deviceSave = _daoFactory.getDeviceDAO().create(device);
+        System.out.println("Saved device: "+deviceSave);
+
+        Data data = new Data(device,19.6, new Date());
         logger.info("New Data:" + data.toString());
 
         Data createData = _daoFactory.getDataDAO().create(data);
@@ -61,6 +70,8 @@ public class TestDAOMySQL extends TestCase {
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
+
+        _daoFactory.getDeviceDAO().delete(device.getId());
     }
 
     public void testCRUDLog() {
@@ -80,11 +91,18 @@ public class TestDAOMySQL extends TestCase {
     }
     
     public void testFindByDate() {
-        Data data1 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098200720")));
-        Data data2 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098202743")));
-        Data data3 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098204754")));
-        Data data4 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098206765")));
-        Data data5 = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date(new Long("1326098208787")));
+
+        Device device = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
+        System.out.println("New device: "+device);
+        // Save device
+        Device deviceSave = _daoFactory.getDeviceDAO().create(device);
+        System.out.println("Saved device: "+deviceSave);
+
+        Data data1 = new Data(device,19.6, new Date(new Long("1326098200720")));
+        Data data2 = new Data(device,19.6, new Date(new Long("1326098202743")));
+        Data data3 = new Data(device,19.6, new Date(new Long("1326098204754")));
+        Data data4 = new Data(device,19.6, new Date(new Long("1326098206765")));
+        Data data5 = new Data(device,19.6, new Date(new Long("1326098208787")));
 
         System.out.println(_daoFactory.getDataDAO().create(data1));
         _daoFactory.getDataDAO().create(data2);
@@ -101,6 +119,8 @@ public class TestDAOMySQL extends TestCase {
         _daoFactory.getDataDAO().delete(data3.getId());
         _daoFactory.getDataDAO().delete(data4.getId());
         _daoFactory.getDataDAO().delete(data5.getId());
+
+        _daoFactory.getDeviceDAO().delete(device.getId());
     }
 
     /*

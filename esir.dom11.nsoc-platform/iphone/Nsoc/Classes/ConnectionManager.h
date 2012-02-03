@@ -18,12 +18,25 @@
 @property (nonatomic, retain) NSString *savedPort;
 @property (nonatomic) BOOL stateConnection;
 
+/**
+ *	Getters/Setters
+ */
 - (NSString *) savedIp;
 - (NSString *) savedPort;
 - (void) setSavedIp:(NSString *) ip;
 - (void) setSavedPort:(NSString *) port;
+
+/**
+ *	GET requests
+ */
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port;
 - (void) allData;
 - (void) allDataFromDatatype:(NSString *)datatype beginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
+
+/**
+ *	POST Requests
+ */
+- (BOOL) sendPostrequest:(NSString *)idAction idActuator:(NSString *)idActuator value:(double)value;
+
 
 @end

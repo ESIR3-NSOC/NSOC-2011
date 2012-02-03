@@ -310,11 +310,11 @@ titleForHeaderInSection:(NSInteger) section{
 
 
 - (void)dealloc {
-	[ServerTableView dealloc];
-	[serverLabels dealloc];
-	[serverPlaceholders dealloc];
-	[cm dealloc];
-	[statusLabel dealloc];
+	[ServerTableView release];
+	[serverLabels release];
+	[serverPlaceholders release];
+	[cm release];
+	[statusLabel release];
    
 	[super dealloc];
 }
