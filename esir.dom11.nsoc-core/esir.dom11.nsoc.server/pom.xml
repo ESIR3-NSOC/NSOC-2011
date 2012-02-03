@@ -43,7 +43,6 @@
             <artifactId>org.kevoree.platform.osgi.standalone</artifactId>
             <version>${kevoree.version}</version>
         </dependency-->
-
     </dependencies>
 
 
