@@ -1,8 +1,5 @@
 package esir.dom11.nsoc.context.presence;
 
-/**
- * author: nicolas riche
- */
 public class PresenceAgenda {
 
     String name;
