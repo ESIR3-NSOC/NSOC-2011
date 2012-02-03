@@ -14,3 +14,4 @@ config.properties
 *.db
 *.vpp
 *.MF
+/esir.dom11.nsoc-platform/iphone/Nsoc/build
