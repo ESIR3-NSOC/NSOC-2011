@@ -11,8 +11,8 @@
     <name>NSOC</name>
 
     <modules>
-        <module>esir.dom11.nsoc-core</module>
         <module>esir.dom11.nsoc-library</module>
+        <module>esir.dom11.nsoc-core</module>
     </modules>
 
 </project>
