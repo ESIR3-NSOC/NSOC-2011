@@ -91,9 +91,7 @@ public class CommandDAOMySQL implements CommandDAO {
             result.beforeFirst();
             LinkedList<Action> actionList = new LinkedList<Action>();
             while (result.next()) {
-                actionList.add(new Action(UUID.fromString(result.getString("id_action")),
-                                        UUID.fromString(result.getString("id_actuator")),
-                                        result.getDouble("value")));
+                actionList.add(_daoFactory.getActionDAO().retrieve(UUID.fromString(result.getString("id_actuator"))));
             }
 
             if(result.first()) {
@@ -123,7 +121,6 @@ public class CommandDAOMySQL implements CommandDAO {
                 while (result.next()) {
                     // if action exist => update
                     if (result.getString("id_action").compareTo(action.getId().toString())==0) {
-                        _daoFactory.getActionDAO().update(action);
                         exist = true;
                         result.deleteRow();
                     }
@@ -145,8 +142,6 @@ public class CommandDAOMySQL implements CommandDAO {
                                     "WHERE id_command='"+ command.getId() +"' " +
                                     "AND id_action='" + result.getString("id_action") + "';");
             }
-
-            //_daoFactory.getCategoryDAO().update(command.getCategory());
 
             _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
