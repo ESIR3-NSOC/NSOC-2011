@@ -12,7 +12,7 @@
 	  <association mime-type="application-x/kevmodel" extensions="kev"/>
    </information>
    <resources>
-      <jar href="http://maven.kevoree.org/release/org/kevoree/tools/org.kevoree.tools.ui.editor.standalone/1.5.0-RC1/org.kevoree.tools.ui.editor.standalone-1.5.0-RC1.jar" main="true" />   </resources>
+      <jar href="http://maven.kevoree.org/release/org/kevoree/tools/org.kevoree.tools.ui.editor.standalone/1.5.0/org.kevoree.tools.ui.editor.standalone-1.5.0.jar" main="true" />   </resources>
 
    
       <application-desc name="KevEditor" main-class="org.kevoree.tools.ui.editor.standalone.App">

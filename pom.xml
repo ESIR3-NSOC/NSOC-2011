@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>esir.dom11.nsoc</groupId>
+    <artifactId>esir.dom11.nsoc</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>NSOC</name>
+
+    <modules>
+        <module>esir.dom11.nsoc-library</module>
+        <module>esir.dom11.nsoc-core</module>
+    </modules>
+
+</project>

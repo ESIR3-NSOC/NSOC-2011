@@ -17,7 +17,7 @@ public class DAOFactorySQLite extends DAOFactory {
 
     @Override
     public ActionDAO getActionDAO() {
-        return new ActionDAOSQLite((ConnectionDbSQLite)_connectionDb);
+        return new ActionDAOSQLite((ConnectionDbSQLite)_connectionDb, this);
     }
 
     @Override

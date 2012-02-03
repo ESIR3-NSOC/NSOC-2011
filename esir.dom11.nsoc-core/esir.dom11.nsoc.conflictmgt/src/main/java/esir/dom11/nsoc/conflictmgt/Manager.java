@@ -97,6 +97,35 @@ public class Manager {
     * Methods
     */
 
+    public LinkedList<Action> receiveCmd(Command command) {
+
+        LinkedList<Boolean> commandToSave = new LinkedList<Boolean>();
+
+        // Save of the command to process
+        _commandWithTimeout.add(command);
+
+        // Retrieve lock times and send authored actions
+        for (Action action : command.getActionList()) {
+
+            if (!isActuatorFree(action)) {   // if one action can't be done, don't check others
+                commandToSave.push(true);
+            }
+        }
+
+        // if the command can't be done and if the timeout isn't zero, save the command in _commandWithTimeout
+        if (commandToSave.contains(true) && command.getTimeOut() != 0) {
+            _commandWithTimeout.push(command);
+            return null;
+        }
+        // else if the command can't be done and have not to be save
+        else if (commandToSave.contains(true) && command.getTimeOut() == 0) {
+             return null;
+        // else, return the list of action to send
+        } else {
+            return command.getActionList();
+        }
+    }
+
     /**
      * isActuatorFree
      *
@@ -104,7 +133,7 @@ public class Manager {
      * @return "true" if the IdActuator of the action isn't in the _lastActuatorActionMap
      */
     public boolean isActuatorFree(Action action) {
-        return !_lastActuatorActionMap.containsKey(action.getIdActuator());
+        return !_lockActuatorMap.containsKey(action.getActuator().getId());
     }
 
     /**
@@ -113,13 +142,19 @@ public class Manager {
     public void updateLock() {
 
         //TODO refactor the "for"
+        LinkedList<UUID> tmp = new LinkedList<UUID>();
 
         for (Map.Entry<UUID, Long> actMap : _lockActuatorMap.entrySet()) {
 
             _lockActuatorMap.put(actMap.getKey(), actMap.getValue() - _delay);
                 if (actMap.getValue() <= 0){
-                    _lockActuatorMap.remove(actMap.getKey());
+                    //_lockActuatorMap.remove(actMap.getKey());
+                    tmp.push(actMap.getKey());
                 }
+        }
+
+        for (UUID id : tmp){
+            _lockActuatorMap.remove(id);
         }
     }
 
@@ -127,6 +162,7 @@ public class Manager {
      * updateTimeout(), manage the timeout option. Send the
      */
     public void updateTimeout() {
+
         for (Command cmd : _commandWithTimeout) {
             LinkedList<Boolean> freedom = new LinkedList<Boolean>();
 
@@ -134,6 +170,7 @@ public class Manager {
             for (Action action : cmd.getActionList()) {
                 freedom.push(isActuatorFree(action));
             }
+
             //if at least one actuator is not free, update the timeout or remove the command
             if (freedom.contains(false)) {
                 int index = _commandWithTimeout.indexOf(cmd);
@@ -150,6 +187,11 @@ public class Manager {
         }
     }
 
+    /**
+     *
+     * @param cmd
+     * @return
+     */
     private int getPriority(Command cmd) {
         int priority;
         if (cmd.getCategory() == Category.SECURITY) {

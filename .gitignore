@@ -10,3 +10,8 @@ config.properties
 */bin/*
 */.settings/*
 *.classpath
+/.idea/
+*.db
+*.vpp
+*.MF
+/esir.dom11.nsoc-platform/iphone/Nsoc/build
