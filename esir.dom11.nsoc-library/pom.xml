@@ -8,7 +8,7 @@
     <artifactId>esir.dom11.nsoc-library</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>NSOC Library</name>
+    <name>NSOC LIBRARY</name>
 
     <modules>
         <module>esir.dom11.nsoc.mongodb</module>

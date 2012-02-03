@@ -10,10 +10,4 @@ config.properties
 */bin/*
 */.settings/*
 *.classpath
-
-/esir.dom11.nsoc-platform/iphone/Nsoc/nsoc.xcodeproj
-/esir.dom11.nsoc-platform/iphone/Nsoc/build
-/esir.dom11.nsoc-platform/iphone/psd
-/esir.dom11.nsoc-library/esir.dom11.nsoc.sqlite/target
-/esir.dom11.nsoc-library/esir.dom11.nsoc.mongodb/target
-/esir.dom11.nsoc-library/esir.dom11.nsoc.calimero/target
+/.idea/
