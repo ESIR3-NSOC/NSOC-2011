@@ -80,10 +80,12 @@ public class ClientDb extends AbstractComponentType {
         params.add(new Date(new Long("1326098201732")));
         params.add(new Date(new Long("1326098207775")));
         params.add("temp-int-salle930");
+        params.add(DataType.TEMPERATURE);
 
         logger.info(" - Start date: "+ new Date(new Long("1326098201732")));
         logger.info(" - End date: "+ new Date(new Long("1326098207775")));
-        logger.info(" - Role: "+ "temp-int-salle930");
+        logger.info(" - Location: "+ "temp-int-salle930");
+        logger.info(" - DataType: "+ DataType.TEMPERATURE);
 
         RequestResult result = dbService.get("findByDate", Data.class.getName(), params);
         logger.info("Data retrieve:\n");

@@ -77,7 +77,7 @@ public class Command {
         return _lock;
     }
 
-    public void setLock(int lock) {
+    public void setLock(long lock) {
         _lock = lock;
     }
 

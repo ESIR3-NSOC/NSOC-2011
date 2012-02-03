@@ -17,7 +17,7 @@ public class DAOFactoryMySQL extends DAOFactory {
 
     @Override
     public ActionDAO getActionDAO() {
-        return new ActionDAOMySQL((ConnectionDbMySQL)_connectionDb);
+        return new ActionDAOMySQL((ConnectionDbMySQL)_connectionDb, this);
     }
 
     @Override

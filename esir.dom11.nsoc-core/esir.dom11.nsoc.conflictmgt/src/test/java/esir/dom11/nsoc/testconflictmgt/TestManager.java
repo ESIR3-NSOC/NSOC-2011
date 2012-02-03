@@ -2,6 +2,8 @@ package esir.dom11.nsoc.testconflictmgt;
 
 import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.Command;
+import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Actuator;
 import junit.framework.TestCase;
 
 import java.util.HashMap;
@@ -26,8 +28,8 @@ public class TestManager extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         mng = new Manager(delay);
-        a1 = new Action(UUID.randomUUID(),1);
-        a2 = new Action(UUID.randomUUID(),2);
+        a1 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),1);
+        a2 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),2);
         c1 = new Command();
         c2 = new Command();
         actionMap = new HashMap<UUID, Action>();
@@ -36,29 +38,29 @@ public class TestManager extends TestCase {
     }
 
     public void testIsActuatorFree() throws Exception {
-        actionMap = mng.get_lastActuatorActionMap();
-        actionMap.put(a1.getIdActuator(), a1);
-        mng.set_lastActuatorActionMap(actionMap);
+        longMap = mng.get_lockActuatorMap();
+        longMap.put(a1.getActuator().getId(), delay);
+        mng.set_lockActuatorMap(longMap);
         assertFalse(mng.isActuatorFree(a1));
         assertTrue(mng.isActuatorFree(a2));
     }
 
     public void testUpdateLock() throws Exception {
 
-        longMap.put(a1.getIdActuator(),delay*2);
-        longMap.put(a2.getIdActuator(),delay*3);
+        longMap.put(a1.getActuator().getId(),delay*2);
+        longMap.put(a2.getActuator().getId(),delay*3);
         mng.set_lockActuatorMap(longMap);
 
         mng.updateLock();
-        long tmp = mng.get_lockActuatorMap().get(a1.getIdActuator());
+        long tmp = mng.get_lockActuatorMap().get(a1.getActuator().getId());
         assertEquals(tmp, delay);
-        tmp = mng.get_lockActuatorMap().get(a2.getIdActuator());
+        tmp = mng.get_lockActuatorMap().get(a2.getActuator().getId());
         assertEquals(tmp,delay*2);
 
-        /*mng.updateLock();
-        assertFalse(mng.get_lockActuatorMap().containsKey(a1.getIdActuator()));
-        assertTrue(mng.get_lockActuatorMap().containsKey(a2.getIdActuator()));
-        */
+        mng.updateLock();
+        assertFalse(mng.get_lockActuatorMap().containsKey(a1.getActuator().getId()));
+        assertTrue(mng.get_lockActuatorMap().containsKey(a2.getActuator().getId()));
+
     }
 
     public void testUpdateTimeout() throws Exception {

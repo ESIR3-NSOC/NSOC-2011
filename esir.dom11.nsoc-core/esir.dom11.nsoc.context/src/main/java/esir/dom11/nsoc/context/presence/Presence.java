@@ -1,10 +1,6 @@
 package esir.dom11.nsoc.context.presence;
 
-/**
- * author: nicolas riche
- */
 public class Presence {
-
     String name;
     boolean presence;
 
