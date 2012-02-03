@@ -13,6 +13,7 @@
     <modules>
         <module>esir.dom11.nsoc.mongodb</module>
         <module>esir.dom11.nsoc.sqlite</module>
+        <module>esir.dom11.nsoc.calimero</module>
     </modules>
 
     <properties>
