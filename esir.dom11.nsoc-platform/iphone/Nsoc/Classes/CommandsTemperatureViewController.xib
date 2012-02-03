@@ -232,9 +232,14 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">°C</string>
+						<object class="NSFont" key="IBUIFont" id="570184495">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">17</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMTk2MDc4NDMxNCAwLjE5NjA3ODQzMTQAA</bytes>
+							<bytes key="NSRGB">MC4xODgyMzUyOTQxIDAuMzAxOTYwNzg0MyAwLjUwNTg4MjM1MjkAA</bytes>
 						</object>
 						<reference key="IBUIHighlightedColor" ref="376763941"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -251,9 +256,10 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">19</string>
+						<reference key="IBUIFont" ref="570184495"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMTk2MDc4NDMxNCAwLjE5NjA3ODQzMTQAA</bytes>
+							<bytes key="NSRGB">MC4xODgyMzUyOTQxIDAuMzAxOTYwNzg0MyAwLjUwNTg4MjM1MjkAA</bytes>
 						</object>
 						<reference key="IBUIHighlightedColor" ref="376763941"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -566,7 +572,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">35</int>
+			<int key="maxID">36</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -578,6 +584,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>sendTemperature:</string>
 							<string>setComfortTemperature:</string>
 							<string>setEcoTemperature:</string>
 							<string>setLessonTemperature:</string>
@@ -585,6 +592,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -595,6 +603,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>sendTemperature:</string>
 							<string>setComfortTemperature:</string>
 							<string>setEcoTemperature:</string>
 							<string>setLessonTemperature:</string>
@@ -602,6 +611,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">sendTemperature:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">setComfortTemperature:</string>
 								<string key="candidateClassName">id</string>

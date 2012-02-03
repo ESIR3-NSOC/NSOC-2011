@@ -8,6 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @implementation ConnectionManager
 
@@ -16,6 +17,11 @@
 @synthesize stateConnection;
 
 
+/**
+ *	Getters/Setters
+ */
+
+// get the saved IP address in the iPhone 
 - (NSString *) savedIp {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	savedIp = [defaults objectForKey:@"savedIp"];
@@ -26,6 +32,7 @@
 	return savedIp;
 }
 
+// get the saved port in the iPhone
 - (NSString *) savedPort {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	savedPort = [defaults objectForKey:@"savedPort"];
@@ -36,6 +43,7 @@
 	return savedPort;
 }
 
+// save the new IP address in the iPhone
 - (void) setSavedIp:(NSString *) ip{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
@@ -44,6 +52,7 @@
 	savedIp = ip;
 }
 
+// save the new port in the iPhone
 - (void) setSavedPort:(NSString *) port{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:port forKey:@"savedIp"];
@@ -52,6 +61,12 @@
 	savedPort = port;
 }
 
+
+/**
+ *	GET requests
+ */
+
+// send the GET request to know if we are connected to the server
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {	
     // Store the data in the phone
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -77,6 +92,7 @@
 
 }
 
+// send the GET request to fetch all data
 - (void) allData{
 	// client ip : http://@IP:port/all/building/room/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/all/b7/s930", 
@@ -91,6 +107,7 @@
 	
 }
 
+// send the GET request to fetch details for a DataType
 - (void) allDataFromDatatype:(NSString *)datatypeForRequest 
 				   beginDate:(NSDate *)beginDateForRequest 
 					 endDate:(NSDate *)endDateForRequest {
@@ -109,10 +126,41 @@
 	[request startSynchronous];
 }
 
+
+/**
+ *	POST Requests
+ */
+
+// send the POST request to update a value
+- (BOOL) sendPostrequest:(NSString *)idAction
+			  idActuator:(NSString *)idActuator 
+				   value:(double)value{
+	
+	//if there is a connection between the server and the client 
+	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
+		return NO;
+	} else {
+
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
+										[NSURL URLWithString: 
+											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
+		
+		[request addPostValue:idAction forKey:@"idAction"];
+		[request addPostValue:idActuator forKey:@"idActuator"];
+		[request addPostValue:[NSString stringWithFormat:@"%f", value] forKey:@"value"];
+		[request setDelegate:self];
+		[request startAsynchronous];
+		NSLog(@"command sent!");
+	}
+	return YES;
+}
+
+
+
 /**
  *	REST Requests
  */
-
+/*
 - (void) requestFinished:(ASIHTTPRequest *)request {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
@@ -123,5 +171,6 @@
 	NSError *error = [request error];
 	NSLog(@"%@", error);
 }
+ */
 
 @end

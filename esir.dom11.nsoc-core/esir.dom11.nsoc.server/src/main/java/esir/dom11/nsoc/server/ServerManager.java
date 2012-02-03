@@ -13,14 +13,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
 public class ServerManager extends ServerResource{
     private Component _component;
     private ServerComponent _sc;
-    private HmiRequest _ic;
     private LinkedList<DataType>_datatypes;
 
     public ServerManager(ServerComponent sc){
@@ -44,25 +42,19 @@ public class ServerManager extends ServerResource{
             System.out.println(" * Server created : http://"+this.getIpServer()+":"+port);
             System.out.println(" */");
 
-            // Now, let's start the _component!
-            // Note that the HTTP server connector is also automatically started.
             _component.start();
 
-            //we will fill the data in the LocalStorage
-            _ic = new HmiRequest();
+            //Now, we will fill the data in the LocalStorage
             _datatypes = new LinkedList<DataType>();
 
-            //create the object to send to the Controller
-            _ic.setAction(HmiRequest.HmiRequestAction.GET);
-            _ic.setLocation("b7-s930");
             // add all the dataTypes in the dataTypes list
             _datatypes.add(DataType.TEMPERATURE);
             _datatypes.add(DataType.BRIGHTNESS);
             _datatypes.add(DataType.HUMIDITY);
             _datatypes.add(DataType.POWER);
-            _ic.setDataTypes(_datatypes);
 
-            _sc.sendMessage(_ic);
+            HmiRequest hr = new HmiRequest("b7-s930", _datatypes);
+            _sc.sendMessage(hr);
 
             System.out.println("Object sent!");
 
@@ -91,14 +83,14 @@ public class ServerManager extends ServerResource{
      * @return String the IP address of the computer
      */
     public String getIpServer() {
-		InetAddress addr = null;
+		InetAddress address = null;
 		try {
-			addr = InetAddress.getLocalHost();
+			address = InetAddress.getLocalHost();
 
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		return addr.getHostAddress().toString();
+		return address.getHostAddress().toString();
 	}
 
     @Get
@@ -117,56 +109,54 @@ public class ServerManager extends ServerResource{
         // 2. get all current data
         // 3. get details for a dataType
 
-        System.out.println("length= "+parameters.length);
         // 1. connection test between client and server
         // client ip : http://@IP:port
         if(parameters.length == 1){
             return "connected";
         }
         else{
-            String location;
-            location = parameters[1] + "-" + parameters[2];
+            HmiRequest hr;
+            Date beginDate = new Date();
+            Date endDate = new Date();
+            String location = parameters[1] + "-" + parameters[2];
 
             // 2. get all current data
             // client ip : http://@IP:port/building/room/
             // we set the kind of DataType ine the server
             if(parameters.length == 3){
-                _ic.setAction(HmiRequest.HmiRequestAction.GET);
-                _ic.setLocation(location);
-
+                _datatypes.clear();
                 // add all the dataTypes in the dataTypes list
                 _datatypes.add(DataType.TEMPERATURE);
                 _datatypes.add(DataType.BRIGHTNESS);
                 _datatypes.add(DataType.HUMIDITY);
                 _datatypes.add(DataType.POWER);
 
-                _ic.setDataTypes(_datatypes);
+                hr = new HmiRequest(location, _datatypes);
             }
 
             // 3. get detail for a dataType
             // client ip : http://@IP:port/building/room/dataType/beginDate/endDate/
-            else {
-                _ic.setAction(HmiRequest.HmiRequestAction.GET);
-                _ic.setLocation(location);
-
+            else if(parameters.length == 5){
                 // create the List of all DataTypes (here, we have only one)
+                _datatypes.clear();
                 _datatypes.add(DataType.valueOf(parameters[3].toUpperCase()));
-
-                _ic.setDataTypes(_datatypes);
 
                 try{
                     DateFormat format = new SimpleDateFormat("jj-mm-yyyy");
-
-                    _ic.setBeginDate((Date) format.parse(parameters[4]));
-                    _ic.setEndDate((Date) format.parse(parameters[5]));
+                    beginDate = format.parse(parameters[4]);
+                    endDate = format.parse(parameters[5]);
                 }
                 catch (Exception e){
                     System.out.println("Exception :"+e);
                 }
+
+                 hr = new HmiRequest(location, _datatypes, beginDate, endDate);
+
             }
+            else { return "Your url is not correct"; }
 
             // send the HmiRequest object to the Controller within the requires port
-            _sc.sendMessage(_ic);
+            _sc.sendMessage(hr);
 
             return LocalStorage.getLocalStorageObject().getAllData();
         }
