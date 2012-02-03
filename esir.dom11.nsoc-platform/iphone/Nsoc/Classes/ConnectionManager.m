@@ -145,6 +145,7 @@
 										[NSURL URLWithString: 
 											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
 		
+		[request addPostValue:[NSString stringWithFormat:@"s7-b930"] forKey:@"location"];
 		[request addPostValue:idAction forKey:@"idAction"];
 		[request addPostValue:idActuator forKey:@"idActuator"];
 		[request addPostValue:[NSString stringWithFormat:@"%f", value] forKey:@"value"];

@@ -1,8 +1,11 @@
 package esir.dom11.nsoc.server;
 
+import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
 import org.restlet.Component;
+import org.restlet.Server;
+import org.restlet.data.Form;
 import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
@@ -15,14 +18,16 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.UUID;
 
-public class ServerManager extends ServerResource{
+public class ServerManager extends ServerResource {
     private Component _component;
     private ServerComponent _sc;
-    private LinkedList<DataType>_datatypes;
+    private LinkedList<DataType> _datatypes;
 
-    public ServerManager(ServerComponent sc){
+    public void init(ServerComponent sc){
         _sc = sc;
+        _datatypes = new LinkedList<DataType>();
     }
 
     /*
@@ -36,6 +41,7 @@ public class ServerManager extends ServerResource{
         // Then attach it to the local host
         _component.getDefaultHost().attach("/", ServerManager.class);
 
+        System.out.println("Component : " + _component);
         try{
             System.out.println("/** Server launched **/");
             System.out.println("/**");
@@ -44,9 +50,6 @@ public class ServerManager extends ServerResource{
 
             _component.start();
 
-            //Now, we will fill the data in the LocalStorage
-            _datatypes = new LinkedList<DataType>();
-
             // add all the dataTypes in the dataTypes list
             _datatypes.add(DataType.TEMPERATURE);
             _datatypes.add(DataType.BRIGHTNESS);
@@ -54,6 +57,7 @@ public class ServerManager extends ServerResource{
             _datatypes.add(DataType.POWER);
 
             HmiRequest hr = new HmiRequest("b7-s930", _datatypes);
+            _sc = new ServerComponent();
             _sc.sendMessage(hr);
 
             System.out.println("Object sent!");
@@ -111,7 +115,11 @@ public class ServerManager extends ServerResource{
 
         // 1. connection test between client and server
         // client ip : http://@IP:port
-        if(parameters.length == 1){
+        System.out.println("parameters.length " +parameters.length);
+        for(int i=0; i<parameters.length; i++){
+            System.out.println("parameters : "+parameters[i]);
+        }
+        if(parameters.length <= 1){
             return "connected";
         }
         else{
@@ -163,8 +171,20 @@ public class ServerManager extends ServerResource{
     }
 
     @Post
-    public void receivePostRequest(){}
+    public void receivePostRequest(Form form){
+        Action action = new Action(
+                UUID.fromString(form.getValues("idAction").toString()),
+                UUID.fromString(form.getValues("idAction").toString()),
+                Double.parseDouble(form.getValues("value").toString())
+        );
+
+        HmiRequest hr = new HmiRequest(form.getValues("location"), action);
+
+        _sc.sendMessage(hr);
+
+    }
 
     @Put
     public void receivePutRequest(){}
+
 }
