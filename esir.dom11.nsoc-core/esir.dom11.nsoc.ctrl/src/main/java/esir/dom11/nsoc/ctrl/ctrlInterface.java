@@ -22,8 +22,8 @@ public interface ctrlInterface {
     void send2HMI(LinkedList<Data> dataList);
 
     //send everythg that could have been modified
-    void send2DAO(Data data );
-    void send2DAO(Command command);
+    void sendData2DAO(Data data );
+    void sendCommand2DAO(Command command);
     
     //Send an actions list (= command) to conflict 
     void send2Conflict(Command command);
