@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     	}
     	
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generat ed method stub
 			
 			editServer=(EditText)findViewById(R.id.editServer);
 			editPort=(EditText)findViewById(R.id.editPort);

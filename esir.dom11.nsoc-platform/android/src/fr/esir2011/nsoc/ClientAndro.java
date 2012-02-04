@@ -1,4 +1,4 @@
-package fr.esir2011.nsoc;
+ package fr.esir2011.nsoc;
 
 import java.io.IOException;
 import org.restlet.Application;
@@ -25,7 +25,7 @@ public class ClientAndro extends Application{
 		cl = new Client(new Context(), Protocol.HTTP);
 	}
 	
-	//suppression du client (appui sur bouton deconnexion)
+	//suppression  du client (appui sur bouton deconnexion)
 	public void killClient(){
 		try {
 			cl.stop();
