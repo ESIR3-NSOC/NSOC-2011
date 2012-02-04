@@ -17,6 +17,8 @@
     </parent>
 
     <dependencies>
+
+        <!-- Kevoree Dependencies -->
         <dependency>
             <groupId>org.kevoree.tools</groupId>
             <artifactId>org.kevoree.tools.javase.framework</artifactId>
@@ -35,6 +37,8 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Project dependencies -->
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.model</artifactId>
@@ -47,6 +51,7 @@
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

@@ -22,20 +22,6 @@
         <module>esir.dom11.nsoc.hardware</module>
     </modules>
 
-<dependencies>
-    <dependency>
-        <groupId>tuwien.auto</groupId>
-        <artifactId>calimero</artifactId>
-        <version>2.0a4</version>
-    </dependency>
-
-    <dependency>
-        <groupId>tuwien.auto</groupId>
-        <artifactId>calimero-tools</artifactId>
-        <version>2.0a2</version>
-    </dependency>
-</dependencies>
-
     <properties>
         <!-- Testing Properties -->
         <junit.version>4.10</junit.version>
