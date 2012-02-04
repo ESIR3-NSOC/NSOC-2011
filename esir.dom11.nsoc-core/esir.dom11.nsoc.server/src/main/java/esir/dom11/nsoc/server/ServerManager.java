@@ -3,6 +3,7 @@ package esir.dom11.nsoc.server;
 import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
+import esir.dom11.nsoc.model.device.Actuator;
 import org.restlet.Component;
 import org.restlet.data.Form;
 import org.restlet.data.Protocol;
@@ -169,17 +170,34 @@ public class ServerManager extends ServerResource{
 
     @Post
     public void receivePostRequest(Form form){
-        System.out.println(form.getValues("idAction")+" / " +form.getValues("values"));
-        /*Action action = new Action(
-                UUID.fromString(form.getValues("idAction").toString()),
-                UUID.fromString(form.getValues("idAction").toString()),
-                Double.parseDouble(form.getValues("value").toString())
+        /*
+         *  Information to send a POST request
+         *  UUID idAction
+         *  UUID idActuator
+         *  String building
+         *  String room
+         *  Double value
+         */
+
+        System.out.println(form.getValues("idAction")+" / " +form.getValues("value"));
+        String location = form.getValues("building") + "-" + form.getValues("room");
+
+        Actuator actuator = new Actuator(
+                UUID.fromString(form.getValues("idActuator")),
+                DataType.valueOf(form.getValues("datatype").toUpperCase()),
+                location
         );
 
-        HmiRequest hr = new HmiRequest(form.getValues("location"), action);
+        Action action = new Action(
+                UUID.fromString(form.getValues("idAction")),
+                actuator,
+                Double.parseDouble(form.getValues("value"))
+        );
 
-        _sc.sendMessage(hr);
-        */
+        HmiRequest hr = new HmiRequest(location, action);
+
+        ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+        sc.sendMessage(hr);
 
     }
 

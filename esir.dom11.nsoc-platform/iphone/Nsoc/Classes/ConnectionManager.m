@@ -132,9 +132,12 @@
  */
 
 // send the POST request to update a value
-- (BOOL) sendPostrequest:(NSString *)idAction
-			  idActuator:(NSString *)idActuator 
-				   value:(double)value {
+- (BOOL) sendPostrequest:(NSString *)idAction 
+			  idActuator:(NSString *)idActuator
+				datatype:(NSString *)datatype
+				building:(NSString *)building
+					room:(NSString *)room
+				   value:(double)value{
 	
 	//if there is a connection between the server and the client 
 	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
@@ -148,6 +151,9 @@
 		[request addPostValue:[NSString stringWithFormat:@"s7-b930"] forKey:@"location"];
 		[request addPostValue:idAction forKey:@"idAction"];
 		[request addPostValue:idActuator forKey:@"idActuator"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
 		[request addPostValue:[NSString stringWithFormat:@"%f", value] forKey:@"value"];
 		[request setDelegate:self];
 		[request startAsynchronous];
