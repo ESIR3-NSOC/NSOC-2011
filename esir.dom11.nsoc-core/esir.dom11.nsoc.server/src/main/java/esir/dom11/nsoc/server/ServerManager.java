@@ -4,7 +4,6 @@ import esir.dom11.nsoc.model.Action;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
 import org.restlet.Component;
-import org.restlet.Server;
 import org.restlet.data.Form;
 import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
@@ -20,15 +19,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
 
-public class ServerManager extends ServerResource {
+public class ServerManager extends ServerResource{
     private Component _component;
-    private ServerComponent _sc;
-    private LinkedList<DataType> _datatypes;
-
-    public void init(ServerComponent sc){
-        _sc = sc;
-        _datatypes = new LinkedList<DataType>();
-    }
 
     /*
      * Start the REST server for the IHM
@@ -41,7 +33,6 @@ public class ServerManager extends ServerResource {
         // Then attach it to the local host
         _component.getDefaultHost().attach("/", ServerManager.class);
 
-        System.out.println("Component : " + _component);
         try{
             System.out.println("/** Server launched **/");
             System.out.println("/**");
@@ -50,6 +41,8 @@ public class ServerManager extends ServerResource {
 
             _component.start();
 
+            LinkedList<DataType> _datatypes = new LinkedList<DataType>();
+
             // add all the dataTypes in the dataTypes list
             _datatypes.add(DataType.TEMPERATURE);
             _datatypes.add(DataType.BRIGHTNESS);
@@ -57,8 +50,8 @@ public class ServerManager extends ServerResource {
             _datatypes.add(DataType.POWER);
 
             HmiRequest hr = new HmiRequest("b7-s930", _datatypes);
-            _sc = new ServerComponent();
-            _sc.sendMessage(hr);
+            ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+            sc.sendMessage(hr);
 
             System.out.println("Object sent!");
 
@@ -108,6 +101,11 @@ public class ServerManager extends ServerResource {
         //the last index is parameters.length-1 with an empty value
         String[] parameters = url.split("/");
 
+        System.out.println("parameters.length: "+parameters.length);
+        for(int i=0; i<parameters.length; i++){
+            System.out.println("parameters : "+parameters[i]);
+        }
+
         // There are 3 kind of GET requests
         // 1. connection test between client and server
         // 2. get all current data
@@ -115,24 +113,21 @@ public class ServerManager extends ServerResource {
 
         // 1. connection test between client and server
         // client ip : http://@IP:port
-        System.out.println("parameters.length " +parameters.length);
-        for(int i=0; i<parameters.length; i++){
-            System.out.println("parameters : "+parameters[i]);
-        }
-        if(parameters.length <= 1){
+
+        if(parameters.length == 1){
             return "connected";
         }
         else{
             HmiRequest hr;
             Date beginDate = new Date();
             Date endDate = new Date();
-            String location = parameters[1] + "-" + parameters[2];
+            String location = parameters[0] + "-" + parameters[1];
 
             // 2. get all current data
             // client ip : http://@IP:port/building/room/
             // we set the kind of DataType ine the server
-            if(parameters.length == 3){
-                _datatypes.clear();
+            if(parameters.length == 2){
+                LinkedList<DataType> _datatypes = new LinkedList<DataType>();
                 // add all the dataTypes in the dataTypes list
                 _datatypes.add(DataType.TEMPERATURE);
                 _datatypes.add(DataType.BRIGHTNESS);
@@ -140,31 +135,33 @@ public class ServerManager extends ServerResource {
                 _datatypes.add(DataType.POWER);
 
                 hr = new HmiRequest(location, _datatypes);
+
+                ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+                sc.sendMessage(hr);
             }
 
             // 3. get detail for a dataType
             // client ip : http://@IP:port/building/room/dataType/beginDate/endDate/
             else if(parameters.length == 5){
                 // create the List of all DataTypes (here, we have only one)
-                _datatypes.clear();
-                _datatypes.add(DataType.valueOf(parameters[3].toUpperCase()));
+                LinkedList<DataType> _datatypes = new LinkedList<DataType>();
+                _datatypes.add(DataType.valueOf(parameters[2].toUpperCase()));
 
                 try{
-                    DateFormat format = new SimpleDateFormat("jj-mm-yyyy");
-                    beginDate = format.parse(parameters[4]);
-                    endDate = format.parse(parameters[5]);
+                    DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+                    beginDate = format.parse(parameters[3]);
+                    endDate = format.parse(parameters[4]);
                 }
                 catch (Exception e){
                     System.out.println("Exception :"+e);
                 }
 
-                 hr = new HmiRequest(location, _datatypes, beginDate, endDate);
-
+                hr = new HmiRequest(location, _datatypes, beginDate, endDate);
+                // send the HmiRequest object to the Controller within the requires port
+                ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+                sc.sendMessage(hr);
             }
             else { return "Your url is not correct"; }
-
-            // send the HmiRequest object to the Controller within the requires port
-            _sc.sendMessage(hr);
 
             return LocalStorage.getLocalStorageObject().getAllData();
         }
@@ -172,7 +169,8 @@ public class ServerManager extends ServerResource {
 
     @Post
     public void receivePostRequest(Form form){
-        Action action = new Action(
+        System.out.println(form.getValues("idAction")+" / " +form.getValues("values"));
+        /*Action action = new Action(
                 UUID.fromString(form.getValues("idAction").toString()),
                 UUID.fromString(form.getValues("idAction").toString()),
                 Double.parseDouble(form.getValues("value").toString())
@@ -181,6 +179,7 @@ public class ServerManager extends ServerResource {
         HmiRequest hr = new HmiRequest(form.getValues("location"), action);
 
         _sc.sendMessage(hr);
+        */
 
     }
 

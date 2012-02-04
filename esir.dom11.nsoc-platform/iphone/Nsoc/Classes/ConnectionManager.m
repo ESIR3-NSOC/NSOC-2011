@@ -81,7 +81,7 @@
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
-	[request startSynchronous];
+	[request startAsynchronous];
 		
 	NSError *error = [request error];
 	if (!error) {
@@ -134,7 +134,7 @@
 // send the POST request to update a value
 - (BOOL) sendPostrequest:(NSString *)idAction
 			  idActuator:(NSString *)idActuator 
-				   value:(double)value{
+				   value:(double)value {
 	
 	//if there is a connection between the server and the client 
 	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
@@ -161,7 +161,7 @@
 /**
  *	REST Requests
  */
-/*
+
 - (void) requestFinished:(ASIHTTPRequest *)request {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
@@ -172,6 +172,6 @@
 	NSError *error = [request error];
 	NSLog(@"%@", error);
 }
- */
+
 
 @end

@@ -38,14 +38,15 @@ public class ServerComponent extends AbstractComponentType {
     private ServerManager _manager;
 
     public ServerComponent() {
+        // save itself in LocalStorage to be reused in ServerManager class
+        LocalStorage.getLocalStorageObject().setServerComponent(this);
         _manager = new ServerManager();
-        _manager.init(this);
     }
 
     @Start
     public void startComponent(){
         int port = Integer.valueOf(getDictionary().get("port").toString());
-        _manager.startServer(port)  ;
+        _manager.startServer(port);
     }
 
     @Stop

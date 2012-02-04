@@ -129,10 +129,10 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     @Port(name = "RHMI")
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
-		System.out.println("Control : HMI data receive : ");
+		System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         
-        if(HMIAction.getAction().equals(HmiRequest.HmiRestRequest.GET)){
+        if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){
             //HMI ask for data
             for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
                 RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
@@ -141,7 +141,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
                 }
             }
         }
-        else if(HMIAction.getAction().equals(HmiRequest.HmiRestRequest.POST)){
+        else if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.POST)){
             //HMI send action
             //create a command
             LinkedList<Action> list = new LinkedList<Action>();
