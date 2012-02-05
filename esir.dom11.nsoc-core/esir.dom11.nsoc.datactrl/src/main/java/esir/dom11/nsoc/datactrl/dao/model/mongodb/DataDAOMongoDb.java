@@ -42,7 +42,7 @@ public class DataDAOMongoDb implements DataDAO {
      */
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, String role) {
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location, DataType dataType) {
         return null;
     }
 

@@ -30,39 +30,39 @@ public class HelperSetupSQLite extends HelperSetup {
     @Override
     public void setupTable() {
         try {
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `commands_actions`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `datas`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `tasks`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `users`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `actions`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `commands`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `logs`");
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("DROP TABLE IF EXISTS `devices`");
 
             // Action
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `actions` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `id_actuator` VARCHAR(36) NOT NULL," +
                             "  `value` DOUBLE NOT NULL)");
 
             // Command
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `commands` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `category` VARCHAR(30) NOT NULL," +
                             "  `lock` int(11) NOT NULL," +
                             "  `time_out` int(11) NOT NULL)");
 
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `commands_actions` (" +
                             "  `id_command` VARCHAR(36) NOT NULL," +
                             "  `id_action` VARCHAR(36) NOT NULL," +
@@ -71,7 +71,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             " FOREIGN KEY (`id_action`) REFERENCES `actions` (`id`) ON DELETE CASCADE)");
 
             // Device (sensor & actuator)
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `devices` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `data_type` VARCHAR(50) NOT NULL," +
@@ -79,7 +79,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             "  `device_type` VARCHAR(100) NOT NULL)");
 
             // Data
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `datas` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `id_device` VARCHAR(36) NOT NULL," +
@@ -88,7 +88,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             "   FOREIGN KEY (`id_device`) REFERENCES `devices` (`id`) ON DELETE CASCADE)");
 
             // Log
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `logs` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `date` TEXT NOT NULL," +
@@ -97,7 +97,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             "  `log_level` VARCHAR(20) NOT NULL)");
 
             // Task
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `tasks` (" +
                             "  `id` VARCHAR(36) PRIMARY KEY," +
                             "  `description` TEXT NOT NULL," +
@@ -107,7 +107,7 @@ public class HelperSetupSQLite extends HelperSetup {
                             "  `script` TEXT NOT NULL)");
 
             // User
-            _daofactory.getConnectionDb().getConnection().createStatement()
+            _daoFactory.getConnectionDb().getConnection().createStatement()
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `users` (" +
                             "  `id` VARCHAR(20) PRIMARY KEY," +
                             "  `pwd` VARCHAR(32) NOT NULL)");
@@ -118,17 +118,8 @@ public class HelperSetupSQLite extends HelperSetup {
     }
 
     @Override
-    public void setupData() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public Database exportDb() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public void importDb(Database database) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
