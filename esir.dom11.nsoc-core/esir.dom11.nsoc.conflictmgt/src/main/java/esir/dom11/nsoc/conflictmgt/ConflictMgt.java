@@ -66,9 +66,6 @@ public class ConflictMgt extends AbstractComponentType {
 
         //Manager initialisation
         mng = new Manager(this,updateDelay);
-
-        //Timer initialisation
-        timer = new ExecTimer(1,mng,updateDelay);
     }
 
     @Stop

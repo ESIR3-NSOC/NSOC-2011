@@ -93,11 +93,14 @@
 }
 
 // send the GET request to fetch all data
-- (void) allData{
+- (void) allData:(NSString *)building 
+			room:(NSString *)room{
 	// client ip : http://@IP:port/all/building/room/
-	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/all/b7/s930", 
+	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@", 
 												[self savedIp], 
-												[self savedPort]];
+												[self savedPort],
+												building,
+												room];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -108,17 +111,15 @@
 }
 
 // send the GET request to fetch details for a DataType
-- (void) allDataFromDatatype:(NSString *)datatypeForRequest 
-				   beginDate:(NSDate *)beginDateForRequest 
-					 endDate:(NSDate *)endDateForRequest {
+- (void) allDataFromDatatype:(NSString *)datatype
+					building:(NSString *)building
+						room:(NSString *)room
+				   beginDate:(NSDate *)bDate 
+					 endDate:(NSDate *)eDate {
 	
 	// client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
-	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/detail/b7/s930/%3$@/%$4@/%$5@", 
-												[self savedIp], 
-												[self savedPort],
-												datatypeForRequest,
-												beginDateForRequest,
-												endDateForRequest];
+	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@/%5$@/%$6@/%$7@",
+					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -132,24 +133,29 @@
  */
 
 // send the POST request to update a value
-- (BOOL) sendPostrequest:(NSString *)idAction
-			  idActuator:(NSString *)idActuator 
+- (BOOL) sendPostrequest:(NSString *)idAction 
+			  idActuator:(NSString *)idActuator
+				datatype:(NSString *)datatype
+				building:(NSString *)building
+					room:(NSString *)room
 				   value:(double)value{
 	
 	//if there is a connection between the server and the client 
 	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
 		return NO;
 	} else {
-
 		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
 										[NSURL URLWithString: 
 											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
 		
 		[request addPostValue:idAction forKey:@"idAction"];
 		[request addPostValue:idActuator forKey:@"idActuator"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
 		[request addPostValue:[NSString stringWithFormat:@"%f", value] forKey:@"value"];
 		[request setDelegate:self];
-		[request startAsynchronous];
+		[request startSynchronous];
 		NSLog(@"command sent!");
 	}
 	return YES;
@@ -160,7 +166,7 @@
 /**
  *	REST Requests
  */
-/*
+
 - (void) requestFinished:(ASIHTTPRequest *)request {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
@@ -171,6 +177,6 @@
 	NSError *error = [request error];
 	NSLog(@"%@", error);
 }
- */
+
 
 @end
