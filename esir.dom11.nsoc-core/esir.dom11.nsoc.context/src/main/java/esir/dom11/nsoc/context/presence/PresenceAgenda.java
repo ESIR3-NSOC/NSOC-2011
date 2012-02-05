@@ -1,6 +1,6 @@
 package esir.dom11.nsoc.context.presence;
 
-public class PresenceAgenda {
+public class PresenceAgenda{
 
     String name;
     boolean presence;
