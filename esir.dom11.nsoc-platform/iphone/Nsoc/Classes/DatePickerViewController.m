@@ -51,6 +51,8 @@
 	rangeTableView.scrollEnabled = NO;
 	[rangeTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:0];
 
+	data = [[ModelData alloc] initWithDate:[self.dateArray objectAtIndex:0] 
+								   endDate:[self.dateArray objectAtIndex:1]];
 }
 
 -(IBAction) clickCancelButton {

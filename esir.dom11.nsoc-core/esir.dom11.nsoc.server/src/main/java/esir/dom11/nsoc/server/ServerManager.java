@@ -42,15 +42,15 @@ public class ServerManager extends ServerResource{
 
             _component.start();
 
-            LinkedList<DataType> _datatypes = new LinkedList<DataType>();
+            LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
             // add all the dataTypes in the dataTypes list
-            _datatypes.add(DataType.TEMPERATURE);
-            _datatypes.add(DataType.BRIGHTNESS);
-            _datatypes.add(DataType.HUMIDITY);
-            _datatypes.add(DataType.POWER);
+            datatypes.add(DataType.TEMPERATURE);
+            datatypes.add(DataType.BRIGHTNESS);
+            datatypes.add(DataType.HUMIDITY);
+            datatypes.add(DataType.POWER);
 
-            HmiRequest hr = new HmiRequest("b7-s930", _datatypes);
+            HmiRequest hr = new HmiRequest("b7-s930", datatypes);
             ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
             sc.sendMessage(hr);
 
@@ -98,7 +98,7 @@ public class ServerManager extends ServerResource{
         // Collect all the important information of the url sent for a Get Request
         String url =  getReference().getRemainingPart();
 
-        //the minimal lenght is 1 if there are no value.
+        //the minimal length is 1 if there are no value.
         //the last index is parameters.length-1 with an empty value
         String[] parameters = url.split("/");
 
@@ -128,14 +128,14 @@ public class ServerManager extends ServerResource{
             // client ip : http://@IP:port/building/room/
             // we set the kind of DataType ine the server
             if(parameters.length == 2){
-                LinkedList<DataType> _datatypes = new LinkedList<DataType>();
+                LinkedList<DataType> datatypes = new LinkedList<DataType>();
                 // add all the dataTypes in the dataTypes list
-                _datatypes.add(DataType.TEMPERATURE);
-                _datatypes.add(DataType.BRIGHTNESS);
-                _datatypes.add(DataType.HUMIDITY);
-                _datatypes.add(DataType.POWER);
+                datatypes.add(DataType.TEMPERATURE);
+                datatypes.add(DataType.BRIGHTNESS);
+                datatypes.add(DataType.HUMIDITY);
+                datatypes.add(DataType.POWER);
 
-                hr = new HmiRequest(location, _datatypes);
+                hr = new HmiRequest(location, datatypes);
 
                 ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
                 sc.sendMessage(hr);
@@ -145,8 +145,8 @@ public class ServerManager extends ServerResource{
             // client ip : http://@IP:port/building/room/dataType/beginDate/endDate/
             else if(parameters.length == 5){
                 // create the List of all DataTypes (here, we have only one)
-                LinkedList<DataType> _datatypes = new LinkedList<DataType>();
-                _datatypes.add(DataType.valueOf(parameters[2].toUpperCase()));
+                LinkedList<DataType> datatypes = new LinkedList<DataType>();
+                datatypes.add(DataType.valueOf(parameters[2].toUpperCase()));
 
                 try{
                     DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
@@ -157,7 +157,7 @@ public class ServerManager extends ServerResource{
                     System.out.println("Exception :"+e);
                 }
 
-                hr = new HmiRequest(location, _datatypes, beginDate, endDate);
+                hr = new HmiRequest(location, datatypes, beginDate, endDate);
                 // send the HmiRequest object to the Controller within the requires port
                 ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
                 sc.sendMessage(hr);
@@ -174,12 +174,21 @@ public class ServerManager extends ServerResource{
          *  Information to send a POST request
          *  UUID idAction
          *  UUID idActuator
+         *  DataType datatype
          *  String building
          *  String room
          *  Double value
          */
+        System.out.println("Post command received!");
+        System.out.println("idAction: "+form.getValues("idAction")+" \n " +
+                           "idActuator: "+form.getValues("idActuator")+ " \n"+
+                           "datatype: "+form.getValues("datatype") +" \n"+
+                           "building: "+form.getValues("building") +" \n"+
+                           "room: "+form.getValues("room") + " \n" +
+                           "value: "+form.getValues("value")  +" \n"
+        );
 
-        System.out.println(form.getValues("idAction")+" / " +form.getValues("value"));
+        /*
         String location = form.getValues("building") + "-" + form.getValues("room");
 
         Actuator actuator = new Actuator(
@@ -198,7 +207,7 @@ public class ServerManager extends ServerResource{
 
         ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
         sc.sendMessage(hr);
-
+        */
     }
 
     @Put

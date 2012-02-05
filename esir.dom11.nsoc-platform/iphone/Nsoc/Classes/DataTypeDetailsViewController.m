@@ -62,7 +62,9 @@
 
 // Action fired on date button click
 - (IBAction) showDate{
-	DatePickerViewController *dateController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+	DatePickerViewController *dateController = [[DatePickerViewController alloc] 
+												initWithNibName:@"DatePickerViewController" 
+												bundle:nil];
 	dateController.delegate = self;
 	
 	dateController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

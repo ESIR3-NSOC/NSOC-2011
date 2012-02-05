@@ -24,12 +24,12 @@
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.hardware</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.kevoree.tools</groupId>
             <artifactId>org.kevoree.tools.javase.framework</artifactId>
