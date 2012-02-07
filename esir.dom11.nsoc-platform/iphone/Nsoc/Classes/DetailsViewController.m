@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.detailsArray = [NSArray arrayWithObjects:@"Temperature", @"Humidity", @"Luminosity", @"Carbone Dioxyde", nil];
+	self.detailsArray = [NSArray arrayWithObjects:@"Temperature", @"Humidity", @"Luminosity", @"Power", @"Carbone Dioxyde", nil];
 	
 }
 

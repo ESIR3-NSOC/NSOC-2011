@@ -20,7 +20,12 @@ public class Command {
      */
     
     public Command() {
-        _id =UUID.randomUUID();
+        // default constructor
+        _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        _actionList = new LinkedList<Action>();
+        _category = Category.AUTO;
+        _lock = 0;
+        _timeOut = 0;
     }
     
     public Command(LinkedList<Action> actionList, Category category, long lock, long timeOut) {
@@ -77,7 +82,7 @@ public class Command {
         return _lock;
     }
 
-    public void setLock(int lock) {
+    public void setLock(long lock) {
         _lock = lock;
     }
 

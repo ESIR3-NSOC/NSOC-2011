@@ -53,7 +53,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${pom.version}</Bundle-Version>
-                        <Import-Package>!tuwien.auto.calimero.*,*</Import-Package>
+                        <Import-Package>!tuwien.auto.calimero.*,!javax.microedition.*,*</Import-Package>
                         <Export-Package>tuwien.auto.calimero.*</Export-Package>
                     </instructions>
                 </configuration>

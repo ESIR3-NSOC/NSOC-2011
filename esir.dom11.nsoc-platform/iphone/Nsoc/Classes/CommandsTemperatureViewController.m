@@ -35,14 +35,17 @@
 - (void) sendTemperature:(id) sender {
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	BOOL command = [cm sendPostrequest:[idActionArray objectAtIndex:0] 
-			 idActuator:[idActuatorArray objectAtIndex:0] 
-				  value:tempSlider.value];
+							idActuator:[idActuatorArray objectAtIndex:0]
+							   datatype:@"temperature"
+							  building:@"b7"
+								  room:@"s930"
+								 value:tempSlider.value];
 	
-	if (command) {
+	/*if (command) {
 		
 	} else{
 		
-	}
+	}*/
 	
 	[cm release];
 }

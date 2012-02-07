@@ -3,6 +3,7 @@ package esir.dom11.nsoc.datactrl.dao.model.db4o;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbDb4o;
 import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
 import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.DataType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,7 @@ public class DataDAODb4o implements DataDAO {
      */
 
     @Override
-    public LinkedList<Data> findByDate(Date startDate, Date endDate, String role) {
+    public LinkedList<Data> findByDate(Date startDate, Date endDate, String location, DataType dataType) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

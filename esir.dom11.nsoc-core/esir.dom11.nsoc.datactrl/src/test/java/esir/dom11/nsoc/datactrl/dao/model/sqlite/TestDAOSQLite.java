@@ -1,10 +1,8 @@
 package esir.dom11.nsoc.datactrl.dao.model.sqlite;
 
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
-import esir.dom11.nsoc.model.Data;
-import esir.dom11.nsoc.model.DataType;
-import esir.dom11.nsoc.model.Log;
-import esir.dom11.nsoc.model.LogLevel;
+import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.model.device.Device;
 import esir.dom11.nsoc.model.device.Sensor;
 import junit.framework.TestCase;
@@ -101,6 +99,42 @@ public class TestDAOSQLite extends TestCase {
 
         assertTrue(_daoFactory.getLogDAO().delete(log.getId()));
         logger.info("Log Delete");
+    }
+
+    public void testCRUDCommand() {
+        Actuator actuator = new Actuator(DataType.TEMPERATURE,"bat 7");
+
+        LinkedList<Action> actionList = new LinkedList<Action>();
+
+        logger.info("New Actuator:" + actuator.toString());
+        Action act1 = new Action(actuator,1);
+        actionList.add(act1);
+        logger.info("New Action:" + act1.toString());
+        Action act2 = new Action(actuator,2);
+        actionList.add(act2);
+        logger.info("New Action:" + act2.toString());
+        Action act3 = new Action(actuator,3);
+        actionList.add(act3);
+        logger.info("New Action:" + act3.toString());
+        Action act4 = new Action(actuator,4);
+        actionList.add(act4);
+        logger.info("New Action:" + act4.toString());
+        Action act5 = new Action(actuator,5);
+        actionList.add(act5);
+        logger.info("New Action:" + act5.toString());
+
+        Command cmd = new Command(actionList,Category.AUTO,0,0);
+
+        Command createCommand = _daoFactory.getCommandDAO().create(cmd);
+        assertEquals(createCommand.getId().toString(),"00000000-0000-0000-0000-000000000000");
+        logger.info("Command Saved:" + createCommand.toString());
+
+        Command retrieveCommand = _daoFactory.getCommandDAO().retrieve(cmd.getId());
+        assertNotNull(retrieveCommand);
+        logger.info("Command Retrieve:" + retrieveCommand.toString());
+
+        assertTrue(_daoFactory.getCommandDAO().delete(cmd.getId()));
+        logger.info("Command Delete");
     }
 
     public void testFindByDate() {

@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	cm = [[ConnectionManager alloc] init];
-	[cm allData];
+	[cm allData:@"b7" room:@"s930"];	
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -45,7 +45,7 @@
 
 
 - (void) refreshInfo:(id)sender {
-	[cm allData];	
+	[cm allData:@"b7" room:@"s930"];	
 }
 
 

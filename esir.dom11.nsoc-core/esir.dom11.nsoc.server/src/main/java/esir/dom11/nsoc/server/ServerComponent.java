@@ -21,7 +21,7 @@ import java.util.LinkedList;
 
 // output port (HMI -> CTRL)
 @Requires({
-        @RequiredPort(name = "HMI", type = PortType.MESSAGE)
+        @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true)
 })
 
 // input port (CTRL -> HMI)
@@ -38,13 +38,15 @@ public class ServerComponent extends AbstractComponentType {
     private ServerManager _manager;
 
     public ServerComponent() {
-         _manager = new ServerManager(this);
+        // save itself in LocalStorage to be reused in ServerManager class
+        LocalStorage.getLocalStorageObject().setServerComponent(this);
+        _manager = new ServerManager();
     }
 
     @Start
     public void startComponent(){
         int port = Integer.valueOf(getDictionary().get("port").toString());
-        _manager.startServer(port)  ;
+        _manager.startServer(port);
     }
 
     @Stop

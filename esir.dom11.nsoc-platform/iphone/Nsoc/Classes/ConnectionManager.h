@@ -30,13 +30,24 @@
  *	GET requests
  */
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port;
-- (void) allData;
-- (void) allDataFromDatatype:(NSString *)datatype beginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
+- (void) allData:(NSString *)building 
+			room:(NSString *)room;
+
+- (void) allDataFromDatatype:(NSString *)datatype 
+					building:(NSString *)building
+						room:(NSString *)room
+				   beginDate:(NSDate *)beginDate 
+					 endDate:(NSDate *)endDate;
 
 /**
  *	POST Requests
  */
-- (BOOL) sendPostrequest:(NSString *)idAction idActuator:(NSString *)idActuator value:(double)value;
+- (BOOL) sendPostrequest:(NSString *)idAction 
+			  idActuator:(NSString *)idActuator
+				datatype:(NSString *)datatype
+				building:(NSString *)building
+					room:(NSString *)room
+				   value:(double)value;
 
 
 @end

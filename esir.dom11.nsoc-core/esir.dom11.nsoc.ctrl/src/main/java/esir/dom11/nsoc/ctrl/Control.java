@@ -137,7 +137,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     @Port(name = "RHMI")
 	//HMI ask us for some data
 	public void receiveHMI(Object o) {
-		System.out.println("Control : HMI data receive : ");
+		System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         
         if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){

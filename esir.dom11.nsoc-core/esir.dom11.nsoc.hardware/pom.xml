@@ -27,22 +27,12 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.4</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.calimero</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -73,14 +63,13 @@
                 <version>2.3.5</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <!--         <instructions>
-                    <Export-Package>org.kevoree.service.knx.*</Export-Package>
-                      <Import-Package>org.kevoree.*, org.slf4j.*, scala.*,!javax.microedition.*</Import-Package>
-                      <Private-Package> tuwien.auto.calimero.*</Private-Package>
-                  </instructions>  -->
-            </configuration>
-        </plugin>
-        <!-- Java compiler plugin -->
+                    <instructions>
+                        <Import-Package>!javax.microedition.*,*</Import-Package>
+                        <Private-Package>esir.dom11.nsoc.hardware.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <!-- Java compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

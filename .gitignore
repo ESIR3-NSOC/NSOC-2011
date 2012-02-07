@@ -15,3 +15,5 @@ config.properties
 *.vpp
 *.MF
 /esir.dom11.nsoc-platform/iphone/Nsoc/build
+/esir.dom11.nsoc-platform/iphone/Nsoc/nsoc.xcodeproj
+/esir.dom11.nsoc-platform/iphone/psd

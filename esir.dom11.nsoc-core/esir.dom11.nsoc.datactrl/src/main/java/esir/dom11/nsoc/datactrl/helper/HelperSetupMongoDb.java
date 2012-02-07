@@ -30,17 +30,8 @@ public class HelperSetupMongoDb extends HelperSetup {
     }
 
     @Override
-    public void setupData() {
-
-    }
-
-    @Override
     public Database exportDb() {
         return null;//To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public void importDb(Database database) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
