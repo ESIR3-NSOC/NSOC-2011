@@ -27,10 +27,15 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-
         <dependency>
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.calimero</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>esir.dom11.nsoc</groupId>
+            <artifactId>esir.dom11.nsoc.model</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>

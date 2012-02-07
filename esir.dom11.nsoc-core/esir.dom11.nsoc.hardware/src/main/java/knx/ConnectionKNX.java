@@ -68,7 +68,7 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
     @Override
     @Port(name = "ConnectionKNX", method = "write")
     public void write(String adresseGroupe, boolean bool) {
-        System.out.println("ConnectionKNX: write");
+        System.out.println("ConnectionKNX: write Address : " + adresseGroupe);
         //connection.write(adresseGroupe, bool);
     }
 

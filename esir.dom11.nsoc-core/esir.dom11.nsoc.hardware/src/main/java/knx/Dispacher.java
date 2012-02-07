@@ -1,5 +1,6 @@
 package knx;
 
+import esir.dom11.nsoc.model.Action;
 import org.kevoree.ComponentInstance;
 import org.kevoree.ContainerNode;
 import org.kevoree.DictionaryValue;
@@ -35,9 +36,9 @@ public class Dispacher extends AbstractChannelFragment {
                 for (ComponentInstance ci : cn.getComponentsForJ()) {
                     if (ci.getName().equals(p.getComponentName())) {
                         for (DictionaryValue dv : ci.getDictionary().get().getValuesForJ()) {
-                            if (dv.getAttribute().getName().equals("ID_Actuator")) {
-                               // System.out.println(" ID Actuator: " + dv.getValue());
-                                if (dv.getValue().equals(action.getIdActuator())) {
+                            if (dv.getAttribute().getName().equals("LOCATION")) {
+                               // System.out.println(" ID DeviceComp: " + dv.getValue());
+                                if (dv.getValue().equals(action.getActuator().getLocation())) {
                                     forward(p, msg);
                                 }
                             }

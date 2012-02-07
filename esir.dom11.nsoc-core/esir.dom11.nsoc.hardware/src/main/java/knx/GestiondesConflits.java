@@ -1,5 +1,8 @@
 package knx;
 
+import esir.dom11.nsoc.model.Action;
+import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Actuator;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
@@ -15,7 +18,7 @@ import org.kevoree.framework.MessagePort;
         @RequiredPort(name = "prod", type = PortType.MESSAGE, optional = true)
 })
 @DictionaryType({
-        @DictionaryAttribute(name = "ID_Actuator",optional = true),
+        @DictionaryAttribute(name = "LOCATION",defaultValue = "/bat7/salle930/0", optional = true),
         @DictionaryAttribute(name = "Value",optional = true)
 })
 
@@ -24,12 +27,12 @@ import org.kevoree.framework.MessagePort;
 public class GestiondesConflits extends AbstractComponentType {
 
      private Boolean stop = true;
-     private String ID_Actuator;
+     private String mLocation;
      private Object Value;
     @Start
     public void startComponent() {
         System.out.print("GestiondesConflits: start\n");
-        ID_Actuator = (String) this.getDictionary().get("ID_Actuator");
+        mLocation = (String) this.getDictionary().get("LOCATION");
         Value = (Object)this.getDictionary().get("Value");
         System.out.print("Value : " + Value);
         sendBackgroundMessage();
@@ -64,7 +67,8 @@ public class GestiondesConflits extends AbstractComponentType {
                 while (stop) {
                     try {
                         i++;
-                        Action action = new Action(ID_Actuator, Value);
+                        Actuator actuator = new Actuator(DataType.UNKNOWN, mLocation);
+                        Action action = new Action(actuator, Value);
                         sendMessage(action);
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
