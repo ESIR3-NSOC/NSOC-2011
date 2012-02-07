@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.IDbService;
 import esir.dom11.nsoc.service.RequestResult;
@@ -23,7 +24,7 @@ import java.util.UUID;
 @Requires({
         @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true) ,
+        @RequiredPort(name = "DAO", type = PortType.MESSAGE, optional = true) ,
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
@@ -36,7 +37,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     public void start() {
         System.out.println("Control : Start");
 
+        LinkedList<Action> list = new LinkedList<Action>();
+        Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
+        Action action = new Action(actuator, (double) 10);
 
+        list.add(action);
+        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+        //send command
+        send2Conflict(command);
 
 
 
@@ -115,8 +123,8 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 
 	//Send an actions list (= command) to conflict 
 	public void send2Conflict(Command command) {
-        System.out.println("Control : send2Conflict");
-        commandList.add(command);
+        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
+     //   commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
 	}
 
@@ -132,7 +140,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 		System.out.println("Control : HMI data receive : ");
         HmiRequest HMIAction = (HmiRequest) o;
         
-        if(HMIAction.getAction().equals(HmiRequest.HmiRestRequest.GET)){
+        if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){
             //HMI ask for data
             for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
                 RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
@@ -141,7 +149,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
                 }
             }
         }
-        else if(HMIAction.getAction().equals(HmiRequest.HmiRestRequest.POST)){
+        else if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.POST)){
             //HMI send action
             //create a command
             LinkedList<Action> list = new LinkedList<Action>();
@@ -161,16 +169,19 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         System.out.println("Control : Conflict data receive : ");
         RequestResult result = (RequestResult) o;
         if(result.isSuccess()){
+            System.out.println("result Success");
             //search command into the list, and send it to HMI
-            for(int i = 0; i < commandList.size(); i ++){
+/*            for(int i = 0; i < commandList.size(); i ++){
                if(result.getResult() == commandList.get(i).getId()){
                    System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                   send2HMI(commandList.get(i));
-                   sendCommand2DAO(commandList.get(i));
+                 //  send2HMI(commandList.get(i));
+                 //  sendCommand2DAO(commandList.get(i));
                    commandList.remove(i);
+
+                   System.out.println("Conflict OK ^^");
                    break;
                }
-            }
+            }  */
         }
 	}
 	

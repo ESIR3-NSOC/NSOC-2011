@@ -119,6 +119,7 @@ public class ConflictMgt extends AbstractComponentType {
         mng.set_lastActuatorActionMap(am);
 
         getPortByName("actToActuator", MessagePort.class).process(action);
+        resp2Ctrl(action.getId(), true);
     }
 
     /**
