@@ -10,7 +10,7 @@ import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.UUID;
+
 
 
 @Library(name = "NSOC_2011")
@@ -32,12 +32,13 @@ import java.util.UUID;
 public class Control extends AbstractComponentType implements ctrlInterface {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
+    private LinkedList<Data> list2;
 
     @Start
     public void start() {
         System.out.println("Control : Start");
 
-        LinkedList<Action> list = new LinkedList<Action>();
+   /*     LinkedList<Action> list = new LinkedList<Action>();
         Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
         Action action = new Action(actuator, (double) 10);
 
@@ -45,14 +46,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
         //send command
         send2Conflict(command);
-
-
+     */
+        commandList = new LinkedList<Command>();
 
         HmiRequest ic = new HmiRequest();
         LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
 
-        /*    Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
+          Sensor dev = new Sensor(DataType.TEMPERATURE, "/B7/930/");
           Date date = new Date();
           Sensor dev2 = new Sensor(DataType.TEMPERATURE, "/B7/930/");
           Date date2 = new Date();
@@ -60,12 +61,9 @@ public class Control extends AbstractComponentType implements ctrlInterface {
           Data data1 = new Data(dev, (double) 10, date) ;
           Data data2 = new Data(dev2, (double) 13, date2);
 
-          LinkedList<Data> list = new LinkedList<Data>() ;
-          list.add(data1);
-          list.add(data2);
-          System.out.println("send list to HMI");
-          send2HMI(list);
-        */
+          list2 = new LinkedList<Data>() ;
+          list2.add(data1);
+          list2.add(data2);
 
 /*        //Brain starting
         theBrain = new TheBrain();
@@ -124,7 +122,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 	//Send an actions list (= command) to conflict 
 	public void send2Conflict(Command command) {
         System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
-     //   commandList.add(command);
+        commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
 	}
 
@@ -142,12 +140,19 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         
         if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){
             //HMI ask for data
-            for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+     /*       for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
                 RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
                 if (result.isSuccess()) {
                     send2HMI((LinkedList<Data>) result.getResult());
                 }
             }
+
+
+       */
+
+
+            //test
+            send2HMI(list2);
         }
         else if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.POST)){
             //HMI send action
@@ -156,7 +161,11 @@ public class Control extends AbstractComponentType implements ctrlInterface {
             list.add(HMIAction.getAction());
             Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
             //send command
-            send2Conflict(command);
+      //      send2Conflict(command);
+
+            //test
+
+            send2HMI(command);
         }
         else{
             System.out.println("bad action!");
@@ -171,17 +180,15 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         if(result.isSuccess()){
             System.out.println("result Success");
             //search command into the list, and send it to HMI
-/*            for(int i = 0; i < commandList.size(); i ++){
+            for(int i = 0; i < commandList.size(); i ++){
                if(result.getResult() == commandList.get(i).getId()){
                    System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                 //  send2HMI(commandList.get(i));
-                 //  sendCommand2DAO(commandList.get(i));
+                   send2HMI(commandList.get(i));
+                   sendCommand2DAO(commandList.get(i));
                    commandList.remove(i);
-
-                   System.out.println("Conflict OK ^^");
                    break;
                }
-            }  */
+            }
         }
 	}
 	
