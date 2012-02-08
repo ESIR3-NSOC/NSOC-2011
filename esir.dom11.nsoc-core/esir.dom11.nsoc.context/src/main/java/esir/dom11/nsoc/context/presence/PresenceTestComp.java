@@ -8,9 +8,9 @@ import org.kevoree.framework.MessagePort;
         @RequiredPort(name = "fakePresence", type = PortType.MESSAGE),
         @RequiredPort(name = "fakePresenceAgenda", type = PortType.MESSAGE)
 })
-@Library(name = "NSOC_2011")
+@Library(name = "NSOC_2011::Context")
 @ComponentType
-public class EsperTestComponent extends AbstractComponentType {
+public class PresenceTestComp extends AbstractComponentType {
 
     @Start
     public void start() {
@@ -28,19 +28,19 @@ public class EsperTestComponent extends AbstractComponentType {
 
             public void GeneratePresence() {
                 tempo(2000);
-                sendPresence(new Presence("1", true));
+                sendPresence(new PresenceEvent("1", true));
                 tempo(200);
-                sendPresenceAgenda(new PresenceAgenda("1", true));
+                sendPresenceAgenda(new PresenceAgendaEvent("1", true));
                 tempo(2000); // confirmation
-                sendPresence(new Presence("1", false));
+                sendPresence(new PresenceEvent("1", false));
                 tempo(2000); // end presence
-                sendPresenceAgenda(new PresenceAgenda("1", false));
+                sendPresenceAgenda(new PresenceAgendaEvent("1", false));
                 tempo(2000);
-                sendPresence(new Presence("1", true));
+                sendPresence(new PresenceEvent("1", true));
                 tempo(2000); // new temporay presence
-                sendPresence(new Presence("1", false));
+                sendPresence(new PresenceEvent("1", false));
                 tempo(2000); // end temporay presence
-                sendPresenceAgenda(new PresenceAgenda("1", true));
+                sendPresenceAgenda(new PresenceAgendaEvent("1", true));
                 tempo(2000);  // cancel
 
 
@@ -62,13 +62,13 @@ public class EsperTestComponent extends AbstractComponentType {
         th.start();
     }
 
-    public void sendPresence(Presence pres) {
+    public void sendPresence(PresenceEvent pres) {
         if (this.isPortBinded("fakePresence")) {
             this.getPortByName("fakePresence", MessagePort.class).process(pres);
         }
     }
 
-    public void sendPresenceAgenda(PresenceAgenda pres) {
+    public void sendPresenceAgenda(PresenceAgendaEvent pres) {
         if (this.isPortBinded("fakePresenceAgenda")) {
             this.getPortByName("fakePresenceAgenda", MessagePort.class).process(pres);
         }

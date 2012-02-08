@@ -22,16 +22,16 @@ public class PresenceManager implements PresenceListener {
         this.listenerList = new EventListenerList();
 
         Configuration cepConfig = new Configuration();
-        cepConfig.addEventType("Presence", "esir.dom11.nsoc.context.presence.Presence");
-        cepConfig.addEventType("PresenceAgenda", "esir.dom11.nsoc.context.presence.PresenceAgenda");
+        cepConfig.addEventType("PresenceEvent", "esir.dom11.nsoc.context.presence.PresenceEvent");
+        cepConfig.addEventType("PresenceAgendaEvent", "esir.dom11.nsoc.context.presence.PresenceAgendaEvent");
         cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
         cepRT = cep.getEPRuntime();
 
         EPAdministrator cepAdm = cep.getEPAdministrator();
         var_presence = cepAdm.createEPL("create variable boolean var_presence = false");
         var_presence.start();
-        var_presence_true = cepAdm.createEPL("select * from pattern[every Presence(presence=true)]");
-        var_presence_false = cepAdm.createEPL("select * from pattern[every Presence(presence=false)]");
+        var_presence_true = cepAdm.createEPL("select * from pattern[every PresenceEvent(presence=true)]");
+        var_presence_false = cepAdm.createEPL("select * from pattern[every PresenceEvent(presence=false)]");
         var_presence_true.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData){
@@ -50,24 +50,24 @@ public class PresenceManager implements PresenceListener {
         String confirmation_startWindow = "1 sec";
         String confirmation_minDuration = "1 sec";
         confirmation = cepAdm.createEPL("select * from pattern[" +
-                "every (PresenceAgenda(presence=true) and Presence(presence=true))where timer:within(" + confirmation_startWindow + ") " +
-                "->  timer:interval(" + confirmation_minDuration + ") and not Presence(presence=false) ]");
+                "every (PresenceAgendaEvent(presence=true) and PresenceEvent(presence=true))where timer:within(" + confirmation_startWindow + ") " +
+                "->  timer:interval(" + confirmation_minDuration + ") and not PresenceEvent(presence=false) ]");
 
         newPresence = cepAdm.createEPL("select * from pattern" +
                 "[every (" +
-                "( (Presence(presence=true) and not PresenceAgenda(presence=true)) where timer:within(1 sec) " +
-                "-> timer:interval(1 sec) and not Presence(presence=true) )" +
+                "( (PresenceEvent(presence=true) and not PresenceAgendaEvent(presence=true)) where timer:within(1 sec) " +
+                "-> timer:interval(1 sec) and not PresenceEvent(presence=true) )" +
                 " or " +
-                "( (PresenceAgenda(presence=false) and not Presence(presence=false)) where timer:within(1 sec) )" +
+                "( (PresenceAgendaEvent(presence=false) and not PresenceEvent(presence=false)) where timer:within(1 sec) )" +
                 ")]");
 
         endPresence = cepAdm.createEPL("select * from pattern[" +
-                "every Presence(presence=false) " +
-                "-> timer:interval(1 sec) and not Presence(presence=true) ]");
+                "every PresenceEvent(presence=false) " +
+                "-> timer:interval(1 sec) and not PresenceEvent(presence=true) ]");
 
         cancel = cepAdm.createEPL("select * from pattern[" +
-                "every PresenceAgenda(presence=true) " +
-                "-> timer:interval(1 sec) and not Presence(presence=true) ]");
+                "every PresenceAgendaEvent(presence=true) " +
+                "-> timer:interval(1 sec) and not PresenceEvent(presence=true) ]");
 
 
         confirmation.addListener(new UpdateListener() {

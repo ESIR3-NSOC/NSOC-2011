@@ -1,7 +1,5 @@
 package esir.dom11.nsoc.context.presence;
 
-import com.espertech.esper.client.EventBean;
-import com.espertech.esper.client.UpdateListener;
 import org.kevoree.annotation.*;
 import org.kevoree.classloader.ClassLoaderInterface;
 import org.kevoree.classloader.ClassLoaderWrapper;
@@ -20,13 +18,13 @@ import org.osgi.framework.Bundle;
 @DictionaryType({
 
 })
-@Library(name = "NSOC_2011")
+@Library(name = "NSOC_2011::Context")
 @ComponentType
-public class EsperComponent extends AbstractComponentType {
+public class PresenceComp extends AbstractComponentType {
 
     private PresenceManager preMan;
 
-    public EsperComponent() {
+    public PresenceComp() {
           
     }
 
@@ -59,6 +57,12 @@ public class EsperComponent extends AbstractComponentType {
     public void update() {
         preMan.stop();
         preMan = new PresenceManager();
+        preMan.addPresenceEventListener(new PresenceListener() {
+            @Override
+            public void presenceEvent(String message) {
+                sendMessage(message);
+            }
+        });
     }
 
 
