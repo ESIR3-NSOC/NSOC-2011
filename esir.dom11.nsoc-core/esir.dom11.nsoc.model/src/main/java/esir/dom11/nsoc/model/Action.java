@@ -12,7 +12,7 @@ public class Action {
 
     private UUID _id;           //  dao key
     private Actuator _actuator;
-    private Object _value;
+    private String _value;
 
     /*
      * Constructors
@@ -22,13 +22,13 @@ public class Action {
         _id = UUID.randomUUID();
     }
     
-    public Action(Actuator actuator, Object value) {
+    public Action(Actuator actuator, String value) {
         _id = UUID.randomUUID();
         _actuator = actuator;
         _value = value;
     }
 
-    public Action(UUID id, Actuator actuator, Object value) {
+    public Action(UUID id, Actuator actuator, String value) {
         _id = id;
         _actuator = actuator;
         _value = value;
@@ -54,7 +54,7 @@ public class Action {
         return _value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(String value) {
         _value = value;
     }
 
