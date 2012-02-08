@@ -1,15 +1,15 @@
 package esir.dom11.nsoc.context.presence;
 
-public class PresenceAgenda{
+public class PresenceAgendaEvent {
 
     String name;
     boolean presence;
 
-    public PresenceAgenda() {
+    public PresenceAgendaEvent() {
 
     }
 
-    public PresenceAgenda(String name, boolean presence) {
+    public PresenceAgendaEvent(String name, boolean presence) {
         this.name = name;
         this.presence = presence;
     }
