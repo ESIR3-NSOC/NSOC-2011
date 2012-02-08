@@ -23,7 +23,7 @@ import java.util.LinkedList;
 @Requires({
         @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true),
+        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
@@ -38,8 +38,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 
         commandList = new LinkedList<Command>();
 
-        while(true)
-        {
+
         LinkedList<Action> list = new LinkedList<Action>();
         Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
         Action action = new Action(actuator, "true");
@@ -48,6 +47,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
         //send command
         send2Conflict(command);
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -67,7 +67,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             } catch (InterruptedException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-        }
+
         //another test
  /*      LinkedList<Object> params = new LinkedList<Object>();
 
