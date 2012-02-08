@@ -23,6 +23,7 @@
             <groupId>esir.dom11.nsoc</groupId>
             <artifactId>esir.dom11.nsoc.model</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.kevoree.tools</groupId>

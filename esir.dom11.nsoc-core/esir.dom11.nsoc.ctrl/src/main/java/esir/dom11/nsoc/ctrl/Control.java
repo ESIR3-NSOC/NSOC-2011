@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.service.IDbService;
 import esir.dom11.nsoc.service.IServerService;
 import esir.dom11.nsoc.service.RequestResult;
@@ -22,7 +23,7 @@ import java.util.LinkedList;
 @Requires({
         @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true),
+  //      @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
@@ -38,23 +39,42 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         commandList = new LinkedList<Command>();
 
 
-   /*     LinkedList<Action> list = new LinkedList<Action>();
-        Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
-        Action action = new Action(actuator, (double) 10);
+        LinkedList<Action> list = new LinkedList<Action>();
+        Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+        Action action = new Action(actuator, "false");
 
         list.add(action);
         Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
         //send command
         send2Conflict(command);
-     */
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+            //--------
+            LinkedList<Action> list2 = new LinkedList<Action>();
+            Actuator actuator2 = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+            Action action2 = new Action(actuator2, "true");
+
+            list.add(action2);
+            Command command2 = new Command(list2, Category.USER,(long) 0, (long) 0 ) ;
+            //send command
+            send2Conflict(command2);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+
         //another test
-       LinkedList<Object> params = new LinkedList<Object>();
+ /*      LinkedList<Object> params = new LinkedList<Object>();
 
         RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
         if (result.isSuccess()) {
             System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
         }
-
+   */
        // HmiRequest ic = new HmiRequest();
        // LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
@@ -65,7 +85,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 /*        //Brain starting
         theBrain = new TheBrain();
         theBrain.createRoom("B", "930");
-*/    }
+*/   }
 
     @Stop
     public void stop() {
@@ -130,8 +150,8 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             for(int i = 0; i < commandList.size(); i ++){
                 if(result.getResult() == commandList.get(i).getId()){
                     System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                    send2HMI(commandList.get(i));
-                    sendCommand2DAO(commandList.get(i));
+                  //  send2HMI(commandList.get(i));
+                  //  sendCommand2DAO(commandList.get(i));
                     commandList.remove(i);
                     break;
                 }
@@ -140,14 +160,14 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     }
     //Send an actions list (= command) to conflict
     public void send2Conflict(Command command) {
-        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
+        System.out.println("Control : send2Conflict : " + command.getActionList());
         commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
     }
 
 
 
-	//send everything that could have been modified
+	/*//send everything that could have been modified
 	public void sendData2DAO(Data data) {
         System.out.println("Control : send2DAO data");
         getPortByName("DAO", IDbService.class).create((data));
@@ -155,7 +175,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 	public void sendCommand2DAO(Command command) {
         System.out.println("Control : send2DAO command");
         getPortByName("DAO", IDbService.class).create((command));
-	}
+	}                  */
     public RequestResult getData(Date begin, Date end, String location, DataType type){
         LinkedList<Object> params = new LinkedList<Object>();
 
@@ -186,7 +206,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
        //     theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
             System.out.println("Control : Sensor data in " +sensor.getSensor().getLocation() + " send to theBrain");
             //send new data to the DAO
-            sendData2DAO(sensor);
+         //   sendData2DAO(sensor);
         }
     }
     //send request to receive value of sensor
