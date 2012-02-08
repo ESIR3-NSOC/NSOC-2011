@@ -4,7 +4,7 @@ import javax.swing.event.EventListenerList;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class AgendaChecker extends Thread implements AgendaEventListener {
+public class AgendaChecker extends Thread implements AgendaCheckerListener {
 
     private boolean active;
     private LinkedList<AgendaEvent> events;
@@ -53,7 +53,7 @@ public class AgendaChecker extends Thread implements AgendaEventListener {
     }
 
     public void checkEvents(Date date) {
-        for (AgendaEvent event : events) {
+        for (AgendaEvent event : this.events) {
             if (Math.abs(
                     date.getTime() - event.getStart().getTime()) < 500) {
                 // start of an event
@@ -66,15 +66,14 @@ public class AgendaChecker extends Thread implements AgendaEventListener {
         }
     }
 
-
-    public void addAgendaEventListener(AgendaEventListener l) {
-        this.listenerList.add(AgendaEventListener.class, l);
+    public void addAgendaEventListener(AgendaCheckerListener l) {
+        this.listenerList.add(AgendaCheckerListener.class, l);
     }
 
     @Override
     public void eventStart() {
-        AgendaEventListener[] listeners = (AgendaEventListener[])
-                listenerList.getListeners(AgendaEventListener.class);
+        AgendaCheckerListener[] listeners = (AgendaCheckerListener[])
+                listenerList.getListeners(AgendaCheckerListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
             listeners[i].eventStart();
         }
@@ -82,8 +81,8 @@ public class AgendaChecker extends Thread implements AgendaEventListener {
 
     @Override
     public void eventStop() {
-        AgendaEventListener[] listeners = (AgendaEventListener[])
-                listenerList.getListeners(AgendaEventListener.class);
+        AgendaCheckerListener[] listeners = (AgendaCheckerListener[])
+                listenerList.getListeners(AgendaCheckerListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
             listeners[i].eventStop();
         }
