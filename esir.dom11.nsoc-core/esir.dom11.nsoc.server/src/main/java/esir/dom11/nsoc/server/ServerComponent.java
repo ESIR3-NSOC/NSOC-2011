@@ -8,7 +8,9 @@ package esir.dom11.nsoc.server;
  * To change this template use File | Settings | File Templates.
  */
 
+import esir.dom11.nsoc.ctrl.Control;
 import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.HmiRequest;
 import org.kevoree.annotation.*;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Port;
@@ -19,14 +21,10 @@ import java.util.LinkedList;
 
 @Library(name = "NSOC_2011")
 
-// output port (HMI -> CTRL)
-@Requires({
-        @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true)
-})
 
 // input port (CTRL -> HMI)
-@Provides({
-        @ProvidedPort(name = "CTRL", type = PortType.MESSAGE)
+@Requires({
+        @RequiredPort(name = "CTRL", type = PortType.SERVICE, className = Control.class)
 })
 
 @DictionaryType({
@@ -60,11 +58,11 @@ public class ServerComponent extends AbstractComponentType {
         startComponent();
     }
 
-    @Port(name = "CTRL")
-    public void receiveToIhm(Object dataList){
-       //make test on the object
-       LocalStorage.getLocalStorageObject().setAllData((LinkedList<Data>) dataList);
+
+    public LinkedList<Data> sendGetRequest(HmiRequest hmir){
+         return (LinkedList<Data>) getPortByName("CTRL", Control.class).receiveHMI(hmir, "getFromHmi");
     }
+
 
     //send the message through the require port
     public void sendMessage(Object message){

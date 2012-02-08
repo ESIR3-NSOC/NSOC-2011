@@ -3,10 +3,11 @@ package esir.dom11.nsoc.model;
 import esir.dom11.nsoc.model.device.Device;
 import esir.dom11.nsoc.model.device.Sensor;
 
+import java.io.*;
 import java.util.Date;
 import java.util.UUID;
 
-public class Data implements Comparable<Data> {
+public class Data implements Comparable<Data>, Serializable {
 
     /*
      * Attributes
@@ -82,6 +83,21 @@ public class Data implements Comparable<Data> {
             return -1;
         }
         return 0;
+    }
+
+    public byte[] serialize(Object object){
+        byte[] buf = null;
+        try{
+            ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
+            ObjectOutput out = new ObjectOutputStream(bos) ;
+            out.writeObject(object);
+            out.close();
+            buf = bos.toByteArray();
+        }
+        catch (IOException e){
+            System.out.println("Exception :"+e);
+        }
+        return buf;
     }
 
     /*

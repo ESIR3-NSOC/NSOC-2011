@@ -105,9 +105,9 @@
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
-	[request startAsynchronous];
-	
-	
+	[request startSynchronous];
+	NSLog(@"Result : ");
+	NSLog(@"res: %@",[request responseString]);
 }
 
 // send the GET request to fetch details for a DataType
@@ -123,8 +123,10 @@
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setDelegate:self];
+	//[request setDelegate:self];
 	[request startSynchronous];
+	NSLog(@"response get all: %@", [request responseString]);
+	
 }
 
 

@@ -11,7 +11,7 @@ public final class LocalStorage {
     private static ServerComponent _sc;
     private static LocalStorage _reference;
     private LinkedList<Data> _info;
-
+    private LinkedList<byte[]> _infoToArray;
 
    // get the singleton of the class
     public static LocalStorage getLocalStorageObject(){
@@ -22,8 +22,9 @@ public final class LocalStorage {
     }
 
     // get all data saved by the Controller
-    public LinkedList<Data> getAllData(){
-        return _info;
+    public LinkedList<byte[]> getAllData(){
+        //return _info;
+        return _infoToArray;
     }
     // get the reference to the ServerComponent
     public ServerComponent getServerComponent(){
@@ -39,6 +40,17 @@ public final class LocalStorage {
         _info = info;
         System.out.println("LocalStorage filled!");
 
+    }
+
+    public void setAllDataToArray(LinkedList <Data> info){
+        LinkedList<byte[]> list = null;
+        Data obj = new Data();
+
+        for(int i = 0; i < info.size(); i++ ){
+           list.add(obj.serialize(info.get(i)));
+        }
+        _infoToArray = list;
+        //_infoToArray = info;
     }
 
 }

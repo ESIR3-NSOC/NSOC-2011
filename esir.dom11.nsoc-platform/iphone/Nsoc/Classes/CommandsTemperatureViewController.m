@@ -21,7 +21,7 @@
 	
 	//initialize the values
 	COMFORTTEMP = [[NSNumber alloc] initWithInt:20];
-	idActionArray = [[NSArray alloc] initWithObjects:@"8e207b0a-c052-4e55-8aef-840eb73fe3edv", nil];
+	idActionArray = [[NSArray alloc] initWithObjects:@"8e207b0a-c052-4e55-8aef-840eb73fe3eda", nil];
 	idActuatorArray = [[NSArray alloc] initWithObjects:@"da5ca0b3-3139-48d1-baed-128cb3869568", nil];
 
 	

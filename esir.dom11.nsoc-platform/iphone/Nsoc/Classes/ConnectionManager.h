@@ -36,8 +36,8 @@
 - (void) allDataFromDatatype:(NSString *)datatype 
 					building:(NSString *)building
 						room:(NSString *)room
-				   beginDate:(NSDate *)beginDate 
-					 endDate:(NSDate *)endDate;
+				   beginDate:(NSDate *)bDate 
+					 endDate:(NSDate *)eDate;
 
 /**
  *	POST Requests

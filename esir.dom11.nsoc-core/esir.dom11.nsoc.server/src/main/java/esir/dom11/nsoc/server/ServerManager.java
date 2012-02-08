@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.server;
 
 import esir.dom11.nsoc.model.Action;
+import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
 import esir.dom11.nsoc.model.device.Actuator;
@@ -164,7 +165,10 @@ public class ServerManager extends ServerResource{
             }
             else { return "Your url is not correct"; }
 
-            return LocalStorage.getLocalStorageObject().getAllData();
+            ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+
+            return sc.sendGetRequest(hr);
+            //return "Results sent!";
         }
     }
 
@@ -180,7 +184,7 @@ public class ServerManager extends ServerResource{
          *  Double value
          */
         System.out.println("Post command received!");
-        System.out.println("idAction: "+form.getValues("idAction")+" \n " +
+        System.out.println("idAction: "+form.getValues("idAction")+" \n" +
                            "idActuator: "+form.getValues("idActuator")+ " \n"+
                            "datatype: "+form.getValues("datatype") +" \n"+
                            "building: "+form.getValues("building") +" \n"+
@@ -188,7 +192,7 @@ public class ServerManager extends ServerResource{
                            "value: "+form.getValues("value")  +" \n"
         );
 
-        /*
+
         String location = form.getValues("building") + "-" + form.getValues("room");
 
         Actuator actuator = new Actuator(
@@ -207,7 +211,7 @@ public class ServerManager extends ServerResource{
 
         ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
         sc.sendMessage(hr);
-        */
+
     }
 
     @Put
