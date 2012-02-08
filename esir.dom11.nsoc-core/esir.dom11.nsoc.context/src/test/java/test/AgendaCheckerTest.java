@@ -2,13 +2,13 @@ package test;
 
 import esir.dom11.nsoc.context.presence.AgendaChecker;
 import esir.dom11.nsoc.context.presence.AgendaEvent;
-import esir.dom11.nsoc.context.presence.AgendaEventListener;
+import esir.dom11.nsoc.context.presence.AgendaCheckerListener;
 import junit.framework.TestCase;
 
 import java.util.Date;
 import java.util.LinkedList;
 
-public class AgendaTest extends TestCase {
+public class AgendaCheckerTest extends TestCase {
 
     public void testAgenda() {
 
@@ -22,7 +22,7 @@ public class AgendaTest extends TestCase {
         );
 
         AgendaChecker agendaChecker = new AgendaChecker(events);
-        agendaChecker.addAgendaEventListener(new AgendaEventListener() {
+        agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
             @Override
             public void eventStart() {
                 System.out.println("start");

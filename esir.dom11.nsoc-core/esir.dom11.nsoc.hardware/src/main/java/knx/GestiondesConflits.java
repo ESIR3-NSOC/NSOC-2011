@@ -28,12 +28,12 @@ public class GestiondesConflits extends AbstractComponentType {
 
      private Boolean stop = true;
      private String mLocation;
-     private Object Value;
+     private String Value;
     @Start
     public void startComponent() {
         System.out.print("GestiondesConflits: start\n");
         mLocation = (String) this.getDictionary().get("LOCATION");
-        Value = (Object)this.getDictionary().get("Value");
+        Value = (String)this.getDictionary().get("Value");
         System.out.print("Value : " + Value);
         sendBackgroundMessage();
     }
@@ -68,9 +68,15 @@ public class GestiondesConflits extends AbstractComponentType {
                     try {
                         i++;
                         Actuator actuator = new Actuator(DataType.UNKNOWN, mLocation);
-                        Action action = new Action(actuator, Value);
+                        //Action action = new Action(actuator, Value);
+                        Action action = new Action(actuator, "true");
                         sendMessage(action);
-                        Thread.sleep(5000);
+                        Thread.sleep(3000);
+
+                        Action action2 = new Action(actuator, "false");
+                        sendMessage(action2);
+                        Thread.sleep(3000);
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
