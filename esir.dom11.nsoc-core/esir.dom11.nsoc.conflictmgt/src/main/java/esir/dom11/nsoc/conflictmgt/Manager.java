@@ -106,7 +106,7 @@ public class Manager {
         LinkedList<Boolean> commandToSave = new LinkedList<Boolean>();
 
         // Save of the command to process
-        _commandWithTimeout.add(command);
+        _commandBufferList.add(command);
 
         // Retrieve lock times and send authored actions
         for (Action action : command.getActionList()) {
@@ -164,42 +164,62 @@ public class Manager {
     /**
      * updateTimeout(), manage the timeout option. Send the
      */
-    public LinkedList<Action> updateTimeout() {
+    public LinkedList<Action> updateTimeout(){
 
         LinkedList<Integer> tmp1 = new LinkedList<Integer>();
         LinkedList<Command> tmp2 = new LinkedList<Command>();
         LinkedList<Action> tmp3 = new LinkedList<Action>();
+        boolean remove = false;
+        boolean update = false;
 
         for (Command cmd : _commandWithTimeout) {
             LinkedList<Boolean> freedom = new LinkedList<Boolean>();
+            System.out.println("toto1");
 
             //is all the actuators' command now free?
             for (Action action : cmd.getActionList()) {
+                System.out.println("toto2");
                 freedom.push(isActuatorFree(action));
             }
 
+            int index = _commandWithTimeout.indexOf(cmd);
             //see what actuator is free or not
-            if (freedom.contains(false)) {
-                int index = _commandWithTimeout.indexOf(cmd);
+            if (freedom.contains(false)) {    //at least one actuator is not free
+                System.out.println("toto3");
                 if (cmd.getTimeOut() > 0) {
+                    System.out.println("toto4");
                     tmp1.push(index);        //to remove later
                     cmd.setTimeOut(cmd.getTimeOut() - _delay);
                     tmp2.push(cmd);          //to update later
                 } else {
-                    tmp1.push(index);
+                    tmp1.push(index);        //to remove if time is out
                 }
-
-                //remove and update
-                for (int i : tmp1){
-                    _commandWithTimeout.remove(i);
-                }
-                for (Command c : tmp2){
-                    _commandWithTimeout.push(c);
-                }
-                tmp3 = null;
+                remove = true;
+                update = true;
             }
-            else{
-                tmp3 = cmd.getActionList();
+            else{    //all actuators are free
+                System.out.println("toto7");
+                tmp1.push(index);        //to remove if time is out
+                remove = true;
+                LinkedList<Action> l = cmd.getActionList();
+                System.out.println("toto8");
+                for (Action a : l) {
+                    tmp3.add(a);
+                }
+            }
+        }
+
+        //remove and update
+        if (remove){
+            for (int i : tmp1) {
+                System.out.println("toto5");
+                _commandWithTimeout.remove(i);
+            }
+        }
+        if (update){
+            for (Command c : tmp2) {
+                System.out.println("toto6");
+                _commandWithTimeout.push(c);
             }
         }
         return tmp3;
