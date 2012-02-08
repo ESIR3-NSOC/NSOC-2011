@@ -42,10 +42,10 @@ public class EnergyBalanceComp extends AbstractComponentType {
     @Port(name = "consumption")
     public void consumption(Object obj) {
         Data data = (Data) obj;
-        DataType dataType = data.getDevice().getDataType();
+        DataType dataType = data.getSensor().getDataType();
 
         if (dataType == DataType.POWER) {
-            _consumption = data.getValue();
+            _consumption = Double.parseDouble(data.getValue());
         }
         energyBalanceProduced(_consumption - _production);
     }
@@ -53,10 +53,10 @@ public class EnergyBalanceComp extends AbstractComponentType {
     @Port(name = "production")
     public void production(Object obj) {
         Data data = (Data) obj;
-        DataType dataType = data.getDevice().getDataType();
+        DataType dataType = data.getSensor().getDataType();
 
         if (dataType == DataType.POWER) {
-            _production = data.getValue();
+            _production = Double.parseDouble(data.getValue());
         }
         energyBalanceProduced(_consumption - _production);
     }
@@ -69,7 +69,7 @@ public class EnergyBalanceComp extends AbstractComponentType {
                     new Sensor(UUID.randomUUID(),
                             DataType.POWER,
                             "context"),
-                    energyBalance,
+                    Double.toString(energyBalance),
                     new Date());
             energyBalancePort.process(energyData);
         }
