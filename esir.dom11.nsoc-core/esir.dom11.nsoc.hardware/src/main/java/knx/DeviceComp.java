@@ -82,7 +82,7 @@ public class DeviceComp extends AbstractComponentType {
         if (connectionManager.getProtocol().equals("knx")) {
             if (mDevice.equals("Actuator")) {
                 System.out.println("DeviceComp: Receive Action");
-                connectionManager.write(mAddressActuator, Boolean.valueOf(action.getValue().toString()).booleanValue());
+                connectionManager.write(mAddressActuator, Boolean.valueOf(action.getValue()).booleanValue());
             } else if (mDevice.equals("Sensor")) {
                 System.out.println("DeviceComp: Send Data");
             }
