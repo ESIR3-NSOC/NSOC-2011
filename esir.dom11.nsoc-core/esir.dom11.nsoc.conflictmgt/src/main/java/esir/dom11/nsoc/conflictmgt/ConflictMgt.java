@@ -20,12 +20,12 @@ import java.util.*;
 import static java.lang.Thread.sleep;
 
 @Provides({
-        @ProvidedPort(name = "cmdFromCtrl", type = PortType.MESSAGE)
+        @ProvidedPort(name = "Conflict", type = PortType.MESSAGE)
 })
 @Requires({
         @RequiredPort(name = "actToActuator", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "log", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "respToCtrl", type = PortType.MESSAGE, optional = true)
+        @RequiredPort(name = "RConflict", type = PortType.MESSAGE, optional = true)
 })
 @Library(name = "NSOC_2011")
 @ComponentType
@@ -90,7 +90,7 @@ public class ConflictMgt extends AbstractComponentType {
      *
      * @param command Command
      */
-    @Port(name = "cmdFromCtrl")
+    @Port(name = "Conflict")
     public void cmdFromCtrl(Object command) {
 
         Command cmd = (Command) command;
@@ -100,7 +100,11 @@ public class ConflictMgt extends AbstractComponentType {
         if (actLst != null) {
             for (Action a : actLst) {
                 send2Actuator(a);
+                HashMap<UUID,Long> tmp = mng.get_lockActuatorMap();
+                tmp.put(a.getActuator().getId(),cmd.getLock());
+                mng.set_lockActuatorMap(tmp);
             }
+            resp2Ctrl(cmd.getId(), true);            
         }
     }
 
@@ -116,7 +120,7 @@ public class ConflictMgt extends AbstractComponentType {
         mng.set_lastActuatorActionMap(am);
 
         getPortByName("actToActuator", MessagePort.class).process(action);
-        resp2Ctrl(action.getId(), true);
+        
     }
 
     /**
@@ -133,7 +137,7 @@ public class ConflictMgt extends AbstractComponentType {
      * @param resp
      */
     public void resp2Ctrl(UUID id, boolean resp) {
-        getPortByName("respToCtrl", MessagePort.class).process(new RequestResult(id, resp));
+        getPortByName("RConflict", MessagePort.class).process(new RequestResult(id, resp));
     }
 
     private void saveInDb() {
