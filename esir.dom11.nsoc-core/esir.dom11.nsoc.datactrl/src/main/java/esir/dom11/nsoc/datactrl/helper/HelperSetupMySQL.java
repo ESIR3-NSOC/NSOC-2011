@@ -56,7 +56,7 @@ public class HelperSetupMySQL extends HelperSetup {
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `actions` (" +
                             "  `id` varchar(36) COLLATE utf8_bin NOT NULL," +
                             "  `id_actuator` varchar(36) COLLATE utf8_bin NOT NULL," +
-                            "  `value` double NOT NULL," +
+                            "  `value` varchar(20) NOT NULL," +
                             "  PRIMARY KEY (`id`)" +
                             ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin");
 
@@ -93,7 +93,7 @@ public class HelperSetupMySQL extends HelperSetup {
                     .executeUpdate("CREATE TABLE IF NOT EXISTS `datas` (" +
                             "  `id` varchar(36) COLLATE utf8_bin NOT NULL," +
                             "  `id_device` varchar(36) COLLATE utf8_bin NOT NULL," +
-                            "  `value` double NOT NULL," +
+                            "  `value` varchar(20) NOT NULL," +
                             "  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'," +
                             "  PRIMARY KEY (`id`)" +
                             ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin");
@@ -183,8 +183,8 @@ public class HelperSetupMySQL extends HelperSetup {
             if(result.first()) {
                 dataList.add(new Data(
                         UUID.fromString(result.getString("id")),
-                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
-                        result.getDouble("value"),
+                        (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
+                        result.getString("value"),
                         result.getDate("date")));
             }
         } catch (SQLException exception) {

@@ -1,9 +1,8 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
-import esir.dom11.nsoc.model.device.Actuator;
-import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.IDbService;
+import esir.dom11.nsoc.service.IServerService;
 import esir.dom11.nsoc.service.RequestResult;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
@@ -14,7 +13,8 @@ import java.util.LinkedList;
 @Library(name = "NSOC_2011")
 @ComponentType
 @Provides({
-        @ProvidedPort(name = "RHMI", type = PortType.SERVICE, className = Control.class),
+        @ProvidedPort(name = "RHMI", type = PortType.SERVICE, className = IServerService.class),
+        @ProvidedPort(name = "postFromHmi", type = PortType.MESSAGE) ,
         @ProvidedPort(name = "RContext", type = PortType.MESSAGE) ,
         @ProvidedPort(name = "RConflict", type = PortType.MESSAGE),
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
@@ -26,7 +26,7 @@ import java.util.LinkedList;
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
 
-public class Control extends AbstractComponentType implements ctrlInterface {
+public class Control extends AbstractComponentType implements ctrlInterface,IServerService {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
 
@@ -46,8 +46,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         //send command
         send2Conflict(command);
      */
+        //another test
+  /*      LinkedList<Object> params = new LinkedList<Object>();
 
-
+        RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
+        if (result.isSuccess()) {
+            System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
+        }
+ */
        // HmiRequest ic = new HmiRequest();
        // LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
@@ -77,13 +83,12 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 
 
 
-
     @Port(name = "RHMI", method = "getFromHmi")
     //HMI ask us for some data
-    public Object getFromHmi(Object o, Object id) {
+    public LinkedList<Data> getFromHmi(Object o) {
         System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
-        Object object = null;
+        LinkedList<Data> object = null;
         //HMI ask for data
         for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
             RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
@@ -138,8 +143,6 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
     }
-
-
 
 
 

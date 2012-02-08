@@ -1,6 +1,10 @@
 package esir.dom11.nsoc.datactrl.dao.model.mongodb;
 
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactory;
+import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
 import junit.framework.TestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
 public class TestDataDAOMongoDb extends TestCase {
@@ -35,7 +40,7 @@ public class TestDataDAOMongoDb extends TestCase {
         initProperties();
         _daoFactory = DAOFactory.getFactory(_dbProperties);
         _daoFactory.getHelperSetup().setupTable();
-        _daoFactory.getHelperSetup().setupData();
+        //_daoFactory.getHelperSetup().setupData();
     }
 
     /*
@@ -43,23 +48,28 @@ public class TestDataDAOMongoDb extends TestCase {
      */
 
     public void testCRUDData() {
-        /*Data data = new Data(DataType.TEMPERATURE,"temp-int-salle930",19.6, new Date());
+
+        Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
+        System.out.println("New device: "+sensor);
+        // Save device
+        Sensor sensorSave = (Sensor)_daoFactory.getDeviceDAO().create(sensor);
+        System.out.println("Saved device: "+sensorSave);
+
+        Data data = new Data(sensor,"19.6", new Date());
         logger.info("New Data:" + data.toString());
-        System.out.println("New Data:" + data.toString());
 
         Data createData = _daoFactory.getDataDAO().create(data);
         assertNotNull(createData);
         logger.info("Data Saved:" + createData.toString());
-        System.out.println("Data Saved:" + createData.toString());
 
         Data retrieveData = _daoFactory.getDataDAO().retrieve(data.getId());
         assertNotNull(retrieveData);
         logger.info("Data Retrieve:" + retrieveData.toString());
-        System.out.println("Data Retrieve:" + retrieveData.toString());
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
-        System.out.println("Data Delete");*/
+
+        _daoFactory.getDeviceDAO().delete(sensor.getId());
     }
 
     /*
