@@ -49,18 +49,15 @@ public class TestDAOMySQL extends TestCase {
 
     public void testCRUDData() {
 
-        Device device = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
-        System.out.println("New device: "+device);
+        Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
         // Save device
-        Device deviceSave = _daoFactory.getDeviceDAO().create(device);
-        System.out.println("Saved device: "+deviceSave);
+        Sensor sensorSave = (Sensor)_daoFactory.getDeviceDAO().create(sensor);
 
-        Data data = new Data(device,19.6, new Date());
+        Data data = new Data(sensor,"19.6", new Date());
         logger.info("New Data:" + data.toString());
 
         Data createData = _daoFactory.getDataDAO().create(data);
         assertNotNull(createData);
-        logger.info("Data Saved:" + createData.toString());
 
         Data retrieveData = _daoFactory.getDataDAO().retrieve(data.getId());
         assertNotNull(retrieveData);
@@ -69,7 +66,7 @@ public class TestDAOMySQL extends TestCase {
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
 
-        _daoFactory.getDeviceDAO().delete(device.getId());
+        _daoFactory.getDeviceDAO().delete(sensor.getId());
     }
 
     public void testCRUDLog() {
@@ -89,24 +86,23 @@ public class TestDAOMySQL extends TestCase {
     }
 
     public void testCRUDCommand() {
-        Actuator actuator = new Actuator(DataType.TEMPERATURE,"bat 7");
+        Actuator actuator = new Actuator(DataType.TEMPERATURE,"bat7/930");
 
         LinkedList<Action> actionList = new LinkedList<Action>();
-
         logger.info("New Actuator:" + actuator.toString());
-        Action act1 = new Action(actuator,1);
+        Action act1 = new Action(actuator,"1");
         actionList.add(act1);
         logger.info("New Action:" + act1.toString());
-        Action act2 = new Action(actuator,2);
+        Action act2 = new Action(actuator,"2");
         actionList.add(act2);
         logger.info("New Action:" + act2.toString());
-        Action act3 = new Action(actuator,3);
+        Action act3 = new Action(actuator,"3");
         actionList.add(act3);
         logger.info("New Action:" + act3.toString());
-        Action act4 = new Action(actuator,4);
+        Action act4 = new Action(actuator,"4");
         actionList.add(act4);
         logger.info("New Action:" + act4.toString());
-        Action act5 = new Action(actuator,5);
+        Action act5 = new Action(actuator,"5");
         actionList.add(act5);
         logger.info("New Action:" + act5.toString());
 
@@ -115,6 +111,7 @@ public class TestDAOMySQL extends TestCase {
         Command createCommand = _daoFactory.getCommandDAO().create(cmd);
         assertEquals(createCommand.getId().toString(),"00000000-0000-0000-0000-000000000000");
         logger.info("Command Saved:" + createCommand.toString());
+        System.out.println("Command Saved:" + createCommand.toString());
 
         Command retrieveCommand = _daoFactory.getCommandDAO().retrieve(cmd.getId());
         assertNotNull(retrieveCommand);
@@ -126,17 +123,17 @@ public class TestDAOMySQL extends TestCase {
     
     public void testFindByDate() {
 
-        Device device = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
-        System.out.println("New device: "+device);
+        Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
+        System.out.println("New device: "+sensor);
         // Save device
-        Device deviceSave = _daoFactory.getDeviceDAO().create(device);
+        Device deviceSave = _daoFactory.getDeviceDAO().create(sensor);
         System.out.println("Saved device: "+deviceSave);
 
-        Data data1 = new Data(device,19.6, new Date(new Long("1326098200720")));
-        Data data2 = new Data(device,19.6, new Date(new Long("1326098202743")));
-        Data data3 = new Data(device,19.6, new Date(new Long("1326098204754")));
-        Data data4 = new Data(device,19.6, new Date(new Long("1326098206765")));
-        Data data5 = new Data(device,19.6, new Date(new Long("1326098208787")));
+        Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098200720")));
+        Data data2 = new Data(sensor,"19.6", new Date(new Long("1326098202743")));
+        Data data3 = new Data(sensor,"19.6", new Date(new Long("1326098204754")));
+        Data data4 = new Data(sensor,"19.6", new Date(new Long("1326098206765")));
+        Data data5 = new Data(sensor,"19.6", new Date(new Long("1326098208787")));
 
         System.out.println(_daoFactory.getDataDAO().create(data1));
         _daoFactory.getDataDAO().create(data2);
@@ -158,7 +155,7 @@ public class TestDAOMySQL extends TestCase {
         _daoFactory.getDataDAO().delete(data4.getId());
         _daoFactory.getDataDAO().delete(data5.getId());
 
-        _daoFactory.getDeviceDAO().delete(device.getId());
+        _daoFactory.getDeviceDAO().delete(sensor.getId());
     }
 
     /*

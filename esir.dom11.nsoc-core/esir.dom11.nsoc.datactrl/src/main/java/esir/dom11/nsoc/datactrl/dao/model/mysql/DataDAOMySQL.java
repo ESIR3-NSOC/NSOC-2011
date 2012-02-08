@@ -5,6 +5,7 @@ import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactoryMySQL;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Sensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +52,7 @@ public class DataDAOMySQL implements DataDAO {
             try {
                 String statement = "INSERT INTO datas (id, id_device, value, date)"
                         + " VALUES('" + data.getId() + "',"
-                        + " '" + data.getDevice().getId() + "',"
+                        + " '" + data.getSensor().getId() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -75,8 +76,8 @@ public class DataDAOMySQL implements DataDAO {
             if(result.first()) {
                 data = new Data(
                         id,
-                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
-                        result.getDouble("value"),
+                        (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
+                        result.getString("value"),
                         result.getDate("date"));
             }
         } catch (SQLException exception) {
@@ -122,8 +123,8 @@ public class DataDAOMySQL implements DataDAO {
             result.beforeFirst();
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString("da.id")),
-                                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("da.id_device"))),
-                                        result.getDouble("value"),result.getDate("date")));
+                                        (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("da.id_device"))),
+                                        result.getString("value"),result.getDate("date")));
             }
         } catch (SQLException exception) {
             logger.error("Data find by date error", exception);

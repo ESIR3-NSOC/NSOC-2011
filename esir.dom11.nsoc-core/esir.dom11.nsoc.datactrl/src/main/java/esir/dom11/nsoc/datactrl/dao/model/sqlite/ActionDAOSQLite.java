@@ -76,7 +76,7 @@ public class ActionDAOSQLite implements ActionDAO {
             if(result.next()) {
                 action = new Action(id,
                         (Actuator)_daoFactorySQLite.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_actuator"))),
-                        result.getDouble("value"));
+                        result.getString("value"));
             }
         } catch (SQLException exception) {
             logger.error("Action retrieve error", exception);

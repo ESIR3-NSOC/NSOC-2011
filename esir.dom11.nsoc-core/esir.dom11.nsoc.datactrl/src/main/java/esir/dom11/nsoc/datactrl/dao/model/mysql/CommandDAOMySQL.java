@@ -47,31 +47,41 @@ public class CommandDAOMySQL implements CommandDAO {
     @Override
     public Command create(Command command) {
         Command newCommand = retrieve(command.getId());
-        if (newCommand.getId()==null) {
-
-            StringBuilder statement = new StringBuilder();
-
-            for (Action action : command.getActionList()) {
-                if (_daoFactory.getActionDAO().create(action) != null) {
-                    statement.append("INSERT INTO commands_actions (id_command, id_action)"
-                            + " VALUES('" + command.getId() + "',"
-                            + " '" + action.getId() + "');");
-                }
-            }
-
-            statement.append("INSERT INTO commands (id, id_category, lock, time_out)"
-                    + " VALUES('" + command.getId() + "',"
-                    + " '" + command.getCategory() + "',"
-                    + " '" + command.getLock() + "',"
-                    + " '" + command.getTimeOut() + "')");
-
+        if (newCommand.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {
                 PreparedStatement prepare = _connection.getConnection()
-                                                .prepareStatement(statement.toString());
+                        .prepareStatement("INSERT INTO commands (id, category, `lock`, time_out)"
+                                + " VALUES('" + command.getId() + "',"
+                                + " '" + command.getCategory() + "',"
+                                + " '" + command.getLock() + "',"
+                                + " '" + command.getTimeOut() + "')");
                 prepare.executeUpdate();
                 newCommand = retrieve(command.getId());
             } catch (SQLException exception) {
                 logger.error("Command insert error", exception);
+                System.out.println("Command insert error: "+ exception);
+            }
+
+            StringBuilder statement = new StringBuilder("INSERT INTO commands_actions (id_command, id_action) VALUES");
+            int i = 0;
+            for (Action action : command.getActionList()) {
+                if (_daoFactory.getActionDAO().create(action).toString().compareTo("00000000-0000-0000-0000-000000000000")!=0) {
+                    if (i>0) {
+                        statement.append(",");
+                    }
+                    statement.append("('" + command.getId() + "', '" + action.getId() + "')");
+                    i++;
+                }
+            }
+
+            try {
+                PreparedStatement prepare = _connection.getConnection()
+                        .prepareStatement(statement.toString());
+                prepare.executeUpdate();
+                newCommand = retrieve(command.getId());
+            } catch (SQLException exception) {
+                logger.error("Command insert error (action list): ", exception);
+                System.out.println("Command insert error (action list): "+ exception);
             }
         }
         return newCommand;
@@ -83,7 +93,7 @@ public class CommandDAOMySQL implements CommandDAO {
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT id_command, id_action, category, lock, time_out, id_actuator, value " +
+                    .executeQuery("SELECT id_command, id_action, category, `lock`, time_out, id_actuator, value " +
                                     "FROM commands c " +
                                     "JOIN commands_actions ca ON c.id=ca.id_command " +
                                     "JOIN actions a ON ca.id_action=a.id " +
@@ -95,12 +105,13 @@ public class CommandDAOMySQL implements CommandDAO {
             }
 
             if(result.first()) {
-                command = new Command(id,actionList,Category.valueOf(result.getString("category")),
-                                        result.getLong("category"),
-                                        result.getLong("time_out"));
+                command = new Command(id,actionList,Category.valueOf(result.getString(3)),
+                                        result.getLong(4),
+                                        result.getLong(5));
             }
         } catch (SQLException exception) {
             logger.error("Command retrieve error", exception);
+            System.out.println("Command retrieve error"+ exception);
         }
         return command;
     }
@@ -128,9 +139,11 @@ public class CommandDAOMySQL implements CommandDAO {
 
                 if (!exist) {
                     if (_daoFactory.getActionDAO().create(action) != null) {
-                        statement.append("INSERT INTO commands_actions (id_command, id_action)"
-                                + " VALUES('" + command.getId() + "',"
-                                + " '" + action.getId() + "');");
+                        _connection.getConnection()
+                                .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                                .executeUpdate("INSERT INTO commands_actions (id_command, id_action)"
+                                        + " VALUES('" + command.getId() + "',"
+                                        + " '" + action.getId() + "')");
                     }
                 }
             }
@@ -138,14 +151,12 @@ public class CommandDAOMySQL implements CommandDAO {
             // Delete others
             result.beforeFirst();
             while (result.next()) {
-                statement.append("DELETE FROM commands_actions " +
-                                    "WHERE id_command='"+ command.getId() +"' " +
-                                    "AND id_action='" + result.getString("id_action") + "';");
+                _connection.getConnection()
+                        .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                        .executeUpdate("DELETE FROM commands_actions " +
+                                "WHERE id_command='"+ command.getId() +"' " +
+                                "AND id_action='" + result.getString("id_action") + "';");
             }
-
-            _connection.getConnection()
-                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeUpdate(statement.toString());
 
             command = this.retrieve(command.getId());
         } catch (SQLException exception) {
