@@ -38,7 +38,7 @@ public interface ctrlInterface {
     //Use of listeners
     
     //HMI ask us for some data
-    Object getFromHmi(Object o, Object id);
+
     void postFromHmi(Object o);
     //Conflict ask us for some data
     void receiveConflict(Object o);
