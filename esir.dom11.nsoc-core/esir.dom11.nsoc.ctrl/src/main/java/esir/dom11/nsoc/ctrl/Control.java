@@ -29,11 +29,16 @@ import java.util.LinkedList;
 public class Control extends AbstractComponentType implements ctrlInterface {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
-    private LinkedList<Data> list2;
+    private boolean validateCommand;
+
+
 
     @Start
     public void start() {
         System.out.println("Control : Start");
+
+        commandList = new LinkedList<Command>();
+        validateCommand = false;
 
    /*     LinkedList<Action> list = new LinkedList<Action>();
         Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
@@ -44,7 +49,7 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         //send command
         send2Conflict(command);
      */
-        commandList = new LinkedList<Command>();
+
 
        // HmiRequest ic = new HmiRequest();
        // LinkedList<DataType> datatypes = new LinkedList<DataType>();
@@ -120,41 +125,34 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         getPortByName("Sensors",MessagePort.class).process(dataType);
     }
 
-    @Port(name = "RHMI", method = "receiveHMI")
+    @Port(name = "RHMI", method = "getFromHmi")
 	//HMI ask us for some data
-	public Object receiveHMI(Object o, Object id) {
+	public Object getFromHmi(Object o, Object id) {
 		System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         Object object = null;
-        if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){
-            //HMI ask for data
-            for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
-                RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
-                if (result.isSuccess()) {
-                    object = (LinkedList<Data>) result.getResult();
-
-                }
+        //HMI ask for data
+        for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+            RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
+            if (result.isSuccess()) {
+                object = (LinkedList<Data>) result.getResult();
             }
-        }
-        else if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.POST)){
-            //HMI send action
-            //create a command
-            LinkedList<Action> list = new LinkedList<Action>();
-            list.add(HMIAction.getAction());
-            Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-            //send command
-            send2Conflict(command);
-
-            //test
-
-            object = command;
-        }
-        else{
-            System.out.println("bad action!");
-
         }
         return object;
 	}
+    @Port(name = "RHMI", method = "postFromHmi")
+    //HMI ask us for some data
+    public Object postFromHmi(Object o, Object id) {
+        //HMI send action
+        HmiRequest HMIAction = (HmiRequest) o;
+        //create a command
+        LinkedList<Action> list = new LinkedList<Action>();
+        list.add(HMIAction.getAction());
+        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+        //send command
+        send2Conflict(command);
+        return command;
+    }
 
 	@Port(name = "RConflict")
 	//Conflict ask us for some data
