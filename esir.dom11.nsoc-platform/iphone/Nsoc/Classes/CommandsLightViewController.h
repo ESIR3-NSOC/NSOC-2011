@@ -10,7 +10,15 @@
 
 
 @interface CommandsLightViewController : UIViewController {
-
+	UISwitch *dinningSwitch;
+	UISwitch *kitchenSwitch;
+	UISwitch *bedroomSwitch;
 }
+
+@property (nonatomic, retain) IBOutlet UISwitch *dinningSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *kitchenSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *bedroomSwitch;
+
+-(IBAction) changeValue:(id) sender;
 
 @end
