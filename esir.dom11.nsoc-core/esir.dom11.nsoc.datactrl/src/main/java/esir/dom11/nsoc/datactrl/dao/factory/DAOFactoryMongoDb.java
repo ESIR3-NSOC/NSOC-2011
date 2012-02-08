@@ -37,7 +37,7 @@ public class DAOFactoryMongoDb extends DAOFactory {
 
     @Override
     public DataDAO getDataDAO() {
-        return new DataDAOMongoDb((ConnectionDbMongoDb)_connectionDb);
+        return new DataDAOMongoDb((ConnectionDbMongoDb) _connectionDb);
     }
 
     @Override
