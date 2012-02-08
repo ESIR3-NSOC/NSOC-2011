@@ -77,7 +77,7 @@ public class DataDAOSQLite implements DataDAO {
                     .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.next()) {
-                DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm.ss.SSS");
                 data = new Data(
                         id,
                         (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
@@ -130,7 +130,7 @@ public class DataDAOSQLite implements DataDAO {
                             "AND de.location='" + location + "' " +
                             "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
-            DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString(1)),
                         (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString(2))),
