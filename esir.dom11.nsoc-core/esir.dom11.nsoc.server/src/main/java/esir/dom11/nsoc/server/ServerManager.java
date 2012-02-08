@@ -167,8 +167,18 @@ public class ServerManager extends ServerResource{
 
             ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
 
-            return sc.sendGetRequest(hr);
-            //return "Results sent!";
+            LinkedList<Data> result = sc.sendGetRequest(hr);
+            if(result == null){
+                return "No data provided";
+            }
+
+            // we have to send serialized Data
+            LinkedList<String> sendData = new LinkedList<String>();
+            for(int i=0; i< result.size(); i++){
+                sendData.add(result.get(i).serialized());
+            }
+
+            return sendData;
         }
     }
 
@@ -204,14 +214,13 @@ public class ServerManager extends ServerResource{
         Action action = new Action(
                 UUID.fromString(form.getValues("idAction")),
                 actuator,
-                Double.parseDouble(form.getValues("value"))
+                form.getValues("value")
         );
 
         HmiRequest hr = new HmiRequest(location, action);
 
         ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
         sc.sendMessage(hr);
-
     }
 
     @Put

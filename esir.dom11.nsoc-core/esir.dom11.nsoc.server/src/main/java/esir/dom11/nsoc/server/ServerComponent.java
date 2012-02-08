@@ -9,6 +9,7 @@ package esir.dom11.nsoc.server;
  */
 
 import esir.dom11.nsoc.ctrl.Control;
+import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.HmiRequest;
 import org.kevoree.annotation.*;
@@ -24,7 +25,12 @@ import java.util.LinkedList;
 
 // input port (CTRL -> HMI)
 @Requires({
-        @RequiredPort(name = "CTRL", type = PortType.SERVICE, className = Control.class)
+        @RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = Control.class),
+        @RequiredPort(name = "postCTRL", type = PortType.MESSAGE)
+})
+
+@Provides({
+        @ProvidedPort(name = "fromCTRL", type = PortType.MESSAGE)
 })
 
 @DictionaryType({
@@ -60,13 +66,19 @@ public class ServerComponent extends AbstractComponentType {
 
 
     public LinkedList<Data> sendGetRequest(HmiRequest hmir){
-         return (LinkedList<Data>) getPortByName("CTRL", Control.class).receiveHMI(hmir, "getFromHmi");
+         return (LinkedList<Data>) getPortByName("CTRL", Control.class).getFromHmi(hmir, "getFromHmi");
     }
 
+    // Be careful
+    // The Controller can send null response.
+    @Port(name = "fromCTRL")
+    public Command receiveFromCtrl(Object obj){
+        return (Command) obj;
+    }
 
     //send the message through the require port
     public void sendMessage(Object message){
-        MessagePort prodPort = getPortByName("HMI", MessagePort.class);
+        MessagePort prodPort = getPortByName("postCTRL", MessagePort.class);
         if(prodPort != null){
             prodPort.process(message);
         }

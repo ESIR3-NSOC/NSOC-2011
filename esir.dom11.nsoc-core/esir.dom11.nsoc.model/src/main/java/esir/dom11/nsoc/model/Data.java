@@ -70,9 +70,13 @@ public class Data {
     @Override
     public String toString() {
         return "\n* * * Data " + getId() + " * * *"
-                + "\nDevice: " + getSensor()
+                + "\nSensor: " + getSensor()
                 + "\nValue: " + getValue()
                 + "\nDate: " + getDate() + "\n";
+    }
+
+    public String serialized(){
+        return "data:"+getId()+",sensor:"+getSensor()+",value:"+getValue()+",date:"+getDate();
     }
 
     /*
