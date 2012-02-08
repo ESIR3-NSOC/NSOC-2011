@@ -20,6 +20,7 @@ import java.util.LinkedList;
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
+        @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
