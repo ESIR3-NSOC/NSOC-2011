@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.service.IDbService;
 import esir.dom11.nsoc.service.IServerService;
 import esir.dom11.nsoc.service.RequestResult;
@@ -37,24 +38,44 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 
         commandList = new LinkedList<Command>();
 
-
-   /*     LinkedList<Action> list = new LinkedList<Action>();
-        Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
-        Action action = new Action(actuator, (double) 10);
+        while(true)
+        {
+        LinkedList<Action> list = new LinkedList<Action>();
+        Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+        Action action = new Action(actuator, "true");
 
         list.add(action);
         Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
         //send command
         send2Conflict(command);
-     */
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+            //--------
+            LinkedList<Action> list2 = new LinkedList<Action>();
+            Actuator actuator2 = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+            Action action2 = new Action(actuator2, "false");
+
+            list.add(action2);
+            Command command2 = new Command(list2, Category.USER,(long) 0, (long) 0 ) ;
+            //send command
+            send2Conflict(command2);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
         //another test
-       LinkedList<Object> params = new LinkedList<Object>();
+ /*      LinkedList<Object> params = new LinkedList<Object>();
 
         RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
         if (result.isSuccess()) {
             System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
         }
-
+   */
        // HmiRequest ic = new HmiRequest();
        // LinkedList<DataType> datatypes = new LinkedList<DataType>();
 
@@ -130,8 +151,8 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             for(int i = 0; i < commandList.size(); i ++){
                 if(result.getResult() == commandList.get(i).getId()){
                     System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                    send2HMI(commandList.get(i));
-                    sendCommand2DAO(commandList.get(i));
+                  //  send2HMI(commandList.get(i));
+                  //  sendCommand2DAO(commandList.get(i));
                     commandList.remove(i);
                     break;
                 }
