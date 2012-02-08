@@ -50,7 +50,7 @@ public class Action {
         _actuator = actuator;
     }
 
-    public Object getValue() {
+    public String getValue() {
         return _value;
     }
 
