@@ -13,7 +13,8 @@ import org.osgi.framework.Bundle;
         @ProvidedPort(name = "presenceAgenda", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "compositeMessage", type = PortType.MESSAGE)
+        // presence prediction
+        @RequiredPort(name = "prediction", type = PortType.MESSAGE, optional = true)
 })
 @DictionaryType({
 
@@ -43,7 +44,8 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
             @Override
             public void presenceEvent(String message) {
-                sendMessage(message);
+                System.out.println("ok");
+               // sendMessage(message);
             }
         });
     }
@@ -60,7 +62,7 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
             @Override
             public void presenceEvent(String message) {
-                sendMessage(message);
+              //  sendMessage(message);
             }
         });
     }
@@ -76,9 +78,10 @@ public class PresenceComp extends AbstractComponentType {
         preMan.getCepRT().sendEvent(agenda);
     }
 
-    public void sendMessage(String messsage) {
-        if (this.isPortBinded("compositeMessage")) {
-            this.getPortByName("compositeMessage", MessagePort.class).process(messsage);
+
+    public void sendPrediction(String messsage) {
+        if (this.isPortBinded("prediction")) {
+            this.getPortByName("prediction", MessagePort.class).process(messsage);
         }
     }
 

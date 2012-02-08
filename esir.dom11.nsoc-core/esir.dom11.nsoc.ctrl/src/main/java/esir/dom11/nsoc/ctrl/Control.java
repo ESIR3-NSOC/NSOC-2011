@@ -20,6 +20,7 @@ import java.util.LinkedList;
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
+        @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
@@ -47,13 +48,13 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         send2Conflict(command);
      */
         //another test
-  /*      LinkedList<Object> params = new LinkedList<Object>();
+       LinkedList<Object> params = new LinkedList<Object>();
 
         RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
         if (result.isSuccess()) {
             System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
         }
- */
+
        // HmiRequest ic = new HmiRequest();
        // LinkedList<DataType> datatypes = new LinkedList<DataType>();
 

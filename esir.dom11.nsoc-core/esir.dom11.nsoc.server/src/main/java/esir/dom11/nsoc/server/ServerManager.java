@@ -150,7 +150,7 @@ public class ServerManager extends ServerResource{
                 datatypes.add(DataType.valueOf(parameters[2].toUpperCase()));
 
                 try{
-                    DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+                    DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                     beginDate = format.parse(parameters[3]);
                     endDate = format.parse(parameters[4]);
                 }
