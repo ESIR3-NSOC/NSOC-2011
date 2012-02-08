@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.server;
 
 import esir.dom11.nsoc.model.Action;
+import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
 import esir.dom11.nsoc.model.device.Actuator;
@@ -164,7 +165,20 @@ public class ServerManager extends ServerResource{
             }
             else { return "Your url is not correct"; }
 
-            return LocalStorage.getLocalStorageObject().getAllData();
+            ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
+
+            LinkedList<Data> result = sc.sendGetRequest(hr);
+            if(result == null){
+                return "No data provided";
+            }
+
+            // we have to send serialized Data
+            LinkedList<String> sendData = new LinkedList<String>();
+            for(int i=0; i< result.size(); i++){
+                sendData.add(result.get(i).serialized());
+            }
+
+            return sendData;
         }
     }
 
@@ -180,7 +194,7 @@ public class ServerManager extends ServerResource{
          *  Double value
          */
         System.out.println("Post command received!");
-        System.out.println("idAction: "+form.getValues("idAction")+" \n " +
+        System.out.println("idAction: "+form.getValues("idAction")+" \n" +
                            "idActuator: "+form.getValues("idActuator")+ " \n"+
                            "datatype: "+form.getValues("datatype") +" \n"+
                            "building: "+form.getValues("building") +" \n"+
@@ -188,7 +202,7 @@ public class ServerManager extends ServerResource{
                            "value: "+form.getValues("value")  +" \n"
         );
 
-        /*
+
         String location = form.getValues("building") + "-" + form.getValues("room");
 
         Actuator actuator = new Actuator(
@@ -200,14 +214,13 @@ public class ServerManager extends ServerResource{
         Action action = new Action(
                 UUID.fromString(form.getValues("idAction")),
                 actuator,
-                Double.parseDouble(form.getValues("value"))
+                form.getValues("value")
         );
 
         HmiRequest hr = new HmiRequest(location, action);
 
         ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
         sc.sendMessage(hr);
-        */
     }
 
     @Put
