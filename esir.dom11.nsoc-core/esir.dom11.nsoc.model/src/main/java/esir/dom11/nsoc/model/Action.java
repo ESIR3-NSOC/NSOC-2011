@@ -19,7 +19,8 @@ public class Action {
      */
     
     public Action() {
-        _id = UUID.randomUUID();
+        // default constructor
+        _id = UUID.fromString("00000000-0000-0000-0000-000000000000");
     }
     
     public Action(Actuator actuator, String value) {

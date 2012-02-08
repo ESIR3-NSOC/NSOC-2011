@@ -63,6 +63,7 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
     private DAOFactory _daoFactory;
     private Properties _dbProperties;
+    private boolean _dbServiceAvailable;
 
     /*
      * Getters / Setters
@@ -74,7 +75,8 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
 
     @Start
     public void start() {
-        logger.info("= = = = = start data controller = = = = = =");
+        logger.debug("= = = = = start data controller = = = = = =");
+        _dbServiceAvailable = false;
 
         _dbProperties = new Properties();
         _dbProperties.put("url", getDictionary().get("dbUrl"));
@@ -91,17 +93,21 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
             _daoFactory.getHelperSetup().setupTable();
             _daoFactory.getHelperSetup().setupData();
         }
+
+        _dbServiceAvailable = true;
     }
 
     @Stop
     public void stop() {
-        logger.info("= = = = = stop data controller = = = = = =");
+        logger.debug("= = = = = stop data controller = = = = = =");
+        _dbServiceAvailable = false;
         _daoFactory.getConnectionDb().disconnect();
     }
 
     @Update
     public void update() {
-        logger.info("= = = = = update data controller = = = = = =");
+        logger.debug("= = = = = update data controller = = = = = =");
+        _dbServiceAvailable = false;
 
         Properties dbProperties = new Properties();
         dbProperties.put("url", getDictionary().get("dbUrl"));
@@ -136,39 +142,52 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
             _daoFactory = DAOFactory.getFactory(dbProperties);
         }
         _dbProperties = dbProperties;
+        _dbServiceAvailable = true;
     }
 
     @Override
     @Port(name = "dbService", method = "create")
-    public Object create(Object obj) {
-        return _daoFactory.getDAO(obj.getClass()).create(obj);
+    public RequestResult create(Object obj) {
+        if (isAvailable()) {
+            return new RequestResult(_daoFactory.getDAO(obj.getClass()).create(obj),true);
+        }
+        return new RequestResult("Database service unavailable.",false);
     }
 
     @Override
     @Port(name = "dbService", method = "retrieve")
-    public Object retrieve(String className, Object id) {
+    public RequestResult retrieve(String className, Object id) {
         try {
-            return _daoFactory.getDAO(Class.forName(className)).retrieve(id);
+            if (isAvailable()) {
+                return new RequestResult(_daoFactory.getDAO(Class.forName(className)).retrieve(id),true);
+            }
+            return new RequestResult("Database service unavailable.",false);
         } catch (ClassNotFoundException exception) {
             logger.error("Retrieve User Error: Class " + className + "does not exist.",exception);
-            return null;
+            return new RequestResult("Retrieve User Error: Class " + className + "does not exist.",false);
         }
     }
 
     @Override
     @Port(name = "dbService", method = "update")
-    public Object update(Object obj) {
-        return _daoFactory.getDAO(obj.getClass()).update(obj);
+    public RequestResult update(Object obj) {
+        if (isAvailable()) {
+            return new RequestResult(_daoFactory.getDAO(obj.getClass()).update(obj),true);
+        }
+        return new RequestResult("Database service unavailable.",false);
     }
 
     @Override
     @Port(name = "dbService", method = "delete")
-    public boolean delete(String className, Object id) {
+    public RequestResult delete(String className, Object id) {
         try {
-            return _daoFactory.getDAO(Class.forName(className)).delete(id);
+            if (isAvailable()) {
+                return new RequestResult(_daoFactory.getDAO(Class.forName(className)).delete(id),true);
+            }
+            return new RequestResult("Database service unavailable.",false);
         } catch (ClassNotFoundException exception) {
             logger.error("Delete User Error: Class " + className + "does not exist.",exception);
-            return false;
+            return new RequestResult("Delete User Error: Class " + className + "does not exist.",false);
         }
     }
 
@@ -185,6 +204,14 @@ public class DataCtrl extends AbstractComponentType implements IDbService {
         logger.info("Saving log...");
         Log savedLog = _daoFactory.getLogDAO().create((Log)log);
         logger.info(savedLog.toString());
+    }
+
+    /*
+     * Getters / Setters
+     */
+
+    public boolean isAvailable() {
+        return _dbServiceAvailable;
     }
 
     /*

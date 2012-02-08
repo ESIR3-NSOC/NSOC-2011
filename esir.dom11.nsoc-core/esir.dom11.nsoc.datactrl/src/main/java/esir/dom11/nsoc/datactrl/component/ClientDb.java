@@ -61,16 +61,39 @@ public class ClientDb extends AbstractComponentType {
         logger.info("*** *** Save data 1,2,3,4,5 *** ***");
 
         // Save data
-        Data data1Save = (Data)dbService.create(data1);
-        Data data2Save = (Data)dbService.create(data2);
-        Data data3Save = (Data)dbService.create(data3);
-        Data data4Save = (Data)dbService.create(data4);
-        Data data5Save = (Data)dbService.create(data5);
+        RequestResult result1 = dbService.create(data1);
+        RequestResult result2 = dbService.create(data2);
+        RequestResult result3 = dbService.create(data3);
+        RequestResult result4 = dbService.create(data4);
+        RequestResult result5 = dbService.create(data5);
+
+        if (result1.isSuccess()) {
+            Data data1Save = (Data)dbService.create(data1).getResult();
+        }
+
+        if (result2.isSuccess()) {
+            Data data2Save = (Data)dbService.create(data2).getResult();
+        }
+
+        if (result3.isSuccess()) {
+            Data data3Save = (Data)dbService.create(data3).getResult();
+        }
+
+        if (result4.isSuccess()) {
+            Data data4Save = (Data)dbService.create(data4).getResult();
+        }
+
+        if (result5.isSuccess()) {
+            Data data5Save = (Data)dbService.create(data5).getResult();
+        }
 
         // Retrieve data 1 (by id)
-        Data data1Retrieve = (Data)dbService.retrieve(Data.class.getName(),data1.getId());
-        logger.info("*** *** Retrieve data 1 *** ***");
-        logger.info(data1Retrieve.toString());
+        RequestResult retrieveResult = dbService.retrieve(Data.class.getName(),data1.getId());
+        if (retrieveResult.isSuccess()) {
+            Data data1Retrieve = (Data)retrieveResult.getResult();
+            logger.info("*** *** Retrieve data 1 *** ***");
+            logger.info(data1Retrieve.toString());
+        }
 
         // find by date (use get())
         logger.info("*** *** Find By Date *** ***");
@@ -96,7 +119,10 @@ public class ClientDb extends AbstractComponentType {
         }
 
         // delete data
-        dbService.delete(Data.class.getName(),data1.getId());
+        RequestResult delete1Result = dbService.delete(Data.class.getName(),data1.getId());
+        if (delete1Result.isSuccess()) {
+            // ...
+        }
         dbService.delete(Data.class.getName(),data2.getId());
         dbService.delete(Data.class.getName(),data3.getId());
         dbService.delete(Data.class.getName(),data4.getId());
