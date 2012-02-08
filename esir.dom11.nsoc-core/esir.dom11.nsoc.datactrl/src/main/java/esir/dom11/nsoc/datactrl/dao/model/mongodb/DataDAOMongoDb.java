@@ -6,8 +6,11 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDbMongoDb;
 import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
+import esir.dom11.nsoc.datactrl.dao.factory.DAOFactoryDb4o;
+import esir.dom11.nsoc.datactrl.dao.factory.DAOFactoryMongoDb;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Sensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +31,15 @@ public class DataDAOMongoDb implements DataDAO {
      */
 
     private ConnectionDbMongoDb _connection;
+    private DAOFactoryMongoDb _daoFactory;
 
     /*
      * Constructors
      */
 
-    public DataDAOMongoDb(ConnectionDbMongoDb connectionDbMongoDb) {
+    public DataDAOMongoDb(ConnectionDbMongoDb connectionDbMongoDb, DAOFactoryMongoDb daoFactoryMongoDb) {
         _connection = connectionDbMongoDb;
+        _daoFactory = daoFactoryMongoDb;
     }
 
     /*
@@ -47,12 +52,12 @@ public class DataDAOMongoDb implements DataDAO {
     }
 
     @Override
-    public LinkedList<Data> findByDateAndStep(Date startDate, Date endDate, String role, int step) {
+    public LinkedList<Data> findByDateAndStep(Date startDate, Date endDate, String location, int step) {
         return null;
     }
 
     @Override
-    public LinkedList<Data> findByDateAndDataMax(Date startDate, Date endDate, String role, int datMax) {
+    public LinkedList<Data> findByDateAndDataMax(Date startDate, Date endDate, String location, int datMax) {
         return null;
     }
 
@@ -67,6 +72,7 @@ public class DataDAOMongoDb implements DataDAO {
             BasicDBObject saveData = new BasicDBObject();
 
             saveData.put("id", data.getId().toString());
+            saveData.put("id_device", data.getSensor().getId());
             saveData.put("date", data.getDate().toString());
             saveData.put("value", data.getValue());
 
@@ -80,23 +86,24 @@ public class DataDAOMongoDb implements DataDAO {
     }
 
     @Override
-    public Data retrieve(UUID uuid) {
-        /*DBCollection datasCollection = _connection.getDb().getCollection("datas");
+    public Data retrieve(UUID id) {
+        DBCollection datasCollection = _connection.getDb().getCollection("datas");
         BasicDBObject query = new BasicDBObject();
         System.out.println(datasCollection.getCount());
         System.out.println("collection= " + datasCollection.getCount());
 
-        query.put("id", uuid.toString());
+        query.put("id", id.toString());
 
         DBCursor cur = datasCollection.find(query);
         System.out.println("cursor= " + cur.count());
         if (cur.hasNext()) {
             DBObject mongoData = cur.next();
-            return new Data(uuid, (DataType)mongoData.get("dataType"),
-                                    (String)mongoData.get("role"),
-                                    (Double)mongoData.get("value"),
-                                    (Date)mongoData.get("date"));
-        }*/
+            return new Data(
+                    id,
+                    (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString((String)mongoData.get("id_device"))),
+                    (String)mongoData.get("value"),
+                    (Date)mongoData.get("date"));
+        }
         return null;
     }
 
@@ -106,10 +113,10 @@ public class DataDAOMongoDb implements DataDAO {
     }
 
     @Override
-    public boolean delete(UUID uuid) {
+    public boolean delete(UUID id) {
         DBCollection datasCollection = _connection.getDb().getCollection("datas");
         BasicDBObject query = new BasicDBObject();
-        query.put("id", uuid);
+        query.put("id", id);
         DBCursor cur = datasCollection.find(query);
         if (cur.length()==1) {
             datasCollection.remove(cur.next());

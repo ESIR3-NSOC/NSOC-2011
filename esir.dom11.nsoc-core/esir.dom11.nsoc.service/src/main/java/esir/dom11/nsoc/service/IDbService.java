@@ -4,13 +4,13 @@ import java.util.LinkedList;
 
 public interface IDbService {
 
-    public Object create(Object obj);
+    public RequestResult create(Object obj);
 
-    public Object retrieve(String className, Object obj);
+    public RequestResult retrieve(String className, Object obj);
 
-    public Object update(Object obj);
+    public RequestResult update(Object obj);
 
-    public boolean delete(String className, Object obj);
+    public RequestResult delete(String className, Object obj);
         
     public RequestResult get(String method, String className, LinkedList<Object> params);
 }

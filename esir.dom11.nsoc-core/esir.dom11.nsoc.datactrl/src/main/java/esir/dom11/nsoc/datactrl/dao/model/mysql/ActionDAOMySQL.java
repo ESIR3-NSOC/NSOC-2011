@@ -45,8 +45,9 @@ public class ActionDAOMySQL implements ActionDAO {
     @Override
     public Action create(Action action) {
         Action newAction = retrieve(action.getId());
-        if (newAction.getId()==null) {
+        if (newAction.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             Device device = _daoFactoryMySQL.getDeviceDAO().create(action.getActuator());
+
             if (device.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")!=0) {
                 try {
                     PreparedStatement prepare = _connection.getConnection()
@@ -76,7 +77,7 @@ public class ActionDAOMySQL implements ActionDAO {
             if(result.first()) {
                 action = new Action(id,
                                 (Actuator)_daoFactoryMySQL.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_actuator"))),
-                                result.getDouble("value"));
+                                result.getString("value"));
             }
         } catch (SQLException exception) {
             logger.error("Action retrieve error", exception);

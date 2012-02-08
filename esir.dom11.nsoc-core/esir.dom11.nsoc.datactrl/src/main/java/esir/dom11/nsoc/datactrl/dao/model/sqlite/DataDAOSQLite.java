@@ -5,6 +5,7 @@ import esir.dom11.nsoc.datactrl.dao.dao.DataDAO;
 import esir.dom11.nsoc.datactrl.dao.factory.DAOFactorySQLite;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
+import esir.dom11.nsoc.model.device.Sensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +55,7 @@ public class DataDAOSQLite implements DataDAO {
             try {
                 String statement = "INSERT INTO datas (id, id_device, value, date)"
                         + " VALUES('" + data.getId() + "',"
-                        + " '" + data.getDevice().getId() + "',"
+                        + " '" + data.getSensor().getId() + "',"
                         + " '" + data.getValue() + "',"
                         + " '" + new Timestamp(data.getDate().getTime()) + "')";
                 PreparedStatement prepare = _connection.getConnection()
@@ -76,11 +77,11 @@ public class DataDAOSQLite implements DataDAO {
                     .createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY)
                     .executeQuery("SELECT * FROM datas WHERE id = '" + id + "'");
             if(result.next()) {
-                DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm.ss.SSS");
                 data = new Data(
                         id,
-                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
-                        result.getDouble("value"),
+                        (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString("id_device"))),
+                        result.getString("value"),
                         df.parse(result.getString("date")));
             }
         } catch (SQLException exception) {
@@ -129,11 +130,11 @@ public class DataDAOSQLite implements DataDAO {
                             "AND de.location='" + location + "' " +
                             "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
             System.out.println(new Timestamp(endDate.getTime()));
-            DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString(1)),
-                        _daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString(2))),
-                        result.getDouble(3),df.parse(result.getString(4))));
+                        (Sensor)_daoFactory.getDeviceDAO().retrieve(UUID.fromString(result.getString(2))),
+                        result.getString(3),df.parse(result.getString(4))));
             }
         } catch (SQLException exception) {
             logger.error("Data find by date error", exception);

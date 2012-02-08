@@ -8,10 +8,10 @@ package esir.dom11.nsoc.server;
  * To change this template use File | Settings | File Templates.
  */
 
-import esir.dom11.nsoc.ctrl.Control;
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.HmiRequest;
+import esir.dom11.nsoc.service.IServerService;
 import org.kevoree.annotation.*;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Port;
@@ -25,7 +25,7 @@ import java.util.LinkedList;
 
 // input port (CTRL -> HMI)
 @Requires({
-        @RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = Control.class),
+        @RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = IServerService.class),
         @RequiredPort(name = "postCTRL", type = PortType.MESSAGE)
 })
 
@@ -66,14 +66,14 @@ public class ServerComponent extends AbstractComponentType {
 
 
     public LinkedList<Data> sendGetRequest(HmiRequest hmir){
-         return (LinkedList<Data>) getPortByName("CTRL", Control.class).getFromHmi(hmir, "getFromHmi");
+         return (LinkedList<Data>) getPortByName("CTRL", IServerService.class).getFromHmi(hmir);
     }
 
     // Be careful
     // The Controller can send null response.
     @Port(name = "fromCTRL")
-    public Command receiveFromCtrl(Object obj){
-        return (Command) obj;
+    public Command receiveFromCtrl(Object fromCtrl){
+        return (Command) fromCtrl;
     }
 
     //send the message through the require port
@@ -82,6 +82,6 @@ public class ServerComponent extends AbstractComponentType {
         if(prodPort != null){
             prodPort.process(message);
         }
-     }
+    }
 
 }
