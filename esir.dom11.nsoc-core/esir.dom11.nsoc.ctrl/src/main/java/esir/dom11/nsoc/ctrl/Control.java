@@ -29,16 +29,13 @@ import java.util.LinkedList;
 public class Control extends AbstractComponentType implements ctrlInterface {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
-    private boolean validateCommand;
-
-
 
     @Start
     public void start() {
         System.out.println("Control : Start");
 
         commandList = new LinkedList<Command>();
-        validateCommand = false;
+
 
    /*     LinkedList<Action> list = new LinkedList<Action>();
         Actuator actuator = new Actuator(DataType.TEMPERATURE, "bat7/s930");
@@ -80,15 +77,71 @@ public class Control extends AbstractComponentType implements ctrlInterface {
 
 
 
-	//HMI need some data so...
-	public void send2HMI(Command command) {
+
+    @Port(name = "RHMI", method = "getFromHmi")
+    //HMI ask us for some data
+    public Object getFromHmi(Object o, Object id) {
+        System.out.println("Control : HMI data receive : "+ o);
+        HmiRequest HMIAction = (HmiRequest) o;
+        Object object = null;
+        //HMI ask for data
+        for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+            RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
+            if (result.isSuccess()) {
+                object = (LinkedList<Data>) result.getResult();
+            }
+        }
+        return object;
+    }
+    @Port(name = "postFromHmi")
+    //HMI ask us for some data
+    public void postFromHmi(Object o) {
+        //HMI send action
+        HmiRequest HMIAction = (HmiRequest) o;
+        //create a command
+        LinkedList<Action> list = new LinkedList<Action>();
+        list.add(HMIAction.getAction());
+        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+        //send command
+        send2Conflict(command);
+    }
+    //HMI need some data so...
+    public void send2HMI(Command command) {
         System.out.println("Control : send2HMI");
         getPortByName("HMI",MessagePort.class).process(command);
     }
-    public void send2HMI(LinkedList<Data> dataList) {
-        System.out.println("Control : send2HMI");
-        getPortByName("HMI",MessagePort.class).process(dataList);
+
+
+
+    @Port(name = "RConflict")
+    //Conflict ask us for some data
+    public void receiveConflict(Object o) {
+        System.out.println("Control : Conflict data receive : ");
+        RequestResult result = (RequestResult) o;
+        if(result.isSuccess()){
+            System.out.println("result Success");
+            //search command into the list, and send it to HMI
+            for(int i = 0; i < commandList.size(); i ++){
+                if(result.getResult() == commandList.get(i).getId()){
+                    System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
+                    send2HMI(commandList.get(i));
+                    sendCommand2DAO(commandList.get(i));
+                    commandList.remove(i);
+                    break;
+                }
+            }
+        }
     }
+    //Send an actions list (= command) to conflict
+    public void send2Conflict(Command command) {
+        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
+        commandList.add(command);
+        getPortByName("Conflict",MessagePort.class).process(command);
+    }
+
+
+
+
 
 	//send everything that could have been modified
 	public void sendData2DAO(Data data) {
@@ -112,73 +165,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
     }
 
 
-	//Send an actions list (= command) to conflict 
-	public void send2Conflict(Command command) {
-        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
-        commandList.add(command);
-        getPortByName("Conflict",MessagePort.class).process(command);
-	}
 
-    //send request to receive value of sensor
-    public void send2Sensors(DataType dataType) {
-        System.out.println("Control : send2Sensors");
-        getPortByName("Sensors",MessagePort.class).process(dataType);
-    }
-
-    @Port(name = "RHMI", method = "getFromHmi")
-	//HMI ask us for some data
-	public Object getFromHmi(Object o, Object id) {
-		System.out.println("Control : HMI data receive : "+ o);
-        HmiRequest HMIAction = (HmiRequest) o;
-        Object object = null;
-        //HMI ask for data
-        for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
-            RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
-            if (result.isSuccess()) {
-                object = (LinkedList<Data>) result.getResult();
-            }
-        }
-        return object;
-	}
-    @Port(name = "RHMI", method = "postFromHmi")
-    //HMI ask us for some data
-    public Object postFromHmi(Object o, Object id) {
-        //HMI send action
-        HmiRequest HMIAction = (HmiRequest) o;
-        //create a command
-        LinkedList<Action> list = new LinkedList<Action>();
-        list.add(HMIAction.getAction());
-        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-        //send command
-        send2Conflict(command);
-        return command;
-    }
-
-	@Port(name = "RConflict")
-	//Conflict ask us for some data
-	public void receiveConflict(Object o) {
-        System.out.println("Control : Conflict data receive : ");
-        RequestResult result = (RequestResult) o;
-        if(result.isSuccess()){
-            System.out.println("result Success");
-            //search command into the list, and send it to HMI
-            for(int i = 0; i < commandList.size(); i ++){
-               if(result.getResult() == commandList.get(i).getId()){
-                   System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                   send2HMI(commandList.get(i));
-                   sendCommand2DAO(commandList.get(i));
-                   commandList.remove(i);
-                   break;
-               }
-            }
-        }
-	}
-	
-	@Port(name = "RContext")
-	//The context ask for a precise variable saved in database (eg : temp sensor from a room )
-	public void receiveFromContext(Object o) {
+    @Port(name = "RContext")
+    //The context ask for a precise variable saved in database (eg : temp sensor from a room )
+    public void receiveFromContext(Object o) {
         System.out.println("Control : Context data receive : ");
-	}
+    }
+
+
 
     @Port(name = "RSensors")
     public void receiveSensors(Object o){
@@ -186,9 +180,14 @@ public class Control extends AbstractComponentType implements ctrlInterface {
         if(o != null){
             Data sensor = (Data) o;
        //     theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
-            System.out.println("Control : Sensor data in " +sensor.getDevice().getLocation() + " send to theBrain");
+            System.out.println("Control : Sensor data in " +sensor.getSensor().getLocation() + " send to theBrain");
             //send new data to the DAO
             sendData2DAO(sensor);
         }
+    }
+    //send request to receive value of sensor
+    public void send2Sensors(DataType dataType) {
+        System.out.println("Control : send2Sensors");
+        getPortByName("Sensors",MessagePort.class).process(dataType);
     }
 }

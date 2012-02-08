@@ -19,7 +19,7 @@ public interface ctrlInterface {
 	
 	//HMI need some data so...
     void send2HMI(Command command);
-    void send2HMI(LinkedList<Data> dataList);
+
 
     //send everythg that could have been modified
     void sendData2DAO(Data data );
@@ -39,7 +39,7 @@ public interface ctrlInterface {
     
     //HMI ask us for some data
     Object getFromHmi(Object o, Object id);
-    Object postFromHmi(Object o, Object id);
+    void postFromHmi(Object o);
     //Conflict ask us for some data
     void receiveConflict(Object o);
 
