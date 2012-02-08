@@ -28,8 +28,8 @@ public class TestManager extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         mng = new Manager(delay);
-        a1 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),1);
-        a2 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),2);
+        a1 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),"1");
+        a2 = new Action(new Actuator(UUID.randomUUID(), DataType.UNKNOWN,""),"2");
         c1 = new Command();
         c2 = new Command();
         actionMap = new HashMap<UUID, Action>();
