@@ -2,6 +2,7 @@ package knx;
 
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
+import tuwien.auto.calimero.link.KNXNetworkLinkIP;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,6 +25,7 @@ import org.kevoree.framework.AbstractComponentType;
 public class ConnectionKNX extends AbstractComponentType implements IntToConnect {
 
     private ToConnect connection;
+
     @Start
     public void startComponent() {
         System.out.println("ConnectionKNX: Start");
@@ -36,11 +38,14 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
     @Stop
     public void stopComponent() {
         System.out.println("ConnectionKNX: Stop");
+        connection.disconnected();
     }
 
     @Update
     public void updateComponent() {
         System.out.println("ConnectionKNX: Update");
+        stopComponent();
+        startComponent();
     }
 
     @Override
@@ -59,7 +64,7 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
 
     @Override
     @Port(name = "ConnectionKNX", method = "read")
-    public boolean read(String adresseGroupe) {
+    public String read(String adresseGroupe) {
         System.out.println("ConnectionKNX: read");
         return connection.read(adresseGroupe);
     }
@@ -89,6 +94,12 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
     @Port(name = "ConnectionKNX", method = "getProtocol")
     public String getProtocol() {
         return "knx";
+    }
+
+    @Override
+    @Port(name = "ConnectionKNX", method = "getNetLink")
+    public KNXNetworkLinkIP getNetLink() {
+        return connection.getNetLink();
     }
 }
 

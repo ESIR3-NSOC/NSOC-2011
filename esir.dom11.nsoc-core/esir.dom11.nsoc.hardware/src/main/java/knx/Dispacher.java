@@ -36,11 +36,12 @@ public class Dispacher extends AbstractChannelFragment {
                 for (ComponentInstance ci : cn.getComponentsForJ()) {
                     if (ci.getName().equals(p.getComponentName())) {
                         for (DictionaryValue dv : ci.getDictionary().get().getValuesForJ()) {
-                            if (dv.getAttribute().getName().equals("LOCATION")) {
-                               // System.out.println(" ID DeviceComp: " + dv.getValue());
+                            if (dv.getAttribute().getName().equals("Location")) {
                                 if (dv.getValue().equals(action.getActuator().getLocation())) {
                                     forward(p, msg);
                                 }
+                            } else if (msg.getContentClass().equals("Data")) {
+                                forward(p, msg);
                             }
                         }
                     }
