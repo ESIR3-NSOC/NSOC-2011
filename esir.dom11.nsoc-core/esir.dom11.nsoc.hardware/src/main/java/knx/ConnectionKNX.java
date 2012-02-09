@@ -16,7 +16,7 @@ import tuwien.auto.calimero.link.KNXNetworkLinkIP;
 })
 
 @DictionaryType({
-        @DictionaryAttribute(name = "ADRESSE_PC", defaultValue = "192.168.1.127", optional = true),
+        @DictionaryAttribute(name = "ADRESSE_PC", defaultValue = "192.168.1.124", optional = true),
         @DictionaryAttribute(name = "ADRESSE_MAQUETTE", defaultValue = "192.168.1.128", optional = true)
 })
 

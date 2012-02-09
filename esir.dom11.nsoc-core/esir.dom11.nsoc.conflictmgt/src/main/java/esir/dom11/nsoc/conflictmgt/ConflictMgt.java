@@ -93,6 +93,8 @@ public class ConflictMgt extends AbstractComponentType {
     @Port(name = "Conflict")
     public void cmdFromCtrl(Object command) {
 
+        logger.info("Receive a command");
+
         Command cmd = (Command) command;
 
         LinkedList<Action> actLst = mng.receiveCmd(cmd);
@@ -114,6 +116,8 @@ public class ConflictMgt extends AbstractComponentType {
      * @param action Action
      */
     public void send2Actuator(Action action) {
+
+        logger.info("Send an action");
 
         HashMap<UUID,Action> am = mng.get_lastActuatorActionMap();
         am.put(action.getActuator().getId(), action);

@@ -186,33 +186,29 @@ public class ServerManager extends ServerResource{
     public void receivePostRequest(Form form){
         /*
          *  Information to send a POST request
-         *  UUID idAction
-         *  UUID idActuator
          *  DataType datatype
          *  String building
          *  String room
+         *  String actuator
          *  Double value
          */
         System.out.println("Post command received!");
-        System.out.println("idAction: "+form.getValues("idAction")+" \n" +
-                           "idActuator: "+form.getValues("idActuator")+ " \n"+
-                           "datatype: "+form.getValues("datatype") +" \n"+
+        System.out.println("datatype: "+form.getValues("datatype") +" \n"+
                            "building: "+form.getValues("building") +" \n"+
                            "room: "+form.getValues("room") + " \n" +
+                           "actuator: "+form.getValues("actuator")+" \n"+
                            "value: "+form.getValues("value")  +" \n"
         );
 
 
-        String location = form.getValues("building") + "-" + form.getValues("room");
+        String location = form.getValues("building")+"/"+form.getValues("room")+ "/"+form.getValues("actuator");
 
         Actuator actuator = new Actuator(
-                UUID.fromString(form.getValues("idActuator")),
                 DataType.valueOf(form.getValues("datatype").toUpperCase()),
                 location
         );
 
         Action action = new Action(
-                UUID.fromString(form.getValues("idAction")),
                 actuator,
                 form.getValues("value")
         );
