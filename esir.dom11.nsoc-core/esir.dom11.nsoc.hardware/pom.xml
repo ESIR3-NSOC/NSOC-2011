@@ -89,10 +89,10 @@
     </build>
 
     <repositories>
-       <!-- <repository>
+        <repository>
             <id>nsoc</id>
             <url>http://nsoc2011.alwaysdata.net/mvn-repo/</url>
-        </repository>   -->
+        </repository>
         <repository>
             <id>kevoree-release</id>
             <url>http://maven.kevoree.org/release</url>

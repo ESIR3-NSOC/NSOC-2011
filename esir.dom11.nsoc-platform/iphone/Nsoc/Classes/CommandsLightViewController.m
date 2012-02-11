@@ -7,10 +7,11 @@
 //
 
 #import "CommandsLightViewController.h"
-#import "ConnectionManager.h"
+
 
 @implementation CommandsLightViewController
 
+<<<<<<< HEAD
 @synthesize dinningSwitch, kitchenSwitch, bedroomSwitch;
 
 
@@ -36,7 +37,32 @@
 			   building:@"bat7" 
 				   room:@"salle930" 
 			   actuator:[NSString stringWithFormat:@"light%d", switchOutlet.tag]];
+=======
+/*
+ // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        // Custom initialization
+    }
+    return self;
 }
+*/
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+*/
+
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+>>>>>>> 9bfec18a965cf347409b50613ad36ac5fc0b9f3b
+}
+*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -53,10 +79,6 @@
 
 
 - (void)dealloc {
-	[dinningSwitch release];
-	[kitchenSwitch release];
-	[bedroomSwitch release];
-	
     [super dealloc];
 }
 

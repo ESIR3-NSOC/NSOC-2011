@@ -23,7 +23,7 @@ import java.util.LinkedList;
 @Requires({
         @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional=true),
+        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
@@ -36,10 +36,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     public void start() {
         System.out.println("Control : Start");
 
-        commandList = new LinkedList<Command>();
+     /*   commandList = new LinkedList<Command>();
 
-        while(true)
-        {
+
         LinkedList<Action> list = new LinkedList<Action>();
         Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
         Action action = new Action(actuator, "true");
@@ -48,6 +47,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
         //send command
         send2Conflict(command);
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -67,7 +67,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             } catch (InterruptedException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-        }
+    */
         //another test
  /*      LinkedList<Object> params = new LinkedList<Object>();
 
@@ -111,26 +111,36 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         LinkedList<Data> object = null;
-        //HMI ask for data
-        for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
-            RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
-            if (result.isSuccess()) {
-                object = (LinkedList<Data>) result.getResult();
+        if(HMIAction.getAction() == null){
+            //HMI ask for data
+            for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+                RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
+                if (result.isSuccess()) {
+                    object = (LinkedList<Data>) result.getResult();
+                }
             }
         }
+        else System.out.println("Control ATTENTION : receive no get from Hmi");
         return object;
     }
     @Port(name = "postFromHmi")
     //HMI ask us for some data
     public void postFromHmi(Object o) {
+
         //HMI send action
         HmiRequest HMIAction = (HmiRequest) o;
         //create a command
-        LinkedList<Action> list = new LinkedList<Action>();
-        list.add(HMIAction.getAction());
-        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-        //send command
-        send2Conflict(command);
+
+        if(HMIAction.getAction() != null)  {
+            LinkedList<Action> list = new LinkedList<Action>();
+            list.add(HMIAction.getAction());
+            Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+            //send command
+//          send2Conflict(command);
+            System.out.println("command send to conflict : " +  command.getActionList().size());
+            send2HMI(command);
+        }
+        else System.out.println("Control ATTENTION : receive no command from Hmi");
     }
     //HMI need some data so...
     public void send2HMI(Command command) {

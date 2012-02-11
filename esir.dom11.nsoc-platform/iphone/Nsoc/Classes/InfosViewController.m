@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	cm = [[ConnectionManager alloc] init];
+<<<<<<< HEAD
 	BOOL result = [cm allData:@"bat7" room:@"salle930"];	
 	
 	if(!result){
@@ -45,6 +46,9 @@
 		[connectionViewController release];
 		
 	}
+=======
+	[cm allData:@"b7" room:@"s930"];	
+>>>>>>> 9bfec18a965cf347409b50613ad36ac5fc0b9f3b
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -54,7 +58,7 @@
 
 
 - (void) refreshInfo:(id)sender {
-	[cm allData:@"bat7" room:@"salle930"];	
+	[cm allData:@"b7" room:@"s930"];	
 }
 
 

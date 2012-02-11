@@ -1,18 +1,12 @@
 package knx;
 
 import esir.dom11.nsoc.model.Action;
-import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.model.device.Sensor;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
-import tuwien.auto.calimero.CloseEvent;
-import tuwien.auto.calimero.FrameEvent;
-import tuwien.auto.calimero.link.event.NetworkLinkListener;
-
-import java.util.Date;
 
 
 /**
@@ -33,12 +27,10 @@ import java.util.Date;
 })
 
 @DictionaryType({
-        @DictionaryAttribute(name = "Device", defaultValue = "Actuator", optional = true,
+        @DictionaryAttribute(name = "DEVICE", defaultValue = "Actuator", optional = true,
                 vals = {"Sensor", "Actuator"}),
-        @DictionaryAttribute(name = "Location", defaultValue = "/bat7/salle930/0", optional = true),
-        @DictionaryAttribute(name = "AddressDevice", optional = true),
-        @DictionaryAttribute(name = "TypeOfSensor", defaultValue = "Data", optional = true,
-                vals = {"Data", "Switch"})
+        @DictionaryAttribute(name = "LOCATION", defaultValue = "/bat7/salle930/0", optional = true),
+        @DictionaryAttribute(name = "AddressDevice", optional = true)
 })
 
 @Library(name = "NSOC_2011")
@@ -50,16 +42,14 @@ public class DeviceComp extends AbstractComponentType {
     private String mDevice;
     private String mLocation;
     private String mAddressDevice;
-    private String mTypeOfSensor;
     private Boolean stop = false;
 
     @Start
     public void startComponent() {
         System.out.println("DeviceComp: Start");
-        mDevice = (String) this.getDictionary().get("Device");
-        mLocation = (String) this.getDictionary().get("Location");
+        mDevice = (String) this.getDictionary().get("DEVICE");
+        mLocation = (String) this.getDictionary().get("LOCATION");
         mAddressDevice = (String) this.getDictionary().get("AddressDevice");
-        mTypeOfSensor = (String) this.getDictionary().get("TypeOfSensor");
         connectionManager = getPortByName("commandKNX", IntToConnect.class);
 
         if (connectionManager.getProtocol().equals("knx")) {
@@ -69,15 +59,9 @@ public class DeviceComp extends AbstractComponentType {
             System.out.println("DeviceComp: Create Actuator");
             mActuator = new Actuator(DataType.UNKNOWN, mLocation);
         } else if (mDevice.equals("Sensor")) {
-            if (connectionManager.getProtocol().equals("knx")) {
-                System.out.println("DeviceComp: Create Sensor");
-                mSensor = new Sensor(DataType.UNKNOWN, mLocation);
-                if (mTypeOfSensor.equals("Data")) {
-                    sendBackgroundMessage();
-                } else if (mTypeOfSensor.equals("Switch")) {
-                    listener(mAddressDevice);
-                }
-            }
+            System.out.println("DeviceComp: Create Sensor");
+            mSensor = new Sensor(DataType.UNKNOWN, mLocation);
+            sendBackgroundMessage();
         }
     }
 
@@ -95,7 +79,7 @@ public class DeviceComp extends AbstractComponentType {
     }
 
     @Port(name = "ActionReceive")
-    public void ActionReceive(Object o) {
+    public void consumeHello(Object o) {
         Action action = (Action) o;
         System.out.println("\nDeviceComp: Received: " + action.toString() + "\n\n");
         System.out.println("GetProtocol: " + connectionManager.getProtocol());
@@ -118,16 +102,10 @@ public class DeviceComp extends AbstractComponentType {
         new Thread() {
             @Override
             public void run() {
-                String valueRead = "";
+
                 while (!stop) {
                     try {
-                        if (!(valueRead.equals(connectionManager.read(mAddressDevice)))) {
-                            System.out.println("ValueRead changed");
-                            valueRead = connectionManager.read(mAddressDevice);
-                            System.out.println(mSensor.toString() + " Value: " + valueRead);
-                            Data data = new Data(mSensor, valueRead, new Date());
-                            sendMessage(data);
-                        }
+                        connectionManager.read(mAddressDevice);
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -135,34 +113,5 @@ public class DeviceComp extends AbstractComponentType {
                 }
             }
         }.start();
-    }
-
-    public void listener(final String adresse) {
-
-        connectionManager.getNetLink().addLinkListener(new NetworkLinkListener() {
-
-            @Override
-            public void confirmation(FrameEvent arg0) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void indication(FrameEvent arg0) {
-                // TODO Auto-generated method stub
-                String adresseEnvoyee = ((tuwien.auto.calimero.cemi.CEMILData) arg0.getFrame()).getDestination().toString();
-                if (adresseEnvoyee.equals(adresse)) {
-                    String valueRead = connectionManager.read(mAddressDevice);
-                    System.out.println(mSensor.toString() + " Value: " + valueRead);
-                    Data data = new Data(mSensor, valueRead, new Date());
-                    sendMessage(data);
-                }
-            }
-
-            @Override
-            public void linkClosed(CloseEvent arg0) {
-                // TODO Auto-generated method stub
-
-            }
-        });
     }
 }
