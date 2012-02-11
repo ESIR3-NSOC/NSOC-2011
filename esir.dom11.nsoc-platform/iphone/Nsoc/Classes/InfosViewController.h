@@ -7,9 +7,9 @@
 //
 #import <UIKit/UIKit.h>
 #import "ConnectionManager.h"
+#import "ConnectionViewController.h"
 
-
-@interface InfosViewController : UIViewController {
+@interface InfosViewController : UIViewController <ConnectionViewControllerDelegate>{
 	ConnectionManager *cm;
 }
 

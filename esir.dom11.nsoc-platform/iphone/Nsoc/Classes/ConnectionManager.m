@@ -93,7 +93,7 @@
 }
 
 // send the GET request to fetch all data
-- (void) allData:(NSString *)building 
+- (BOOL) allData:(NSString *)building 
 			room:(NSString *)room{
 	// client ip : http://@IP:port/all/building/room/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@", 
@@ -106,8 +106,13 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
 	[request startSynchronous];
-	NSLog(@"Result : ");
-	NSLog(@"res: %@",[request responseString]);
+	
+	NSError *error = [request error];
+	if (!error) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
 // send the GET request to fetch details for a DataType

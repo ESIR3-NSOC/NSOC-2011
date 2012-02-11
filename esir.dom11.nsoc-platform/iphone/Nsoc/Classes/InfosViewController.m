@@ -9,7 +9,6 @@
 #import "ConnectionManager.h"
 #import "InfosViewController.h"
 
-
 @implementation InfosViewController
 
 @synthesize cm;
@@ -35,7 +34,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	cm = [[ConnectionManager alloc] init];
-	[cm allData:@"bat7" room:@"salle930"];	
+	BOOL result = [cm allData:@"bat7" room:@"salle930"];	
+	
+	if(!result){
+		ConnectionViewController *connectionViewController = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
+		connectionViewController.delegate = self;
+		
+		connectionViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+		[self presentModalViewController:connectionViewController animated:YES];
+		[connectionViewController release];
+		
+	}
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -72,6 +81,10 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void) connectionViewControllerDidFinish:(ConnectionViewController *)controller{
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 @end

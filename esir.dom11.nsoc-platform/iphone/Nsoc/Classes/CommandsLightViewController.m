@@ -13,6 +13,16 @@
 
 @synthesize dinningSwitch, kitchenSwitch, bedroomSwitch;
 
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	dinningSwitch.tag = 0;
+	kitchenSwitch.tag = 1;
+	bedroomSwitch.tag = 2;
+
+}
+
 -(IBAction) changeValue:(id)sender {
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
@@ -20,13 +30,12 @@
 	if(switchOutlet.on){
 		result = 1;
 	}
-	
-	NSLog(@"result :%d", result);
+
 	[cm sendPostrequest:result 
 			   datatype:@"light" 
 			   building:@"bat7" 
 				   room:@"salle930" 
-			   actuator:@"light"];
+			   actuator:[NSString stringWithFormat:@"light%d", switchOutlet.tag]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -19,7 +19,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.UUID;
 
 public class ServerManager extends ServerResource{
     private Component _component;
@@ -30,7 +29,7 @@ public class ServerManager extends ServerResource{
     public Boolean startServer(Integer port){
         // Create a new Restlet _component and add a HTTP server connector to it
         _component = new Component();
-        _component.getServers().add(Protocol.HTTP, 8182);
+        _component.getServers().add(Protocol.HTTP, port);
 
         // Then attach it to the local host
         _component.getDefaultHost().attach("/", ServerManager.class);
@@ -51,7 +50,7 @@ public class ServerManager extends ServerResource{
             datatypes.add(DataType.HUMIDITY);
             datatypes.add(DataType.POWER);
 
-            HmiRequest hr = new HmiRequest("b7-s930", datatypes);
+            HmiRequest hr = new HmiRequest("bat7/salle930", datatypes);
             ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
             sc.sendMessage(hr);
 
@@ -123,7 +122,7 @@ public class ServerManager extends ServerResource{
             HmiRequest hr;
             Date beginDate = new Date();
             Date endDate = new Date();
-            String location = parameters[0] + "-" + parameters[1];
+            String location = parameters[0] + "/" + parameters[1];
 
             // 2. get all current data
             // client ip : http://@IP:port/building/room/
