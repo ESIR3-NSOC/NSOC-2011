@@ -28,7 +28,6 @@ public interface ctrlInterface {
     //Send an actions list (= command) to conflict 
     void send2Conflict(Command command);
 
-    void send2Sensors(DataType dataType);
 
 
     // Ask the context for a precise variable (eg : temp sensor from a room )
