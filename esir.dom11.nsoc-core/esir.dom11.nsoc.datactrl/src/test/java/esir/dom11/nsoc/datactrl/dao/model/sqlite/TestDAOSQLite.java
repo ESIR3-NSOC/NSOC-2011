@@ -54,26 +54,18 @@ public class TestDAOSQLite extends TestCase {
      */
 
     public void testCRUDData() {
-
-        Sensor sensor = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
-        System.out.println("New device: "+sensor);
-        // Save device
-        Device deviceSave = _daoFactory.getDeviceDAO().create(sensor);
-        System.out.println("Saved device: "+deviceSave);
+        Sensor sensor = (Sensor)_daoFactory.getDeviceDAO().create(new Sensor(DataType.TEMPERATURE,"bat7/930"));
 
         Data data = new Data(sensor,"19.6", new Date());
         logger.info("New Data:" + data.toString());
-        System.out.println("New data: " + data);
 
         Data createData = _daoFactory.getDataDAO().create(data);
-        assertNotNull(createData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")!=0);
+        assertEquals(createData.getId(),data.getId());
         logger.info("Data Saved:" + createData.toString());
-        System.out.println("Data Saved: " + createData.toString());
 
         Data retrieveData = _daoFactory.getDataDAO().retrieve(data.getId());
-        assertNotNull(retrieveData);
+        assertEquals(retrieveData.getId(),data.getId());
         logger.info("Data Retrieve:" + retrieveData.toString());
-        System.out.println("Data Retrieve:" + retrieveData.toString());
 
         assertTrue(_daoFactory.getDataDAO().delete(data.getId()));
         logger.info("Data Delete");
@@ -84,25 +76,21 @@ public class TestDAOSQLite extends TestCase {
     public void testCRUDLog() {
         Log log = new Log( TestDAOSQLite.class.getName(), "Un log de test", LogLevel.INFO);
         logger.info("New Log:" + log.toString());
-        System.out.println("New log: " + log);
 
         Log createLog = _daoFactory.getLogDAO().create(log);
-        assertNotNull(createLog);
+        assertEquals(createLog.getId(),log.getId());
         logger.info("Log Saved:" + createLog.toString());
-        System.out.println("Log Saved: " + createLog);
 
         Log retrieveLog = _daoFactory.getLogDAO().retrieve(log.getId());
-        assertNotNull(retrieveLog);
+        assertEquals(createLog.getId(),log.getId());
         logger.info("Log Retrieve:" + retrieveLog.toString());
-        System.out.println("Log Retrieve: " + retrieveLog);
-
 
         assertTrue(_daoFactory.getLogDAO().delete(log.getId()));
         logger.info("Log Delete");
     }
 
     public void testCRUDCommand() {
-        Actuator actuator = new Actuator(DataType.TEMPERATURE,"bat 7");
+        Actuator actuator = new Actuator(DataType.TEMPERATURE,"bat7/930");
 
         LinkedList<Action> actionList = new LinkedList<Action>();
 
@@ -126,11 +114,11 @@ public class TestDAOSQLite extends TestCase {
         Command cmd = new Command(actionList,Category.AUTO,0,0);
 
         Command createCommand = _daoFactory.getCommandDAO().create(cmd);
-        assertEquals(createCommand.getId().toString(),"00000000-0000-0000-0000-000000000000");
+        assertEquals(createCommand.getId(),cmd.getId());
         logger.info("Command Saved:" + createCommand.toString());
 
         Command retrieveCommand = _daoFactory.getCommandDAO().retrieve(cmd.getId());
-        assertNotNull(retrieveCommand);
+        assertEquals(retrieveCommand.getId(),cmd.getId());
         logger.info("Command Retrieve:" + retrieveCommand.toString());
 
         assertTrue(_daoFactory.getCommandDAO().delete(cmd.getId()));
@@ -138,27 +126,21 @@ public class TestDAOSQLite extends TestCase {
     }
 
     public void testFindByDate() {
-
-        Sensor sensor = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
-        System.out.println("New device: "+sensor);
-        // Save device
+        Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
         Sensor sensorSave = (Sensor)_daoFactory.getDeviceDAO().create(sensor);
-        System.out.println("Saved device: "+sensorSave);
 
-        Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098200720")));
-        Data data2 = new Data(sensor,"19.6", new Date(new Long("1326098202743")));
-        Data data3 = new Data(sensor,"19.6", new Date(new Long("1326098204754")));
-        Data data4 = new Data(sensor,"19.6", new Date(new Long("1326098206765")));
-        Data data5 = new Data(sensor,"19.6", new Date(new Long("1326098208787")));
+        Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098100720")));
+        Data data2 = new Data(sensor,"19.6", new Date(new Long("1326098102743")));
+        Data data3 = new Data(sensor,"19.6", new Date(new Long("1326098104754")));
+        Data data4 = new Data(sensor,"19.6", new Date(new Long("1326098106765")));
+        Data data5 = new Data(sensor,"19.6", new Date(new Long("1326098108787")));
 
-        System.out.println(_daoFactory.getDataDAO().create(data1));
         _daoFactory.getDataDAO().create(data2);
         _daoFactory.getDataDAO().create(data3);
         _daoFactory.getDataDAO().create(data4);
         _daoFactory.getDataDAO().create(data5);
 
-        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098201732")),new Date(new Long("1326098207775")),"temp-int-salle930",DataType.TEMPERATURE);
-        System.out.println(dataList.size());
+        LinkedList<Data> dataList = _daoFactory.getDataDAO().findByDate(new Date(new Long("1326098101732")),new Date(new Long("1326098107775")),"bat7/930",DataType.TEMPERATURE);
         assertTrue(dataList.size()==3);
 
         _daoFactory.getDataDAO().delete(data1.getId());

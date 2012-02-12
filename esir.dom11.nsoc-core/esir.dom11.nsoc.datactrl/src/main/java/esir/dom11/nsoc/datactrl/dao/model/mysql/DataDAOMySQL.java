@@ -60,7 +60,7 @@ public class DataDAOMySQL implements DataDAO {
                 prepare.executeUpdate();
                 newData = retrieve(data.getId());
             } catch (SQLException exception) {
-                System.out.println("Data insert error"+ exception);
+                logger.error("Data insert error", exception);
             }
         }
         return newData;
@@ -119,7 +119,6 @@ public class DataDAOMySQL implements DataDAO {
                                         "AND de.data_type='" + dataType.getValue() + "' " +
                                         "AND de.location='" + location + "' " +
                                         "AND date<'" + new Timestamp(endDate.getTime()) + "' ");
-            System.out.println(new Timestamp(endDate.getTime()));
             result.beforeFirst();
             while (result.next()) {
                 dataList.add(new Data(UUID.fromString(result.getString("da.id")),
