@@ -62,14 +62,15 @@ public class TheBrain {
     
     //search room into the list
     public BrainRoom searchRoom(String location){
-        BrainRoom room = null;
-        for(int i = 0; i<roomList.size(); i++){
+
+        BrainRoom room = roomList.get(0);
+       /* for(int i = 0; i<roomList.size(); i++){
             String temp[] = location.split("/");
             if(roomList.get(i).getBuilding().equals(temp[1]) && roomList.get(i).getRoom().equals(temp[2])){
                 room = roomList.get(i);
                 break;
             }
-        }
+        } */
         return room;
     }
     

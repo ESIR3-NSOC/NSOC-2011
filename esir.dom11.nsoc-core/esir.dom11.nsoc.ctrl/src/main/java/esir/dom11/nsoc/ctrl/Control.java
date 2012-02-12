@@ -33,6 +33,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     private LinkedList<Command> commandList;
     private LinkedList<AgendaEvent> agendaList;
     private AgendaChecker agendaChecker;
+
     @Start
     public void start() {
         System.out.println("Control : Start");
@@ -40,6 +41,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         agendaList = new LinkedList<AgendaEvent>();
         commandList = new LinkedList<Command>();
         theBrain = new TheBrain();
+        theBrain.createRoom("test","test");
     }
 
     @Stop
@@ -135,7 +137,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 	}
 	public void sendCommand2DAO(Command command) {
         System.out.println("Control : send2DAO command");
-        getPortByName("DAO", IDbService.class).create((command));
+        for(int i=0; i<command.getActionList().size(); i++){
+            getPortByName("DAO", IDbService.class).create(command.getActionList().get(i));
+        }
 	}
     public RequestResult getData(Date begin, Date end, String location, DataType type){
         LinkedList<Object> params = new LinkedList<Object>();
@@ -156,40 +160,43 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     public void receiveFromContext(Object o) {
         System.out.println("Control receive context");
         if(o != null){
-            Agenda agenda = (Agenda) o;
-            System.out.println("Control : Context data receive : " + agenda);
+            LinkedList<AgendaEvent> agenda = (LinkedList<AgendaEvent>) o;
+            System.out.println("Control : Context data receive ");
             //collect list of agenda event
-            agendaList = agenda.getEvents();
+            agendaList = agenda;
+            if(agendaChecker !=null){
+                agendaChecker.setActive(false);
+            }
             agendaChecker = new AgendaChecker(agendaList);
             agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
                 @Override
                 public void eventStart() {
-                    System.out.println("presence");
+                    System.out.println("presence " + new Date());
                     theBrain.searchRoom("").presence = true;
                 }
 
                 @Override
                 public void eventStop() {
-                    System.out.println("non presence");
+                    System.out.println("non presence " + new Date());
                     theBrain.searchRoom("").presence = false;
                 }
             });
             agendaChecker.start();
             new Thread() {
                 public void run() {
-                    while (!isInterrupted()) {
+                    while (agendaChecker.isActive()){
                         try {
-                            if(agendaList.getLast().getEnd().before(new Date())){
+                            if((new Date().getTime() - agendaList.getLast().getEnd().getTime()) > 1000) {
                                 agendaChecker.setActive(false);
+                                break;
                             }
-                            Thread.sleep(1000);
+                            Thread.sleep(3000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         }
                     }
                 }
             }.start();
-
         }
     }
 

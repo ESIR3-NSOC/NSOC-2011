@@ -43,7 +43,6 @@ public class BrainRoom {
         this.building = temp[0];
         this.room = temp[1];
         this.fullAuto = false;
-
         devicesStates = new LinkedList<Data>();
     }
 
