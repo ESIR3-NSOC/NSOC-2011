@@ -43,7 +43,7 @@
 			NSString *sensor = [location objectAtIndex:([location count]-1)];
 			NSString *value = [item objectAtIndex:1];			
 			
-			if([sensor isEqualToString:@"tempInt"]){
+			if([sensor isEqualToString:@"tempIn"]){
 				tempInLabel.text = value;
 
 			} else if([sensor isEqualToString:@"tempOut"]) {

@@ -123,9 +123,6 @@ public class ServerManager extends ServerResource{
                 datatypes.add(DataType.POWER);
 
                 hr = new HmiRequest(location, datatypes);
-
-                ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
-                sc.sendMessage(hr);
             }
 
             // 3. get detail for a dataType
@@ -145,30 +142,25 @@ public class ServerManager extends ServerResource{
                 }
 
                 hr = new HmiRequest(location, datatypes, beginDate, endDate);
-                // send the HmiRequest object to the Controller within the requires port
-                ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
-                sc.sendMessage(hr);
             }
             else { return "Your url is not correct"; }
 
             ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
 
             LinkedList<Data> result = sc.sendGetRequest(hr);
-            if(result == null){
+            System.out.println("return : "+ result);
+            if(result.size()  == 0){
                 return "No data provided";
             }
-            String res = new String();
 
+            String res = new String();
             // we have to send serialized Data
-            LinkedList<String> sendData = new LinkedList<String>();
             for(int i=0; i< result.size(); i++){
-                //sendData.add(result.get(i).serialized());
                 res += result.get(i).getSensor().getLocation()+":";
                 res += result.get(i).getValue()+"-";
 
             }
-
-            System.out.println("result: "+res);
+            System.out.println("res: "+res);
             return res;
         }
     }
@@ -185,11 +177,10 @@ public class ServerManager extends ServerResource{
          *  Double value
          */
         System.out.println("Post command received!");
-        System.out.println("idAction: "+form.getValues("idAction")+" \n" +
-                           "idActuator: "+form.getValues("idActuator")+ " \n"+
-                           "datatype: "+form.getValues("datatype") +" \n"+
+        System.out.println("datatype: "+form.getValues("datatype") +" \n"+
                            "building: "+form.getValues("building") +" \n"+
                            "room: "+form.getValues("room") + " \n" +
+                           "actuator: "+form.getValues("actuator") + " \n" +
                            "value: "+form.getValues("value")  +" \n"
         );
 
@@ -198,14 +189,14 @@ public class ServerManager extends ServerResource{
 
         // Create the Actuator with the data sent in the POST request
         Actuator actuator = new Actuator(
-                UUID.fromString(form.getValues("idActuator")),
+                UUID.randomUUID(),
                 DataType.valueOf(form.getValues("datatype").toUpperCase()),
                 location
         );
 
         // Create the Action
         Action action = new Action(
-                UUID.fromString(form.getValues("idAction")),
+                UUID.randomUUID(),
                 actuator,
                 form.getValues("value")
         );

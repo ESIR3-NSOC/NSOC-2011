@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="32"/>
 			<integer value="37"/>
+			<integer value="32"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -135,7 +135,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">20</string>
+						<string key="IBUIText">0</string>
 						<object class="NSFont" key="IBUIFont" id="674756755">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
@@ -241,7 +241,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">10</string>
+						<string key="IBUIText">0</string>
 						<reference key="IBUIFont" ref="797226395"/>
 						<reference key="IBUITextColor" ref="93003122"/>
 						<reference key="IBUIHighlightedColor" ref="552374723"/>
@@ -298,7 +298,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">700</string>
+						<string key="IBUIText">0</string>
 						<reference key="IBUIFont" ref="674756755"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
@@ -393,7 +393,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">500</string>
+						<string key="IBUIText">0</string>
 						<reference key="IBUIFont" ref="797226395"/>
 						<reference key="IBUITextColor" ref="93003122"/>
 						<reference key="IBUIHighlightedColor" ref="552374723"/>
@@ -450,7 +450,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">58</string>
+						<string key="IBUIText">0</string>
 						<reference key="IBUIFont" ref="674756755"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
@@ -835,13 +835,13 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>InfosViewController</string>
 					<string>UIResponder</string>
-					<string>{{960, 276}, {320, 480}}</string>
+					<string>{{611, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw8CAAA</bytes>
 					</object>
 					<boolean value="NO"/>
-					<string>{{386, 353}, {320, 403}}</string>
+					<string>{{385, 353}, {320, 403}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

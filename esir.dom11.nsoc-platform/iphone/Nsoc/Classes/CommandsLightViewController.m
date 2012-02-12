@@ -22,6 +22,7 @@
 
 }
 
+//on ne peut pas envoyer 2 commandes à la fois
 -(IBAction) changeValue:(id)sender {
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
@@ -29,13 +30,14 @@
 	if(switchOutlet.on){
 		result = 1;
 	}
-
+	
 	[cm sendPostRequest:[NSString stringWithFormat:@"%d", result] 
 			   datatype:@"light" 
 			   building:@"bat7" 
 				   room:@"salle930" 
-			   actuator:[NSString stringWithFormat:@"light%d", switchOutlet.tag]];
-
+			   actuator:[NSString stringWithFormat:@"light"]];
+	
+	[cm release];
 }
 
 /*

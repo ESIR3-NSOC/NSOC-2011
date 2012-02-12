@@ -23,7 +23,7 @@ import java.util.LinkedList;
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
@@ -49,7 +49,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         Data data4 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/humidity"), "60", new Date());
 
         //stock into list
-        LinkedList<Data> dataList = new LinkedList<Data>();
+        dataList = new LinkedList<Data>();
         dataList.add(data1);
         dataList.add(data2);
         dataList.add(data3);
@@ -77,7 +77,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         LinkedList<Data> object = null;
-        if(HMIAction.getAction() == null){
+        if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.GET)){
             //HMI ask for data
         /*    for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
                 RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
@@ -99,7 +99,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         HmiRequest HMIAction = (HmiRequest) o;
         //create a command
 
-        if(HMIAction.getAction() != null)  {
+        if(HMIAction.getRequest().equals(HmiRequest.HmiRestRequest.POST))  {
             LinkedList<Action> list = new LinkedList<Action>();
             list.add(HMIAction.getAction());
             Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
@@ -113,7 +113,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
     //HMI need some data so...
     public void send2HMI(Command command) {
         System.out.println("Control : send2HMI");
-        getPortByName("HMI",MessagePort.class).process(command);
+        getPortByName("HMI", MessagePort.class).process(command);
     }
 
 

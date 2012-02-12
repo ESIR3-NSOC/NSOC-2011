@@ -20,5 +20,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch *kitchenSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *bedroomSwitch;
 
+-(IBAction) changeValue:(id)sender;
+
 
 @end
