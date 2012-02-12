@@ -17,9 +17,7 @@
 	
 	UILabel *tempLabel;
 	
-	NSNumber *COMFORTTEMP;
-	NSArray *idActionArray;
-	NSArray *idActuatorArray;
+	int COMFORTTEMP;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *comfortBtn;
@@ -27,10 +25,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *lessonBtn;
 @property (nonatomic, retain) IBOutlet UISlider *tempSlider;
 @property (nonatomic, retain) IBOutlet UILabel *tempLabel;
-@property (nonatomic, retain) NSNumber *COMFORTTEMP;
-
-@property (nonatomic, retain) NSArray *idActionArray;
-@property (nonatomic, retain) NSArray *idActuatorArray;
 
 - (void) sendTemperature:(id) sender;
 - (IBAction)sliderValueChanged:(id)sender;

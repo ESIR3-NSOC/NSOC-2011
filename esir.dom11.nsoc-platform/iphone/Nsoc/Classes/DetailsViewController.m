@@ -15,16 +15,6 @@
 @synthesize DetailsTableView;
 @synthesize detailsArray;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -83,17 +73,6 @@ numberOfRowsInSection:(NSInteger) section{
 }
 
 
-/*
- We don't need to uncomment this method due to the tabBarController, others orientations than portrait don't work
- 
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-*/ 
-
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -105,10 +84,16 @@ numberOfRowsInSection:(NSInteger) section{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.DetailsTableView = nil;
+	self.detailsArray = nil;
+	
 }
 
 
 - (void)dealloc {
+	[DetailsTableView release];
+	[detailsArray release];
+	
     [super dealloc];
 }
 

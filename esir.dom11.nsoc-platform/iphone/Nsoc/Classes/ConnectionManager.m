@@ -29,7 +29,8 @@
 	if(savedIp == nil){
 		savedIp = @"192.168.1.1";
 	}
-	return savedIp;
+	
+	return savedIp;	
 }
 
 // get the saved port in the iPhone
@@ -40,6 +41,7 @@
 	if(savedPort == nil){
 		savedPort = @"8182";
 	}
+	
 	return savedPort;
 }
 
@@ -49,6 +51,7 @@
 	[defaults setObject:ip forKey:@"savedIp"];
     [defaults synchronize];	
 	[defaults release];
+	
 	savedIp = ip;
 }
 
@@ -58,6 +61,7 @@
 	[defaults setObject:port forKey:@"savedIp"];
     [defaults synchronize];	
 	[defaults release];
+	
 	savedPort = port;
 }
 
@@ -82,32 +86,39 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
 	[request startSynchronous];
-		
+	
 	NSError *error = [request error];
 	if (!error) {
 		return YES;
 	} else {
 		return NO;
 	}
-
 }
 
 // send the GET request to fetch all data
-- (void) allData:(NSString *)building 
+- (NSArray *) allData:(NSString *)building 
 			room:(NSString *)room{
-	// client ip : http://@IP:port/all/building/room/
+	// client ip : http://@IP:port/building/room/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@", 
 												[self savedIp], 
 												[self savedPort],
 												building,
 												room];
-	NSLog(@"url = %@", http);
-	NSURL *url = [NSURL URLWithString:http];
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
-	NSLog(@"Result : ");
-	NSLog(@"res: %@",[request responseString]);
+	
+	NSError *error = [request error];
+	if (!error) {
+		NSString *responseString = [request responseString];
+		NSArray *array = [responseString componentsSeparatedByString:@"-"];
+		return array;
+	} else {
+		NSLog(@"error : %@", error);
+		return NO;
+	}
+	
 }
 
 // send the GET request to fetch details for a DataType
@@ -127,6 +138,9 @@
 	[request startSynchronous];
 	NSLog(@"response get all: %@", [request responseString]);
 	
+	[http release];
+	[url release];
+	[request release];
 }
 
 
@@ -135,12 +149,11 @@
  */
 
 // send the POST request to update a value
-- (BOOL) sendPostrequest:(NSString *)idAction 
-			  idActuator:(NSString *)idActuator
+- (BOOL) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room
-				   value:(double)value{
+				actuator:(NSString *)actuator {
 	
 	//if there is a connection between the server and the client 
 	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
@@ -150,15 +163,17 @@
 										[NSURL URLWithString: 
 											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
 		
-		[request addPostValue:idAction forKey:@"idAction"];
-		[request addPostValue:idActuator forKey:@"idActuator"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
 		[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
 		[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
 		[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
-		[request addPostValue:[NSString stringWithFormat:@"%f", value] forKey:@"value"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
+		
 		[request setDelegate:self];
 		[request startSynchronous];
 		NSLog(@"command sent!");
+		
+		[request release];
 	}
 	return YES;
 }
@@ -168,7 +183,7 @@
 /**
  *	REST Requests
  */
-
+/*
 - (void) requestFinished:(ASIHTTPRequest *)request {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
@@ -178,7 +193,7 @@
 - (void) requestFailed:(ASIHTTPRequest *)request {
 	NSError *error = [request error];
 	NSLog(@"%@", error);
-}
+}*/
 
 
 @end

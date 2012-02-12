@@ -13,10 +13,12 @@
 	id <CreditsViewControllerDelegate> delegate;
 	
 	UIScrollView *scrollView;
+	UIView *contentView;
 }
 
 @property (nonatomic, assign) id <CreditsViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIView *contentView;
 
 - (IBAction) done:(id) sender;
 - (void)goToMail: (id)sender;

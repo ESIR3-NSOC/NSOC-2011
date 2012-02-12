@@ -12,30 +12,20 @@
 @implementation CreditsViewController
 
 @synthesize delegate;
-@synthesize scrollView;
+@synthesize scrollView, contentView;
 
 -(IBAction) done:(id) sender{
 	[self.delegate creditsViewControllerDidFinish:self];
 }
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+// Implements viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {	
 	[super viewDidLoad];
 	
-	// We use the scrollView to be able to scroll in landscape mode
-	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 44); //we remove 44px due to the navigation bar height
 	[self.view addSubview:scrollView];
+	[self.scrollView addSubview:self.contentView];
+	self.scrollView.contentSize = self.contentView.bounds.size;
 
 }
 
@@ -70,10 +60,15 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.scrollView = nil;
+	self.contentView = nil;
 }
 
 
 - (void)dealloc {
+	[scrollView release];
+	[contentView release];
+	
     [super dealloc];
 }
 

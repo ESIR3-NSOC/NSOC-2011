@@ -26,7 +26,7 @@ import java.util.LinkedList;
 // input port (CTRL -> HMI)
 @Requires({
         @RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = IServerService.class),
-        @RequiredPort(name = "postCTRL", type = PortType.MESSAGE)
+        @RequiredPort(name = "postCTRL", type = PortType.MESSAGE, optional = true)
 })
 
 @Provides({
@@ -66,7 +66,7 @@ public class ServerComponent extends AbstractComponentType {
 
 
     public LinkedList<Data> sendGetRequest(HmiRequest hmir){
-         return (LinkedList<Data>) getPortByName("CTRL", IServerService.class).getFromHmi(hmir);
+         return (LinkedList<Data>) getPortByName("getCTRL", IServerService.class).getFromHmi(hmir);
     }
 
     // Be careful

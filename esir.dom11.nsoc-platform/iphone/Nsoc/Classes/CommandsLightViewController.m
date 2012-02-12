@@ -11,15 +11,34 @@
 
 @implementation CommandsLightViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
+@synthesize dinningSwitch, kitchenSwitch, bedroomSwitch;
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	dinningSwitch.tag = 0;
+	kitchenSwitch.tag = 1;
+	bedroomSwitch.tag = 2;
+
 }
-*/
+
+//on ne peut pas envoyer 2 commandes à la fois
+-(IBAction) changeValue:(id)sender {
+	UISwitch *switchOutlet = (UISwitch *) sender;
+	ConnectionManager *cm = [[ConnectionManager alloc] init];
+	int result = 0;
+	if(switchOutlet.on){
+		result = 1;
+	}
+	
+	[cm sendPostRequest:[NSString stringWithFormat:@"%d", result] 
+			   datatype:@"light" 
+			   building:@"bat7" 
+				   room:@"salle930" 
+			   actuator:[NSString stringWithFormat:@"light"]];
+	
+	[cm release];
+}
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -28,13 +47,6 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -47,10 +59,18 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.dinningSwitch = nil;
+	self.kitchenSwitch = nil;
+	self.bedroomSwitch = nil;
+	
 }
 
 
 - (void)dealloc {
+	[dinningSwitch release];
+	[kitchenSwitch release];
+	[bedroomSwitch release];
+	
     [super dealloc];
 }
 

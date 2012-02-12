@@ -45,7 +45,7 @@ public class ActionDAOSQLite implements ActionDAO {
     @Override
     public Action create(Action action) {
         Action newAction = retrieve(action.getId());
-        if (newAction.getId()==null) {
+        if (newAction.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             Device device = _daoFactorySQLite.getDeviceDAO().create(action.getActuator());
             if (device.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")!=0) {
                 try {
