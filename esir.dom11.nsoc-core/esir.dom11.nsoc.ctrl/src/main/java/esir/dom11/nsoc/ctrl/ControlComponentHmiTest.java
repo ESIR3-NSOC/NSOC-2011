@@ -43,20 +43,17 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         System.out.println("Control : Start");
 
         //choose your data for the test
-        Data data1 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/0"), "10", new Date());
-        Data data2 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/1"), "20", new Date());
-        Data data3 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/2"), "25", new Date());
-        Data data4 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/3"), "22", new Date());
-        Data data5 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/4"), "14", new Date());
+        Data data1 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/tempIn"), "20", new Date());
+        Data data2 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/tempOut"), "9", new Date());
+        Data data3 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/brightness"), "700", new Date());
+        Data data4 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/humidity"), "60", new Date());
 
         //stock into list
-        dataList = new LinkedList<Data>();
+        LinkedList<Data> dataList = new LinkedList<Data>();
         dataList.add(data1);
         dataList.add(data2);
         dataList.add(data3);
         dataList.add(data4);
-        dataList.add(data5);
-
     }
 
     @Stop

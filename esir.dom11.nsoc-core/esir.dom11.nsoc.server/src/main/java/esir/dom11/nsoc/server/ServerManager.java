@@ -38,6 +38,10 @@ public class ServerManager extends ServerResource{
         try{
             // Start the server
             _component.start();
+            System.out.println("/**");
+            System.out.println("* Starting server");
+            System.out.println("* Server started : http://"+this.getIpServer()+":"+port);
+            System.out.println("*/");
 
             return true;
         } catch (Exception e){
@@ -153,14 +157,19 @@ public class ServerManager extends ServerResource{
             if(result == null){
                 return "No data provided";
             }
+            String res = new String();
 
             // we have to send serialized Data
             LinkedList<String> sendData = new LinkedList<String>();
             for(int i=0; i< result.size(); i++){
-                sendData.add(result.get(i).serialized());
+                //sendData.add(result.get(i).serialized());
+                res += result.get(i).getSensor().getLocation()+":";
+                res += result.get(i).getValue()+"-";
+
             }
 
-            return sendData;
+            System.out.println("result: "+res);
+            return res;
         }
     }
 

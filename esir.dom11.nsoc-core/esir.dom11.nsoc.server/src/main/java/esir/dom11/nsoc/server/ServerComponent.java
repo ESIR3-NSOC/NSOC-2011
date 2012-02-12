@@ -10,7 +10,9 @@ package esir.dom11.nsoc.server;
 
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.DataType;
 import esir.dom11.nsoc.model.HmiRequest;
+import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.IServerService;
 import org.kevoree.annotation.*;
 import org.kevoree.annotation.ComponentType;
@@ -18,6 +20,7 @@ import org.kevoree.annotation.Port;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
 
+import java.util.Date;
 import java.util.LinkedList;
 
 @Library(name = "NSOC_2011")
@@ -25,8 +28,8 @@ import java.util.LinkedList;
 
 // input port (CTRL -> HMI)
 @Requires({
-        @RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = IServerService.class),
-        @RequiredPort(name = "postCTRL", type = PortType.MESSAGE)
+        //@RequiredPort(name = "getCTRL", type = PortType.SERVICE, className = IServerService.class),
+        @RequiredPort(name = "postCTRL", type = PortType.MESSAGE, optional = true)
 })
 
 @Provides({
