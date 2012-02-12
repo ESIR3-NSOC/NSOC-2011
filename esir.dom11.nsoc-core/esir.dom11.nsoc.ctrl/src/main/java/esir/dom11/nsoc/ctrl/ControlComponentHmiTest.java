@@ -33,8 +33,8 @@ import java.util.LinkedList;
 public class ControlComponentHmiTest extends AbstractComponentType implements ctrlInterface,IServerService {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
-    private LinkedList<AgendaEvent> agendaList;
-    private AgendaChecker agendaChecker;
+   // private LinkedList<AgendaEvent> agendaList;
+   // private AgendaChecker agendaChecker;
 
     //test
     private LinkedList<Data> dataList;
@@ -175,7 +175,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
     @Port(name = "presenceFromContext")
     //The context ask for a precise variable saved in database (eg : temp sensor from a room )
     public void receiveFromContext(Object o) {
-        System.out.println("Control receive context");
+     /*   System.out.println("Control receive context");
         if(o != null){
             Agenda agenda = (Agenda) o;
             System.out.println("Control : Context data receive : " + agenda);
@@ -212,6 +212,7 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
             }.start();
 
         }
+        */
     }
 
 

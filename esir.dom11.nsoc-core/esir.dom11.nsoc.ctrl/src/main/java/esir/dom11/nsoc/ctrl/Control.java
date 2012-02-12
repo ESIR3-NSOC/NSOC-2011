@@ -39,68 +39,14 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 
         agendaList = new LinkedList<AgendaEvent>();
         commandList = new LinkedList<Command>();
-     /*
-
-        LinkedList<Action> list = new LinkedList<Action>();
-        Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
-        Action action = new Action(actuator, "true");
-
-        list.add(action);
-        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-        //send command
-        send2Conflict(command);
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-            //--------
-            LinkedList<Action> list2 = new LinkedList<Action>();
-            Actuator actuator2 = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
-            Action action2 = new Action(actuator2, "false");
-
-            list.add(action2);
-            Command command2 = new Command(list2, Category.USER,(long) 0, (long) 0 ) ;
-            //send command
-            send2Conflict(command2);
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
-    */
-        //another test
- /*      LinkedList<Object> params = new LinkedList<Object>();
-
-        RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
-        if (result.isSuccess()) {
-            System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
-        }
-   */
-       // HmiRequest ic = new HmiRequest();
-       // LinkedList<DataType> datatypes = new LinkedList<DataType>();
-
-   /* test      list2 = new LinkedList<Data>() ;
-          list2.add(data1);
-          list2.add(data2);
-    */
-/*        //Brain starting
         theBrain = new TheBrain();
-        theBrain.createRoom("B", "930");
-*/
-
-
-
-
-
     }
 
     @Stop
     public void stop() {
-/*        System.out.println("Control : Stop");
+        System.out.println("Control : Stop");
           theBrain.stopTheBrain();
-*/
+
 
     }
 
@@ -129,24 +75,20 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             }
         }
         else System.out.println("Control ATTENTION : receive no get from Hmi");
+        System.out.println("Control : data list send to Hmi ");
         return object;
     }
     @Port(name = "postFromHmi")
     //HMI ask us for some data
     public void postFromHmi(Object o) {
-
-        //HMI send action
         HmiRequest HMIAction = (HmiRequest) o;
-        //create a command
-
         if(HMIAction.getAction() != null)  {
             LinkedList<Action> list = new LinkedList<Action>();
             list.add(HMIAction.getAction());
             Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
             //send command
             send2Conflict(command);
-            System.out.println("command send to conflict : " +  command.getActionList().size());
-            send2HMI(command);
+            System.out.println("Control : command send to conflict ");
         }
         else System.out.println("Control ATTENTION : receive no command from Hmi");
     }
