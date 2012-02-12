@@ -14,15 +14,6 @@
 
 @synthesize dataFromDate;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 - (id)initWithDataFromDatePicker:(ModelData *) passedData{
 	
@@ -33,11 +24,8 @@
 
 	}
 	
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 200, 30)];
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease]; 
-	[dateFormatter setDateFormat:@"dd-MM-YYYY"];
-	//label.text = [dateFormatter stringFromDate:self.dataFromDate.beginDate];
-	label.text = @"coucou";
+	[dateFormatter setDateFormat:@"YYYY-MM-dd"];
 	
 	return self;
 }
@@ -77,13 +65,6 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

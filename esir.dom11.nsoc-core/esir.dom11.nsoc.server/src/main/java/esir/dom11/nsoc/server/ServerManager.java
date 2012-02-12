@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class ServerManager extends ServerResource{
     private Component _component;
@@ -35,26 +36,8 @@ public class ServerManager extends ServerResource{
         _component.getDefaultHost().attach("/", ServerManager.class);
 
         try{
-            System.out.println("/** Server launched **/");
-            System.out.println("/**");
-            System.out.println(" * Server created : http://"+this.getIpServer()+":"+port);
-            System.out.println(" */");
-
+            // Start the server
             _component.start();
-
-            LinkedList<DataType> datatypes = new LinkedList<DataType>();
-
-            // add all the dataTypes in the dataTypes list
-            datatypes.add(DataType.TEMPERATURE);
-            datatypes.add(DataType.BRIGHTNESS);
-            datatypes.add(DataType.HUMIDITY);
-            datatypes.add(DataType.POWER);
-
-            HmiRequest hr = new HmiRequest("bat7/salle930", datatypes);
-            ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();
-            sc.sendMessage(hr);
-
-            System.out.println("Object sent!");
 
             return true;
         } catch (Exception e){
@@ -204,18 +187,21 @@ public class ServerManager extends ServerResource{
 
         String location = form.getValues("building") + "-" + form.getValues("room");
 
+        // Create the Actuator with the data sent in the POST request
         Actuator actuator = new Actuator(
                 UUID.fromString(form.getValues("idActuator")),
                 DataType.valueOf(form.getValues("datatype").toUpperCase()),
                 location
         );
 
+        // Create the Action
         Action action = new Action(
                 UUID.fromString(form.getValues("idAction")),
                 actuator,
                 form.getValues("value")
         );
 
+        // Create the Object to send to the Controller
         HmiRequest hr = new HmiRequest(location, action);
 
         ServerComponent sc = LocalStorage.getLocalStorageObject().getServerComponent();

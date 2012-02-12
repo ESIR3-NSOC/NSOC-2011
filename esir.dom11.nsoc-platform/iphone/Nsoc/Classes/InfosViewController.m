@@ -12,30 +12,16 @@
 @implementation InfosViewController
 
 @synthesize cm;
-
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
+@synthesize scrollView;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self.view addSubview:scrollView];
+	
 	cm = [[ConnectionManager alloc] init];
-<<<<<<< HEAD
-	BOOL result = [cm allData:@"bat7" room:@"salle930"];	
+	/*BOOL result = [cm allData:@"bat7" room:@"salle930"];	
 	
 	if(!result){
 		ConnectionViewController *connectionViewController = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
@@ -46,10 +32,7 @@
 		[connectionViewController release];
 		
 	}
-=======
-	[cm allData:@"b7" room:@"s930"];	
->>>>>>> 9bfec18a965cf347409b50613ad36ac5fc0b9f3b
-	
+	*/
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 											  target:self
@@ -58,7 +41,7 @@
 
 
 - (void) refreshInfo:(id)sender {
-	[cm allData:@"b7" room:@"s930"];	
+	[cm allData:@"bat7" room:@"salle930"];	
 }
 
 

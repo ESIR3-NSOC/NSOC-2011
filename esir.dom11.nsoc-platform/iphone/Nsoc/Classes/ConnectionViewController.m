@@ -12,8 +12,7 @@
 
 @synthesize delegate;
 @synthesize ServerTableView;
-@synthesize serverLabels;
-@synthesize serverPlaceholders;
+@synthesize serverLabels, serverPlaceholders;
 @synthesize cm;
 
 // Implements viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -39,7 +38,7 @@
 					forControlEvents:UIControlEventTouchUpInside];
 	[connectionToServerBtn setTitle:@"Connection" forState:UIControlStateNormal];
 	[ServerTableView layoutIfNeeded];
-	connectionToServerBtn.frame = CGRectMake(10, [ServerTableView contentSize].height, 300, 40);
+	connectionToServerBtn.frame = CGRectMake(10, 200, 300, 40);
 	[self.view addSubview:connectionToServerBtn];
 	
 	//we block the scroll for the UITableView
@@ -79,10 +78,7 @@
 			   
 		   }else {
 			   [self.delegate connectionViewControllerDidFinish:self];
-   
 		   }
-
-		   
 	   } else{
 		   //display an error
 		   UIAlertView *message = [[UIAlertView alloc] initWithTitle: @"Error"  

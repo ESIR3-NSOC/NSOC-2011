@@ -42,12 +42,11 @@
 /**
  *	POST Requests
  */
-- (BOOL) sendPostrequest:(NSString *)idAction 
-			  idActuator:(NSString *)idActuator
+- (BOOL) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room
-				   value:(double)value;
+				actuator:(NSString *)actuator;
 
 
 @end
