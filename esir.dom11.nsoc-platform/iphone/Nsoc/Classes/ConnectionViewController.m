@@ -13,6 +13,7 @@
 @synthesize delegate;
 @synthesize ServerTableView;
 @synthesize serverLabels, serverPlaceholders;
+@synthesize connectionToServerBtn;
 @synthesize cm;
 
 // Implements viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -92,12 +93,18 @@
 		   
 	   }
 	
+	[cellIp release];
+	[cellPort release];
+	[labelIpServer release];
+	[labelPortServer release];
+	
 	//simulate a click on the return button to hide the keyboard
 	[self textFieldDidReturnWithIndexPath: [NSIndexPath indexPathForRow:1 inSection:0]];	
 }
 
 // test if the entry matches the wanted format
--(BOOL) testEntryWithRegex:(NSString *)entry regex:(NSString *) regex{
+-(BOOL) testEntryWithRegex:(NSString *)entry 
+					 regex:(NSString *) regex {
 	NSError *error = NULL;
 	
 	NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern: regex
@@ -145,6 +152,7 @@
 	cell.selectionStyle = UITableViewCellEditingStyleNone;
 	
 	[cell.rightTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+	[cell release];
 	
 }
 
@@ -182,6 +190,8 @@ titleForHeaderInSection:(NSInteger) section{
 	
 	[self configureCell:cell atIndexPath:indexPath];
 	
+	[CellIdentifier release];
+	[cell release];
     return cell;
 	
 }
@@ -216,12 +226,23 @@ titleForHeaderInSection:(NSInteger) section{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	
+	self.delegate = nil;
+	self.ServerTableView = nil;
+	self.serverLabels = nil;
+	self.serverPlaceholders = nil;
+	self.cm = nil;
 }
 
 
 - (void)dealloc {
+	[ServerTableView release];
+	[serverLabels release];
+	[serverPlaceholders release];
+	[connectionToServerBtn release];
+	[cm release];
+	
     [super dealloc];
 }
-
 
 @end

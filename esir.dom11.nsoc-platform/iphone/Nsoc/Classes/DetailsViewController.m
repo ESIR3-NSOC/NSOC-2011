@@ -84,10 +84,16 @@ numberOfRowsInSection:(NSInteger) section{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.DetailsTableView = nil;
+	self.detailsArray = nil;
+	
 }
 
 
 - (void)dealloc {
+	[DetailsTableView release];
+	[detailsArray release];
+	
     [super dealloc];
 }
 

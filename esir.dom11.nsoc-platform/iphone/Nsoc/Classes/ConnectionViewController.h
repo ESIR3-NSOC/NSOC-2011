@@ -20,7 +20,6 @@
 	NSArray *serverLabels;
 	NSArray *serverPlaceholders;
 	
-	NSInteger *TableViewHeight;
 	UIButton *connectionToServerBtn;
 	
 	ConnectionManager *cm;
@@ -31,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *ServerTableView;
 @property (nonatomic, retain) NSArray *serverLabels;
 @property (nonatomic, retain) NSArray *serverPlaceholders;
+@property (nonatomic, retain) UIButton *connectionToServerBtn;
 @property (nonatomic, retain) ConnectionManager *cm;
 
 - (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

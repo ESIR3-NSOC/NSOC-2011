@@ -107,10 +107,15 @@ numberOfRowsInSection:(NSInteger) section{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.CommandsTableView = nil;
+	self.commandsArray = nil;
+	
 }
 
 
 - (void)dealloc {
+	[CommandsTableView release];
+	[commandsArray release];
     [super dealloc];
 }
 

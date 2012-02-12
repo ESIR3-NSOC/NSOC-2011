@@ -17,7 +17,7 @@
 	
 	UILabel *tempLabel;
 	
-	int *COMFORTTEMP;
+	int COMFORTTEMP;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *comfortBtn;

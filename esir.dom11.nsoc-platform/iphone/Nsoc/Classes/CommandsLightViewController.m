@@ -57,10 +57,18 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.dinningSwitch = nil;
+	self.kitchenSwitch = nil;
+	self.bedroomSwitch = nil;
+	
 }
 
 
 - (void)dealloc {
+	[dinningSwitch release];
+	[kitchenSwitch release];
+	[bedroomSwitch release];
+	
     [super dealloc];
 }
 

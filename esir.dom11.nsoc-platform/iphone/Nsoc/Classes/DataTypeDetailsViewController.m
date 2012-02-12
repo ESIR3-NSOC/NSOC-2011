@@ -77,11 +77,14 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.dataFromDate = nil;
 }
 
 
 - (void)dealloc {
-    [super dealloc];
+	[dataFromDate release];
+	
+	[super dealloc];
 }
 
 

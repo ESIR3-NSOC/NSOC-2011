@@ -14,6 +14,7 @@
 @synthesize ServerTableView;
 @synthesize serverLabels;
 @synthesize serverPlaceholders;
+@synthesize statusLabel;
 @synthesize cm;
 
 
@@ -283,18 +284,6 @@ titleForHeaderInSection:(NSInteger) section{
 }
 
 
-
-/*
- We don't need to uncomment this method due to the tabBarController, others orientations than portrait don't work
- 
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
- }
- */ 
-
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -306,6 +295,12 @@ titleForHeaderInSection:(NSInteger) section{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	
+	self.ServerTableView = nil;
+	self.serverLabels = nil;
+	self.serverPlaceholders = nil;
+	self.cm = nil;
+	self.statusLabel = nil;
 }
 
 

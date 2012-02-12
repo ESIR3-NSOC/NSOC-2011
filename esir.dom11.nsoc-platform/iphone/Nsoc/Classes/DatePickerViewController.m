@@ -13,12 +13,9 @@
 
 @synthesize delegate;
 @synthesize rangeTableView;
-@synthesize rangeArray;
-@synthesize dateArray;
+@synthesize rangeArray, dateArray;
 @synthesize dateLabel;
-
 @synthesize picker;
-
 @synthesize data;
 
 
@@ -152,12 +149,26 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	
+	self.delegate = nil;
+	self.rangeTableView = nil;
+	self.rangeArray = nil;
+	self.dateArray = nil;
+	self.dateLabel = nil;
+	self.picker = nil;
+	self.data = nil;
 }
 
 
 - (void)dealloc {
-    [super dealloc];
+	[rangeTableView release];
+	[rangeArray release];
+	[dateArray release];
+	[dateLabel release];
+	[picker release];
+	[data release];
+    
+	[super dealloc];
 }
-
 
 @end
