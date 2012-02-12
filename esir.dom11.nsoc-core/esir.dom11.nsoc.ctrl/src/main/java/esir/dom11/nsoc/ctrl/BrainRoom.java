@@ -1,7 +1,6 @@
 package esir.dom11.nsoc.ctrl;
 
-import esir.dom11.nsoc.model.Command;
-import esir.dom11.nsoc.model.Data;
+import esir.dom11.nsoc.model.*;
 import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.model.device.Sensor;
 
@@ -16,7 +15,7 @@ import java.util.LinkedList;
  */
 public class BrainRoom {
     /*class composed of different algorithm*/
-  
+
     //Attribute
     String building;
     String room;
@@ -25,89 +24,102 @@ public class BrainRoom {
     LinkedList<Sensor> sensorsList;
     LinkedList<Actuator> actuatorList;
 
+    LinkedList<Data> devicesStates;
+
     //mode full auto or semi auto
     boolean fullAuto;
-    
+
+    //presence in the room
+    boolean presence;
+
     /*Constructor
     @param: String location: type "Building/Room"
     Initialize the BrainRoom location, building and room
     */
-    public BrainRoom(String location){
+    public BrainRoom(String location) {
         //location
         String[] temp = new String[2];
         temp = location.split("/");
         this.building = temp[0];
         this.room = temp[1];
         this.fullAuto = false;
+
+        devicesStates = new LinkedList<Data>();
     }
 
-    public void receiveCommand(String user, Command command){
 
-    }
-    public void receiveData(Data data){
-
-    }
-    
     /*
     method 1 : Algorithm of light control
     @param: String info; info relate of up or down
     */
-    private void lightControl(String info){
-        if(fullAuto){
-            if(info.equals("up")){
+    public LinkedList<Action> lightControl(String info) {
+        LinkedList<Action> actionList = new LinkedList<Action>();
+        if (info.equals("up")) {
 
-            }
-            else if(info.equals("down")){
+        } else if (info.equals("down")) {
 
-            }
         }
-        else{
-            if(info.equals("up")){
+        return actionList;
+    }
 
-            }
-            else if(info.equals("down")){
+    public void lightControlFullAuto() {
+        if (!fullAuto) {
+            if (presence) {
+                //mise a jour capteur
 
+                //algo
+            } else {
+                //light off
+                //shutter close
             }
         }
     }
-    
+
     /*
     method 2 : Algorithm temperatureControl
     @param: String info; info relate of up or down
     */
-    private void temperatureControl(String info){
-        if(fullAuto){
-            if(info.equals("up")){
+    public LinkedList<Action> temperatureControl(String info) {
+        LinkedList<Action> actionList = new LinkedList<Action>();
+        if (info.equals("up")) {
 
-            }
-            else if(info.equals("down")){
+        } else if (info.equals("down")) {
 
-            }
         }
-        else{
-            if(info.equals("up")){
-
-            }
-            else if(info.equals("down")){
-
-            }
-        }
-
+        return actionList;
     }
+
+    public void temperatureControlFullAuto() {
+        if (!fullAuto) {
+            if (presence) {
+                //algo
+                for (int i = 0; i < sensorsList.size(); i++) {
+                    if (sensorsList.get(i).getDataType().equals(DataType.TEMPERATURE)) {
+
+                    }
+                }
+            } else {
+                //chauffage off
+            }
+        }
+    }
+
     /*
     Scenario
     */
     // leaving scenario
-    private void leavingScenario(){
+    private void leavingScenario() {
 
     }
+
     // coming scenario
-    private void comingScenario(){
+    private void comingScenario() {
 
 
     }
+
     // video conference scenario
-    private void videoConference(){
+    private void videoConference() {
         //switch on video projector
 
         //turn off light
@@ -122,47 +134,81 @@ public class BrainRoom {
      Room properties
      */
 
+    public void updateRoom(Data data) {
+        boolean find = false;
+        for (int i = 0; i < devicesStates.size(); i++) {
+            if (data.getId().equals(devicesStates.get(i).getId())) {
+                devicesStates.set(i, data);
+                find = true;
+                break;
+            }
+        }
+        if (!find) {
+            devicesStates.add(data);
+        }
+    }
+
     // to obtain the room
-    public String getRoom(){
+    public String getRoom() {
         return room;
     }
+
     // to obtain the building
-    public String getBuilding(){
+    public String getBuilding() {
         return building;
     }
+
     //scan the room to have all sensors and actuators
-    public void getAllDevices(){
-        
+    public void getAllDevices() {
+
     }
+
     // to have all sensors of the room
-    public LinkedList<Sensor> getAllSensors(){
+    public LinkedList<Sensor> getAllSensors() {
         return sensorsList;
     }
+
     // to have all sensors of the room
-    public LinkedList<Actuator> getAllActuators(){
+    public LinkedList<Actuator> getAllActuators() {
         return actuatorList;
     }
+
     // to add a sensor to the room
-    public void addSensor(Sensor sensor){
-        sensorsList.add(sensor);    
+    public void addSensor(Sensor sensor) {
+
     }
+
     // to remove one sensor of the room
-    public void removeSensor(Sensor sensor){
-        //sensorsList.remove
+    public void removeSensor(Sensor sensor) {
+
     }
 
     /*
      Algorithm methods
      */
-    public void fullAuto(boolean info){
+    public void fullAuto(boolean info) {
         fullAuto = info;
+        if (fullAuto) {
+            new Thread() {
+                public void run() {
+                    while (fullAuto) {
+                        try {
+                            temperatureControlFullAuto();
+                            lightControlFullAuto();
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
+                    }
+                }
+            }.start();
+        }
     }
-
 
     /*
      Stop brain's room
      */
-    public void stop(){
+    public void stop() {
         building = null;
         room = null;
     }
