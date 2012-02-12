@@ -102,7 +102,7 @@ public class Command {
         for (Action action : _actionList) {
             stringBuilder.append(action.toString());
         }
-        stringBuilder.append("\n* * *     * * *\n");
+        stringBuilder.append("\n* * *  * * *  * * *  * * *  * * *\n");
         return stringBuilder.toString();
     }
 
