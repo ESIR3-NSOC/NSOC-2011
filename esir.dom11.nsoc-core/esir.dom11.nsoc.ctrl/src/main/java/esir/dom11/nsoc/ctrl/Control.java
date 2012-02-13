@@ -213,25 +213,27 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 
             BrainRoom br = theBrain.searchRoom(sensor.getSensor().getLocation());
             DataType thisDataType = sensor.getSensor().getDataType();
-            if(thisDataType.equals(DataType.TEMPERATURE) || thisDataType.equals(DataType.BRIGHTNESS) || thisDataType.equals(DataType.HUMIDITY)){
-                //update room, for fullAuto principally
+            if(thisDataType.equals(DataType.TEMPERATURE) || thisDataType.equals(DataType.BRIGHTNESS)){
                 br.updateRoom(sensor);
             }
-            else if(thisDataType.equals(DataType.POWER)){
-                Command com = new Command();
-                com.setActionList(br.lightControl(sensor.getValue()));
-                com.setCategory(Category.USER);
-                com.setLock((long) 1);
-                com.setTimeOut((long) 1);
-                send2Conflict(com);
-            }
-            else if(thisDataType.equals(DataType.POWER)){
-                Command com = new Command();
-                com.setActionList(br.temperatureControl(sensor.getValue()));
-                com.setCategory(Category.USER);
-                com.setLock((long) 1);
-                com.setTimeOut((long) 1);
-                send2Conflict(com);
+            else if(thisDataType.equals(DataType.SWITCH)){
+                String inter = sensor.getSensor().getLocation().split("/")[4];
+                if(inter.equals("1")){
+                    Command com = new Command();
+                    com.setActionList(br.lightControl(sensor.getValue()));
+                    com.setCategory(Category.USER);
+                    com.setLock((long) 1);
+                    com.setTimeOut((long) 1);
+                    send2Conflict(com);
+                }
+                else if(inter.equals("2")){
+                    Command com = new Command();
+                    com.setActionList(br.temperatureControl(sensor.getValue()));
+                    com.setCategory(Category.USER);
+                    com.setLock((long) 1);
+                    com.setTimeOut((long) 1);
+                    send2Conflict(com);
+                }
             }
             else System.out.println("data type receive by hardware : " + sensor.getSensor().getDataType());
         }

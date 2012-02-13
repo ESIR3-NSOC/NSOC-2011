@@ -92,9 +92,6 @@
 		   [message release];
 		   
 	   }
-<<<<<<< HEAD
-
-=======
 	
 	[cellIp release];
 	[cellPort release];
@@ -103,7 +100,6 @@
 	
 	//simulate a click on the return button to hide the keyboard
 	[self textFieldDidReturnWithIndexPath: [NSIndexPath indexPathForRow:1 inSection:0]];	
->>>>>>> 3e4258bbd5650e230d9027efc4d7c6aa75b6dd47
 }
 
 // test if the entry matches the wanted format
