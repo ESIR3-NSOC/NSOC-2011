@@ -185,9 +185,7 @@ public class ServerManager extends ServerResource{
         );
 
 
-        String location = form.getValues("building") + "/" +
-                          form.getValues("room") + "/" +
-                          form.getValues("actuator");
+        String location = form.getValues("building") + "-" + form.getValues("room");
 
         // Create the Actuator with the data sent in the POST request
         Actuator actuator = new Actuator(

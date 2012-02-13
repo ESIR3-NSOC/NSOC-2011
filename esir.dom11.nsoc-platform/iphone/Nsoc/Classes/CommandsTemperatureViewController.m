@@ -25,26 +25,6 @@
 																	 target:self 
 																	 action:@selector(sendTemperature:)];      
 	self.navigationItem.rightBarButtonItem = temperatureButton;	
-	
-	
-	// display the current data of indoor temperature
-	ConnectionManager *cm = [[ConnectionManager alloc] init];
-	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
-	
-	for(int i = 0; i < ([results count]-1); i++) {
-		NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
-		
-		NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
-		NSString *actuator = [locations objectAtIndex:([locations count] -2)];
-		NSString *number = [locations objectAtIndex:([locations count]-1)];
-		NSString *value = [items objectAtIndex:1];			
-		
-		if([actuator isEqualToString:@"temp"]){
-			if([number isEqualToString:@"0"]){
-				tempSlider.value = [value intValue];
-			} 
-		}
-	}	
 }
 
 - (void) sendTemperature:(id) sender {
@@ -53,7 +33,7 @@
 			   datatype:@"temperature" 
 			   building:@"bat7" 
 				   room:@"salle930" 
-			   actuator:@"switch/2"];
+			   actuator:@"temperature"];
 	
 	[cm release];
 }

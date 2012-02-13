@@ -42,7 +42,7 @@
 /**
  *	POST Requests
  */
-- (void) sendPostRequest:(NSString *)value 
+- (BOOL) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room

@@ -13,6 +13,7 @@
 	UISwitch *dinningSwitch;
 	UISwitch *kitchenSwitch;
 	UISwitch *bedroomSwitch;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UISwitch *dinningSwitch;

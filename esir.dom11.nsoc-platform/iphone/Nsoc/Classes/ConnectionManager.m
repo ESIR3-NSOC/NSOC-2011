@@ -109,8 +109,6 @@
 	[request setDelegate:self];
 	[request startSynchronous];
 	
-	NSLog(@"GET Request sent!");
-
 	NSError *error = [request error];
 	if (!error) {
 		NSString *responseString = [request responseString];
@@ -133,11 +131,11 @@
 	// client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@/%5$@/%$6@/%$7@",
 					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
+	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setDelegate:self];
+	//[request setDelegate:self];
 	[request startSynchronous];
-	
 	NSLog(@"response get all: %@", [request responseString]);
 	
 	[http release];
@@ -151,29 +149,33 @@
  */
 
 // send the POST request to update a value
-- (void) sendPostRequest:(NSString *)value 
+- (BOOL) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room
 				actuator:(NSString *)actuator {
-
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
-								   [NSURL URLWithString: 
-									[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
 	
-	[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
-	
-	[request setDelegate:self];
-	[request startSynchronous];
-	
-	NSLog(@"POST Request sent!");
-	
-	[request release];
-	
+	//if there is a connection between the server and the client 
+	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
+		return NO;
+	} else {
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
+										[NSURL URLWithString: 
+											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
+		
+		[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
+		[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
+		
+		[request setDelegate:self];
+		[request startSynchronous];
+		NSLog(@"command sent!");
+		
+		[request release];
+	}
+	return YES;
 }
 
 
