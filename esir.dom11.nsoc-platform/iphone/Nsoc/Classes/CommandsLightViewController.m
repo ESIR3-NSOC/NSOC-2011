@@ -19,24 +19,59 @@
 	dinningSwitch.tag = 0;
 	kitchenSwitch.tag = 1;
 	bedroomSwitch.tag = 2;
-
+	
+	// display the current data of the switches
+	ConnectionManager *cm = [[ConnectionManager alloc] init];
+	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
+	
+	for(int i = 0; i < ([results count]-1); i++) {
+		NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
+		
+		NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
+		NSString *actuator = [locations objectAtIndex:([locations count] -2)];
+		NSString *number = [locations objectAtIndex:([locations count]-1)];
+		NSString *value = [items objectAtIndex:1];			
+		
+		if([actuator isEqualToString:@"switch"]){
+			if([number isEqualToString:@"0"]){
+				if([value isEqualToString:@"ON"])
+					[dinningSwitch setOn:YES animated:YES];
+				else [dinningSwitch setOn:NO animated:YES];
+			} 
+			else if([number isEqualToString:@"1"]) {
+				if([value isEqualToString:@"ON"])
+					[kitchenSwitch setOn:YES animated:YES];
+				else [kitchenSwitch setOn:NO animated:YES];
+			}
+			else if([number isEqualToString:@"2"]) {
+				if([value isEqualToString:@"ON"])
+					[bedroomSwitch setOn:YES animated:YES];
+				else [bedroomSwitch setOn:NO animated:YES];
+			}
+		}
+	}
 }
 
 // send the value to the server when we click on a switch
 -(IBAction) changeValue:(id)sender {
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
-	int result = 0;
+	NSMutableString *result = [[NSMutableString alloc] initWithString:@"OFF"];
 	if(switchOutlet.on){
-		result = 1;
+		[result appendString:@"ON"];
 	}
 	
-	[cm sendPostRequest:[NSString stringWithFormat:@"%d", result] 
+	NSString *actuator = [NSString stringWithFormat:@"lamp/%d", switchOutlet.tag];
+
+	NSLog(@"actuator :%@", actuator);
+	
+	[cm sendPostRequest:[NSString stringWithFormat:@"%@", result] 
 			   datatype:@"light" 
 			   building:@"bat7" 
 				   room:@"salle930" 
-			   actuator:[NSString stringWithFormat:@"light"]];
+			   actuator:nil];
 	
+	[result release];
 	[cm release];
 }
 

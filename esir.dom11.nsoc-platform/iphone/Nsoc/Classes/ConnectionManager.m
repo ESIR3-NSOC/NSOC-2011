@@ -106,6 +106,8 @@
 	[request setDelegate:self];
 	[request startSynchronous];
 	
+	NSLog(@"GET Request sent!");
+
 	NSError *error = [request error];
 	if (!error) {
 		NSString *responseString = [request responseString];
@@ -168,7 +170,7 @@
 		
 		[request setDelegate:self];
 		[request startSynchronous];
-		NSLog(@"command sent!");
+		NSLog(@"POST Request sent!");
 		
 		[request release];
 	}

@@ -19,8 +19,9 @@
 	UILabel *tempInLabel;
 	UILabel *tempOutLabel;
 	UILabel *brightnessInLabel;
-	UILabel *humidityInLabel;
-	
+	UILabel *brightnessOutLabel;
+	UILabel *co2Label;
+	UILabel *presenceLabel;
 }
 
 @property (nonatomic, retain) ConnectionManager *cm;
@@ -30,7 +31,9 @@
 @property (nonatomic, retain) IBOutlet UILabel *tempInLabel;
 @property (nonatomic, retain) IBOutlet UILabel *tempOutLabel;
 @property (nonatomic, retain) IBOutlet UILabel *brightnessInLabel;
-@property (nonatomic, retain) IBOutlet UILabel *humidityInLabel;
+@property (nonatomic, retain) IBOutlet UILabel *brightnessOutLabel;
+@property (nonatomic, retain) IBOutlet UILabel *co2Label;
+@property (nonatomic, retain) IBOutlet UILabel *presenceLabel;
 
 
 - (void) refreshInfo:(id) sender;

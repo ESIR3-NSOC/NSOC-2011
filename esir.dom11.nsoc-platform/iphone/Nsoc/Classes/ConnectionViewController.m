@@ -78,7 +78,6 @@
 			   [message release];
 			   
 		   }else {
-			   NSLog(@"ok");
 			   [self.delegate connectionViewControllerDidFinish:self];
 		   }
 	   } else{
@@ -93,11 +92,7 @@
 		   [message release];
 		   
 	   }
-	
-	[cellIp release];
-	[cellPort release];
-	[labelIpServer release];
-	[labelPortServer release];	
+
 }
 
 // test if the entry matches the wanted format
