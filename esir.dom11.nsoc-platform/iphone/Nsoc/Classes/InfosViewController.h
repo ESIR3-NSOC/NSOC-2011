@@ -36,5 +36,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *presenceLabel;
 
 - (void) refreshInfo:(id) sender;
+- (void) getData:(NSArray *) results;
 
 @end

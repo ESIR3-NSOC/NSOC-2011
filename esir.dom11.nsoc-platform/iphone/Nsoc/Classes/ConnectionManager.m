@@ -78,7 +78,6 @@
 		
 	//we create the http string
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", ip, port];
-	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];

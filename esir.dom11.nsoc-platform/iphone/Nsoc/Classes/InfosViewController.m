@@ -33,7 +33,8 @@
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
 	
 	if(!results){
-		ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
+		ConnectionViewController *cvc = [[ConnectionViewController alloc] 
+										 initWithNibName:@"ConnectionViewController" bundle:nil];
 		cvc.delegate = self;
 		
 		cvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -41,99 +42,56 @@
 		[cvc release];
 		
 	} else {
-		for(int i = 0; i < ([results count]-1); i++) {
-			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
-			
-			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
-			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
-			NSString *number = [locations objectAtIndex:([locations count]-1)];
-			NSString *value = [items objectAtIndex:1];		
-			
-			if([actuator isEqualToString:@"temp"]) {
-				if([number isEqualToString:@"0"]){
-					tempInLabel.text = value;
-				} else if([number isEqualToString:@"1"]) {
-					tempOutLabel.text = value;
-				}
-			}
-			else if([actuator isEqualToString:@"lum"]){
-				if([number isEqualToString:@"0"]){
-					brightnessInLabel.text = value;
-				} else if([number isEqualToString:@"1"]) {
-					brightnessOutLabel.text = value;
-				}	
-			}
-			else if([actuator isEqualToString:@"co2"]) {
-				if([number isEqualToString:@"0"]){
-					co2Label.text = value;
-				}
-			}
-			else if([actuator isEqualToString:@"presence"]) {
-				if([number isEqualToString:@"0"]){
-					presenceLabel.text = value;
-				}		
-			}
-		}
+		[self getData:results];
 	}	
 }
 
 
-- (void) refreshInfo:(id)sender {
-	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
+// receive the array of current data and parse it
+-(void) getData:(NSArray *) results {	
+	for(int i = 0; i < ([results count]-1); i++) {
+		NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
 	
-	if(!results){
-		ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
-		cvc.delegate = self;
+		NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
+		NSString *actuator = [locations objectAtIndex:([locations count] -2)];
+		NSString *number = [locations objectAtIndex:([locations count]-1)];
+		NSString *value = [items objectAtIndex:1];		
 		
-		cvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-		[self presentModalViewController:cvc animated:YES];
-		[cvc release];
-		
-	} else {
-		for(int i = 0; i < ([results count]-1); i++) {
-			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
-			
-			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
-			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
-			NSString *number = [locations objectAtIndex:([locations count]-1)];
-			NSString *value = [items objectAtIndex:1];		
-			
-			if([actuator isEqualToString:@"temp"]) {
-				if([number isEqualToString:@"0"]){
-					tempInLabel.text = value;
-				} else if([number isEqualToString:@"1"]) {
-					tempOutLabel.text = value;
-				}
-			}
-			else if([actuator isEqualToString:@"lum"]){
-				if([number isEqualToString:@"0"]){
-					brightnessInLabel.text = value;
-				} else if([number isEqualToString:@"1"]) {
-					brightnessOutLabel.text = value;
-				}	
-			}
-			else if([actuator isEqualToString:@"co2"]) {
-				if([number isEqualToString:@"0"]){
-					co2Label.text = value;
-				}
-			}
-			else if([actuator isEqualToString:@"presence"]) {
-				if([number isEqualToString:@"0"]){
-					presenceLabel.text = value;
-				}		
+		if([actuator isEqualToString:@"temp"]) {
+			if([number isEqualToString:@"0"]){
+				tempInLabel.text = value;
+			} else if([number isEqualToString:@"1"]) {
+				tempOutLabel.text = value;
 			}
 		}
+		else if([actuator isEqualToString:@"lum"]){
+			if([number isEqualToString:@"0"]){
+				brightnessInLabel.text = value;
+			} else if([number isEqualToString:@"1"]) {
+				brightnessOutLabel.text = value;
+			}	
+		}
+		else if([actuator isEqualToString:@"co2"]) {
+			if([number isEqualToString:@"0"]){
+				co2Label.text = value;
+			}
+		}
+		else if([actuator isEqualToString:@"presence"]) {
+			if([number isEqualToString:@"0"]){
+				presenceLabel.text = value;
+			}		
+		}
 	}
+	
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+// ask for a refresh of the information
+- (void) refreshInfo:(id)sender {
+	
+	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
+	[self getData:results];
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -151,7 +109,9 @@
 	self.tempInLabel = nil;
 	self.tempOutLabel = nil;
 	self.brightnessInLabel = nil;
-	
+	self.brightnessOutLabel = nil;
+	self.presenceLabel = nil;
+	self.co2Label = nil;
 }
 
 
@@ -162,6 +122,9 @@
 	[tempInLabel release];
 	[tempOutLabel release];
 	[brightnessInLabel release];
+	[brightnessOutLabel release];
+	[presenceLabel release];
+	[co2Label release];
 	
     [super dealloc];
 }
