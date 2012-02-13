@@ -52,7 +52,7 @@
 	}
 }
 
-// send the value to the server when we click on a switch
+//on ne peut pas envoyer 2 commandes à la fois
 -(IBAction) changeValue:(id)sender {
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];

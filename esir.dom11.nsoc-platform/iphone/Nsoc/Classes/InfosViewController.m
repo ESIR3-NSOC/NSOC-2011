@@ -19,12 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-											  target:self
-											  action:@selector(refreshInfo:)];	
-	
-	
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
@@ -32,16 +26,22 @@
 	cm = [[ConnectionManager alloc] init];
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
 	
+<<<<<<< HEAD
 	if(results == NULL) {
 		
 		self.scrollView = nil;
 		self.contentView = nil;
 		ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
 		cvc.delegate = self;
+=======
+	if(!results){
+		ConnectionViewController *connectionViewController = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
+		connectionViewController.delegate = self;
+>>>>>>> 3e4258bbd5650e230d9027efc4d7c6aa75b6dd47
 		
-		cvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-		[self presentModalViewController:cvc animated:YES];
-		[cvc release];
+		connectionViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+		[self presentModalViewController:connectionViewController animated:YES];
+		[connectionViewController release];
 		
 	} else {
 		for(int i = 0; i < ([results count]-1); i++) {
@@ -78,7 +78,11 @@
 			}
 		}
 	}
-	
+		
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+											  target:self
+											  action:@selector(refreshInfo:)];	
 }
 
 

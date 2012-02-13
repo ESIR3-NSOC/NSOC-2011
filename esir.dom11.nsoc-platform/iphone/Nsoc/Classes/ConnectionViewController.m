@@ -44,7 +44,7 @@
 	
 	//we block the scroll for the UITableView
 	ServerTableView.scrollEnabled = NO;
-	   
+	    
 	[super viewDidLoad];
 	
 }
@@ -92,7 +92,18 @@
 		   [message release];
 		   
 	   }
+<<<<<<< HEAD
 
+=======
+	
+	[cellIp release];
+	[cellPort release];
+	[labelIpServer release];
+	[labelPortServer release];
+	
+	//simulate a click on the return button to hide the keyboard
+	[self textFieldDidReturnWithIndexPath: [NSIndexPath indexPathForRow:1 inSection:0]];	
+>>>>>>> 3e4258bbd5650e230d9027efc4d7c6aa75b6dd47
 }
 
 // test if the entry matches the wanted format
@@ -145,6 +156,7 @@
 	cell.selectionStyle = UITableViewCellEditingStyleNone;
 	
 	[cell.rightTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+	[cell release];
 	
 }
 
@@ -181,8 +193,11 @@ titleForHeaderInSection:(NSInteger) section{
     }
 	
 	[self configureCell:cell atIndexPath:indexPath];
-
+	
+	[CellIdentifier release];
+	[cell release];
     return cell;
+	
 }
 
 // Allow the return button to go in the next field
@@ -216,6 +231,7 @@ titleForHeaderInSection:(NSInteger) section{
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	
+	self.delegate = nil;
 	self.ServerTableView = nil;
 	self.serverLabels = nil;
 	self.serverPlaceholders = nil;
