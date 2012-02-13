@@ -66,9 +66,6 @@ public class DeviceComp extends AbstractComponentType {
         mDataType = (String) this.getDictionary().get("DataType");
         connectionManager = getPortByName("commandKNX", IntToConnect.class);
 
-        if (connectionManager.getProtocol().equals("knx")) {
-            connectionManager.connected();
-        }
         if (mDevice.equals("Actuator")) {
             System.out.println("DeviceComp: Create Actuator");
             mActuator = new Actuator(DataType.UNKNOWN, mLocation);
@@ -155,8 +152,8 @@ public class DeviceComp extends AbstractComponentType {
                 // TODO Auto-generated method stub
                 String adresseEnvoyee = ((tuwien.auto.calimero.cemi.CEMILData) arg0.getFrame()).getDestination().toString();
                 if (adresseEnvoyee.equals(adresse)) {
-                    String valueRead = connectionManager.read(mAddressDevice);
-                    System.out.println(mSensor.toString() + " Value: " + valueRead);
+                    String valueRead = "";//connectionManager.read(mAddressDevice);
+                    System.out.println("Switch: \n" + mSensor.toString() + " Value: " + valueRead);
                     Data data = new Data(mSensor, valueRead, new Date());
                     sendMessage(data);
                 }
