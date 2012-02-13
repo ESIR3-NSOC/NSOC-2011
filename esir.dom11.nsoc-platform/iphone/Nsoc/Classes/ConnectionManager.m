@@ -50,7 +50,6 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
     [defaults synchronize];	
-	[defaults release];
 	
 	savedIp = ip;
 }
@@ -60,7 +59,6 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:port forKey:@"savedIp"];
     [defaults synchronize];	
-	[defaults release];
 	
 	savedPort = port;
 }
@@ -77,7 +75,6 @@
 	[defaults setObject:ip forKey:@"savedIp"];
     [defaults setObject:port forKey:@"savedPort"];
     [defaults synchronize];	
-	[defaults release];
 		
 	//we create the http string
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", ip, port];
