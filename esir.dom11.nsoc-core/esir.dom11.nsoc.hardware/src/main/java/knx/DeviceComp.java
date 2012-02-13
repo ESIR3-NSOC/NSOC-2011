@@ -38,7 +38,9 @@ import java.util.Date;
         @DictionaryAttribute(name = "Location", defaultValue = "/bat7/salle930/0", optional = true),
         @DictionaryAttribute(name = "AddressDevice", optional = true),
         @DictionaryAttribute(name = "TypeOfSensor", defaultValue = "Data", optional = true,
-                vals = {"Data", "Switch"})
+                vals = {"Data", "Switch"}),
+        @DictionaryAttribute(name = "DataType", defaultValue = "TEMPERATURE", optional = true,
+        vals = {"UNKNOWN", "TEMPERATURE", "BRIGHTNESS", "HUMIDITY", "POWER", "PRESENCE", "SWITCH"})
 })
 
 @Library(name = "NSOC_2011")
@@ -51,6 +53,7 @@ public class DeviceComp extends AbstractComponentType {
     private String mLocation;
     private String mAddressDevice;
     private String mTypeOfSensor;
+    private String mDataType;
     private Boolean stop = false;
 
     @Start
@@ -60,6 +63,7 @@ public class DeviceComp extends AbstractComponentType {
         mLocation = (String) this.getDictionary().get("Location");
         mAddressDevice = (String) this.getDictionary().get("AddressDevice");
         mTypeOfSensor = (String) this.getDictionary().get("TypeOfSensor");
+        mDataType = (String) this.getDictionary().get("DataType");
         connectionManager = getPortByName("commandKNX", IntToConnect.class);
 
         if (connectionManager.getProtocol().equals("knx")) {
@@ -69,9 +73,9 @@ public class DeviceComp extends AbstractComponentType {
             System.out.println("DeviceComp: Create Actuator");
             mActuator = new Actuator(DataType.UNKNOWN, mLocation);
         } else if (mDevice.equals("Sensor")) {
+            mSensor = new Sensor(DataType.valueOf(mDataType), mLocation);
             if (connectionManager.getProtocol().equals("knx")) {
                 System.out.println("DeviceComp: Create Sensor");
-                mSensor = new Sensor(DataType.UNKNOWN, mLocation);
                 if (mTypeOfSensor.equals("Data")) {
                     sendBackgroundMessage();
                 } else if (mTypeOfSensor.equals("Switch")) {
