@@ -6,24 +6,12 @@ import esir.dom11.nsoc.model.device.Sensor;
 
 import java.util.LinkedList;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Anthony
- * Date: 17/01/12
- * Time: 11:30
- * To change this template use File | Settings | File Templates.
- */
 public class BrainRoom {
-    /*class composed of different algorithm*/
 
-    //Attribute
-    String building;
-    String room;
-
+    String roomLocation;
     //list of sensors
     LinkedList<Sensor> sensorsList;
     LinkedList<Actuator> actuatorList;
-
     LinkedList<Data> devicesStates;
 
     //mode full auto or semi auto
@@ -32,20 +20,12 @@ public class BrainRoom {
     //presence in the room
     boolean presence;
 
-    /*Constructor
-    @param: String location: type "Building/Room"
-    Initialize the BrainRoom location, building and room
-    */
+    //Constructor
     public BrainRoom(String location) {
-        //location
-        String[] temp = new String[2];
-        temp = location.split("/");
-        this.building = temp[0];
-        this.room = temp[1];
+        this.roomLocation = location;
         this.fullAuto = false;
-        devicesStates = new LinkedList<Data>();
+        this.devicesStates = new LinkedList<Data>();
     }
-
 
     /*
     method 1 : Algorithm of light control
@@ -53,23 +33,36 @@ public class BrainRoom {
     */
     public LinkedList<Action> lightControl(String info) {
         LinkedList<Action> actionList = new LinkedList<Action>();
-        if (info.equals("up")) {
+        if (presence) {
+            if (info.equals("up")) {
 
-        } else if (info.equals("down")) {
+            } else if (info.equals("down")) {
 
+            }
+        } else {
+            Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+            Action lamp = new Action(act, "OFF");
+            Actuator act2 = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+            Action shutter = new Action(act2, "OFF");
+            actionList.add(lamp);
+            actionList.add(shutter);
         }
         return actionList;
     }
-
     public void lightControlFullAuto() {
-        if (!fullAuto) {
+        LinkedList<Action> actionList = new LinkedList<Action>();
+        if (fullAuto) {
             if (presence) {
                 //mise a jour capteur
 
                 //algo
             } else {
-                //light off
-                //shutter close
+                Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                Action lamp = new Action(act, "OFF");
+                Actuator act2 = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+                Action shutter = new Action(act2, "OFF");
+                actionList.add(lamp);
+                actionList.add(shutter);
             }
         }
     }
@@ -80,25 +73,30 @@ public class BrainRoom {
     */
     public LinkedList<Action> temperatureControl(String info) {
         LinkedList<Action> actionList = new LinkedList<Action>();
-        if (info.equals("up")) {
 
-        } else if (info.equals("down")) {
+        if (presence) {
+            if (info.equals("up")) {
 
+            } else if (info.equals("down")) {
+
+            }
+        } else {
+            Actuator act = new Actuator(DataType.HEAT, "/bat7/salle930/heat/0");
+            Action heat = new Action(act, "OFF");
+            actionList.add(heat);
         }
         return actionList;
     }
-
     public void temperatureControlFullAuto() {
+        LinkedList<Action> actionList = new LinkedList<Action>();
         if (!fullAuto) {
             if (presence) {
-                //algo
-                for (int i = 0; i < sensorsList.size(); i++) {
-                    if (sensorsList.get(i).getDataType().equals(DataType.TEMPERATURE)) {
 
-                    }
-                }
+
             } else {
-                //chauffage off
+                Actuator act = new Actuator(DataType.HEAT, "/bat7/salle930/heat/0");
+                Action heat = new Action(act, "OFF");
+                actionList.add(heat);
             }
         }
     }
@@ -132,7 +130,7 @@ public class BrainRoom {
     /*
      Room properties
      */
-
+    // update data sensor's room
     public void updateRoom(Data data) {
         boolean find = false;
         for (int i = 0; i < devicesStates.size(); i++) {
@@ -147,44 +145,12 @@ public class BrainRoom {
         }
     }
 
-    // to obtain the room
-    public String getRoom() {
-        return room;
+    // to get location of the room
+    public String getLocation() {
+        return roomLocation;
     }
 
-    // to obtain the building
-    public String getBuilding() {
-        return building;
-    }
-
-    //scan the room to have all sensors and actuators
-    public void getAllDevices() {
-
-    }
-
-    // to have all sensors of the room
-    public LinkedList<Sensor> getAllSensors() {
-        return sensorsList;
-    }
-
-    // to have all sensors of the room
-    public LinkedList<Actuator> getAllActuators() {
-        return actuatorList;
-    }
-
-    // to add a sensor to the room
-    public void addSensor(Sensor sensor) {
-
-    }
-
-    // to remove one sensor of the room
-    public void removeSensor(Sensor sensor) {
-
-    }
-
-    /*
-     Algorithm methods
-     */
+    // stop or start fullAuto on thread
     public void fullAuto(boolean info) {
         fullAuto = info;
         if (fullAuto) {
@@ -204,11 +170,8 @@ public class BrainRoom {
         }
     }
 
-    /*
-     Stop brain's room
-     */
+    //Stop the brain
     public void stop() {
-        building = null;
-        room = null;
+
     }
 }

@@ -29,13 +29,22 @@
 	self.scrollView.contentSize = self.contentView.bounds.size;
 	
 	cm = [[ConnectionManager alloc] init];
-	
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
 	
+<<<<<<< HEAD
 	if(!results){
 		ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
 		cvc.delegate = self;
 		
+=======
+	if(results == NULL) {
+		
+		self.scrollView = nil;
+		self.contentView = nil;
+		ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
+		cvc.delegate = self;
+
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 		cvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 		[self presentModalViewController:cvc animated:YES];
 		[cvc release];
@@ -47,9 +56,15 @@
 			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
 			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
 			NSString *number = [locations objectAtIndex:([locations count]-1)];
+<<<<<<< HEAD
 			NSString *value = [items objectAtIndex:1];		
 			
 			if([actuator isEqualToString:@"temp"]) {
+=======
+			NSString *value = [items objectAtIndex:1];			
+			
+			if([actuator isEqualToString:@"temp"]){
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 				if([number isEqualToString:@"0"]){
 					tempInLabel.text = value;
 				} else if([number isEqualToString:@"1"]) {
@@ -71,7 +86,11 @@
 			else if([actuator isEqualToString:@"presence"]) {
 				if([number isEqualToString:@"0"]){
 					presenceLabel.text = value;
+<<<<<<< HEAD
 				}		
+=======
+				}	
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 			}
 		}
 	}	
@@ -151,7 +170,13 @@
 	self.tempInLabel = nil;
 	self.tempOutLabel = nil;
 	self.brightnessInLabel = nil;
+<<<<<<< HEAD
 	
+=======
+	self.brightnessOutLabel = nil;
+	self.co2Label = nil;
+	self.presenceLabel = nil;
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 }
 
 
@@ -162,6 +187,12 @@
 	[tempInLabel release];
 	[tempOutLabel release];
 	[brightnessInLabel release];
+<<<<<<< HEAD
+=======
+	[brightnessOutLabel release];
+	[co2Label release];
+	[presenceLabel release];
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 	
     [super dealloc];
 }

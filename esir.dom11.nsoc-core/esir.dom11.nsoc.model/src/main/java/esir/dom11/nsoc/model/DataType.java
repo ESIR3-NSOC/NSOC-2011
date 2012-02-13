@@ -7,8 +7,10 @@ public enum DataType {
     BRIGHTNESS,
     HUMIDITY,
     POWER,
-    PRESENCE,
-    SWITCH; //trigger a event
+    SWITCH,
+    SHUTTER,
+    LAMP,
+    HEAT;
 
     public String getValue() {
         return this.name();

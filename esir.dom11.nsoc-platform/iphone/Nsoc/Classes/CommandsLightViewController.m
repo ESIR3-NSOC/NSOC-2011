@@ -19,7 +19,10 @@
 	dinningSwitch.tag = 0;
 	kitchenSwitch.tag = 1;
 	bedroomSwitch.tag = 2;
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 	
 	// display the current data of the switches
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
@@ -58,19 +61,35 @@
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSMutableString *result = [[NSMutableString alloc] initWithString:@"OFF"];
+<<<<<<< HEAD
 
 	if(switchOutlet.on){
 		[result setString:@"ON"];
+=======
+	if(switchOutlet.on){
+		[result appendString:@"ON"];
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 	}
 	
 	NSString *actuator = [NSString stringWithFormat:@"lamp/%d", switchOutlet.tag];
 
+<<<<<<< HEAD
 	[cm sendPostRequest:result 
 			   datatype:@"light" 
 			   building:@"bat7" 
 				   room:@"salle930" 
 			   actuator:actuator];
+=======
+	NSLog(@"actuator :%@", actuator);
 	
+	[cm sendPostRequest:[NSString stringWithFormat:@"%@", result] 
+			   datatype:@"light" 
+			   building:@"bat7" 
+				   room:@"salle930" 
+			   actuator:nil];
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
+	
+	[result release];
 	[cm release];
 }
 

@@ -101,11 +101,11 @@ public class ToConnect implements IntToConnect {
 
     //------------------------------------------------------------------------------------------------------
     @Override
-    public String read(String adresseGroupe) {
+    public boolean read(String adresseGroupe) {
         // TODO Auto-generated method stub
-        String valeur = "";
+        boolean valeur = false;
         try {
-            valeur = pc.readString(new GroupAddress(adresseGroupe));
+            valeur = pc.readBool(new GroupAddress(adresseGroupe));
         } catch (KNXFormatException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -173,11 +173,6 @@ public class ToConnect implements IntToConnect {
     @Override
     public String getProtocol() {
         return "KNX";  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public KNXNetworkLinkIP getNetLink() {
-        return netLinkIp;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
 

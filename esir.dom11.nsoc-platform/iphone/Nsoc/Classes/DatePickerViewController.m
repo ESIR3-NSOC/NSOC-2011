@@ -156,7 +156,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.dateArray = nil;
 	self.dateLabel = nil;
 	self.picker = nil;
-	self.data = nil;
 }
 
 

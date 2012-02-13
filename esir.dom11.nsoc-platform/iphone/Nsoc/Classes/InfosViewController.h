@@ -21,7 +21,11 @@
 	UILabel *brightnessInLabel;
 	UILabel *brightnessOutLabel;
 	UILabel *co2Label;
+<<<<<<< HEAD
 	UILabel *presenceLabel;	
+=======
+	UILabel *presenceLabel;
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 }
 
 @property (nonatomic, retain) ConnectionManager *cm;
@@ -34,6 +38,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *brightnessOutLabel;
 @property (nonatomic, retain) IBOutlet UILabel *co2Label;
 @property (nonatomic, retain) IBOutlet UILabel *presenceLabel;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 
 - (void) refreshInfo:(id) sender;
 
