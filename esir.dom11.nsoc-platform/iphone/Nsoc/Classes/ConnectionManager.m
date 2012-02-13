@@ -107,12 +107,7 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
-<<<<<<< HEAD
 	NSLog(@"GET request sent!");
-=======
-	
-	NSLog(@"GET Request sent!");
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 
 	NSError *error = [request error];
 	if (!error) {
@@ -136,11 +131,11 @@
 	// client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@/%5$@/%$6@/%$7@",
 					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
+	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setDelegate:self];
+	//[request setDelegate:self];
 	[request startSynchronous];
-	
 	NSLog(@"response get all: %@", [request responseString]);
 	
 	[http release];
@@ -163,7 +158,6 @@
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
 								   [NSURL URLWithString: 
 									[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
-<<<<<<< HEAD
 	
 	[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
 	[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
@@ -176,22 +170,6 @@
 	NSLog(@"POST request sent!");
 	
 	[request release];
-=======
-	
-	[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
-	[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
-	
-	[request setDelegate:self];
-	[request startSynchronous];
-	
-	NSLog(@"POST Request sent!");
-	
-	[request release];
-	
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 }
 
 

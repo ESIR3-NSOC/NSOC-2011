@@ -24,12 +24,8 @@
 																	  style:UIBarButtonItemStylePlain
 																	 target:self 
 																	 action:@selector(sendTemperature:)];      
-<<<<<<< HEAD
 	self.navigationItem.rightBarButtonItem = temperatureButton;
 	
-=======
-	self.navigationItem.rightBarButtonItem = temperatureButton;	
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 	
 	
 	// display the current data of indoor temperature
@@ -49,11 +45,7 @@
 				tempSlider.value = [value intValue];
 			} 
 		}
-<<<<<<< HEAD
 	}
-=======
-	}	
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 }
 
 - (void) sendTemperature:(id) sender {

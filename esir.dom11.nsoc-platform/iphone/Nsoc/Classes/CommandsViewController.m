@@ -71,10 +71,7 @@ numberOfRowsInSection:(NSInteger) section{
 		[controller release];
 	}	
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 	//click on Temperature
 	else if([indexPath row] == 1){
 		CommandsTemperatureViewController *controller = [[CommandsTemperatureViewController alloc] init];
@@ -82,10 +79,6 @@ numberOfRowsInSection:(NSInteger) section{
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> fa26d0eec74c0630f20d1aceb3a934ea256ebab7
 }
 
 
