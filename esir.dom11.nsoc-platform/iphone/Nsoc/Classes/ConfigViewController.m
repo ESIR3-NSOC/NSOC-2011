@@ -142,10 +142,6 @@
 		[message release];
 		
 	}
-	
-	//simulate a click on the return button to hide the keyboard
-	//[[(ELCTextfieldCell*)[self.ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] rightTextField] resignFirstResponder];
-
 }
 
 // test if the entry matches the wanted format

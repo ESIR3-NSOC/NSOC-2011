@@ -50,7 +50,6 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
     [defaults synchronize];	
-	[defaults release];
 	
 	savedIp = ip;
 }
@@ -60,7 +59,6 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:port forKey:@"savedIp"];
     [defaults synchronize];	
-	[defaults release];
 	
 	savedPort = port;
 }
@@ -77,13 +75,14 @@
 	[defaults setObject:ip forKey:@"savedIp"];
     [defaults setObject:port forKey:@"savedPort"];
     [defaults synchronize];	
-	[defaults release];
 		
 	//we create the http string
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", ip, port];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
+	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	
 	[request setDelegate:self];
 	[request startSynchronous];
 	
@@ -108,7 +107,8 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
-	
+	NSLog(@"GET request sent!");
+
 	NSError *error = [request error];
 	if (!error) {
 		NSString *responseString = [request responseString];
@@ -149,33 +149,27 @@
  */
 
 // send the POST request to update a value
-- (BOOL) sendPostRequest:(NSString *)value 
+- (void) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room
 				actuator:(NSString *)actuator {
+
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
+								   [NSURL URLWithString: 
+									[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
 	
-	//if there is a connection between the server and the client 
-	if (![self connectionToServer:[self savedIp] portServer:[self savedPort]]) {
-		return NO;
-	} else {
-		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
-										[NSURL URLWithString: 
-											[NSString stringWithFormat:@"http://%1$@:%2$@", [self savedIp], [self savedPort]]]];
-		
-		[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
-		[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
-		[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
-		[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
-		[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
-		
-		[request setDelegate:self];
-		[request startSynchronous];
-		NSLog(@"command sent!");
-		
-		[request release];
-	}
-	return YES;
+	[request addPostValue:[NSString stringWithFormat:@"%@", value] forKey:@"value"];
+	[request addPostValue:[NSString stringWithFormat:@"%@", datatype] forKey:@"datatype"];
+	[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
+	[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
+	[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
+	
+	[request setDelegate:self];
+	[request startSynchronous];
+	NSLog(@"POST request sent!");
+	
+	[request release];
 }
 
 

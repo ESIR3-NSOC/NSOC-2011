@@ -9,7 +9,6 @@
 #import "CommandsViewController.h"
 #import "CommandsLightViewController.h"
 #import "CommandsTemperatureViewController.h"
-#import "CommandsScenariiViewController.h"
 
 @implementation CommandsViewController
 
@@ -21,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.commandsArray = [NSArray arrayWithObjects:@"Lights", @"Blinds", @"Temperature", @"Scenarii", nil];
+	self.commandsArray = [NSArray arrayWithObjects:@"Lights", @"Temperature", @"Blinds", @"Scenarii", nil];
 }
 
 /**
@@ -72,24 +71,11 @@ numberOfRowsInSection:(NSInteger) section{
 		[controller release];
 	}	
 	
-	//click on Blinds
-	else if([indexPath row] == 1){
-		
-	}
-	
+
 	//click on Temperature
-	else if([indexPath row] == 2){
+	else if([indexPath row] == 1){
 		CommandsTemperatureViewController *controller = [[CommandsTemperatureViewController alloc] init];
 		[controller setTitle:[self.commandsArray objectAtIndex:indexPath.row]];
-		[[self navigationController] pushViewController:controller animated:YES];
-		[controller release];
-	}
-	
-	//click on Scenarii
-	else if([indexPath row] == 3){
-		CommandsScenariiViewController *controller = [[CommandsScenariiViewController alloc] init];
-		
-		[controller setTitle:[self.commandsArray objectAtIndex:[indexPath row]]];
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}
