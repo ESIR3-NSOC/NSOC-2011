@@ -27,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *ServerTableView;
 @property (nonatomic, retain) NSArray *serverLabels;
 @property (nonatomic, retain) NSArray *serverPlaceholders;
+@property (nonatomic, retain) UILabel *statusLabel;
 @property (nonatomic, retain) ConnectionManager *cm;
 
 - (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

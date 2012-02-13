@@ -56,33 +56,23 @@ public class CommandDAOMySQL implements CommandDAO {
                                 + " '" + command.getLock() + "',"
                                 + " '" + command.getTimeOut() + "')");
                 prepare.executeUpdate();
-                newCommand = retrieve(command.getId());
             } catch (SQLException exception) {
                 logger.error("Command insert error", exception);
-                System.out.println("Command insert error: "+ exception);
             }
 
-            StringBuilder statement = new StringBuilder("INSERT INTO commands_actions (id_command, id_action) VALUES");
-            int i = 0;
             for (Action action : command.getActionList()) {
                 if (_daoFactory.getActionDAO().create(action).toString().compareTo("00000000-0000-0000-0000-000000000000")!=0) {
-                    if (i>0) {
-                        statement.append(",");
+                    try {
+                        PreparedStatement prepare = _connection.getConnection()
+                                .prepareStatement("INSERT INTO commands_actions (id_command, id_action) " +
+                                        "VALUES ('" + command.getId() + "', '" + action.getId() + "')");
+                        prepare.executeUpdate();
+                    } catch (SQLException exception) {
+                        logger.error("Command insert error (action list): ", exception);
                     }
-                    statement.append("('" + command.getId() + "', '" + action.getId() + "')");
-                    i++;
                 }
             }
-
-            try {
-                PreparedStatement prepare = _connection.getConnection()
-                        .prepareStatement(statement.toString());
-                prepare.executeUpdate();
-                newCommand = retrieve(command.getId());
-            } catch (SQLException exception) {
-                logger.error("Command insert error (action list): ", exception);
-                System.out.println("Command insert error (action list): "+ exception);
-            }
+            newCommand = retrieve(command.getId());
         }
         return newCommand;
     }
@@ -93,15 +83,14 @@ public class CommandDAOMySQL implements CommandDAO {
         try {
             ResultSet result = _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery("SELECT id_command, id_action, category, `lock`, time_out, id_actuator, value " +
+                    .executeQuery("SELECT id_command, id_action, category, `lock`, time_out " +
                                     "FROM commands c " +
                                     "JOIN commands_actions ca ON c.id=ca.id_command " +
-                                    "JOIN actions a ON ca.id_action=a.id " +
                                     "WHERE c.id = '" + id + "'");
             result.beforeFirst();
             LinkedList<Action> actionList = new LinkedList<Action>();
             while (result.next()) {
-                actionList.add(_daoFactory.getActionDAO().retrieve(UUID.fromString(result.getString("id_actuator"))));
+                actionList.add(_daoFactory.getActionDAO().retrieve(UUID.fromString(result.getString(2))));
             }
 
             if(result.first()) {
@@ -111,7 +100,6 @@ public class CommandDAOMySQL implements CommandDAO {
             }
         } catch (SQLException exception) {
             logger.error("Command retrieve error", exception);
-            System.out.println("Command retrieve error"+ exception);
         }
         return command;
     }
@@ -168,20 +156,20 @@ public class CommandDAOMySQL implements CommandDAO {
     @Override
     public boolean delete(UUID id) {
         Command command = retrieve(id);
-        StringBuilder statement = new StringBuilder();
-        statement.append("DELETE FROM commands_actions WHERE id = '" + command.getId() + "';");
-        statement.append("DELETE FROM commands WHERE id = '" + command.getId() + "';");
         try {
             _connection.getConnection()
                     .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
-                    .executeUpdate(statement.toString());
+                    .executeUpdate("DELETE FROM commands_actions WHERE id_command = '" + command.getId() + "'");
+            _connection.getConnection()
+                    .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE)
+                    .executeUpdate("DELETE FROM commands WHERE id = '" + command.getId() + "'");
 
             for (Action action : command.getActionList()) {
                 _daoFactory.getActionDAO().delete(action.getId());
             }
             return true;
         } catch (SQLException exception) {
-            logger.error("Data delete error",exception);
+            logger.error("Command delete error",exception);
         }
 
         return false;

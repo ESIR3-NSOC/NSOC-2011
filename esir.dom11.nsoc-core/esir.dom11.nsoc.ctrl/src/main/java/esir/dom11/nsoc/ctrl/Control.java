@@ -1,7 +1,6 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
-import esir.dom11.nsoc.model.device.Actuator;
 import esir.dom11.nsoc.service.IDbService;
 import esir.dom11.nsoc.service.IServerService;
 import esir.dom11.nsoc.service.RequestResult;
@@ -11,19 +10,20 @@ import org.kevoree.framework.MessagePort;
 import java.util.Date;
 import java.util.LinkedList;
 
+
 @Library(name = "NSOC_2011")
 @ComponentType
 @Provides({
         @ProvidedPort(name = "RHMI", type = PortType.SERVICE, className = IServerService.class),
         @ProvidedPort(name = "postFromHmi", type = PortType.MESSAGE) ,
-        @ProvidedPort(name = "RContext", type = PortType.MESSAGE) ,
+        @ProvidedPort(name = "presenceFromContext", type = PortType.MESSAGE) ,
         @ProvidedPort(name = "RConflict", type = PortType.MESSAGE),
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
         @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional=true),
+        @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Sensors", type = PortType.MESSAGE, optional = true)
 })
@@ -31,68 +31,24 @@ import java.util.LinkedList;
 public class Control extends AbstractComponentType implements ctrlInterface,IServerService {
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
+    private LinkedList<AgendaEvent> agendaList;
+    private AgendaChecker agendaChecker;
 
     @Start
     public void start() {
         System.out.println("Control : Start");
 
+        agendaList = new LinkedList<AgendaEvent>();
         commandList = new LinkedList<Command>();
-
-        while(true)
-        {
-        LinkedList<Action> list = new LinkedList<Action>();
-        Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
-        Action action = new Action(actuator, "true");
-
-        list.add(action);
-        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-        //send command
-        send2Conflict(command);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-            //--------
-            LinkedList<Action> list2 = new LinkedList<Action>();
-            Actuator actuator2 = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
-            Action action2 = new Action(actuator2, "false");
-
-            list.add(action2);
-            Command command2 = new Command(list2, Category.USER,(long) 0, (long) 0 ) ;
-            //send command
-            send2Conflict(command2);
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
-        }
-        //another test
- /*      LinkedList<Object> params = new LinkedList<Object>();
-
-        RequestResult result = getData(new Date(new Long("1326098201732")), new Date(new Long("1326098207775")), "temp-int-salle930", DataType.TEMPERATURE  );
-        if (result.isSuccess()) {
-            System.out.println("result of get from DAO : " + (LinkedList<Data>) result.getResult());
-        }
-   */
-       // HmiRequest ic = new HmiRequest();
-       // LinkedList<DataType> datatypes = new LinkedList<DataType>();
-
-   /* test      list2 = new LinkedList<Data>() ;
-          list2.add(data1);
-          list2.add(data2);
-    */
-/*        //Brain starting
         theBrain = new TheBrain();
-        theBrain.createRoom("B", "930");
-*/    }
+        theBrain.createRoom("test","test");
+    }
 
     @Stop
     public void stop() {
-/*        System.out.println("Control : Stop");
+        System.out.println("Control : Stop");
           theBrain.stopTheBrain();
-*/
+
 
     }
 
@@ -111,26 +67,32 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
         LinkedList<Data> object = null;
-        //HMI ask for data
-        for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
-            RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
-            if (result.isSuccess()) {
-                object = (LinkedList<Data>) result.getResult();
+        if(HMIAction.getAction() == null){
+            //HMI ask for data
+            for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+                RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
+                if (result.isSuccess()) {
+                    object = (LinkedList<Data>) result.getResult();
+                }
             }
         }
+        else System.out.println("Control ATTENTION : receive no get from Hmi");
+        System.out.println("Control : data list send to Hmi ");
         return object;
     }
     @Port(name = "postFromHmi")
     //HMI ask us for some data
     public void postFromHmi(Object o) {
-        //HMI send action
         HmiRequest HMIAction = (HmiRequest) o;
-        //create a command
-        LinkedList<Action> list = new LinkedList<Action>();
-        list.add(HMIAction.getAction());
-        Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-        //send command
-        send2Conflict(command);
+        if(HMIAction.getAction() != null)  {
+            LinkedList<Action> list = new LinkedList<Action>();
+            list.add(HMIAction.getAction());
+            Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+            //send command
+            send2Conflict(command);
+            System.out.println("Control : command send to conflict ");
+        }
+        else System.out.println("Control ATTENTION : receive no command from Hmi");
     }
     //HMI need some data so...
     public void send2HMI(Command command) {
@@ -151,8 +113,8 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             for(int i = 0; i < commandList.size(); i ++){
                 if(result.getResult() == commandList.get(i).getId()){
                     System.out.println("Control : Command " + commandList.get(i).getId() + " validate and send to HMI");
-                  //  send2HMI(commandList.get(i));
-                  //  sendCommand2DAO(commandList.get(i));
+                    send2HMI(commandList.get(i));
+                    sendCommand2DAO(commandList.get(i));
                     commandList.remove(i);
                     break;
                 }
@@ -175,7 +137,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 	}
 	public void sendCommand2DAO(Command command) {
         System.out.println("Control : send2DAO command");
-        getPortByName("DAO", IDbService.class).create((command));
+        for(int i=0; i<command.getActionList().size(); i++){
+            getPortByName("DAO", IDbService.class).create(command.getActionList().get(i));
+        }
 	}
     public RequestResult getData(Date begin, Date end, String location, DataType type){
         LinkedList<Object> params = new LinkedList<Object>();
@@ -191,10 +155,49 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
 
 
 
-    @Port(name = "RContext")
+    @Port(name = "presenceFromContext")
     //The context ask for a precise variable saved in database (eg : temp sensor from a room )
     public void receiveFromContext(Object o) {
-        System.out.println("Control : Context data receive : ");
+        System.out.println("Control receive context");
+        if(o != null){
+            LinkedList<AgendaEvent> agenda = (LinkedList<AgendaEvent>) o;
+            System.out.println("Control : Context data receive ");
+            //collect list of agenda event
+            agendaList = agenda;
+            if(agendaChecker !=null){
+                agendaChecker.setActive(false);
+            }
+            agendaChecker = new AgendaChecker(agendaList);
+            agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
+                @Override
+                public void eventStart() {
+                    System.out.println("presence " + new Date());
+                    theBrain.searchRoom("").presence = true;
+                }
+
+                @Override
+                public void eventStop() {
+                    System.out.println("non presence " + new Date());
+                    theBrain.searchRoom("").presence = false;
+                }
+            });
+            agendaChecker.start();
+            new Thread() {
+                public void run() {
+                    while (agendaChecker.isActive()){
+                        try {
+                            if((new Date().getTime() - agendaList.getLast().getEnd().getTime()) > 1000) {
+                                agendaChecker.setActive(false);
+                                break;
+                            }
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
+                    }
+                }
+            }.start();
+        }
     }
 
 
@@ -204,15 +207,33 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         System.out.println("Control : Sensors data receive");
         if(o != null){
             Data sensor = (Data) o;
-       //     theBrain.sendInfoTo(sensor.getDevice().getLocation(), sensor);
             System.out.println("Control : Sensor data in " +sensor.getSensor().getLocation() + " send to theBrain");
             //send new data to the DAO
             sendData2DAO(sensor);
+
+            BrainRoom br = theBrain.searchRoom(sensor.getSensor().getLocation());
+            DataType thisDataType = sensor.getSensor().getDataType();
+            if(thisDataType.equals(DataType.TEMPERATURE) || thisDataType.equals(DataType.BRIGHTNESS) || thisDataType.equals(DataType.HUMIDITY)){
+                //update room, for fullAuto principally
+                br.updateRoom(sensor);
+            }
+            else if(thisDataType.equals(DataType.POWER)){
+                Command com = new Command();
+                com.setActionList(br.lightControl(sensor.getValue()));
+                com.setCategory(Category.USER);
+                com.setLock((long) 1);
+                com.setTimeOut((long) 1);
+                send2Conflict(com);
+            }
+            else if(thisDataType.equals(DataType.POWER)){
+                Command com = new Command();
+                com.setActionList(br.temperatureControl(sensor.getValue()));
+                com.setCategory(Category.USER);
+                com.setLock((long) 1);
+                com.setTimeOut((long) 1);
+                send2Conflict(com);
+            }
+            else System.out.println("data type receive by hardware : " + sensor.getSensor().getDataType());
         }
-    }
-    //send request to receive value of sensor
-    public void send2Sensors(DataType dataType) {
-        System.out.println("Control : send2Sensors");
-        getPortByName("Sensors",MessagePort.class).process(dataType);
     }
 }

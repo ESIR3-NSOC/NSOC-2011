@@ -1,6 +1,8 @@
 package knx;
 
 
+import tuwien.auto.calimero.CloseEvent;
+import tuwien.auto.calimero.FrameEvent;
 import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.exception.KNXException;
 import tuwien.auto.calimero.exception.KNXFormatException;
@@ -11,6 +13,7 @@ import tuwien.auto.calimero.knxnetip.servicetype.SearchResponse;
 import tuwien.auto.calimero.knxnetip.util.HPAI;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import tuwien.auto.calimero.link.KNXNetworkLinkIP;
+import tuwien.auto.calimero.link.event.NetworkLinkListener;
 import tuwien.auto.calimero.link.medium.TPSettings;
 import tuwien.auto.calimero.process.ProcessCommunicator;
 import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
@@ -64,12 +67,7 @@ public class ToConnect implements IntToConnect {
         }
 
     }
-    //--------------------------------------------------------------------------------------------------
-    @Override
-    public KNXNetworkLinkIP getNetLink()
-    {
-          return netLinkIp;
-    }
+
     //--------------------------------------------------------------------------------------------------
     @Override
     public void disconnected() {
@@ -103,11 +101,11 @@ public class ToConnect implements IntToConnect {
 
     //------------------------------------------------------------------------------------------------------
     @Override
-    public String read(String adresseGroupe) {
+    public boolean read(String adresseGroupe) {
         // TODO Auto-generated method stub
-        String valeur = null;
+        boolean valeur = false;
         try {
-            valeur = pc.readString(new GroupAddress(adresseGroupe));
+            valeur = pc.readBool(new GroupAddress(adresseGroupe));
         } catch (KNXFormatException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -122,8 +120,7 @@ public class ToConnect implements IntToConnect {
     //------------------------------------------------------------------------
     //------------------------------------------------------------------------
     public void listener(final String adresse) {
-
-       /* netLinkIp.addLinkListener(new NetworkLinkListener() {
+        netLinkIp.addLinkListener(new NetworkLinkListener() {
 
             @Override
             public void confirmation(FrameEvent arg0) {
@@ -147,7 +144,7 @@ public class ToConnect implements IntToConnect {
 
             }
 
-        });  */
+        });
     }
 
     //--------------------------------------------------------------------------
@@ -170,7 +167,7 @@ public class ToConnect implements IntToConnect {
             e.printStackTrace();
             System.out.println("ToConnect: Exception: " + e.toString());
         }
-        return adresseIP_maquette;
+          return adresseIP_maquette;
     }
 
     @Override
@@ -178,3 +175,11 @@ public class ToConnect implements IntToConnect {
         return "KNX";  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
+
+
+
+
+
+
+
+

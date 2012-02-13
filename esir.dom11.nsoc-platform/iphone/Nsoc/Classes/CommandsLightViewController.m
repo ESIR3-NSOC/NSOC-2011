@@ -7,12 +7,22 @@
 //
 
 #import "CommandsLightViewController.h"
-#import "ConnectionManager.h"
+
 
 @implementation CommandsLightViewController
 
 @synthesize dinningSwitch, kitchenSwitch, bedroomSwitch;
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	dinningSwitch.tag = 0;
+	kitchenSwitch.tag = 1;
+	bedroomSwitch.tag = 2;
+
+}
+
+//on ne peut pas envoyer 2 commandes à la fois
 -(IBAction) changeValue:(id)sender {
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
@@ -21,13 +31,22 @@
 		result = 1;
 	}
 	
-	NSLog(@"result :%d", result);
-	[cm sendPostrequest:result 
+	[cm sendPostRequest:[NSString stringWithFormat:@"%d", result] 
 			   datatype:@"light" 
 			   building:@"bat7" 
 				   room:@"salle930" 
-			   actuator:@"light"];
+			   actuator:[NSString stringWithFormat:@"light"]];
+	
+	[cm release];
 }
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+*/
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -40,6 +59,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.dinningSwitch = nil;
+	self.kitchenSwitch = nil;
+	self.bedroomSwitch = nil;
+	
 }
 
 

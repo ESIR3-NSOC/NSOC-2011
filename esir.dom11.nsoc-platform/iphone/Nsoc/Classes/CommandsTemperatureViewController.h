@@ -14,6 +14,7 @@
 	UIButton *ecoBtn;
 	UIButton *lessonBtn;
 	UISlider *tempSlider;
+	
 	UILabel *tempLabel;
 	
 	int COMFORTTEMP;

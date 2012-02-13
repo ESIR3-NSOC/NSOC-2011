@@ -22,13 +22,12 @@ public interface ctrlInterface {
 
 
     //send everythg that could have been modified
-   // void sendData2DAO(Data data );
-    //void sendCommand2DAO(Command command);
+    void sendData2DAO(Data data );
+    void sendCommand2DAO(Command command);
     
     //Send an actions list (= command) to conflict 
     void send2Conflict(Command command);
 
-    void send2Sensors(DataType dataType);
 
 
     // Ask the context for a precise variable (eg : temp sensor from a room )

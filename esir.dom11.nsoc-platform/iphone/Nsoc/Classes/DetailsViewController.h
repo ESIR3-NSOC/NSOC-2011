@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface DetailsViewController : UIViewController {
 	UITableView *DetailsTableView;
 	NSArray *detailsArray;

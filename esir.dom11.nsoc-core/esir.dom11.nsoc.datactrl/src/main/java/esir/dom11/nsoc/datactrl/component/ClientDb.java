@@ -45,18 +45,18 @@ public class ClientDb extends AbstractComponentType {
         // retrieve dbService
         IDbService dbService = getPortByName("dbService", IDbService.class);
 
-        Sensor sensor = new Sensor(DataType.TEMPERATURE,"temp-int-salle930");
+        Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
         System.out.println("New device: "+sensor);
         // Save device
         Device sensorSave = (Device)dbService.create(sensor);
         System.out.println("Saved device: "+sensorSave);
         
         // Data samples
-        Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098200720")));
-        Data data2 = new Data(sensor,"19.3", new Date(new Long("1326098202743")));
-        Data data3 = new Data(sensor,"19.5", new Date(new Long("1326098204754")));
-        Data data4 = new Data(sensor,"20.3", new Date(new Long("1326098206765")));
-        Data data5 = new Data(sensor,"19.8", new Date(new Long("1326098208787")));
+        Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098100720")));
+        Data data2 = new Data(sensor,"19.3", new Date(new Long("1326098102743")));
+        Data data3 = new Data(sensor,"19.5", new Date(new Long("1326098104754")));
+        Data data4 = new Data(sensor,"20.3", new Date(new Long("1326098106765")));
+        Data data5 = new Data(sensor,"19.8", new Date(new Long("1326098108787")));
 
         logger.info("*** *** Save data 1,2,3,4,5 *** ***");
 
@@ -100,14 +100,14 @@ public class ClientDb extends AbstractComponentType {
 
         LinkedList<Object> params = new LinkedList<Object>();
 
-        params.add(new Date(new Long("1326098201732")));
-        params.add(new Date(new Long("1326098207775")));
-        params.add("temp-int-salle930");
+        params.add(new Date(new Long("1326098101732")));
+        params.add(new Date(new Long("1326098107775")));
+        params.add("bat7/930");
         params.add(DataType.TEMPERATURE);
 
-        logger.info(" - Start date: "+ new Date(new Long("1326098201732")));
-        logger.info(" - End date: "+ new Date(new Long("1326098207775")));
-        logger.info(" - Location: "+ "temp-int-salle930");
+        logger.info(" - Start date: "+ new Date(new Long("1326098101732")));
+        logger.info(" - End date: "+ new Date(new Long("1326098107775")));
+        logger.info(" - Location: "+ "bat7/930");
         logger.info(" - DataType: "+ DataType.TEMPERATURE);
 
         RequestResult result = dbService.get("findByDate", Data.class.getName(), params);
