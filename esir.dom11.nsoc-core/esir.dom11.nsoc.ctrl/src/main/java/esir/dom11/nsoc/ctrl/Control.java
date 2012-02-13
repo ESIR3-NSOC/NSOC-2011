@@ -21,7 +21,7 @@ import java.util.LinkedList;
         @ProvidedPort(name = "RSensors", type = PortType.MESSAGE)
 })
 @Requires({
-        @RequiredPort(name = "HMII", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "HMI", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "Context", type = PortType.MESSAGE, optional = true),
         @RequiredPort(name = "DAO", type = PortType.SERVICE, className = IDbService.class, needCheckDependency = true, optional = true),
         @RequiredPort(name = "Conflict", type = PortType.MESSAGE, optional = true),
@@ -29,6 +29,7 @@ import java.util.LinkedList;
 })
 
 public class Control extends AbstractComponentType implements ctrlInterface,IServerService {
+    //Attribute
     private TheBrain theBrain;
     private LinkedList<Command> commandList;
     private LinkedList<AgendaEvent> agendaList;
@@ -41,17 +42,18 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         agendaList = new LinkedList<AgendaEvent>();
         commandList = new LinkedList<Command>();
         theBrain = new TheBrain();
-        theBrain.createRoom("test","test");
+        theBrain.createRoom("/bat7/salle930/");
     }
-
     @Stop
     public void stop() {
         System.out.println("Control : Stop");
-          theBrain.stopTheBrain();
-
-
+        theBrain.stopTheBrain();
+        commandList = null;
+        agendaList = null;
+        if(agendaChecker !=null){
+            agendaChecker.setActive(false);
+        }
     }
-
     @Update
     public void update() {
         System.out.println("Control : update");
@@ -60,9 +62,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     }
 
 
-
+    /****HMI****/
     @Port(name = "RHMI", method = "getFromHmi")
-    //HMI ask us for some data
+    //HMI service receive HmiRequest to get data and send response
     public LinkedList<Data> getFromHmi(Object o) {
         System.out.println("Control : HMI data receive : "+ o);
         HmiRequest HMIAction = (HmiRequest) o;
@@ -81,7 +83,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         return object;
     }
     @Port(name = "postFromHmi")
-    //HMI ask us for some data
+    //HMI send action
     public void postFromHmi(Object o) {
         HmiRequest HMIAction = (HmiRequest) o;
         if(HMIAction.getAction() != null)  {
@@ -94,16 +96,15 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         }
         else System.out.println("Control ATTENTION : receive no command from Hmi");
     }
-    //HMI need some data so...
+    //Control send command to Hmi
     public void send2HMI(Command command) {
         System.out.println("Control : send2HMI");
         getPortByName("HMI",MessagePort.class).process(command);
     }
 
-
-
+    /****Conflict****/
     @Port(name = "RConflict")
-    //Conflict ask us for some data
+    //Conflict send confirmation of request
     public void receiveConflict(Object o) {
         System.out.println("Control : Conflict data receive : ");
         RequestResult result = (RequestResult) o;
@@ -121,26 +122,27 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
             }
         }
     }
-    //Send an actions list (= command) to conflict
+    //Send command to conflict
     public void send2Conflict(Command command) {
         System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
         commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
     }
 
-
-
-	//send everything that could have been modified
+    /****DAO****/
+	//send data to DAO
 	public void sendData2DAO(Data data) {
         System.out.println("Control : send2DAO data");
         getPortByName("DAO", IDbService.class).create((data));
 	}
+    //send command to DAO
 	public void sendCommand2DAO(Command command) {
         System.out.println("Control : send2DAO command");
         for(int i=0; i<command.getActionList().size(); i++){
             getPortByName("DAO", IDbService.class).create(command.getActionList().get(i));
         }
 	}
+    //ask somme data of DAO
     public RequestResult getData(Date begin, Date end, String location, DataType type){
         LinkedList<Object> params = new LinkedList<Object>();
 
@@ -153,10 +155,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         return result;
     }
 
-
-
+    /****Context****/
     @Port(name = "presenceFromContext")
-    //The context ask for a precise variable saved in database (eg : temp sensor from a room )
+    //Context send LinkedList of Agenda Event correspond to estimate presence of the day
     public void receiveFromContext(Object o) {
         System.out.println("Control receive context");
         if(o != null){
@@ -172,13 +173,13 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
                 @Override
                 public void eventStart() {
                     System.out.println("presence " + new Date());
-                    theBrain.searchRoom("").presence = true;
+                    theBrain.searchRoom("/bat7/salle930/").presence = true;
                 }
 
                 @Override
                 public void eventStop() {
                     System.out.println("non presence " + new Date());
-                    theBrain.searchRoom("").presence = false;
+                    theBrain.searchRoom("/bat7/salle930/").presence = false;
                 }
             });
             agendaChecker.start();
@@ -200,9 +201,9 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         }
     }
 
-
-
+    /****Hardware****/
     @Port(name = "RSensors")
+    //receive sensor or actuator data
     public void receiveSensors(Object o){
         System.out.println("Control : Sensors data receive");
         if(o != null){
