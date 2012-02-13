@@ -53,23 +53,38 @@ public class BrainRoom {
     */
     public LinkedList<Action> lightControl(String info) {
         LinkedList<Action> actionList = new LinkedList<Action>();
-        if (info.equals("up")) {
+        if(presence){
+            if (info.equals("up")) {
 
-        } else if (info.equals("down")) {
+            } else if (info.equals("down")) {
 
+            }
+        }
+        else{
+            Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+            Action lamp = new Action(act, "OFF");
+            Actuator act2 = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+            Action shutter = new Action(act2, "OFF");
+            actionList.add(lamp);
+            actionList.add(shutter);
         }
         return actionList;
     }
 
     public void lightControlFullAuto() {
-        if (!fullAuto) {
+        LinkedList<Action> actionList = new LinkedList<Action>();
+        if (fullAuto) {
             if (presence) {
                 //mise a jour capteur
 
                 //algo
             } else {
-                //light off
-                //shutter close
+                Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                Action lamp = new Action(act, "OFF");
+                Actuator act2 = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+                Action shutter = new Action(act2, "OFF");
+                actionList.add(lamp);
+                actionList.add(shutter);
             }
         }
     }
@@ -80,25 +95,32 @@ public class BrainRoom {
     */
     public LinkedList<Action> temperatureControl(String info) {
         LinkedList<Action> actionList = new LinkedList<Action>();
-        if (info.equals("up")) {
+        
+        if(presence){
+            if (info.equals("up")) {
 
-        } else if (info.equals("down")) {
+            } else if (info.equals("down")) {
 
+            }
+        }
+        else{
+            Actuator act = new Actuator(DataType.HEAT, "/bat7/salle930/heat/0");
+            Action heat = new Action(act, "OFF");
+            actionList.add(heat);
         }
         return actionList;
     }
 
     public void temperatureControlFullAuto() {
+        LinkedList<Action> actionList = new LinkedList<Action>();
         if (!fullAuto) {
             if (presence) {
-                //algo
-                for (int i = 0; i < sensorsList.size(); i++) {
-                    if (sensorsList.get(i).getDataType().equals(DataType.TEMPERATURE)) {
 
-                    }
-                }
+
             } else {
-                //chauffage off
+                Actuator act = new Actuator(DataType.HEAT, "/bat7/salle930/heat/0");
+                Action heat = new Action(act, "OFF");
+                actionList.add(heat);
             }
         }
     }

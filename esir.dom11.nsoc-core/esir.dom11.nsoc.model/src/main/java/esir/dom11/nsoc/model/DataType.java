@@ -6,7 +6,11 @@ public enum DataType {
     TEMPERATURE,
     BRIGHTNESS,
     HUMIDITY,
-    POWER;
+    POWER,
+    SWITCH,
+    SHUTTER,
+    LAMP,
+    HEAT;
 
     public String getValue() {
         return this.name();
