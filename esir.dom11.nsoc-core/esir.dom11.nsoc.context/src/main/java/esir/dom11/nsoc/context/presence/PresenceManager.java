@@ -61,8 +61,6 @@ public class PresenceManager implements PresenceListener {
             }
         });
 
-        //  EPStatement var_agenda_presence = cepAdm.createEPL("create variable boolean var_agenda_presence = false");
-        //  var_presence.start();
         String confirmation_startWindow = "1 sec";
         String confirmation_minDuration = "1 sec";
         confirmation = cepAdm.createEPL("select * from pattern[" +
