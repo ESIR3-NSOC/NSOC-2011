@@ -40,7 +40,7 @@ import java.util.Date;
         @DictionaryAttribute(name = "TypeOfSensor", defaultValue = "Data", optional = true,
                 vals = {"Data", "Switch"}),
         @DictionaryAttribute(name = "DataType", defaultValue = "TEMPERATURE", optional = true,
-        vals = {"UNKNOWN", "TEMPERATURE", "BRIGHTNESS", "HUMIDITY", "POWER", "PRESENCE", "SWITCH"})
+                vals = {"UNKNOWN", "TEMPERATURE", "BRIGHTNESS", "HUMIDITY", "POWER", "PRESENCE", "SWITCH"})
 })
 
 @Library(name = "NSOC_2011")
@@ -68,7 +68,7 @@ public class DeviceComp extends AbstractComponentType {
 
         if (mDevice.equals("Actuator")) {
             System.out.println("DeviceComp: Create Actuator");
-            mActuator = new Actuator(DataType.UNKNOWN, mLocation);
+            mActuator = new Actuator(DataType.valueOf(mDataType), mLocation);
         } else if (mDevice.equals("Sensor")) {
             mSensor = new Sensor(DataType.valueOf(mDataType), mLocation);
             if (connectionManager.getProtocol().equals("knx")) {
@@ -98,12 +98,14 @@ public class DeviceComp extends AbstractComponentType {
     @Port(name = "ActionReceive")
     public void ActionReceive(Object o) {
         Action action = (Action) o;
-        System.out.println("\nDeviceComp: Received: " + action.toString() + "\n\n");
-        System.out.println("GetProtocol: " + connectionManager.getProtocol());
-        if (connectionManager.getProtocol().equals("knx")) {
-            if (mDevice.equals("Actuator")) {
-                System.out.println("DeviceComp: Receive Action");
-                connectionManager.write(mAddressDevice, Boolean.valueOf(action.getValue()).booleanValue());
+        if (action.getActuator().getLocation().equals(mLocation)) {
+            System.out.println("\nDeviceComp: Received: " + action.toString() + "\n\n");
+            System.out.println("GetProtocol: " + connectionManager.getProtocol());
+            if (connectionManager.getProtocol().equals("knx")) {
+                if (mDevice.equals("Actuator")) {
+                    System.out.println("DeviceComp: Receive Action");
+                    connectionManager.write(mAddressDevice, Boolean.valueOf(action.getValue()).booleanValue());
+                }
             }
         }
     }
