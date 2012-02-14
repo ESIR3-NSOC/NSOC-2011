@@ -11,14 +11,15 @@
 
 @implementation CommandsLightViewController
 
-@synthesize dinningSwitch, kitchenSwitch, bedroomSwitch;
+@synthesize diningSwitch, kitchenSwitch, bedroomSwitch, bedroomDimingSwitch;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	dinningSwitch.tag = 0;
+	diningSwitch.tag = 0;
 	kitchenSwitch.tag = 1;
 	bedroomSwitch.tag = 2;
+	bedroomDimingSwitch.tag = 100;
 	
 	
 	// display the current data of the switches
@@ -36,8 +37,8 @@
 			if([actuator isEqualToString:@"switch"]){
 				if([number isEqualToString:@"0"]){
 					if([value isEqualToString:@"ON"])
-						[dinningSwitch setOn:YES animated:YES];
-					else [dinningSwitch setOn:NO animated:YES];
+						[diningSwitch setOn:YES animated:YES];
+					else [diningSwitch setOn:NO animated:YES];
 				} 
 				else if([number isEqualToString:@"1"]) {
 					if([value isEqualToString:@"ON"])
@@ -60,12 +61,30 @@
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSMutableString *result = [[NSMutableString alloc] initWithString:@"OFF"];
+	NSMutableString *actuator = [[NSMutableString alloc] initWithString:@"lamp/0"];
 	
-	if(switchOutlet.on){
-		[result setString:@"ON"];
+	// for scenario switch
+	if (switchOutlet.tag >= 100) {
+		[actuator setString:@"switch/0"];
+		
+		// we have to set the value
+		if(switchOutlet.on){
+			[result setString:@"UP"];
+		} else{
+			[result setString:@"DOWN"];
+		}
+	} 
+	// for normal switches
+	else {
+		[actuator setString:[NSString stringWithFormat:@"lamp/%d", switchOutlet.tag]];
+		
+		// we have to set the value
+		if(switchOutlet.on){
+			[result setString:@"ON"];
+		} else if(switchOutlet.on){
+			[result setString:@"OFF"];
+		}
 	}
-	
-	NSString *actuator = [NSString stringWithFormat:@"lamp/%d", switchOutlet.tag];
 	
 	[cm sendPostRequest:result 
 			   datatype:@"switch" 
@@ -95,7 +114,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-	self.dinningSwitch = nil;
+	self.diningSwitch = nil;
 	self.kitchenSwitch = nil;
 	self.bedroomSwitch = nil;
 	
@@ -103,7 +122,7 @@
 
 
 - (void)dealloc {
-	[dinningSwitch release];
+	[diningSwitch release];
 	[kitchenSwitch release];
 	[bedroomSwitch release];
 	

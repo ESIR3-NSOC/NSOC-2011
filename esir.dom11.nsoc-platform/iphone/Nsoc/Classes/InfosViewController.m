@@ -27,7 +27,8 @@
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
-	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
 	[self performSelector:@selector(getData) 
 			   withObject:nil 
 			   afterDelay:0.1];

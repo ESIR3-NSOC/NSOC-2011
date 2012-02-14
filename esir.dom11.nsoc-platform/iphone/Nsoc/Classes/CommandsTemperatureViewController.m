@@ -53,7 +53,7 @@
 - (void) sendTemperature:(id) sender {
 	ConnectionManager *cm = [[ConnectionManager alloc] init];	
 	[cm sendPostRequest:tempLabel.text 
-			   datatype:@"switch" 
+			   datatype:@"temperature" 
 			   building:@"bat7" 
 				   room:@"salle930" 
 			   actuator:@"switch/2"];

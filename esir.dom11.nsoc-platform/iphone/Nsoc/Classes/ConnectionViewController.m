@@ -51,7 +51,7 @@
 
 // action on the connectionToServer button click.
 - (IBAction)connectionToServer:(id) sender {	
-
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	//store the ip and port from the TextField
 	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 

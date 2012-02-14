@@ -70,8 +70,6 @@
 
 // send the GET request to know if we are connected to the server
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
     // Store the data in the phone
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
@@ -138,6 +136,7 @@
 					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
+	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request setDelegate:self];
 	[request startSynchronous];
