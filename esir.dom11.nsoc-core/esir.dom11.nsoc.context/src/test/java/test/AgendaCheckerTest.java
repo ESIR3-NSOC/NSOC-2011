@@ -1,5 +1,6 @@
 package test;
 
+import esir.dom11.nsoc.context.presence.Agenda;
 import esir.dom11.nsoc.context.presence.AgendaChecker;
 import esir.dom11.nsoc.context.presence.AgendaEvent;
 import esir.dom11.nsoc.context.presence.AgendaCheckerListener;
@@ -12,6 +13,7 @@ public class AgendaCheckerTest extends TestCase {
 
     public void testAgenda() {
 
+
         long currentTime = new Date().getTime();
         LinkedList<AgendaEvent> events = new LinkedList<AgendaEvent>();
         events.add(
@@ -21,7 +23,8 @@ public class AgendaCheckerTest extends TestCase {
                 )
         );
 
-        AgendaChecker agendaChecker = new AgendaChecker(events);
+        AgendaChecker agendaChecker = new AgendaChecker();
+        agendaChecker.getAgenda().getEvents().addAll(events);
         agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
             @Override
             public void eventStart() {

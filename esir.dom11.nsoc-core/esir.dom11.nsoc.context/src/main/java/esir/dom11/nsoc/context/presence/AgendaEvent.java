@@ -24,4 +24,8 @@ public class AgendaEvent {
     public Date getEnd() {
         return end;
     }
+    
+    public String toString(){
+        return "Event " + start + " -> " + end;
+    }
 }

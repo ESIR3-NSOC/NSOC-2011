@@ -60,7 +60,7 @@ public class ConflictMgt extends AbstractComponentType {
      *
      */
     @Start
-    public void start() throws InterruptedException {
+    public void start(){
         logger.info("= = = = = start conflict manager = = = = = =");
         sendLog("Conflict manager is started", LogLevel.INFO);
 
@@ -77,8 +77,8 @@ public class ConflictMgt extends AbstractComponentType {
     @Update
     public void update() {
         logger.info("= = = = = update conflict manager = = = = = =");
-        timer.shutdown();
-        timer = new ExecTimer(1,mng,updateDelay);
+        stop();
+        start();
     }
 
     /*
