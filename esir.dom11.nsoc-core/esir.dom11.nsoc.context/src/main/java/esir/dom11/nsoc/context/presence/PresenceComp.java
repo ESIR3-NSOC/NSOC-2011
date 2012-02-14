@@ -42,10 +42,10 @@ public class PresenceComp extends AbstractComponentType {
 
         preMan = new PresenceManager();
         preMan.addPresenceEventListener(new PresenceListener() {
+
             @Override
-            public void presenceEvent(String message) {
-                System.out.println("ok");
-               // sendMessage(message);
+            public void sendAgenda(Agenda agenda) {
+                sendPrediction(agenda);
             }
         });
     }
@@ -60,9 +60,10 @@ public class PresenceComp extends AbstractComponentType {
         preMan.stop();
         preMan = new PresenceManager();
         preMan.addPresenceEventListener(new PresenceListener() {
+
             @Override
-            public void presenceEvent(String message) {
-              //  sendMessage(message);
+            public void sendAgenda(Agenda agenda) {
+                sendPrediction(agenda);
             }
         });
     }
@@ -79,9 +80,9 @@ public class PresenceComp extends AbstractComponentType {
     }
 
 
-    public void sendPrediction(String messsage) {
+    public void sendPrediction(Agenda agenda) {
         if (this.isPortBinded("prediction")) {
-            this.getPortByName("prediction", MessagePort.class).process(messsage);
+            this.getPortByName("prediction", MessagePort.class).process(agenda);
         }
     }
 

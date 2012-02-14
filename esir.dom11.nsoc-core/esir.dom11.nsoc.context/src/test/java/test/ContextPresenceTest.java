@@ -1,9 +1,6 @@
 package test;
 
-import esir.dom11.nsoc.context.presence.AgendaEvent;
-import esir.dom11.nsoc.context.presence.PresenceEvent;
-import esir.dom11.nsoc.context.presence.PresenceListener;
-import esir.dom11.nsoc.context.presence.PresenceManager;
+import esir.dom11.nsoc.context.presence.*;
 import junit.framework.TestCase;
 
 import java.util.Date;
@@ -14,12 +11,15 @@ public class ContextPresenceTest extends TestCase {
     public void test() {
 
 
-
         PresenceManager presMan = new PresenceManager();
         presMan.addPresenceEventListener(new PresenceListener() {
+
             @Override
-            public void presenceEvent(String message) {
-                System.out.println(message);
+            public void sendAgenda(Agenda agenda) {
+                System.out.println("\n--new Agenda--");
+                for (AgendaEvent event : agenda.getEvents()) {
+                    System.out.println(event);
+                }
             }
         });
         LinkedList<AgendaEvent> events = new LinkedList<AgendaEvent>();
@@ -29,7 +29,8 @@ public class ContextPresenceTest extends TestCase {
         presMan.setAgenda(events);
 
         tempo(2000);
-        presMan.getCepRT().sendEvent(new PresenceEvent("1", true));
+        // cancel , uncomment to generate confirmation
+        //  presMan.getCepRT().sendEvent(new PresenceEvent("1", true));
         tempo(2000);
         presMan.getCepRT().sendEvent(new PresenceEvent("1", false));
         tempo(2000);
