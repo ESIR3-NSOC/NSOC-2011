@@ -102,8 +102,6 @@
 // action on the connectionToServer button click.
 - (IBAction)connectionToServer:(id) sender{
 
-	NSLog(@"button clicked");
-
 	//store the ip and port from the TextField
 	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];            
 	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];            
@@ -121,8 +119,8 @@
 	&& [self testEntryWithRegex:labelPortServer.text
 						  regex:@"^[0-9]{4,5}$"]){
 
-		//BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
-		//[self displayConnectionStatus:returnStateConnection];
+		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
+		[self displayConnectionStatus:returnStateConnection];
 	
 	} else {
 		//display an error

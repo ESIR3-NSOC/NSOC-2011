@@ -154,13 +154,13 @@ public class ServerManager extends ServerResource{
             }
 
             String res = new String();
+
             // we have to send serialized Data
             for(int i=0; i< result.size(); i++){
                 res += result.get(i).getSensor().getLocation()+":";
                 res += result.get(i).getValue()+"-";
-
             }
-            System.out.println("res: "+res);
+            System.out.println("data sent from the Server:\n "+res);
             return res;
         }
     }

@@ -98,6 +98,7 @@
 // send the GET request to fetch all data
 - (NSArray *) allData:(NSString *)building 
 				 room:(NSString *)room {
+	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 	NSLog(@"GET request sent!");
@@ -112,7 +113,7 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
-
+	
 	NSError *error = [request error];
 	if (!error) {
 		NSString *responseString = [request responseString];
@@ -138,7 +139,7 @@
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	//[request setDelegate:self];
+	[request setDelegate:self];
 	[request startSynchronous];
 	NSLog(@"response get all: %@", [request responseString]);
 	
