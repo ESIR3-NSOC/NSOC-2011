@@ -28,10 +28,19 @@
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
 	
+	[self performSelector:@selector(getData) 
+			   withObject:nil 
+			   afterDelay:0.1];
+
+}
+
+
+// receive the array of current data and parse it
+-(void) getData {
 	cm = [[ConnectionManager alloc] init];
 	
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
-	
+		
 	if(!results){
 		ConnectionViewController *cvc = [[ConnectionViewController alloc] 
 										 initWithNibName:@"ConnectionViewController" bundle:nil];
@@ -42,54 +51,45 @@
 		[cvc release];
 		
 	} else {
-		[self getData:results];
-	}	
-}
-
-
-// receive the array of current data and parse it
--(void) getData:(NSArray *) results {	
-	for(int i = 0; i < ([results count]-1); i++) {
-		NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
-	
-		NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
-		NSString *actuator = [locations objectAtIndex:([locations count] -2)];
-		NSString *number = [locations objectAtIndex:([locations count]-1)];
-		NSString *value = [items objectAtIndex:1];		
-		
-		if([actuator isEqualToString:@"temp"]) {
-			if([number isEqualToString:@"0"]){
-				tempInLabel.text = value;
-			} else if([number isEqualToString:@"1"]) {
-				tempOutLabel.text = value;
+		for(int i = 0; i < ([results count]-1); i++) {
+			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
+			
+			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
+			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
+			NSString *number = [locations objectAtIndex:([locations count]-1)];
+			NSString *value = [items objectAtIndex:1];		
+			
+			if([actuator isEqualToString:@"temp"]) {
+				if([number isEqualToString:@"0"]){
+					tempInLabel.text = value;
+				} else if([number isEqualToString:@"1"]) {
+					tempOutLabel.text = value;
+				}
 			}
-		}
-		else if([actuator isEqualToString:@"lum"]){
-			if([number isEqualToString:@"0"]){
-				brightnessInLabel.text = value;
-			} else if([number isEqualToString:@"1"]) {
-				brightnessOutLabel.text = value;
-			}	
-		}
-		else if([actuator isEqualToString:@"co2"]) {
-			if([number isEqualToString:@"0"]){
-				co2Label.text = value;
+			else if([actuator isEqualToString:@"lum"]){
+				if([number isEqualToString:@"0"]){
+					brightnessInLabel.text = value;
+				} else if([number isEqualToString:@"1"]) {
+					brightnessOutLabel.text = value;
+				}	
 			}
-		}
-		else if([actuator isEqualToString:@"presence"]) {
-			if([number isEqualToString:@"0"]){
-				presenceLabel.text = value;
-			}		
+			else if([actuator isEqualToString:@"co2"]) {
+				if([number isEqualToString:@"0"]){
+					co2Label.text = value;
+				}
+			}
+			else if([actuator isEqualToString:@"presence"]) {
+				if([number isEqualToString:@"0"]){
+					presenceLabel.text = value;
+				}		
+			}
 		}
 	}
-	
 }
 
 // ask for a refresh of the information
 - (void) refreshInfo:(id)sender {
-	
-	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
-	[self getData:results];
+	[self getData];
 }
 
 

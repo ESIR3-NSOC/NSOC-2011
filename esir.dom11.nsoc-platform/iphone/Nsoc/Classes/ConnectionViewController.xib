@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="10"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -73,6 +73,12 @@
 							<object class="IBUINavigationItem" id="869742852">
 								<reference key="IBUINavigationBar" ref="848680723"/>
 								<string key="IBUITitle">Connection</string>
+								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="353168036">
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIStyle">1</int>
+									<reference key="IBUINavigationItem" ref="869742852"/>
+									<int key="IBUISystemItemIdentifier">1</int>
+								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
@@ -123,6 +129,14 @@
 					</object>
 					<int key="connectionID">9</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">dismissView:</string>
+						<reference key="source" ref="353168036"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">11</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -166,12 +180,21 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="869742852"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="353168036"/>
+						</object>
 						<reference key="parent" ref="848680723"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="1062351806"/>
 						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">10</int>
+						<reference key="object" ref="353168036"/>
+						<reference key="parent" ref="869742852"/>
 					</object>
 				</object>
 			</object>
@@ -183,6 +206,7 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
+					<string>10.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>4.IBViewBoundsToFrameTransform</string>
 					<string>5.IBPluginDependency</string>
@@ -192,7 +216,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ConnectionViewController</string>
 					<string>UIResponder</string>
-					<string>{{556, 412}, {320, 480}}</string>
+					<string>{{556, 276}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -218,7 +243,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -227,14 +252,35 @@
 					<string key="className">ConnectionViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">connectionToServer:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>connectionToServer:</string>
+							<string>dismissView:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">connectionToServer:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">connectionToServer:</string>
-							<string key="candidateClassName">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>connectionToServer:</string>
+							<string>dismissView:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">connectionToServer:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">dismissView:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">

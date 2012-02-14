@@ -18,18 +18,6 @@
 @synthesize cm;
 
 
-/*
- // The designated initializer.  
- Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	//instanciate a ConnectionManager
@@ -112,13 +100,19 @@
 }
 
 // action on the connectionToServer button click.
-- (IBAction)connectionToServer:(id) sender{	
-	
+- (IBAction)connectionToServer:(id) sender{
+
+	NSLog(@"button clicked");
+
 	//store the ip and port from the TextField
 	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];            
 	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];            
 	UILabel *labelIpServer = (UILabel *) [cellIp viewWithTag:10];
 	UILabel *labelPortServer =  (UILabel *) [cellPort viewWithTag:11]; 	
+	
+	// hide Keyboard
+	[(UITextField *)[cellPort viewWithTag:11] becomeFirstResponder];
+	[(UITextField *)[cellPort viewWithTag:11] resignFirstResponder];
 	
 	//test if the ip and port are in the good format
 	if([self testEntryWithRegex:labelIpServer.text
@@ -127,10 +121,10 @@
 	&& [self testEntryWithRegex:labelPortServer.text
 						  regex:@"^[0-9]{4,5}$"]){
 
-		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
-		[self displayConnectionStatus:returnStateConnection];
+		//BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
+		//[self displayConnectionStatus:returnStateConnection];
 	
-	} else{
+	} else {
 		//display an error
 		UIAlertView *message = [[UIAlertView alloc] initWithTitle: @"Error"  
 														  message: @"Please, enter the right IP and port to connect to the server"  
@@ -194,7 +188,8 @@
 
 	} 
 
-	cell.rightTextField.tag = (10 + [indexPath row]); 
+	cell.rightTextField.tag = (10 + [indexPath row]);
+	
 	cell.indexPath = indexPath;
 	cell.delegate = self;
 	

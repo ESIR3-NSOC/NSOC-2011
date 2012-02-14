@@ -19,7 +19,7 @@
 // Implements viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	//instanciate a ConnectionManager
 	cm = [[ConnectionManager alloc] init];
 	
@@ -44,17 +44,20 @@
 	
 	//we block the scroll for the UITableView
 	ServerTableView.scrollEnabled = NO;
-	    
+	
 	[super viewDidLoad];
 	
 }
 
 // action on the connectionToServer button click.
-- (IBAction)connectionToServer:(id) sender{	
+- (IBAction)connectionToServer:(id) sender {	
+
 	
 	//store the ip and port from the TextField
-	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];            
-	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];            
+	UITableViewCell *cellIp = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 
+																										   inSection:0]];            
+	UITableViewCell *cellPort = (UITableViewCell *)[ServerTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 
+																											 inSection:0]];            
 	UILabel *labelIpServer = (UILabel *) [cellIp viewWithTag:10];
 	UILabel *labelPortServer =  (UILabel *) [cellPort viewWithTag:11]; 	
 	
@@ -63,10 +66,13 @@
 						  regex: @"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"]
 	   
 	   && [self testEntryWithRegex:labelPortServer.text
-							 regex:@"^[0-9]{4,5}$"]){
+							 regex:@"^[0-9]{4,5}$"]) {
 		   
-		   BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
-		   if(!returnStateConnection){
+		   
+		   BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text 
+													portServer:labelPortServer.text];
+		   
+		   if(!returnStateConnection) {
 			   //display an error
 			   UIAlertView *message = [[UIAlertView alloc] initWithTitle: @"Error"  
 																 message: @"The iPhone cannot connect the server, please verify the IP address and port"  
@@ -77,10 +83,10 @@
 			   [message show];
 			   [message release];
 			   
-		   }else {
+		   } else {
 			   [self.delegate connectionViewControllerDidFinish:self];
 		   }
-	   } else{
+	   } else {
 		   //display an error
 		   UIAlertView *message = [[UIAlertView alloc] initWithTitle: @"Error"  
 															 message: @"Please, enter the right IP and port to connect to the server"  
@@ -92,14 +98,15 @@
 		   [message release];
 		   
 	   }
-	
 	[cellIp release];
 	[cellPort release];
 	[labelIpServer release];
 	[labelPortServer release];
-	
-	//simulate a click on the return button to hide the keyboard
-	[self textFieldDidReturnWithIndexPath: [NSIndexPath indexPathForRow:1 inSection:0]];	
+}
+
+// action fired on cancel click
+- (IBAction)dismissView:(id)sender {	
+	[self.delegate connectionViewControllerDidFinish:self];
 }
 
 // test if the entry matches the wanted format
@@ -136,7 +143,7 @@
 	//we configure the left and right label
 	cell.leftLabel.text = [self.serverLabels objectAtIndex:indexPath.row];
 	cell.rightTextField.placeholder = [self.serverPlaceholders objectAtIndex:indexPath.row];
-
+	
 	
 	if([indexPath row] == 0){
 		cell.rightTextField.text = [cm savedIp];
@@ -151,9 +158,7 @@
 	//Disables UITableViewCell from accidentally becoming selected.
 	cell.selectionStyle = UITableViewCellEditingStyleNone;
 	
-	[cell.rightTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-	[cell release];
-	
+	[cell.rightTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];	
 }
 
 // Customize the number of rows in a UITableView
@@ -189,11 +194,7 @@ titleForHeaderInSection:(NSInteger) section{
     }
 	
 	[self configureCell:cell atIndexPath:indexPath];
-	
-	[CellIdentifier release];
-	[cell release];
-    return cell;
-	
+    return cell;	
 }
 
 // Allow the return button to go in the next field
@@ -204,9 +205,7 @@ titleForHeaderInSection:(NSInteger) section{
 		[[(ELCTextfieldCell*)[self.ServerTableView cellForRowAtIndexPath:path] rightTextField] becomeFirstResponder];
 		[self.ServerTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
-	
 	else {
-		
 		[[(ELCTextfieldCell*)[self.ServerTableView cellForRowAtIndexPath:indexPath] rightTextField] resignFirstResponder];
 	}
 }
@@ -227,7 +226,6 @@ titleForHeaderInSection:(NSInteger) section{
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	
-	self.delegate = nil;
 	self.ServerTableView = nil;
 	self.serverLabels = nil;
 	self.serverPlaceholders = nil;
@@ -236,11 +234,13 @@ titleForHeaderInSection:(NSInteger) section{
 
 
 - (void)dealloc {
-	[ServerTableView release];
+	// voir ou ça bloque
+	
+	/*[ServerTableView release];
 	[serverLabels release];
 	[serverPlaceholders release];
 	[connectionToServerBtn release];
-	[cm release];
+	[cm release];*/
 	
     [super dealloc];
 }
