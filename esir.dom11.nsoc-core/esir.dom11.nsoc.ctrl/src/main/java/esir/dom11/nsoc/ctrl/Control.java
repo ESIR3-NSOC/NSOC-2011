@@ -224,7 +224,7 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
         params.add(end);
         params.add(location);
         params.add(type);
-
+        System.out.println("Param to DataCtrl : " + params);
         RequestResult result = getPortByName("DAO", IDbService.class).get("findByDate", Data.class.getName(), params);
         return result;
     }
@@ -297,10 +297,16 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
             } else if (thisDataType.equals(DataType.SWITCH)) {
                 String inter = sensor.getSensor().getLocation().split("/")[3];
                 if (inter.equals("0")) {
-                    Command com = new Command(br.lightControl(sensor.getValue()), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.lightControl("UP"), Category.USER, (long) 1, (long) 1);
                     send2Conflict(com);
                 } else if (inter.equals("1")) {
-                    Command com = new Command(br.temperatureControl(sensor.getValue()), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.lightControl("DOWN"), Category.USER, (long) 1, (long) 1);
+                    send2Conflict(com);
+                } else if (inter.equals("2")) {
+                    Command com = new Command(br.temperatureControl("UP"), Category.USER, (long) 1, (long) 1);
+                    send2Conflict(com);
+                } else if (inter.equals("3")) {
+                    Command com = new Command(br.temperatureControl("DOWN"), Category.USER, (long) 1, (long) 1);
                     send2Conflict(com);
                 }
             } else System.out.println("data type receive by hardware : " + sensor.getSensor().getDataType());
