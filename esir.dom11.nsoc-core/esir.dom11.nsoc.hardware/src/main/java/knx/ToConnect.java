@@ -111,10 +111,11 @@ public class ToConnect implements IntToConnect {
     @Override
     public String read(String adresseGroupe) {
         // TODO Auto-generated method stub
-        String valeur = "";
+        String valeur = "00";
         try {
             valeur = pc.readString(new GroupAddress(adresseGroupe));
         } catch (KNXFormatException e) {
+            System.out.println("Can't read value! -> "+e);
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (KNXException e) {

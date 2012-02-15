@@ -128,6 +128,7 @@ public class DeviceComp extends AbstractComponentType {
             @Override
             public void run() {
                 String valueRead = connectionManager.read(mAddressDevice);
+                System.out.println("DeviceComp: value: "+valueRead);
                 Data data = new Data(mSensor, valueRead, new Date());
                 while (!stop) {
                     try {
