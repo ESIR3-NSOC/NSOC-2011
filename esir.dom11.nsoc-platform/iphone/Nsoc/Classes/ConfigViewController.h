@@ -20,7 +20,7 @@
 	NSInteger *TableViewHeight;
 	UILabel *statusLabel;
 	UIButton *connectionToServerBtn;
-														
+		
 	ConnectionManager *cm;
 }
 

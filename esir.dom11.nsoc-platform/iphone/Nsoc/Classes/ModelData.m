@@ -15,7 +15,9 @@
 @synthesize endDate;
 
 
-- (id)initWithDate:(NSDate *)aBeginDate endDate:(NSDate *)aEndDate{
+- (id)initWithDate:(NSDate *)aBeginDate 
+		   endDate:(NSDate *)aEndDate {
+	
 	self.beginDate = aBeginDate;
 	self.endDate = aEndDate;
 	

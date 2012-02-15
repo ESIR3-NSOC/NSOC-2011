@@ -8,7 +8,6 @@ public class HmiRequest {
     /*
      * Attributes
      */
-
     private HmiRestRequest _request;
     private String _location;
     private LinkedList<DataType> _datatypes;

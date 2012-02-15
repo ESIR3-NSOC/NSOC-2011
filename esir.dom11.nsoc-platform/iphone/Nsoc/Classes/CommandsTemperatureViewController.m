@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	//show activity indicator in the status bar
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
 	//initialize the values
 	COMFORTTEMP = 20;
 	
@@ -32,19 +35,21 @@
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
 	
-	for(int i = 0; i < ([results count]-1); i++) {
-		NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
-		
-		NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
-		NSString *actuator = [locations objectAtIndex:([locations count] -2)];
-		NSString *number = [locations objectAtIndex:([locations count]-1)];
-		NSString *value = [items objectAtIndex:1];			
-		
-		if([actuator isEqualToString:@"temp"]){
-			if([number isEqualToString:@"0"]){
-				tempSlider.value = [value intValue];
-			} 
-		}
+	if(results){
+		for(int i = 0; i < ([results count]-1); i++) {
+			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
+			
+			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
+			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
+			NSString *number = [locations objectAtIndex:([locations count]-1)];
+			NSString *value = [items objectAtIndex:1];			
+			
+			if([actuator isEqualToString:@"temp"]){
+				if([number isEqualToString:@"0"]){
+					tempSlider.value = [value intValue];
+				} 
+			}
+		}	
 	}
 }
 
