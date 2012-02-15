@@ -126,6 +126,7 @@ public class Manager {
              return null;
         // else, return the list of action to send
         } else {
+            logger.info("Conflict Manager -> Command received");
             return command.getActionList();
         }
     }

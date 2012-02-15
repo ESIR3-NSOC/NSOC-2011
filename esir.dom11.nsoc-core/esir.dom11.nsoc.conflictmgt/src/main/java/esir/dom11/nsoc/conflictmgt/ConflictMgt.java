@@ -137,6 +137,7 @@ public class ConflictMgt extends AbstractComponentType {
      * @param resp
      */
     public void resp2Ctrl(UUID id, boolean resp) {
+        logger.info("Conflict Manager -> Action transmitted to control");
         getPortByName("RConflict", MessagePort.class).process(new RequestResult(id, resp));
     }
 
