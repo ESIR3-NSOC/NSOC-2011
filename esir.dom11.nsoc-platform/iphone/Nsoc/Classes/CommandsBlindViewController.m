@@ -18,44 +18,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	//init the tags
-	diningLeftUpButton.tag = 0;
-	diningLeftDownButton.tag = 1;
+	// init the tags
+	// the hundred determines the actuator value to send
+	// If you want to send to the address /shutter/1 -> tag = 100, 101, ...
+	diningLeftUpButton.tag = 000;
+	diningLeftDownButton.tag = 001;
 
 }
 
 // fired on a up click
 -(IBAction) OpenBlind:(id) sender {
 	UIButton *button = (UIButton *)sender;
-	int buttonTag = 0;
+	int buttonTag  = button.tag /= 100;
+	NSLog(@"buttonTag: %d", buttonTag);
 	
-	// we can easily add new blinds with the tag value.
-	if(button.tag == 0){
-		buttonTag = 0;
-	}
-	/* else if(button.tag == 2){
-		buttonTag = 1;
-	 }*/
-	
-	[self sendRequest:@"UP" actuator:buttonTag];
+	[self sendRequest:@"OPEN" actuator:buttonTag];
 	[button release];
 }
 
 // fired on a down click
 -(IBAction) closeBlind:(id) sender {
 	UIButton *button = (UIButton *)sender;
-	int buttonTag = 0;
-	
-	// we can easily add new blinds with the tag value.
-	if(button.tag == 1){
-		buttonTag = 0;
-	}
-	/* else if(button.tag == 3){
-	 buttonTag = 1;
-	 }*/
+	int buttonTag  = floor(button.tag /= 100);
+	NSLog(@"buttonTag: ", buttonTag);
 	
 	[self sendRequest:@"CLOSE" actuator:buttonTag];
 	[button release];
+	
 }
 
 // send the POST request

@@ -14,12 +14,18 @@
 	UISwitch *kitchenSwitch;
 	UISwitch *bedroomSwitch;
 	UISwitch *bedroomDimingSwitch;
+	
+	UIScrollView *scrollView;
+	UIView *contentView;
 }
 
 @property (nonatomic, retain) IBOutlet UISwitch *diningSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *kitchenSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *bedroomSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *bedroomDimingSwitch;
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIView *contentView;
 
 
 -(IBAction) changeValue:(id)sender;

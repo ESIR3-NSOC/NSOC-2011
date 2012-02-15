@@ -11,16 +11,23 @@
 
 @implementation CommandsLightViewController
 
+@synthesize scrollView, contentView;
 @synthesize diningSwitch, kitchenSwitch, bedroomSwitch, bedroomDimingSwitch;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	[self.view addSubview:scrollView];
+	[self.scrollView addSubview:self.contentView];
+	self.scrollView.contentSize = self.contentView.bounds.size;
 	
 	diningSwitch.tag = 0;
 	kitchenSwitch.tag = 1;
 	bedroomSwitch.tag = 2;
 	bedroomDimingSwitch.tag = 100;
 	
+	//show activity indicator in the status bar
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	// display the current data of the switches
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
@@ -62,7 +69,7 @@
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSMutableString *result = [[NSMutableString alloc] initWithString:@"OFF"];
 	NSMutableString *actuator = [[NSMutableString alloc] initWithString:@"lamp/0"];
-	
+		
 	// for scenario switch
 	if (switchOutlet.tag >= 100) {
 		[actuator setString:@"switch/0"];
@@ -114,6 +121,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.scrollView = nil;
+	self.contentView = nil;
+	
 	self.diningSwitch = nil;
 	self.kitchenSwitch = nil;
 	self.bedroomSwitch = nil;
@@ -122,6 +132,9 @@
 
 
 - (void)dealloc {
+	[scrollView release];
+	[contentView release];
+	
 	[diningSwitch release];
 	[kitchenSwitch release];
 	[bedroomSwitch release];

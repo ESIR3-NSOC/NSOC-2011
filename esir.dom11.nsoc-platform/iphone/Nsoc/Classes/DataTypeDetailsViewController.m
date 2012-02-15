@@ -18,15 +18,15 @@
 - (id)initWithDataFromDatePicker:(ModelData *) passedData{
 	
 	if(self = [self initWithNibName:@"DataTypeDetailsViewController" bundle:nil]){
-		//self.dataFromDate = passedData;
-		//NSLog(@"Begin Date : %@", self.dataFromDate.beginDate);
-		//NSLog(@"End Date : %@", self.dataFromDate.endDate);
+		self.dataFromDate = passedData;
+		NSLog(@"Begin Date : %@", self.dataFromDate.beginDate);
+		NSLog(@"End Date : %@", self.dataFromDate.endDate);
 
 	}
 	
-	//NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
-	//[dateFormatter setDateFormat:@"YYYY-MM-dd"];
-	//[dateFormatter release];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
+	[dateFormatter setDateFormat:@"YYYY-MM-dd"];
+	[dateFormatter release];
 	return self;
 }
 

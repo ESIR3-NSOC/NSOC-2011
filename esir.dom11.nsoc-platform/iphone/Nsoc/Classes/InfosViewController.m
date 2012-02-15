@@ -27,6 +27,8 @@
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
+	
+	//show activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 	[self performSelector:@selector(getData) 

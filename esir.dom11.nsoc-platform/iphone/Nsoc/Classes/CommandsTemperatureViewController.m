@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	//show activity indicator in the status bar
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
 	//initialize the values
 	COMFORTTEMP = 20;
 	

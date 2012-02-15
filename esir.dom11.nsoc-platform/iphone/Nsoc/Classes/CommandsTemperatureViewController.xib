@@ -211,7 +211,7 @@
 					<object class="IBUISlider" id="69114131">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{33, 78}, {254, 23}}</string>
+						<string key="NSFrame">{{33, 77}, {254, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -389,12 +389,12 @@
 							<reference ref="36676825"/>
 							<reference ref="478620399"/>
 							<reference ref="762410309"/>
-							<reference ref="69114131"/>
 							<reference ref="259528444"/>
 							<reference ref="283340958"/>
 							<reference ref="173285955"/>
 							<reference ref="552017352"/>
 							<reference ref="663017828"/>
+							<reference ref="69114131"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -498,6 +498,7 @@
 					<string>23.IBPluginDependency</string>
 					<string>23.IBViewBoundsToFrameTransform</string>
 					<string>24.IBPluginDependency</string>
+					<string>24.IBViewBoundsToFrameTransform</string>
 					<string>25.IBPluginDependency</string>
 					<string>25.IBViewBoundsToFrameTransform</string>
 					<string>26.IBPluginDependency</string>
@@ -546,6 +547,9 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABByAAAwjAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCBAAAwsYAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDXwAAwmwAAA</bytes>

@@ -150,13 +150,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	
-	self.delegate = nil;
 	self.rangeTableView = nil;
 	self.rangeArray = nil;
 	self.dateArray = nil;
 	self.dateLabel = nil;
 	self.picker = nil;
-	self.data = nil;
 }
 
 
@@ -166,7 +164,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[dateArray release];
 	[dateLabel release];
 	[picker release];
-	[data release];
     
 	[super dealloc];
 }
