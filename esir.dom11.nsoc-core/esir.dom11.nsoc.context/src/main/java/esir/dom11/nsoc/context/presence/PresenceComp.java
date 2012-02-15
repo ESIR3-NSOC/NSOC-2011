@@ -1,5 +1,6 @@
 package esir.dom11.nsoc.context.presence;
 
+import esir.dom11.nsoc.context.calendar.Calendar;
 import org.kevoree.annotation.*;
 import org.kevoree.classloader.ClassLoaderInterface;
 import org.kevoree.classloader.ClassLoaderWrapper;
@@ -44,8 +45,8 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Agenda agenda) {
-                sendPrediction(agenda);
+            public void sendAgenda(Calendar calendar) {
+                sendPrediction(calendar);
             }
         });
     }
@@ -62,8 +63,8 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Agenda agenda) {
-                sendPrediction(agenda);
+            public void sendAgenda(Calendar calendar) {
+                sendPrediction(calendar);
             }
         });
     }
@@ -77,17 +78,17 @@ public class PresenceComp extends AbstractComponentType {
     @Port(name = "agenda")
     public void presenceAgenda(Object obj) {
         try {
-            Agenda agenda = (Agenda) obj;
-            preMan.setAgenda(agenda.getEvents());
+            Calendar calendar = (Calendar) obj;
+            preMan.setAgenda(calendar.getEvents());
         } catch (Exception ex) {
             System.out.println(ex);
         }
     }
 
 
-    public void sendPrediction(Agenda agenda) {
+    public void sendPrediction(Calendar calendar) {
         if (this.isPortBinded("prediction")) {
-            this.getPortByName("prediction", MessagePort.class).process(agenda);
+            this.getPortByName("prediction", MessagePort.class).process(calendar);
         }
     }
 
