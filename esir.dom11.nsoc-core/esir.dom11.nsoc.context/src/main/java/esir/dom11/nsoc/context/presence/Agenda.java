@@ -24,4 +24,13 @@ public class Agenda {
         }
         return null;
     }
+
+    public String toString() {
+        String str = "[ Agenda \n";
+        for (AgendaEvent event : events) {
+            str += event.toString() + "\n";
+        }
+        str += "]\n";
+        return str;
+    }
 }

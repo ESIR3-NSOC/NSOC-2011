@@ -25,6 +25,7 @@ public class BrainRoom {
         this.roomLocation = location;
         this.fullAuto = false;
         this.devicesStates = new LinkedList<Data>();
+        presence = false;
     }
 
     /*
@@ -32,12 +33,62 @@ public class BrainRoom {
     @param: String info; info relate of up or down
     */
     public LinkedList<Action> lightControl(String info) {
+        System.out.println("********************************** " + info);
         LinkedList<Action> actionList = new LinkedList<Action>();
         if (presence) {
-            if (info.equals("up")) {
-
-            } else if (info.equals("down")) {
-
+            int lumInt = Integer.parseInt(searchDevice("/bat7/salle930/lum/0"));
+            int lumExt = Integer.parseInt(searchDevice("/bat7/salle930/lum/1"));
+            String lamp = searchDevice("/bat7/salle930/lamp/0");
+            String shutter = searchDevice("/bat7/salle930/shutter/0");
+            System.out.println("presence");
+            if (info.equals("UP")) {
+                System.out.println("up");
+                if (shutter.equals("OPEN")) {
+                    System.out.println("shutter open");
+                    if (lamp.equals("ON")) {
+                        System.out.println("lamp on");
+                        System.out.println("Control: max brightness");
+                    } else if (lamp.equals("OFF")) {
+                        System.out.println("lamp off");
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                        Action ac1 = new Action(act, "ON");
+                        actionList.add(ac1);
+                    } else System.out.println("Control: lamp bad value : " + lamp);
+                } else if (shutter.equals("CLOSE")) {
+                    System.out.println("shutter close");
+                    if (lumExt > lumInt) {
+                        System.out.println("lumExt > lumInt");
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                        Action ac1 = new Action(act, "OPEN");
+                        actionList.add(ac1);
+                    } else if (lumExt <= lumInt) {
+                        System.out.println("lumExt < lumInt");
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                        Action ac1 = new Action(act, "ON");
+                        actionList.add(ac1);
+                    } else System.out.println("Control : lumInt or lum ext bad value : " + lumInt + " , " + lumExt);
+                } else System.out.println("Control: shutter bad value : " + shutter);
+            } else if (info.equals("DOWN")) {
+                System.out.println("down");
+                if (shutter.equals("OPEN")) {
+                    System.out.println("shutter open");
+                    if (lamp.equals("ON")) {
+                        System.out.println("lamp on");
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                        Action ac1 = new Action(act, "OFF");
+                        actionList.add(ac1);
+                    } else if (lamp.equals("OFF")) {
+                        System.out.println("lamp off");
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+                        Action ac1 = new Action(act, "CLOSE");
+                        actionList.add(ac1);
+                    } else System.out.println("Control: lamp bad value : " + lamp);
+                } else if (shutter.equals("CLOSE")) {
+                    System.out.println("shutter close");
+                    Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
+                    Action ac1 = new Action(act, "OFF");
+                    actionList.add(ac1);
+                }
             }
         } else {
             Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
@@ -49,13 +100,12 @@ public class BrainRoom {
         }
         return actionList;
     }
+
     public void lightControlFullAuto() {
         LinkedList<Action> actionList = new LinkedList<Action>();
         if (fullAuto) {
             if (presence) {
-                //mise a jour capteur
 
-                //algo
             } else {
                 Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/lamp/0");
                 Action lamp = new Action(act, "OFF");
@@ -73,11 +123,44 @@ public class BrainRoom {
     */
     public LinkedList<Action> temperatureControl(String info) {
         LinkedList<Action> actionList = new LinkedList<Action>();
-
         if (presence) {
-            if (info.equals("up")) {
+            String shutter = searchDevice("/bat7/salle930/shutter/0");
+            int tempOut = Integer.parseInt(searchDevice("/bat7/salle930/temp/1"));
+            int tempInt = Integer.parseInt(searchDevice("/bat7/salle930/temp/0"));
+            if (info.equals("UP")) {
+                if (tempInt < tempOut) {
+                    if (shutter.equals("OPEN")) {
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/heat/0");
+                        Action ac1 = new Action(act, "ON");
+                        actionList.add(ac1);
+                    } else if (shutter.equals("CLOSE")) {
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+                        Action ac1 = new Action(act, "OPEN");
+                        actionList.add(ac1);
+                    }
 
-            } else if (info.equals("down")) {
+                } else if (tempInt > tempOut) {
+                    Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/heat/0");
+                    Action ac1 = new Action(act, "ON");
+                    actionList.add(ac1);
+                } else System.out.println("Control : tempInt or tempExt ext bad value : " + tempInt + " , " + tempOut);
+
+            } else if (info.equals("DOWN")) {
+                if (tempInt < tempOut) {
+                    if (shutter.equals("OPEN")) {
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/shutter/0");
+                        Action ac1 = new Action(act, "CLOSE");
+                        actionList.add(ac1);
+                    } else if (shutter.equals("CLOSE")) {
+                        Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/heat/0");
+                        Action ac1 = new Action(act, "OFF");
+                        actionList.add(ac1);
+                    }
+                } else if (tempInt > tempOut) {
+                    Actuator act = new Actuator(DataType.LAMP, "/bat7/salle930/heat/0");
+                    Action ac1 = new Action(act, "OFF");
+                    actionList.add(ac1);
+                } else System.out.println("Control : tempInt or tempExt ext bad value : " + tempInt + " , " + tempOut);
 
             }
         } else {
@@ -87,11 +170,11 @@ public class BrainRoom {
         }
         return actionList;
     }
+
     public void temperatureControlFullAuto() {
         LinkedList<Action> actionList = new LinkedList<Action>();
         if (!fullAuto) {
             if (presence) {
-
 
             } else {
                 Actuator act = new Actuator(DataType.HEAT, "/bat7/salle930/heat/0");
@@ -173,5 +256,15 @@ public class BrainRoom {
     //Stop the brain
     public void stop() {
 
+    }
+
+    public String searchDevice(String location) {
+        String state = null;
+        for (int i = 0; i < devicesStates.size(); i++) {
+            if (devicesStates.get(i).getSensor().getLocation().equals(location)) {
+                state = devicesStates.get(i).getValue();
+            }
+        }
+        return state;
     }
 }
