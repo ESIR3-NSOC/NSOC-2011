@@ -1,4 +1,4 @@
- package fr.esir2011.nsoc;
+package fr.esir2011.nsoc;
 
 import java.io.IOException;
 import org.restlet.Application;
@@ -8,7 +8,11 @@ import org.restlet.data.Form;
 import org.restlet.data.Protocol;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
+import android.app.Activity;
+
+import fr.esir2011.nsoc.MainActivity.MyOnClickListener;
 import android.widget.*;
+import android.content.Intent;
 import android.view.View;
 
 
@@ -25,7 +29,7 @@ public class ClientAndro extends Application{
 		cl = new Client(new Context(), Protocol.HTTP);
 	}
 	
-	//suppression  du client (appui sur bouton deconnexion)
+	//suppression du client (appui sur bouton deconnexion)
 	public void killClient(){
 		try {
 			cl.stop();
@@ -38,20 +42,22 @@ public class ClientAndro extends Application{
 	public void creationClient(String ip){
 		
 		
-		urlServer = "ip";
+		urlServer = ip;
 		try {
 			
-			CheckBox checkConnect;
-			checkConnect=(CheckBox)activity.findViewById(R.id.checkConnect);
 			
+			System.out.println(urlServer);
 			cl.start();
 			cr = new ClientResource(urlServer);
-			cr.setNext(cl);
+			RestRequest req = cr.wrap(RestRequest.class);
+			String res = req.getRequest();
 			
-			if (cr.get().equals("Connexion Client/Serveur etablie")){
-				checkConnect.setChecked(true);
-				
-			}
+			System.out.println("res : "+res);
+			cr.setNext(cl);
+			//cr.get();
+			
+		
+			
 			
 		}catch(Exception e){
 			e.printStackTrace();

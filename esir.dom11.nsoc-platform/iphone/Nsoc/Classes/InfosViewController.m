@@ -13,68 +13,88 @@
 
 @synthesize cm;
 @synthesize scrollView, contentView;
-@synthesize tempInLabel, tempOutLabel, brightnessInLabel, humidityInLabel;
+@synthesize tempInLabel, tempOutLabel, brightnessInLabel, brightnessOutLabel, co2Label, presenceLabel;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+											  target:self
+											  action:@selector(refreshInfo:)];
+	
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
 	
+	//show activity indicator in the status bar
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
+	[self performSelector:@selector(getData) 
+			   withObject:nil 
+			   afterDelay:0.1];
+
+}
+
+
+// receive the array of current data and parse it
+-(void) getData {
 	cm = [[ConnectionManager alloc] init];
 	
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
-	
-	if(!results){
-		ConnectionViewController *connectionViewController = [[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil];
-		connectionViewController.delegate = self;
 		
-		connectionViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-		[self presentModalViewController:connectionViewController animated:YES];
-		[connectionViewController release];
+	if(!results){
+		ConnectionViewController *cvc = [[ConnectionViewController alloc] 
+										 initWithNibName:@"ConnectionViewController" bundle:nil];
+		cvc.delegate = self;
+		
+		cvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+		[self presentModalViewController:cvc animated:YES];
+		[cvc release];
 		
 	} else {
 		for(int i = 0; i < ([results count]-1); i++) {
-			NSArray *item = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
+			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
 			
-			NSArray *location = [[item objectAtIndex:0] componentsSeparatedByString:@"/"];
-			NSString *sensor = [location objectAtIndex:([location count]-1)];
-			NSString *value = [item objectAtIndex:1];			
+			NSArray *locations = [[items objectAtIndex:0] componentsSeparatedByString:@"/"];
+			NSString *actuator = [locations objectAtIndex:([locations count] -2)];
+			NSString *number = [locations objectAtIndex:([locations count]-1)];
+			NSString *value = [items objectAtIndex:1];		
 			
-			if([sensor isEqualToString:@"tempIn"]){
-				tempInLabel.text = value;
-
-			} else if([sensor isEqualToString:@"tempOut"]) {
-				tempOutLabel.text = value;
-			} else if ([sensor isEqualToString:@"brightness"]) {
-				brightnessInLabel.text = value;
-			} else if([sensor isEqualToString:@"humidity"]) {
-				humidityInLabel.text = value;
+			if([actuator isEqualToString:@"temp"]) {
+				if([number isEqualToString:@"0"]){
+					tempInLabel.text = value;
+				} else if([number isEqualToString:@"1"]) {
+					tempOutLabel.text = value;
+				}
+			}
+			else if([actuator isEqualToString:@"lum"]){
+				if([number isEqualToString:@"0"]){
+					brightnessInLabel.text = value;
+				} else if([number isEqualToString:@"1"]) {
+					brightnessOutLabel.text = value;
+				}	
+			}
+			else if([actuator isEqualToString:@"co2"]) {
+				if([number isEqualToString:@"0"]){
+					co2Label.text = value;
+				}
+			}
+			else if([actuator isEqualToString:@"presence"]) {
+				if([number isEqualToString:@"0"]){
+					presenceLabel.text = value;
+				}		
 			}
 		}
 	}
-		
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-											  target:self
-											  action:@selector(refreshInfo:)];	
 }
 
-
+// ask for a refresh of the information
 - (void) refreshInfo:(id)sender {
-	[cm allData:@"bat7" room:@"salle930"];	
+	[self getData];
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -92,8 +112,9 @@
 	self.tempInLabel = nil;
 	self.tempOutLabel = nil;
 	self.brightnessInLabel = nil;
-	self.humidityInLabel = nil;
-	
+	self.brightnessOutLabel = nil;
+	self.presenceLabel = nil;
+	self.co2Label = nil;
 }
 
 
@@ -104,7 +125,9 @@
 	[tempInLabel release];
 	[tempOutLabel release];
 	[brightnessInLabel release];
-	[humidityInLabel release];
+	[brightnessOutLabel release];
+	[presenceLabel release];
+	[co2Label release];
 	
     [super dealloc];
 }

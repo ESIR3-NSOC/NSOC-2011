@@ -9,7 +9,7 @@
 #import "CommandsViewController.h"
 #import "CommandsLightViewController.h"
 #import "CommandsTemperatureViewController.h"
-#import "CommandsScenariiViewController.h"
+#import "CommandsBlindViewController.h"
 
 @implementation CommandsViewController
 
@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.commandsArray = [NSArray arrayWithObjects:@"Lights", @"Blinds", @"Temperature", @"Scenarii", nil];
+	self.commandsArray = [NSArray arrayWithObjects:@"Lights", @"Temperature", @"Blinds", @"Scenarii", nil];
 }
 
 /**
@@ -63,7 +63,6 @@ numberOfRowsInSection:(NSInteger) section{
  *	Method fired on the click of one of the cell
  */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
 	//click on Lightings
 	if([indexPath row] == 0){
 		CommandsLightViewController *controller = [[CommandsLightViewController alloc] init];
@@ -72,24 +71,18 @@ numberOfRowsInSection:(NSInteger) section{
 		[controller release];
 	}	
 	
-	//click on Blinds
-	else if([indexPath row] == 1){
-		
-	}
-	
 	//click on Temperature
-	else if([indexPath row] == 2){
+	else if([indexPath row] == 1){
 		CommandsTemperatureViewController *controller = [[CommandsTemperatureViewController alloc] init];
 		[controller setTitle:[self.commandsArray objectAtIndex:indexPath.row]];
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}
 	
-	//click on Scenarii
-	else if([indexPath row] == 3){
-		CommandsScenariiViewController *controller = [[CommandsScenariiViewController alloc] init];
-		
-		[controller setTitle:[self.commandsArray objectAtIndex:[indexPath row]]];
+	//click on Blinds
+	else if([indexPath row] == 2){
+		CommandsBlindViewController *controller = [[CommandsBlindViewController alloc] init];
+		[controller setTitle:[self.commandsArray objectAtIndex:indexPath.row]];
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}

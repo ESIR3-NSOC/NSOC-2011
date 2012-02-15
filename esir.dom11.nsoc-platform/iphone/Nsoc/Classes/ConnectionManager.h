@@ -30,6 +30,7 @@
  *	GET requests
  */
 - (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port;
+
 - (NSArray *) allData:(NSString *)building 
 			room:(NSString *)room;
 
@@ -42,7 +43,7 @@
 /**
  *	POST Requests
  */
-- (BOOL) sendPostRequest:(NSString *)value 
+- (void) sendPostRequest:(NSString *)value 
 				datatype:(NSString *)datatype
 				building:(NSString *)building
 					room:(NSString *)room

@@ -24,17 +24,18 @@ public class PresenceManager implements PresenceListener {
     public PresenceManager() {
         this.listenerList = new EventListenerList();
 
-        System.out.println("ok");
         agendaChecker = new AgendaChecker();
-           agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
+        agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
             @Override
             public void eventStart() {
                 getCepRT().sendEvent(new PresenceAgendaEvent("salle", true));
+                System.out.println("Context::PresenceComp : start agenda event");
             }
 
             @Override
             public void eventStop() {
                 getCepRT().sendEvent(new PresenceAgendaEvent("salle", false));
+                System.out.println("Context::PresenceComp : stop agenda event");
             }
         });
 
@@ -62,8 +63,6 @@ public class PresenceManager implements PresenceListener {
             }
         });
 
-        //  EPStatement var_agenda_presence = cepAdm.createEPL("create variable boolean var_agenda_presence = false");
-        //  var_presence.start();
         String confirmation_startWindow = "1 sec";
         String confirmation_minDuration = "1 sec";
         confirmation = cepAdm.createEPL("select * from pattern[" +
@@ -88,35 +87,48 @@ public class PresenceManager implements PresenceListener {
         confirmation.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                presenceEvent("- context - confirmation agenda presence");
+                System.out.println("Context::PresenceComp : confirmation agenda event");
             }
         });
         cancel.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
                 if (!presence) {
-                    presenceEvent("- context - cancel agenda presence");
+                    agendaChecker.getAgenda().getEvents().remove(
+                            agendaChecker.getAgenda().getEventByDate(new Date())
+                    );
+                    sendAgenda(agendaChecker.getAgenda());
+                    System.out.println("Context::PresenceComp : cancel agenda event");
                 }
             }
         });
         newPresence.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                presenceEvent("- context - new temporary presence");
+                //
+                Date now = new Date();
+                agendaChecker.getAgenda().getEvents().add(
+                        new AgendaEvent(now,
+                                new Date(now.getTime() + 900000) // 15 min
+                        )
+                );
+                sendAgenda(agendaChecker.getAgenda());
+                System.out.println("Context::PresenceComp : new presence");
             }
         });
         endPresence.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                presenceEvent("- context - end presence");
+                System.out.println("Context::PresenceComp : end presence");
             }
         });
-        System.out.println("oks");
+
         agendaChecker.start();
     }
 
     public void setAgenda(LinkedList<AgendaEvent> events) {
-        agendaChecker.setEvents(events);
+        agendaChecker.getAgenda().getEvents().clear();
+        agendaChecker.getAgenda().getEvents().addAll(events);
     }
 
     public void stop() {
@@ -135,16 +147,17 @@ public class PresenceManager implements PresenceListener {
         return cepRT;
     }
 
-    @Override
-    public void presenceEvent(String message) {
-        PresenceListener[] listeners = (PresenceListener[])
-                listenerList.getListeners(PresenceListener.class);
-        for (int i = listeners.length - 1; i >= 0; i--) {
-            listeners[i].presenceEvent(message);
-        }
-    }
 
     public void addPresenceEventListener(PresenceListener l) {
         this.listenerList.add(PresenceListener.class, l);
+    }
+
+    @Override
+    public void sendAgenda(Agenda agenda) {
+        PresenceListener[] listeners = (PresenceListener[])
+                listenerList.getListeners(PresenceListener.class);
+        for (int i = listeners.length - 1; i >= 0; i--) {
+            listeners[i].sendAgenda(agenda);
+        }
     }
 }

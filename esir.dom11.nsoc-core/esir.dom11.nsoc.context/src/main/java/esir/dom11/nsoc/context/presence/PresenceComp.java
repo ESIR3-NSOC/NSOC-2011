@@ -10,7 +10,7 @@ import org.osgi.framework.Bundle;
 
 @Provides({
         @ProvidedPort(name = "presence", type = PortType.MESSAGE),
-        @ProvidedPort(name = "presenceAgenda", type = PortType.MESSAGE)
+        @ProvidedPort(name = "agenda", type = PortType.MESSAGE)
 })
 @Requires({
         // presence prediction
@@ -26,7 +26,7 @@ public class PresenceComp extends AbstractComponentType {
     private PresenceManager preMan;
 
     public PresenceComp() {
-          
+
     }
 
 
@@ -42,10 +42,10 @@ public class PresenceComp extends AbstractComponentType {
 
         preMan = new PresenceManager();
         preMan.addPresenceEventListener(new PresenceListener() {
+
             @Override
-            public void presenceEvent(String message) {
-                System.out.println("ok");
-               // sendMessage(message);
+            public void sendAgenda(Agenda agenda) {
+                sendPrediction(agenda);
             }
         });
     }
@@ -60,9 +60,10 @@ public class PresenceComp extends AbstractComponentType {
         preMan.stop();
         preMan = new PresenceManager();
         preMan.addPresenceEventListener(new PresenceListener() {
+
             @Override
-            public void presenceEvent(String message) {
-              //  sendMessage(message);
+            public void sendAgenda(Agenda agenda) {
+                sendPrediction(agenda);
             }
         });
     }
@@ -73,15 +74,20 @@ public class PresenceComp extends AbstractComponentType {
         preMan.getCepRT().sendEvent(presence);
     }
 
-    @Port(name = "presenceAgenda")
-    public void presenceAgenda(Object agenda) {
-        preMan.getCepRT().sendEvent(agenda);
+    @Port(name = "agenda")
+    public void presenceAgenda(Object obj) {
+        try {
+            Agenda agenda = (Agenda) obj;
+            preMan.setAgenda(agenda.getEvents());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
 
-    public void sendPrediction(String messsage) {
+    public void sendPrediction(Agenda agenda) {
         if (this.isPortBinded("prediction")) {
-            this.getPortByName("prediction", MessagePort.class).process(messsage);
+            this.getPortByName("prediction", MessagePort.class).process(agenda);
         }
     }
 

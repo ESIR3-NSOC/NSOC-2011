@@ -36,6 +36,7 @@
 - (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (BOOL) testEntryWithRegex:(NSString *)entry regex:(NSString *) regex;
 - (IBAction) connectionToServer:(id) sender;
+- (IBAction) dismissView:(id)sender;
 
 @end
 

@@ -7,28 +7,17 @@ import java.util.LinkedList;
 public class AgendaChecker extends Thread implements AgendaCheckerListener {
 
     private boolean active;
-    private LinkedList<AgendaEvent> events;
+    private Agenda agenda;
     protected EventListenerList listenerList;
 
     public AgendaChecker() {
         active = true;
-        events = new LinkedList<AgendaEvent>();
+        agenda = new Agenda();
         listenerList = new EventListenerList();
     }
 
-    public AgendaChecker(LinkedList<AgendaEvent> events) {
-        active = true;
-        this.events = (LinkedList<AgendaEvent>)events.clone();
-        listenerList = new EventListenerList();
-    }
-
-
-    public LinkedList<AgendaEvent> getEvents() {
-        return events;
-    }
-
-    public void setEvents(LinkedList<AgendaEvent> events) {
-        this.events = events;
+    public Agenda getAgenda(){
+        return agenda;
     }
 
     public boolean isActive() {
@@ -53,7 +42,7 @@ public class AgendaChecker extends Thread implements AgendaCheckerListener {
     }
 
     public void checkEvents(Date date) {
-        for (AgendaEvent event : this.events) {
+        for (AgendaEvent event : agenda.getEvents()) {
             if (Math.abs(
                     date.getTime() - event.getStart().getTime()) < 500) {
                 // start of an event
