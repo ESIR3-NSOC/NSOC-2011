@@ -1,6 +1,8 @@
 package esir.dom11.nsoc.ctrl;
 
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
+import esir.dom11.nsoc.model.device.Sensor;
 import esir.dom11.nsoc.service.IDbService;
 import esir.dom11.nsoc.service.IServerService;
 import esir.dom11.nsoc.service.RequestResult;
@@ -35,6 +37,8 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     private LinkedList<AgendaEvent> agendaList;
     private AgendaChecker agendaChecker;
 
+    private LinkedList<Data> dataList;
+
     @Start
     public void start() {
         System.out.println("Control : Start");
@@ -43,6 +47,35 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         commandList = new LinkedList<Command>();
         theBrain = new TheBrain();
         theBrain.createRoom("/bat7/salle930/");
+
+        //choose your data for the test
+        Data data1 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/temp/0"), "20", new Date());
+        Data data2 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/temp/1"), "9", new Date());
+        Data data3 = new Data(new Sensor(DataType.LAMP,"/bat7/salle930/lamp/0"), "ON", new Date());
+        Data data4 = new Data(new Sensor(DataType.LAMP,"/bat7/salle930/shutter/0"), "CLOSE", new Date());
+        Data data5 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/lum/0"), "60", new Date());
+        Data data6 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/lum/1"), "60", new Date());
+        Data data7 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/co2/0"), "8", new Date());
+        Data data8 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/presence/0"), "ON", new Date());
+
+        //stock into list
+        dataList = new LinkedList<Data>();
+        dataList.add(data1);
+        dataList.add(data2);
+        dataList.add(data3);
+        dataList.add(data4);
+        dataList.add(data5);
+        dataList.add(data6);
+        dataList.add(data7);
+        dataList.add(data8);
+
+        BrainRoom br = theBrain.searchRoom("/bat7/salle930/");
+        br.updateRoom(data1);
+        br.updateRoom(data2);
+        br.updateRoom(data3);
+        br.updateRoom(data4);
+        br.updateRoom(data5);
+        br.updateRoom(data6);
     }
     @Stop
     public void stop() {
@@ -71,12 +104,13 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         LinkedList<Data> object = null;
         if(HMIAction.getAction() == null){
             //HMI ask for data
-            for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
+ /*           for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
                 RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
                 if (result.isSuccess()) {
                     object = (LinkedList<Data>) result.getResult();
                 }
             }
+    */      object = dataList;
         }
         else System.out.println("Control ATTENTION : receive no get from Hmi");
         System.out.println("Control : data list send to Hmi ");
@@ -85,16 +119,42 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     @Port(name = "postFromHmi")
     //HMI send action
     public void postFromHmi(Object o) {
-        HmiRequest HMIAction = (HmiRequest) o;
-        if(HMIAction.getAction() != null)  {
-            LinkedList<Action> list = new LinkedList<Action>();
-            list.add(HMIAction.getAction());
-            Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
-            //send command
-            send2Conflict(command);
-            System.out.println("Control : command send to conflict ");
-        }
-        else System.out.println("Control ATTENTION : receive no command from Hmi");
+       if(theBrain.searchRoom("/bat7/salle930/").presence){
+           HmiRequest HMIAction = (HmiRequest) o;
+           if(HMIAction.getAction() != null)  {
+               LinkedList<Action> list = new LinkedList<Action>();
+               list.add(HMIAction.getAction());
+               Command command = new Command(list, Category.USER,(long) 0, (long) 0 ) ;
+               //send command
+               //System.out.println("********************* : " + HMIAction.getAction().getActuator().getLocation().split("/")[2]);
+               if(HMIAction.getAction().getActuator().getLocation().split("/")[2].equals("switch")){
+                   BrainRoom br = theBrain.searchRoom("/bat7/salle930/");
+                   String inter = HMIAction.getAction().getActuator().getLocation().split("/")[3];
+                   if(inter.equals("0")){
+                       Command com = new Command(br.lightControl(HMIAction.getAction().getValue()),Category.USER,(long) 1,(long) 1);
+                       System.out.println("**********" + HMIAction.getAction().getValue());
+                       send2Conflict(com);
+                   }
+                   else if(inter.equals("1")){
+                       Command com = new Command();
+                       com.setActionList(br.temperatureControl(HMIAction.getAction().getValue()));
+                       com.setCategory(Category.USER);
+                       com.setLock((long) 1);
+                       com.setTimeOut((long) 1);
+                       send2Conflict(com);
+                   }
+               }
+               else{
+                   send2Conflict(command);
+                   System.out.println("Control : command send to conflict ");
+               }
+           }
+           else System.out.println("Control ATTENTION : receive no command from Hmi");
+       }
+       else{
+           System.out.println("Control: Receive command without presence");
+       }
+
     }
     //Control send command to Hmi
     public void send2HMI(Command command) {
@@ -124,7 +184,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
     }
     //Send command to conflict
     public void send2Conflict(Command command) {
-        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
+       // System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
         commandList.add(command);
         getPortByName("Conflict",MessagePort.class).process(command);
     }
@@ -136,11 +196,15 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
         getPortByName("DAO", IDbService.class).create((data));
 	}
     //send command to DAO
-	public void sendCommand2DAO(Command command) {
-        System.out.println("Control : send2DAO command");
+	public void sendCommand2DAO(Command command){
+        System.out.println("Control : send2DAO command " + command.getActionList().size() );
         for(int i=0; i<command.getActionList().size(); i++){
+            System.out.println("i = " + i);
+            System.out.println(command.getActionList().size());
             getPortByName("DAO", IDbService.class).create(command.getActionList().get(i));
+
         }
+        System.out.println("OK");
 	}
     //ask somme data of DAO
     public RequestResult getData(Date begin, Date end, String location, DataType type){
@@ -218,8 +282,8 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
                 br.updateRoom(sensor);
             }
             else if(thisDataType.equals(DataType.SWITCH)){
-                String inter = sensor.getSensor().getLocation().split("/")[4];
-                if(inter.equals("1")){
+                String inter = sensor.getSensor().getLocation().split("/")[3];
+                if(inter.equals("0")){
                     Command com = new Command();
                     com.setActionList(br.lightControl(sensor.getValue()));
                     com.setCategory(Category.USER);
@@ -227,7 +291,7 @@ public class Control extends AbstractComponentType implements ctrlInterface,ISer
                     com.setTimeOut((long) 1);
                     send2Conflict(com);
                 }
-                else if(inter.equals("2")){
+                else if(inter.equals("1")){
                     Command com = new Command();
                     com.setActionList(br.temperatureControl(sensor.getValue()));
                     com.setCategory(Category.USER);
