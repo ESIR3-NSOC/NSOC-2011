@@ -1,6 +1,7 @@
 package esir.dom11.nsoc.context.presence;
 
 import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
 import org.kevoree.annotation.*;
 import org.kevoree.classloader.ClassLoaderInterface;
 import org.kevoree.classloader.ClassLoaderWrapper;
@@ -77,8 +78,13 @@ public class PresenceComp extends AbstractComponentType {
 
     @Port(name = "calendar")
     public void receiveCalendar(Object obj) {
+
         try {
             Calendar calendar = (Calendar) obj;
+            System.out.println("receive calendar");
+            for(CalendarEvent ev:calendar.getEvents()){
+                System.out.println(ev);
+            }
             preMan.setCalendar(calendar.getEvents());
         } catch (Exception ex) {
             System.out.println(ex);

@@ -130,9 +130,8 @@ public class PresenceManager implements PresenceListener {
     }
 
     public void setCalendar(LinkedList<CalendarEvent> events) {
-//        calendarChecker.getCalendar().getEvents().clear();
-//        calendarChecker.getCalendar().getEvents().addAll(events);
-        calendarChecker.newCalendar(events);
+        calendarChecker.getCalendar().getEvents().clear();
+        calendarChecker.getCalendar().getEvents().addAll(events);
     }
 
     public void stop() {
