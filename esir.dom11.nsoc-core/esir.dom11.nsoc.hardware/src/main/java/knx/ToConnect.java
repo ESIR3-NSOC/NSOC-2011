@@ -33,7 +33,15 @@ public class ToConnect implements IntToConnect {
     //constructeurs
     public ToConnect() {
         adresseIP_maquette = searchSketch();
+        System.out.println("Sketch address " + adresseIP_maquette + " found");
         adresseIP_PC = NSLookup.IPAddress("localhost").toString();
+        System.out.println("Local address " + adresseIP_PC + " found");
+    }
+
+    public ToConnect(String adressePC) {
+        adresseIP_PC = adressePC;
+        adresseIP_maquette = searchSketch();
+        System.out.println("Sketch address " + adresseIP_maquette + " found");
     }
 
     public ToConnect(String adressePC, String adresseMaquette) {
@@ -159,7 +167,7 @@ public class ToConnect implements IntToConnect {
             for (SearchResponse r : resp) {
                 HPAI hpai = r.getControlEndpoint();
                 String ipMaq = hpai.getAddress().toString();
-                adresseIP_maquette = ipMaq;
+                adresseIP_maquette = ipMaq.replace("/", "");
                 System.out.println("ToConnect: Sketch is found");
                 System.out.println("ToConnect: Sketch address: " + ipMaq);
             }
