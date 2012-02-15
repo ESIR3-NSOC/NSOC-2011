@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class CalendarCheckerTest extends TestCase {
 
-    public void testAgenda() {
+    public void testCalendar() {
 
 
         long currentTime = new Date().getTime();
@@ -24,7 +24,7 @@ public class CalendarCheckerTest extends TestCase {
 
         CalendarChecker calendarChecker = new CalendarChecker();
         calendarChecker.getCalendar().getEvents().addAll(events);
-        calendarChecker.addAgendaEventListener(new CalendarCheckerListener() {
+        calendarChecker.addCalendarEventListener(new CalendarCheckerListener() {
             @Override
             public void eventStart() {
                 System.out.println("start");

@@ -50,14 +50,7 @@ public class CalendarEvent {
     }
 
     public String toString() {
-        String str;
-        str = "----NEW EVENT----\n";
-        str += "ID : " + id + "\n";
-        str += "Summary : " + summary + "\n";
-        str += "Date Start : " + dateStart.toString() + "\n";
-        str += "Date End : " + dateEnd.toString() + "\n";
-        str += "\n";
-        return str;
+        return "\n[Event :" + dateStart + " -> " + dateEnd + " ]";
     }
 
 

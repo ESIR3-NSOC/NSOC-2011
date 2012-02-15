@@ -5,11 +5,12 @@ import esir.dom11.nsoc.context.calendar.CalendarEvent;
 
 import javax.swing.event.EventListenerList;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class CalendarChecker extends Thread implements CalendarCheckerListener {
 
     private boolean active;
-    private Calendar calendar;
+    public Calendar calendar;
     protected EventListenerList listenerList;
 
     public CalendarChecker() {
@@ -25,6 +26,15 @@ public class CalendarChecker extends Thread implements CalendarCheckerListener {
     public boolean isActive() {
         return active;
     }
+    
+    public void newCalendar(LinkedList<CalendarEvent> events) {
+        this.calendar = new Calendar();
+        calendar.getEvents().addAll((LinkedList<CalendarEvent>) events.clone());
+        System.out.println("---------------------------update calendar");
+        for(CalendarEvent ev: calendar.getEvents()){
+            System.out.println(ev);
+        }
+    }
 
     public void setActive(boolean active) {
         this.active = active;
@@ -35,7 +45,8 @@ public class CalendarChecker extends Thread implements CalendarCheckerListener {
         while (active) {
             try {
                 Thread.sleep(1000);
-                checkEvents(new Date());
+                Date now = new Date();
+                checkEvents(now);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -57,7 +68,7 @@ public class CalendarChecker extends Thread implements CalendarCheckerListener {
         }
     }
 
-    public void addAgendaEventListener(CalendarCheckerListener l) {
+    public void addCalendarEventListener(CalendarCheckerListener l) {
         this.listenerList.add(CalendarCheckerListener.class, l);
     }
 

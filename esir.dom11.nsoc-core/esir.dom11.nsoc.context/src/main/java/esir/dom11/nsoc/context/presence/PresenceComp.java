@@ -11,7 +11,7 @@ import org.osgi.framework.Bundle;
 
 @Provides({
         @ProvidedPort(name = "presence", type = PortType.MESSAGE),
-        @ProvidedPort(name = "agenda", type = PortType.MESSAGE)
+        @ProvidedPort(name = "calendar", type = PortType.MESSAGE)
 })
 @Requires({
         // presence prediction
@@ -45,7 +45,7 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Calendar calendar) {
+            public void sendCalendar(Calendar calendar) {
                 sendPrediction(calendar);
             }
         });
@@ -63,7 +63,7 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Calendar calendar) {
+            public void sendCalendar(Calendar calendar) {
                 sendPrediction(calendar);
             }
         });
@@ -75,16 +75,15 @@ public class PresenceComp extends AbstractComponentType {
         preMan.getCepRT().sendEvent(presence);
     }
 
-    @Port(name = "agenda")
-    public void presenceAgenda(Object obj) {
+    @Port(name = "calendar")
+    public void receiveCalendar(Object obj) {
         try {
             Calendar calendar = (Calendar) obj;
-            preMan.setAgenda(calendar.getEvents());
+            preMan.setCalendar(calendar.getEvents());
         } catch (Exception ex) {
             System.out.println(ex);
         }
     }
-
 
     public void sendPrediction(Calendar calendar) {
         if (this.isPortBinded("prediction")) {

@@ -19,7 +19,7 @@ public class ContextPresenceTest extends TestCase {
         presMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Calendar calendar) {
+            public void sendCalendar(Calendar calendar) {
                 System.out.println("\n--new Calendar--");
                 for (CalendarEvent event : calendar.getEvents()) {
                     System.out.println(event);
@@ -30,7 +30,7 @@ public class ContextPresenceTest extends TestCase {
         Date now = new Date();
         events.add(new CalendarEvent(new Date(now.getTime() + 2000),
                 new Date(now.getTime() + 4000)));
-        presMan.setAgenda(events);
+        presMan.setCalendar(events);
 
         tempo(2000);
         // cancel , uncomment to generate confirmation

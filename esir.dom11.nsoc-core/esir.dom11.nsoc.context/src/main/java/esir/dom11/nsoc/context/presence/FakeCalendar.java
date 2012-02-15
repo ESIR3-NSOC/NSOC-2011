@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.LinkedList;
 
 @Requires({
-        @RequiredPort(name = "fakeAgenda", type = PortType.MESSAGE)
+        @RequiredPort(name = "fakecalendar", type = PortType.MESSAGE)
 })
 @Library(name = "NSOC_2011::Context")
 @ComponentType
-public class FakeAgenda extends AbstractComponentType {
+public class FakeCalendar extends AbstractComponentType {
 
     @Start
     public void start() {
@@ -28,35 +28,34 @@ public class FakeAgenda extends AbstractComponentType {
 
     @Update
     public void update() {
-        sendAgenda(generateAgenda());
+        sendCalendar(generateCalendar());
     }
 
-    public Calendar generateAgenda() {
+    public Calendar generateCalendar() {
         long currentTime = new Date().getTime();
         LinkedList<CalendarEvent> events = new LinkedList<CalendarEvent>();
         events.add(
                 new CalendarEvent(
-                        new Date(currentTime + 2000),
-                        new Date(currentTime + 6000)
+                        new Date(currentTime + 5000),
+                        new Date(currentTime + 15000)
                 )
         );
         events.add(
                 new CalendarEvent(
-                        new Date(currentTime + 12000),
-                        new Date(currentTime + 18000)
+                        new Date(currentTime + 35000),
+                        new Date(currentTime + 40000)
                 )
         );
-
-
         Calendar calendar = new Calendar();
         calendar.getEvents().addAll(events);
         return calendar;
     }
 
 
-    public void sendAgenda(Calendar calendar) {
-        if (this.isPortBinded("fakeAgenda")) {
-            this.getPortByName("fakeAgenda", MessagePort.class).process(calendar);
+    public void sendCalendar(Calendar calendar) {
+        System.out.println("Context::FakeCalendar : sendCalendar");
+        if (this.isPortBinded("fakeCalendar")) {
+            this.getPortByName("fakeCalendar", MessagePort.class).process(calendar);
         }
     }
 

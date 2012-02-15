@@ -26,18 +26,23 @@ public class FakePresence extends AbstractComponentType {
         Thread th = new Thread() {
 
             public void GeneratePresence() {
-                tempo(2000);
+                tempo(5000);
+
+                // confirmation
+                // 5000
                 sendPresence(new PresenceEvent("1", true));
-                tempo(200);
-                tempo(2000); // confirmation
+                tempo(10000);
                 sendPresence(new PresenceEvent("1", false));
-                tempo(2000); // end presence
-                tempo(2000);
+                // 15000
+
+                tempo(10000);
+                // 25000
                 sendPresence(new PresenceEvent("1", true));
-                tempo(2000); // new temporay presence
+                tempo(5000); // new temporay presence
                 sendPresence(new PresenceEvent("1", false));
-                tempo(2000); // end temporay presence
-                tempo(2000);  // cancel
+                // 30000
+                tempo(20000); // end temporay presence
+                // 50000
             }
 
             public void tempo(long ms) {
