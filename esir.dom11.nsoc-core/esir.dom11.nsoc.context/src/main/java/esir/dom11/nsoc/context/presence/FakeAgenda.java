@@ -1,5 +1,7 @@
 package esir.dom11.nsoc.context.presence;
 
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.kevoree.framework.MessagePort;
@@ -29,32 +31,32 @@ public class FakeAgenda extends AbstractComponentType {
         sendAgenda(generateAgenda());
     }
 
-    public Agenda generateAgenda() {
+    public Calendar generateAgenda() {
         long currentTime = new Date().getTime();
-        LinkedList<AgendaEvent> events = new LinkedList<AgendaEvent>();
+        LinkedList<CalendarEvent> events = new LinkedList<CalendarEvent>();
         events.add(
-                new AgendaEvent(
+                new CalendarEvent(
                         new Date(currentTime + 2000),
                         new Date(currentTime + 6000)
                 )
         );
         events.add(
-                new AgendaEvent(
+                new CalendarEvent(
                         new Date(currentTime + 12000),
                         new Date(currentTime + 18000)
                 )
         );
 
 
-        Agenda agenda = new Agenda();
-        agenda.getEvents().addAll(events);
-        return agenda;
+        Calendar calendar = new Calendar();
+        calendar.getEvents().addAll(events);
+        return calendar;
     }
 
 
-    public void sendAgenda(Agenda agenda) {
+    public void sendAgenda(Calendar calendar) {
         if (this.isPortBinded("fakeAgenda")) {
-            this.getPortByName("fakeAgenda", MessagePort.class).process(agenda);
+            this.getPortByName("fakeAgenda", MessagePort.class).process(calendar);
         }
     }
 

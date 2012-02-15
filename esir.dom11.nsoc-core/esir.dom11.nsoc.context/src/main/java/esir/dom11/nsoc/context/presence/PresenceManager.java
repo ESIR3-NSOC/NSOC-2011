@@ -1,6 +1,8 @@
 package esir.dom11.nsoc.context.presence;
 
 import com.espertech.esper.client.*;
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
 
 import javax.swing.event.EventListenerList;
 import java.util.Date;
@@ -19,13 +21,13 @@ public class PresenceManager implements PresenceListener {
     private EPStatement endPresence;
     private EPStatement cancel;
     protected EventListenerList listenerList;
-    private AgendaChecker agendaChecker;
+    private CalendarChecker calendarChecker;
 
     public PresenceManager() {
         this.listenerList = new EventListenerList();
 
-        agendaChecker = new AgendaChecker();
-        agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
+        calendarChecker = new CalendarChecker();
+        calendarChecker.addAgendaEventListener(new CalendarCheckerListener() {
             @Override
             public void eventStart() {
                 getCepRT().sendEvent(new PresenceAgendaEvent("salle", true));
@@ -94,10 +96,10 @@ public class PresenceManager implements PresenceListener {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
                 if (!presence) {
-                    agendaChecker.getAgenda().getEvents().remove(
-                            agendaChecker.getAgenda().getEventByDate(new Date())
+                    calendarChecker.getCalendar().getEvents().remove(
+                            calendarChecker.getCalendar().getEventByDate(new Date())
                     );
-                    sendAgenda(agendaChecker.getAgenda());
+                    sendAgenda(calendarChecker.getCalendar());
                     System.out.println("Context::PresenceComp : cancel agenda event");
                 }
             }
@@ -107,12 +109,12 @@ public class PresenceManager implements PresenceListener {
             public void update(EventBean[] newData, EventBean[] oldData) {
                 //
                 Date now = new Date();
-                agendaChecker.getAgenda().getEvents().add(
-                        new AgendaEvent(now,
+                calendarChecker.getCalendar().getEvents().add(
+                        new CalendarEvent(now,
                                 new Date(now.getTime() + 900000) // 15 min
                         )
                 );
-                sendAgenda(agendaChecker.getAgenda());
+                sendAgenda(calendarChecker.getCalendar());
                 System.out.println("Context::PresenceComp : new presence");
             }
         });
@@ -123,12 +125,12 @@ public class PresenceManager implements PresenceListener {
             }
         });
 
-        agendaChecker.start();
+        calendarChecker.start();
     }
 
-    public void setAgenda(LinkedList<AgendaEvent> events) {
-        agendaChecker.getAgenda().getEvents().clear();
-        agendaChecker.getAgenda().getEvents().addAll(events);
+    public void setAgenda(LinkedList<CalendarEvent> events) {
+        calendarChecker.getCalendar().getEvents().clear();
+        calendarChecker.getCalendar().getEvents().addAll(events);
     }
 
     public void stop() {
@@ -153,11 +155,11 @@ public class PresenceManager implements PresenceListener {
     }
 
     @Override
-    public void sendAgenda(Agenda agenda) {
+    public void sendAgenda(Calendar calendar) {
         PresenceListener[] listeners = (PresenceListener[])
                 listenerList.getListeners(PresenceListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
-            listeners[i].sendAgenda(agenda);
+            listeners[i].sendAgenda(calendar);
         }
     }
 }
