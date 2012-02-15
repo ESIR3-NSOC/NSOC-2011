@@ -41,6 +41,7 @@ public class DeviceDAOMySQL  implements DeviceDAO {
      */
     @Override
     public Device create(Device device) {
+        logger.info("*** create device... ***");
         Device newDevice = retrieve(device.getId());
         if (newDevice.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
             try {

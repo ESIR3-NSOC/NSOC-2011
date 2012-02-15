@@ -48,8 +48,12 @@ public class ClientDb extends AbstractComponentType {
         Sensor sensor = new Sensor(DataType.TEMPERATURE,"bat7/930");
         System.out.println("New device: "+sensor);
         // Save device
-        Device sensorSave = (Device)dbService.create(sensor);
-        System.out.println("Saved device: "+sensorSave);
+        RequestResult resultCreate = dbService.create(sensor);
+        if (resultCreate.isSuccess()) {
+            System.out.println("Saved device: "+resultCreate.getResult());
+        } else {
+            System.out.println("Error result create device");
+        }
         
         // Data samples
         Data data1 = new Data(sensor,"19.6", new Date(new Long("1326098100720")));

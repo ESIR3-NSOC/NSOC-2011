@@ -4,6 +4,9 @@ import esir.dom11.nsoc.datactrl.dao.dao.*;
 import esir.dom11.nsoc.datactrl.dao.connection.ConnectionDb;
 import esir.dom11.nsoc.datactrl.helper.HelperSetup;
 import esir.dom11.nsoc.model.*;
+import esir.dom11.nsoc.model.device.Actuator;
+import esir.dom11.nsoc.model.device.Device;
+import esir.dom11.nsoc.model.device.Sensor;
 
 import java.util.Properties;
 
@@ -74,6 +77,10 @@ public abstract class DAOFactory {
             return getCommandDAO();
         } else if(daoClass.equals(Data.class)) {
             return getDataDAO();
+        } else if(daoClass.equals(Device.class) || daoClass.equals(Sensor.class) || daoClass.equals(Actuator.class)) {
+            return getDeviceDAO();
+        } else if(daoClass.equals(Log.class)) {
+            return getLogDAO();
         } else if(daoClass.equals(Task.class)) {
             return getTaskDAO();
         } else if(daoClass.equals(User.class)) {
