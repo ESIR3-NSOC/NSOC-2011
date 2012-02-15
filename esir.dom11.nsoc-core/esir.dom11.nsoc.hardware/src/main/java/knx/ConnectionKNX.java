@@ -60,7 +60,7 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
     @Override
     @Port(name = "ConnectionKNX", method = "read")
     public String read(String adresseGroupe) {
-        System.out.println("ConnectionKNX: read");
+       // System.out.println("ConnectionKNX: read");
         return connection.read(adresseGroupe);
     }
 
