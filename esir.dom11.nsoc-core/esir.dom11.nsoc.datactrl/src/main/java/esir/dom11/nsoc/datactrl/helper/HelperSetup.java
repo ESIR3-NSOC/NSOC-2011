@@ -44,7 +44,7 @@ public abstract class HelperSetup {
 
     public void setupData() {
 
-        // Devices
+      /*  // Devices
         Sensor deviceTemp = (Sensor)_daoFactory.getDeviceDAO().create(new Sensor(DataType.TEMPERATURE,"bat7/930"));
         Sensor deviceBrightness = (Sensor)_daoFactory.getDeviceDAO().create(new Sensor(DataType.BRIGHTNESS,"bat7/930"));
         Sensor deviceHumidity = (Sensor)_daoFactory.getDeviceDAO().create(new Sensor(DataType.HUMIDITY,"bat7/930"));
@@ -75,7 +75,7 @@ public abstract class HelperSetup {
         _daoFactory.getDataDAO().create(new Data(devicePower,"436", new Date(new Long("1326098204754"))));
         _daoFactory.getDataDAO().create(new Data(devicePower,"498", new Date(new Long("1326098206765"))));
         _daoFactory.getDataDAO().create(new Data(devicePower,"497", new Date(new Long("1326098208787"))));
-    }
+    */}
 
     public void importDb(Database database) {
         for (Device device : database.getDeviceList()) {

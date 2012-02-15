@@ -98,13 +98,19 @@ public class DeviceComp extends AbstractComponentType {
     @Port(name = "ActionReceive")
     public void ActionReceive(Object o) {
         Action action = (Action) o;
+        Boolean value = false;
         if (action.getActuator().getLocation().equals(mLocation)) {
             System.out.println("\nDeviceComp: Received: " + action.toString() + "\n\n");
             System.out.println("GetProtocol: " + connectionManager.getProtocol());
             if (connectionManager.getProtocol().equals("knx")) {
                 if (mDevice.equals("Actuator")) {
+                    if (action.getValue().equals("ON")) {
+                        value = true;
+                    } else if (action.getValue().equals("OFF")) {
+                        value = false;
+                    }
                     System.out.println("DeviceComp: Receive Action");
-                    connectionManager.write(mAddressDevice, Boolean.valueOf(action.getValue()).booleanValue());
+                    connectionManager.write(mAddressDevice, value);
                 }
             }
         }

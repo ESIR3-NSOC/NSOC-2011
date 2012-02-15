@@ -17,7 +17,6 @@ import tuwien.auto.calimero.link.KNXNetworkLinkIP;
 
 @DictionaryType({
         @DictionaryAttribute(name = "ADRESSE_PC", defaultValue = "192.168.1.127", optional = true),
-        @DictionaryAttribute(name = "ADRESSE_MAQUETTE", defaultValue = "192.168.1.128", optional = true)
 })
 
 @Library(name = "NSOC_2011")
@@ -29,9 +28,8 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
     public void startComponent() {
         System.out.println("ConnectionKNX: Start");
         String adressePC = this.getDictionary().get("ADRESSE_PC").toString();
-        String adresseMaquette = this.getDictionary().get("ADRESSE_MAQUETTE").toString();
-        System.out.println("ConnectionKNX: " + "adressePC:" + adressePC + " adresseMaquette:" + adresseMaquette);
-        connection = new ToConnect(adressePC, adresseMaquette);
+        System.out.println("ConnectionKNX: " + "adressePC:" + adressePC);
+        connection = new ToConnect(adressePC);
         connection.connected();
     }
 
