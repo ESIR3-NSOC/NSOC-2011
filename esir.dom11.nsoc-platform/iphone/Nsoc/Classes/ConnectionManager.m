@@ -69,7 +69,7 @@
  */
 
 // send the GET request to know if we are connected to the server
-- (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {	
+- (BOOL) connectionToServer:(NSString *)ip portServer:(NSString *)port {
     // Store the data in the phone
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
@@ -95,7 +95,12 @@
 
 // send the GET request to fetch all data
 - (NSArray *) allData:(NSString *)building 
-			room:(NSString *)room{
+				 room:(NSString *)room {
+	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+	NSLog(@"GET request sent!");
+
 	// client ip : http://@IP:port/building/room/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@", 
 												[self savedIp], 
@@ -106,8 +111,7 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
-	NSLog(@"GET request sent!");
-
+	
 	NSError *error = [request error];
 	if (!error) {
 		NSString *responseString = [request responseString];
@@ -132,8 +136,9 @@
 					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
 	NSLog(@"url = %@", http);
 	NSURL *url = [NSURL URLWithString:http];
+	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	//[request setDelegate:self];
+	[request setDelegate:self];
 	[request startSynchronous];
 	NSLog(@"response get all: %@", [request responseString]);
 	
@@ -153,6 +158,9 @@
 				building:(NSString *)building
 					room:(NSString *)room
 				actuator:(NSString *)actuator {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+	NSLog(@"POST request sent!");
 
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
 								   [NSURL URLWithString: 
@@ -163,30 +171,10 @@
 	[request addPostValue:[NSString stringWithFormat:@"%@", building] forKey:@"building"];
 	[request addPostValue:[NSString stringWithFormat:@"%@", room] forKey:@"room"];
 	[request addPostValue:[NSString stringWithFormat:@"%@", actuator] forKey:@"actuator"];
-	
 	[request setDelegate:self];
 	[request startSynchronous];
-	NSLog(@"POST request sent!");
 	
 	[request release];
 }
-
-
-
-/**
- *	REST Requests
- */
-/*
-- (void) requestFinished:(ASIHTTPRequest *)request {
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
-	NSLog(@"%@", responseString);
-}
-
-- (void) requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	NSLog(@"%@", error);
-}*/
-
 
 @end

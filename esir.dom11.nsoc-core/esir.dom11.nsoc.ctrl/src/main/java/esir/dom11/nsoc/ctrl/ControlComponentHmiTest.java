@@ -43,10 +43,13 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         System.out.println("Control : Start");
 
         //choose your data for the test
-        Data data1 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/tempIn"), "20", new Date());
-        Data data2 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/tempOut"), "9", new Date());
-        Data data3 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/brightness"), "700", new Date());
-        Data data4 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/humidity"), "60", new Date());
+        Data data1 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/temp/0"), "20", new Date());
+        Data data2 = new Data(new Sensor(DataType.TEMPERATURE,"/bat7/salle930/temp/1"), "9", new Date());
+        Data data3 = new Data(new Sensor(DataType.BRIGHTNESS,"/bat7/salle930/lum/0"), "700", new Date());
+        Data data4 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/lum/1"), "500", new Date());
+        Data data5 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/co2/0"), "4", new Date());
+        Data data6 = new Data(new Sensor(DataType.HUMIDITY,"/bat7/salle930/presence/0"), "ON", new Date());
+
 
         //stock into list
         dataList = new LinkedList<Data>();
@@ -54,6 +57,9 @@ public class ControlComponentHmiTest extends AbstractComponentType implements ct
         dataList.add(data2);
         dataList.add(data3);
         dataList.add(data4);
+        dataList.add(data5);
+        dataList.add(data6);
+
     }
 
     @Stop

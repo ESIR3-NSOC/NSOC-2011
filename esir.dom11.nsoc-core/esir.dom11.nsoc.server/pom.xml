@@ -40,7 +40,7 @@
             <artifactId>org.kevoree.tools.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
-       <dependency>
+        <dependency>
             <groupId>org.restlet.jse</groupId>
             <artifactId>org.restlet</artifactId>
             <version>2.0.0</version>
@@ -51,7 +51,13 @@
             <version>${kevoree.version}</version>
         </dependency>
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>maven-restlet</id>
+            <name>Public online Restlet repository</name>
+            <url>http://maven.restlet.org</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>

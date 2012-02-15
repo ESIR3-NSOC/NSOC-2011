@@ -10,16 +10,24 @@
 #import "ConnectionManager.h"
 
 @interface CommandsLightViewController : UIViewController {
-	UISwitch *dinningSwitch;
+	UISwitch *diningSwitch;
 	UISwitch *kitchenSwitch;
 	UISwitch *bedroomSwitch;
+	UISwitch *bedroomDimingSwitch;
 	
+	UIScrollView *scrollView;
+	UIView *contentView;
 }
 
-@property (nonatomic, retain) IBOutlet UISwitch *dinningSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *diningSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *kitchenSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *bedroomSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *bedroomDimingSwitch;
 
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIView *contentView;
+
+-(void) getData;
 -(IBAction) changeValue:(id)sender;
 
 

@@ -27,38 +27,18 @@ public class test extends AbstractComponentType {
         events.add(
                 new AgendaEvent(
                         new Date(currentTime + 15000),
-                        new Date(currentTime + 18000)
+                        new Date(currentTime + 50000)
                 )
         );
         events.add(
                 new AgendaEvent(
-                        new Date(currentTime + 22000),
-                        new Date(currentTime + 26000)
+                        new Date(currentTime + 78000),
+                        new Date(currentTime + 500000)
                 )
         );
         send2HMI(events);
 
-        try {
-            Thread.sleep(19000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
 
-        currentTime = new Date().getTime();
-        events = new LinkedList<AgendaEvent>();
-        events.add(
-                new AgendaEvent(
-                        new Date(currentTime + 10000),
-                        new Date(currentTime + 16000)
-                )
-        );
-        events.add(
-                new AgendaEvent(
-                        new Date(currentTime + 19000),
-                        new Date(currentTime + 45000)
-                )
-        );
-        send2HMI(events);
     }
 
     @Stop
