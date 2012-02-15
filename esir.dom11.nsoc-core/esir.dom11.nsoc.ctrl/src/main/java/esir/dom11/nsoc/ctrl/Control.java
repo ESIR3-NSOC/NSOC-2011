@@ -109,14 +109,14 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
         LinkedList<Data> object = null;
         if (HMIAction.getAction() == null) {
             //HMI ask for data
-                       for(int i = 0; i < HMIAction.getDataTypes().size(); i ++){
-                        RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(),HMIAction.getLocation(),HMIAction.getDataTypes().get(i));
-                        if (result.isSuccess()) {
-                            object = (LinkedList<Data>) result.getResult();
-                        }
-                    }
+            for (int i = 0; i < HMIAction.getDataTypes().size(); i++) {
+                RequestResult result = getData(HMIAction.getBeginDate(), HMIAction.getEndDate(), HMIAction.getLocation(), HMIAction.getDataTypes().get(i));
+                if (result.isSuccess()) {
+                    object = (LinkedList<Data>) result.getResult();
+                }
+            }
 
-           // object = dataList;
+            // object = dataList;
         } else System.out.println("Control ATTENTION : receive no get from Hmi");
         System.out.println("Control : data list send to Hmi ");
         return object;
@@ -141,11 +141,7 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
                         // System.out.println("**********" + HMIAction.getAction().getValue());
                         send2Conflict(com);
                     } else if (inter.equals("1")) {
-                        Command com = new Command();
-                        com.setActionList(br.temperatureControl(HMIAction.getAction().getValue()));
-                        com.setCategory(Category.USER);
-                        com.setLock((long) 1);
-                        com.setTimeOut((long) 1);
+                        Command com = new Command(br.temperatureControl(HMIAction.getAction().getValue()),Category.USER,(long) 1,(long) 1);
                         send2Conflict(com);
                     }
                 } else {
@@ -292,23 +288,23 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
 
             BrainRoom br = theBrain.searchRoom(sensor.getSensor().getLocation());
             DataType thisDataType = sensor.getSensor().getDataType();
-            System.out.println("Control "+thisDataType);
+            System.out.println("Control " + thisDataType);
             if (thisDataType.equals(DataType.TEMPERATURE) || thisDataType.equals(DataType.BRIGHTNESS)) {
                 br.updateRoom(sensor);
             } else if (thisDataType.equals(DataType.SWITCH)) {
                 System.out.println("Control receive switch from Michel");
                 String inter = sensor.getSensor().getLocation().split("/")[3];
                 if (inter.equals("0")) {
-                    Command com = new Command(br.lightControl("UP"), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.lightControl("UP"), Category.USER, (long) 90000, (long) 90000);
                     send2Conflict(com);
                 } else if (inter.equals("1")) {
-                    Command com = new Command(br.lightControl("DOWN"), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.lightControl("DOWN"), Category.USER, (long) 90000, (long) 90000);
                     send2Conflict(com);
                 } else if (inter.equals("2")) {
-                    Command com = new Command(br.temperatureControl("UP"), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.temperatureControl("UP"), Category.USER, (long) 90000, (long) 90000);
                     send2Conflict(com);
                 } else if (inter.equals("3")) {
-                    Command com = new Command(br.temperatureControl("DOWN"), Category.USER, (long) 1, (long) 1);
+                    Command com = new Command(br.temperatureControl("DOWN"), Category.USER, (long) 90000, (long) 90000);
                     send2Conflict(com);
                 }
             } else System.out.println("data type receive by hardware : " + sensor.getSensor().getDataType());
