@@ -29,8 +29,13 @@
 																	 action:@selector(sendTemperature:)];      
 	self.navigationItem.rightBarButtonItem = temperatureButton;
 	
-	
-	
+	[self performSelector:@selector(getData) 
+			   withObject:nil 
+			   afterDelay:0.1];		
+}
+
+
+-(void) getData {	
 	// display the current data of indoor temperature
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
@@ -50,7 +55,7 @@
 				} 
 			}
 		}	
-	}
+	}	
 }
 
 - (void) sendTemperature:(id) sender {

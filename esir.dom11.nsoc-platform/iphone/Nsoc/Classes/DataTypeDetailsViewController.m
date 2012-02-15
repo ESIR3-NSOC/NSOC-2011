@@ -26,7 +26,6 @@
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
 	[dateFormatter setDateFormat:@"YYYY-MM-dd"];
-	[dateFormatter release];
 	return self;
 }
 

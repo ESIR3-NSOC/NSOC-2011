@@ -72,7 +72,8 @@
 	ServerTableView.scrollEnabled = NO;
 	
 	//test the connection with the saved data
-	BOOL returnStateConnection = [cm connectionToServer:[cm savedIp] portServer:[cm savedPort]];
+	BOOL returnStateConnection = [cm connectionToServer:[cm savedIp] 
+											 portServer:[cm savedPort]];
 	[self displayConnectionStatus:returnStateConnection];	
     
 	[super viewDidLoad];
@@ -120,7 +121,9 @@
 	&& [self testEntryWithRegex:labelPortServer.text
 						  regex:@"^[0-9]{4,5}$"]){
 
-		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text portServer:labelPortServer.text];
+		BOOL returnStateConnection = [cm connectionToServer:labelIpServer.text 
+												 portServer:labelPortServer.text];
+		
 		[self displayConnectionStatus:returnStateConnection];
 	
 	} else {
