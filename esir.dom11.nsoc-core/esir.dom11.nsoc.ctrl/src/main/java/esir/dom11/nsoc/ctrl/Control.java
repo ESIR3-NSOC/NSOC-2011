@@ -292,9 +292,11 @@ public class Control extends AbstractComponentType implements ctrlInterface, ISe
 
             BrainRoom br = theBrain.searchRoom(sensor.getSensor().getLocation());
             DataType thisDataType = sensor.getSensor().getDataType();
+            System.out.println("Control "+thisDataType);
             if (thisDataType.equals(DataType.TEMPERATURE) || thisDataType.equals(DataType.BRIGHTNESS)) {
                 br.updateRoom(sensor);
             } else if (thisDataType.equals(DataType.SWITCH)) {
+                System.out.println("Control receive switch from Michel");
                 String inter = sensor.getSensor().getLocation().split("/")[3];
                 if (inter.equals("0")) {
                     Command com = new Command(br.lightControl(sensor.getValue()), Category.USER, (long) 1, (long) 1);
