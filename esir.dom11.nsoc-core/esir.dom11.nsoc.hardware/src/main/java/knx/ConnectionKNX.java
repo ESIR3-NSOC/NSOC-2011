@@ -1,5 +1,6 @@
 package knx;
 
+import esir.dom11.nsoc.model.DataType;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import tuwien.auto.calimero.link.KNXNetworkLinkIP;
@@ -59,9 +60,9 @@ public class ConnectionKNX extends AbstractComponentType implements IntToConnect
 
     @Override
     @Port(name = "ConnectionKNX", method = "read")
-    public String read(String adresseGroupe) {
+    public String read(String adresseGroupe, DataType dataType) {
        // System.out.println("ConnectionKNX: read");
-        return connection.read(adresseGroupe);
+        return connection.read(adresseGroupe, dataType);
     }
 
     @Override

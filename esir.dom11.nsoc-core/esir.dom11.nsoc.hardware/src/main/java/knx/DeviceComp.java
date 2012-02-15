@@ -127,14 +127,14 @@ public class DeviceComp extends AbstractComponentType {
         new Thread() {
             @Override
             public void run() {
-                String valueRead = connectionManager.read(mAddressDevice);
+                String valueRead = connectionManager.read(mAddressDevice, DataType.valueOf(mDataType));
                 System.out.println("DeviceComp: value: "+valueRead);
                 Data data = new Data(mSensor, valueRead, new Date());
                 while (!stop) {
                     try {
-                        if (!(valueRead.equals(connectionManager.read(mAddressDevice)))) {
+                        if (!(valueRead.equals(connectionManager.read(mAddressDevice, DataType.valueOf(mDataType))))) {
                             System.out.println("ValueRead changed");
-                            valueRead = connectionManager.read(mAddressDevice);
+                            valueRead = connectionManager.read(mAddressDevice, DataType.valueOf(mDataType));
                             System.out.println(mSensor.toString() + " Value: " + valueRead);
                             data = new Data(mSensor, valueRead, new Date());
                             sendMessage(data);

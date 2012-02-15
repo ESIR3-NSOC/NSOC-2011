@@ -1,6 +1,7 @@
 package knx;
 
 
+import esir.dom11.nsoc.model.DataType;
 import tuwien.auto.calimero.CloseEvent;
 import tuwien.auto.calimero.FrameEvent;
 import tuwien.auto.calimero.GroupAddress;
@@ -109,11 +110,18 @@ public class ToConnect implements IntToConnect {
 
     //------------------------------------------------------------------------------------------------------
     @Override
-    public String read(String adresseGroupe) {
+    public String read(String adresseGroupe, DataType dataType) {
         // TODO Auto-generated method stub
-        String valeur = "00";
+        Object valeur = "00";
         try {
-            valeur = pc.readString(new GroupAddress(adresseGroupe));
+            if(dataType.getValue().equals("SWITCH"))
+            {
+                valeur = (Boolean)pc.readBool(new GroupAddress(adresseGroupe));
+            }
+            else{
+                valeur = (float)pc.readFloat(new GroupAddress(adresseGroupe));
+            }
+
         } catch (KNXFormatException e) {
             System.out.println("Can't read value! -> "+e);
             // TODO Auto-generated catch block
@@ -121,9 +129,10 @@ public class ToConnect implements IntToConnect {
         } catch (KNXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Can't read value! -> "+e);
         }
         //System.out.println(valeur);
-        return valeur;
+        return valeur.toString();
     }
 
     //------------------------------------------------------------------------
