@@ -27,7 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIView *contentView;
 
-
+-(void) getData;
 -(IBAction) changeValue:(id)sender;
 
 

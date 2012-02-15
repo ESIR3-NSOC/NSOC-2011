@@ -25,7 +25,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *lessonBtn;
 @property (nonatomic, retain) IBOutlet UISlider *tempSlider;
 @property (nonatomic, retain) IBOutlet UILabel *tempLabel;
-
+-(void) getData;
 - (void) sendTemperature:(id) sender;
 - (IBAction)sliderValueChanged:(id)sender;
 - (IBAction)setComfortTemperature:(id)sender;

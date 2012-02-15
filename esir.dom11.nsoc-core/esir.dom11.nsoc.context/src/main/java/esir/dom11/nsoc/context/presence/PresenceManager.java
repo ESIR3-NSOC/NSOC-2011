@@ -29,11 +29,13 @@ public class PresenceManager implements PresenceListener {
             @Override
             public void eventStart() {
                 getCepRT().sendEvent(new PresenceAgendaEvent("salle", true));
+                System.out.println("Context::PresenceComp : start agenda event");
             }
 
             @Override
             public void eventStop() {
                 getCepRT().sendEvent(new PresenceAgendaEvent("salle", false));
+                System.out.println("Context::PresenceComp : stop agenda event");
             }
         });
 
@@ -85,7 +87,7 @@ public class PresenceManager implements PresenceListener {
         confirmation.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                //
+                System.out.println("Context::PresenceComp : confirmation agenda event");
             }
         });
         cancel.addListener(new UpdateListener() {
@@ -96,7 +98,7 @@ public class PresenceManager implements PresenceListener {
                             agendaChecker.getAgenda().getEventByDate(new Date())
                     );
                     sendAgenda(agendaChecker.getAgenda());
-                    //
+                    System.out.println("Context::PresenceComp : cancel agenda event");
                 }
             }
         });
@@ -111,12 +113,13 @@ public class PresenceManager implements PresenceListener {
                         )
                 );
                 sendAgenda(agendaChecker.getAgenda());
+                System.out.println("Context::PresenceComp : new presence");
             }
         });
         endPresence.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                //
+                System.out.println("Context::PresenceComp : end presence");
             }
         });
 

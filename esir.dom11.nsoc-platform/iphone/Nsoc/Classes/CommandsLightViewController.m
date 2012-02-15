@@ -29,6 +29,13 @@
 	//show activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
+	
+	[self performSelector:@selector(getData) 
+			   withObject:nil 
+			   afterDelay:0.1];
+}
+
+-(void) getData {
 	// display the current data of the switches
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
@@ -60,7 +67,6 @@
 			}
 		}
 	}
-	
 }
 
 //on ne peut pas envoyer 2 commandes à la fois

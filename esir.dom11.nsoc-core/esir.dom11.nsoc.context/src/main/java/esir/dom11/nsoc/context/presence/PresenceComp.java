@@ -10,7 +10,7 @@ import org.osgi.framework.Bundle;
 
 @Provides({
         @ProvidedPort(name = "presence", type = PortType.MESSAGE),
-        @ProvidedPort(name = "presenceAgenda", type = PortType.MESSAGE)
+        @ProvidedPort(name = "agenda", type = PortType.MESSAGE)
 })
 @Requires({
         // presence prediction
@@ -26,7 +26,7 @@ public class PresenceComp extends AbstractComponentType {
     private PresenceManager preMan;
 
     public PresenceComp() {
-          
+
     }
 
 
@@ -74,9 +74,14 @@ public class PresenceComp extends AbstractComponentType {
         preMan.getCepRT().sendEvent(presence);
     }
 
-    @Port(name = "presenceAgenda")
-    public void presenceAgenda(Object agenda) {
-        preMan.getCepRT().sendEvent(agenda);
+    @Port(name = "agenda")
+    public void presenceAgenda(Object obj) {
+        try {
+            Agenda agenda = (Agenda) obj;
+            preMan.setAgenda(agenda.getEvents());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
 

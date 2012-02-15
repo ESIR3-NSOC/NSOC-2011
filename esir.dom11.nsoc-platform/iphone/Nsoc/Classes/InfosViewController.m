@@ -30,7 +30,7 @@
 	
 	//show activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
+	
 	[self performSelector:@selector(getData) 
 			   withObject:nil 
 			   afterDelay:0.1];
