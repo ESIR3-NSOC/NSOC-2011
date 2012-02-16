@@ -28,7 +28,7 @@ public class TheBrain {
     public BrainRoom searchRoom(String location){
         BrainRoom room = null;
         for(int i = 0; i<roomList.size(); i++){
-            if(roomList.get(i).equals(location)){
+            if(roomList.get(i).getLocation().equals(location)){
                 room = roomList.get(i);
                 break;
             }

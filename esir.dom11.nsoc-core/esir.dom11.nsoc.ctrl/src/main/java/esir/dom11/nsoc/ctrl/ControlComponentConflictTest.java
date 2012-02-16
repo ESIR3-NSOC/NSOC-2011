@@ -54,7 +54,7 @@ public class ControlComponentConflictTest extends AbstractComponentType implemen
 
 
         LinkedList<Action> list = new LinkedList<Action>();
-        Actuator actuator = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+        Actuator actuator = new Actuator(DataType.SWITCH, "/bat7/salle930/lamp/0");
         Action action = new Action(actuator, "true");
 
         list.add(action);
@@ -63,13 +63,13 @@ public class ControlComponentConflictTest extends AbstractComponentType implemen
         send2Conflict(command);
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         //--------
         LinkedList<Action> list2 = new LinkedList<Action>();
-        Actuator actuator2 = new Actuator(DataType.UNKNOWN, "bat7/s930/0");
+        Actuator actuator2 = new Actuator(DataType.SWITCH, "/bat7/salle930/lamp/0");
         Action action2 = new Action(actuator2, "false");
 
         list.add(action2);
@@ -168,7 +168,6 @@ public class ControlComponentConflictTest extends AbstractComponentType implemen
 
     //Send an actions list (= command) to conflict
     public void send2Conflict(Command command) {
-        System.out.println("Control : send2Conflict : " + command.getActionList().get(0));
         commandList.add(command);
         getPortByName("Conflict", MessagePort.class).process(command);
     }
