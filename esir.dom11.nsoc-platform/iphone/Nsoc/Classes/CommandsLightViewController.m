@@ -17,10 +17,14 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	// add the scrollView to the view
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
 	
+	
+	// we add tags to elements to easily find them after
+	// use the same tag value than the actuator value
 	diningSwitch.tag = 0;
 	kitchenSwitch.tag = 1;
 	bedroomSwitch.tag = 2;
@@ -49,17 +53,24 @@
 			NSString *value = [items objectAtIndex:1];			
 			
 			if([actuator isEqualToString:@"switch"]){
+				NSLog(@"YEP");
 				if([number isEqualToString:@"0"]){
+					NSLog(@"number0 : %@", [value isEqualToString:@"ON"]);
+
 					if([value isEqualToString:@"ON"])
 						[diningSwitch setOn:YES animated:YES];
 					else [diningSwitch setOn:NO animated:YES];
 				} 
 				else if([number isEqualToString:@"1"]) {
+					NSLog(@"number1 : %@", [value isEqualToString:@"ON"]);
+
 					if([value isEqualToString:@"ON"])
 						[kitchenSwitch setOn:YES animated:YES];
 					else [kitchenSwitch setOn:NO animated:YES];
 				}
 				else if([number isEqualToString:@"2"]) {
+					NSLog(@"number2 : %@", [value isEqualToString:@"ON"]);
+
 					if([value isEqualToString:@"ON"])
 						[bedroomSwitch setOn:YES animated:YES];
 					else [bedroomSwitch setOn:NO animated:YES];
@@ -70,7 +81,10 @@
 }
 
 //on ne peut pas envoyer 2 commandes à la fois
+
+// send a POST request on each value changed on switch
 -(IBAction) changeValue:(id)sender {
+	//find the pressed switch
 	UISwitch *switchOutlet = (UISwitch *) sender;
 	ConnectionManager *cm = [[ConnectionManager alloc] init];
 	NSMutableString *result = [[NSMutableString alloc] initWithString:@"OFF"];
@@ -78,6 +92,7 @@
 		
 	// for scenario switch
 	if (switchOutlet.tag >= 100) {
+		// we currently have no scenario created so simulate a switch0 command
 		[actuator setString:@"switch/0"];
 		
 		// we have to set the value
@@ -107,14 +122,6 @@
 	
 	[cm release];
 }
-
-/*
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
- [super viewDidLoad];
- }
- */
-
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

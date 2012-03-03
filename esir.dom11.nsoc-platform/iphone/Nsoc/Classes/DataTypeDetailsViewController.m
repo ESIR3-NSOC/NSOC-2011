@@ -16,7 +16,7 @@
 
 
 - (id)initWithDataFromDatePicker:(ModelData *) passedData{
-	
+	// we fetch the dates from the DatePicker View
 	if(self = [self initWithNibName:@"DataTypeDetailsViewController" bundle:nil]){
 		self.dataFromDate = passedData;
 		NSLog(@"Begin Date : %@", self.dataFromDate.beginDate);
@@ -24,6 +24,7 @@
 
 	}
 	
+	// We format the date
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
 	[dateFormatter setDateFormat:@"YYYY-MM-dd"];
 	return self;
@@ -46,8 +47,8 @@
 	
 }
 
-
 // Action fired on date button click
+// load the DatePicker view
 - (IBAction) showDate{
 	DatePickerViewController *dateController = [[DatePickerViewController alloc] 
 												initWithNibName:@"DatePickerViewController" 
@@ -59,11 +60,10 @@
 	[dateController release];
 }
 
-
+// dismiss the DatePicker view
 - (void) DatePickerViewControllerDidFinish:(DatePickerViewController *)controller{
 	[self dismissModalViewControllerAnimated:YES];
 }
-
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

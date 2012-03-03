@@ -58,6 +58,7 @@
 	}	
 }
 
+// send the temperature command to the server
 - (void) sendTemperature:(id) sender {
 	ConnectionManager *cm = [[ConnectionManager alloc] init];	
 	[cm sendPostRequest:tempLabel.text 
@@ -71,38 +72,29 @@
 
 
 
-/*
- * Method fired on value change on the slider
- */
+
+// Method fired on value change on the slider
 - (IBAction)sliderValueChanged:(id)sender{
 	tempLabel.text = [NSString stringWithFormat:@"%d", [[NSNumber numberWithFloat:tempSlider.value] intValue]];
 }
 
-/*
- * Method fired on comfort button click
- */
+// Method fired on comfort button click
 - (IBAction)setComfortTemperature:(id)sender{
 	[self setTemperature:0];
 }
 
-/*
- * Method fired on eco button click
- */
+// Method fired on eco button click
 - (IBAction)setEcoTemperature:(id)sender{
 	[self setTemperature:3];
 }
 
-/*
- * Method fired on lesson button click
- */
+// Method fired on lesson button click
 - (IBAction)setLessonTemperature:(id)sender{
 	[self setTemperature:2];
 }
 
-/*
- * this method will change the command of temperature
- */
-- (void)setTemperature:(int)temperature{
+// this method will change the temperature control
+- (void)setTemperature:(int)temperature {
 	
 	int temp = COMFORTTEMP - temperature;
 	
@@ -111,8 +103,7 @@
 	tempLabel.text = [NSString stringWithFormat:@"%d", temp];
 }
 
--
-(void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     

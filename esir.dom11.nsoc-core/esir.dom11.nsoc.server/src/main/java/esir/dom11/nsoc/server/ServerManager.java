@@ -184,6 +184,10 @@ public class ServerManager extends ServerResource{
                            "value: "+form.getValues("value")  +" \n"
         );
 
+        /*
+         * FUTURE IMPROVEMENT
+         * use JSON to format the response
+         */
 
         String location = "/" + form.getValues("building") + "/" +
                                 form.getValues("room") + "/" +

@@ -14,6 +14,7 @@
 @synthesize delegate;
 @synthesize scrollView, contentView;
 
+// dismiss the credits view
 -(IBAction) done:(id) sender{
 	[self.delegate creditsViewControllerDidFinish:self];
 }
@@ -26,20 +27,24 @@
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
-
 }
 
-- (void)goToMail: (id)sender{
-	NSURL *urlMail = [[NSURL alloc] initWithString:@"mailto://prbaron22@gmail.com"];
+// quit the app and launch the mail app
+- (void)goToMail: (id)sender {
+	UIButton *button = (UIButton * ) sender;
+	NSURL *urlMail = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto://%@",button.currentTitle]];
 	[[UIApplication sharedApplication] openURL:urlMail];
+	
+	[button release];
 }
 
+// quit the app and launch Safari
 - (void) goToWebsite: (id)sender{
-	//initialisation des url
-	NSURL *urlWeb = [[NSURL alloc] initWithString: @"http://pierrebaron.fr"];
-	
-	//actions des url
+	UIButton *button = (UIButton * ) sender;
+	NSURL *urlWeb = [[NSURL alloc] StringWithFormat:@"http://%@",button.currentTitle];
 	[[UIApplication sharedApplication] openURL:urlWeb];
+	
+	[button release];
 }
 
 // Override to allow orientations other than the default portrait orientation.

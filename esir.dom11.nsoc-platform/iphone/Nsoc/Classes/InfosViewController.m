@@ -19,11 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	// create the refresh button in the navigation bar
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 											  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 											  target:self
 											  action:@selector(refreshInfo:)];
 	
+	// add the scrollView to the view
 	[self.view addSubview:scrollView];
 	[self.scrollView addSubview:self.contentView];
 	self.scrollView.contentSize = self.contentView.bounds.size;
@@ -31,6 +33,7 @@
 	//show activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
+	// we have to use a delay if we want to see the 
 	[self performSelector:@selector(getData) 
 			   withObject:nil 
 			   afterDelay:0.1];
@@ -40,10 +43,13 @@
 
 // receive the array of current data and parse it
 -(void) getData {
-	cm = [[ConnectionManager alloc] init];
 	
+	// ask the data to the server
+	cm = [[ConnectionManager alloc] init];
 	NSArray *results = [cm allData:@"bat7" room:@"salle930"];	
-		
+	
+	// if there is an error
+	// we will show the ConnectionView to try again with another ip and port
 	if(!results){
 		ConnectionViewController *cvc = [[ConnectionViewController alloc] 
 										 initWithNibName:@"ConnectionViewController" bundle:nil];
@@ -54,6 +60,12 @@
 		[cvc release];
 		
 	} else {
+		// We have to parse all data to display it in the view
+		/*
+		 * FUTURE IMPROVEMENTS
+		 * use JSON to fetch data
+		 */
+		
 		for(int i = 0; i < ([results count]-1); i++) {
 			NSArray *items = [[results objectAtIndex:i] componentsSeparatedByString:@":"];
 			
@@ -99,8 +111,6 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
@@ -132,6 +142,7 @@
     [super dealloc];
 }
 
+// dismiss the Connection View
 - (void) connectionViewControllerDidFinish:(ConnectionViewController *)controller{
 	[self dismissModalViewControllerAnimated:YES];
 }

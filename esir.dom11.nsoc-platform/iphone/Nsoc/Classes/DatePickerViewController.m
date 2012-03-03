@@ -28,6 +28,7 @@
 	//get the current date
 	NSDate *currentDate = [NSDate date];
 	
+	// get the current date - 1month
 	NSTimeInterval month = -31*24*60*60;
 	NSDate *currentDateMinusMonth = [NSDate dateWithTimeIntervalSinceNow:month];
 	
@@ -42,10 +43,12 @@
 								   endDate:[self.dateArray objectAtIndex:1]];
 }
 
+// dismiss the view without saving dates
 -(IBAction) clickCancelButton {
 	[self.delegate DatePickerViewControllerDidFinish:self];
 }
 
+// save the dates and dismiss the view
 -(IBAction) clickDoneButton {
 	DataTypeDetailsViewController *dtdController = [[DataTypeDetailsViewController alloc] initWithDataFromDatePicker:data];
 	

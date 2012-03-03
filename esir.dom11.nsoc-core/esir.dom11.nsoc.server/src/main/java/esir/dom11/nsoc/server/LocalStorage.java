@@ -2,7 +2,8 @@ package esir.dom11.nsoc.server;
 
 /**
  *  This class is a Singleton.
- *  It will save all data from the Controller in this class
+ *  This class is used to store the ServerComponent object
+ *  We have to do it like this because Restlet does not allow to create a constructor with parameters
  */
 public final class LocalStorage {
     private static ServerComponent _sc;

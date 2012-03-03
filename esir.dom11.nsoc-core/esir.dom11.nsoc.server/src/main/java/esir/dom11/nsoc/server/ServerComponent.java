@@ -8,6 +8,11 @@ package esir.dom11.nsoc.server;
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+ * This class describes all methods and propertis of the Server Kevoree component
+ */
+
+
 import esir.dom11.nsoc.model.Command;
 import esir.dom11.nsoc.model.Data;
 import esir.dom11.nsoc.model.HmiRequest;
@@ -29,6 +34,7 @@ import java.util.LinkedList;
         @RequiredPort(name = "postCTRL", type = PortType.MESSAGE, optional = true)
 })
 
+// output port (HMI -> CTRL)
 @Provides({
         @ProvidedPort(name = "fromCTRL", type = PortType.MESSAGE)
 })
@@ -49,6 +55,7 @@ public class ServerComponent extends AbstractComponentType {
 
     @Start
     public void startComponent(){
+        // fetch the port from the Dictionary
         int port = Integer.valueOf(getDictionary().get("port").toString());
         _manager.startServer(port);
     }
@@ -64,13 +71,13 @@ public class ServerComponent extends AbstractComponentType {
         startComponent();
     }
 
-
+    // We will use a service instead of message to have a synchronous request
     public LinkedList<Data> sendGetRequest(HmiRequest hmir){
          return (LinkedList<Data>) getPortByName("getCTRL", IServerService.class).getFromHmi(hmir);
     }
 
     // Be careful
-    // The Controller can send null response.
+    // The Controller can send null response if there are no values.
     @Port(name = "fromCTRL")
     public Command receiveFromCtrl(Object fromCtrl){
         return (Command) fromCtrl;

@@ -84,6 +84,7 @@
 			   [message release];
 			   
 		   } else {
+			   // dismiss the view and load the Infos View
 			   [self.delegate connectionViewControllerDidFinish:self];
 		   }
 	   } else {
@@ -210,7 +211,7 @@ titleForHeaderInSection:(NSInteger) section{
 	}
 }
 
-
+// We have to declare it but we don't need it
 - (void)updateTextLabelAtIndexPath:(NSIndexPath*)indexPath string:(NSString*)string {}
 
 

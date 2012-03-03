@@ -6,6 +6,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+/*
+ * ConnectionManagaer is the class to use if you want to send or receive data from the server.
+ */
+
 #import "ConnectionManager.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -16,12 +20,11 @@
 @synthesize savedPort;
 @synthesize stateConnection;
 
-
 /**
  *	Getters/Setters
  */
 
-// get the saved IP address in the iPhone 
+// get the saved IP address in the iPhone database
 - (NSString *) savedIp {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	savedIp = [defaults objectForKey:@"savedIp"];
@@ -33,7 +36,7 @@
 	return savedIp;	
 }
 
-// get the saved port in the iPhone
+// get the saved port in the iPhone database
 - (NSString *) savedPort {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	savedPort = [defaults objectForKey:@"savedPort"];
@@ -45,7 +48,7 @@
 	return savedPort;
 }
 
-// save the new IP address in the iPhone
+// save the new IP address in the iPhone database
 - (void) setSavedIp:(NSString *) ip{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:ip forKey:@"savedIp"];
@@ -54,7 +57,7 @@
 	savedIp = ip;
 }
 
-// save the new port in the iPhone
+// save the new port in the iPhone database
 - (void) setSavedPort:(NSString *) port{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:port forKey:@"savedIp"];
@@ -76,13 +79,18 @@
     [defaults setObject:port forKey:@"savedPort"];
     [defaults synchronize];	
 		
-	//we create the http string
+	// we create the http string
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@", ip, port];
 	NSURL *url = [NSURL URLWithString:http];
 	
+	// we send the request to the server
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	
 	[request setDelegate:self];
+	/*
+	 * FUTURE IMPROVEMENT
+	 * send asynchronous requests instead of synchronous
+	 */
+	
 	[request startSynchronous];
 	
 	NSError *error = [request error];
@@ -97,10 +105,12 @@
 - (NSArray *) allData:(NSString *)building 
 				 room:(NSString *)room {
 	
+	// show loader in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 	NSLog(@"GET request sent!");
 
+	// here is the http request to build to fetch all data
 	// client ip : http://@IP:port/building/room/
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@", 
 												[self savedIp], 
@@ -108,12 +118,21 @@
 												building,
 												room];
 	
+	// we send the request
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:http]];
 	[request setDelegate:self];
 	[request startSynchronous];
 	
+	// we are looking for error
 	NSError *error = [request error];
 	if (!error) {
+		// we fetch the big String from the server
+		// we have to parse it.
+		
+		/*
+		 * FUTURE IMPROVEMENT
+		 * use JSON to send key:values instead of a String
+		 */
 		NSString *responseString = [request responseString];
 		NSArray *array = [responseString componentsSeparatedByString:@"-"];
 		return array;
@@ -125,13 +144,19 @@
 }
 
 // send the GET request to fetch details for a DataType
+/*
+ * METHOD NOT TESTED
+ */
 - (void) allDataFromDatatype:(NSString *)datatype
 					building:(NSString *)building
 						room:(NSString *)room
 				   beginDate:(NSDate *)bDate 
 					 endDate:(NSDate *)eDate {
 	
+	// here is the http request to build to fetch all data from a datatype
 	// client ip : http://@IP:port/detail/building/room/dataType/beginDate/endDate/
+	
+	
 	NSString *http = [NSString stringWithFormat:@"http://%1$@:%2$@/%3$@/%4$@/%5$@/%$6@/%$7@",
 					  [self savedIp], [self savedPort], building, room, datatype, bDate, eDate];
 	NSLog(@"url = %@", http);

@@ -6,6 +6,12 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+
+/*
+ * ModelData is the class to use if you want to pass data from one view to another
+ */
+
+
 #import "ModelData.h"
 
 
