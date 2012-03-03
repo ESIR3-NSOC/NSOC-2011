@@ -1,6 +1,10 @@
 package test;
 
-import esir.dom11.nsoc.context.presence.*;
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
+import esir.dom11.nsoc.context.presence.PresenceEvent;
+import esir.dom11.nsoc.context.presence.PresenceListener;
+import esir.dom11.nsoc.context.presence.PresenceManager;
 import junit.framework.TestCase;
 
 import java.util.Date;
@@ -15,18 +19,18 @@ public class ContextPresenceTest extends TestCase {
         presMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Agenda agenda) {
-                System.out.println("\n--new Agenda--");
-                for (AgendaEvent event : agenda.getEvents()) {
+            public void sendCalendar(Calendar calendar) {
+                System.out.println("\n--new Calendar--");
+                for (CalendarEvent event : calendar.getEvents()) {
                     System.out.println(event);
                 }
             }
         });
-        LinkedList<AgendaEvent> events = new LinkedList<AgendaEvent>();
+        LinkedList<CalendarEvent> events = new LinkedList<CalendarEvent>();
         Date now = new Date();
-        events.add(new AgendaEvent(new Date(now.getTime() + 2000),
+        events.add(new CalendarEvent(new Date(now.getTime() + 2000),
                 new Date(now.getTime() + 4000)));
-        presMan.setAgenda(events);
+        presMan.setCalendar(events);
 
         tempo(2000);
         // cancel , uncomment to generate confirmation

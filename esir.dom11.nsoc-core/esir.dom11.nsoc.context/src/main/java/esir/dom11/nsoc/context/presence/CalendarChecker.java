@@ -1,23 +1,26 @@
 package esir.dom11.nsoc.context.presence;
 
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
+
 import javax.swing.event.EventListenerList;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class AgendaChecker extends Thread implements AgendaCheckerListener {
+public class CalendarChecker extends Thread implements CalendarCheckerListener {
 
     private boolean active;
-    private Agenda agenda;
+    public Calendar calendar;
     protected EventListenerList listenerList;
 
-    public AgendaChecker() {
+    public CalendarChecker() {
         active = true;
-        agenda = new Agenda();
+        calendar = new Calendar();
         listenerList = new EventListenerList();
     }
 
-    public Agenda getAgenda(){
-        return agenda;
+    public Calendar getCalendar() {
+        return calendar;
     }
 
     public boolean isActive() {
@@ -33,7 +36,8 @@ public class AgendaChecker extends Thread implements AgendaCheckerListener {
         while (active) {
             try {
                 Thread.sleep(1000);
-                checkEvents(new Date());
+                Date now = new Date();
+                checkEvents(now);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -42,27 +46,27 @@ public class AgendaChecker extends Thread implements AgendaCheckerListener {
     }
 
     public void checkEvents(Date date) {
-        for (AgendaEvent event : agenda.getEvents()) {
+        for (CalendarEvent event : calendar.getEvents()) {
             if (Math.abs(
-                    date.getTime() - event.getStart().getTime()) < 500) {
+                    date.getTime() - event.getDateStart().getTime()) < 500) {
                 // start of an event
                 eventStart();
             } else if (Math.abs(
-                    date.getTime() - event.getEnd().getTime()) < 500) {
+                    date.getTime() - event.getDateEnd().getTime()) < 500) {
                 // end of an event
                 eventStop();
             }
         }
     }
 
-    public void addAgendaEventListener(AgendaCheckerListener l) {
-        this.listenerList.add(AgendaCheckerListener.class, l);
+    public void addCalendarEventListener(CalendarCheckerListener l) {
+        this.listenerList.add(CalendarCheckerListener.class, l);
     }
 
     @Override
     public void eventStart() {
-        AgendaCheckerListener[] listeners = (AgendaCheckerListener[])
-                listenerList.getListeners(AgendaCheckerListener.class);
+        CalendarCheckerListener[] listeners = (CalendarCheckerListener[])
+                listenerList.getListeners(CalendarCheckerListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
             listeners[i].eventStart();
         }
@@ -70,8 +74,8 @@ public class AgendaChecker extends Thread implements AgendaCheckerListener {
 
     @Override
     public void eventStop() {
-        AgendaCheckerListener[] listeners = (AgendaCheckerListener[])
-                listenerList.getListeners(AgendaCheckerListener.class);
+        CalendarCheckerListener[] listeners = (CalendarCheckerListener[])
+                listenerList.getListeners(CalendarCheckerListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
             listeners[i].eventStop();
         }

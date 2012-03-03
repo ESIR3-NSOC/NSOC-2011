@@ -52,18 +52,20 @@ public class DataDAOSQLite implements DataDAO {
     public Data create(Data data) {
         Data newData = retrieve(data.getId());
         if (newData.getId().toString().compareTo("00000000-0000-0000-0000-000000000000")==0) {
-            try {
-                String statement = "INSERT INTO datas (id, id_device, value, date)"
-                        + " VALUES('" + data.getId() + "',"
-                        + " '" + data.getSensor().getId() + "',"
-                        + " '" + data.getValue() + "',"
-                        + " '" + new Timestamp(data.getDate().getTime()) + "')";
-                PreparedStatement prepare = _connection.getConnection()
-                        .prepareStatement(statement);
-                prepare.executeUpdate();
-                newData = retrieve(data.getId());
-            } catch (SQLException exception) {
-                System.out.println("Data insert error"+ exception);
+            if (_daoFactory.getDeviceDAO().create(data.getSensor()).getId().toString().compareTo("00000000-0000-0000-0000-000000000000")!=0) {
+                try {
+                    String statement = "INSERT INTO datas (id, id_device, value, date)"
+                            + " VALUES('" + data.getId() + "',"
+                            + " '" + data.getSensor().getId() + "',"
+                            + " '" + data.getValue() + "',"
+                            + " '" + new Timestamp(data.getDate().getTime()) + "')";
+                    PreparedStatement prepare = _connection.getConnection()
+                            .prepareStatement(statement);
+                    prepare.executeUpdate();
+                    newData = retrieve(data.getId());
+                } catch (SQLException exception) {
+                    System.out.println("Data insert error"+ exception);
+                }
             }
         }
         return newData;

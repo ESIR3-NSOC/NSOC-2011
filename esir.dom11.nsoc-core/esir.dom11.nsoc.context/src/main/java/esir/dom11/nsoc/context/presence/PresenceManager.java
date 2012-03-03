@@ -1,6 +1,8 @@
 package esir.dom11.nsoc.context.presence;
 
 import com.espertech.esper.client.*;
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
 
 import javax.swing.event.EventListenerList;
 import java.util.Date;
@@ -19,29 +21,32 @@ public class PresenceManager implements PresenceListener {
     private EPStatement endPresence;
     private EPStatement cancel;
     protected EventListenerList listenerList;
-    private AgendaChecker agendaChecker;
+    private CalendarChecker calendarChecker;
 
     public PresenceManager() {
         this.listenerList = new EventListenerList();
 
-        agendaChecker = new AgendaChecker();
-        agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
+        calendarChecker = new CalendarChecker();
+
+        calendarChecker.addCalendarEventListener(new CalendarCheckerListener() {
             @Override
             public void eventStart() {
-                getCepRT().sendEvent(new PresenceAgendaEvent("salle", true));
-                System.out.println("Context::PresenceComp : start agenda event");
+                getCepRT().sendEvent(new PresenceCalendarEvent("salle", true));
+                System.out.println("Context::PresenceComp : start calendar event");
             }
 
             @Override
             public void eventStop() {
-                getCepRT().sendEvent(new PresenceAgendaEvent("salle", false));
-                System.out.println("Context::PresenceComp : stop agenda event");
+                getCepRT().sendEvent(new PresenceCalendarEvent("salle", false));
+                System.out.println("Context::PresenceComp : stop calendar event");
             }
         });
 
+        calendarChecker.start();
+
         Configuration cepConfig = new Configuration();
         cepConfig.addEventType("PresenceEvent", "esir.dom11.nsoc.context.presence.PresenceEvent");
-        cepConfig.addEventType("PresenceAgendaEvent", "esir.dom11.nsoc.context.presence.PresenceAgendaEvent");
+        cepConfig.addEventType("PresenceCalendarEvent", "esir.dom11.nsoc.context.presence.PresenceCalendarEvent");
         cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
         cepRT = cep.getEPRuntime();
 
@@ -63,42 +68,42 @@ public class PresenceManager implements PresenceListener {
             }
         });
 
-        String confirmation_startWindow = "1 sec";
-        String confirmation_minDuration = "1 sec";
+        String confirmation_startWindow = "2 sec";
+        String confirmation_minDuration = "2 sec";
         confirmation = cepAdm.createEPL("select * from pattern[" +
-                "every (PresenceAgendaEvent(presence=true) and PresenceEvent(presence=true))where timer:within(" + confirmation_startWindow + ") " +
+                "every (PresenceCalendarEvent(presence=true) and PresenceEvent(presence=true))where timer:within(" + confirmation_startWindow + ") " +
                 "->  timer:interval(" + confirmation_minDuration + ") and not PresenceEvent(presence=false) ]");
 
         newPresence = cepAdm.createEPL("select * from pattern" +
                 "[every (" +
-                "( (PresenceEvent(presence=true) and not PresenceAgendaEvent(presence=true)) where timer:within(1 sec) " +
-                "-> timer:interval(1 sec) and not PresenceEvent(presence=false) )" +
+                "( (PresenceEvent(presence=true) and not PresenceCalendarEvent(presence=true)) where timer:within(2 sec) " +
+                "-> timer:interval(2 sec) and not PresenceEvent(presence=false) )" +
                 ")]");
 
         endPresence = cepAdm.createEPL("select * from pattern[" +
                 "every PresenceEvent(presence=false) " +
-                "-> timer:interval(1 sec) and not PresenceEvent(presence=true) ]");
+                "-> timer:interval(2 sec) and not PresenceEvent(presence=true) ]");
 
         cancel = cepAdm.createEPL("select * from pattern[" +
-                "every PresenceAgendaEvent(presence=true) " +
-                "-> timer:interval(1 sec) and not PresenceEvent(presence=true) ]");
+                "every PresenceCalendarEvent(presence=true) " +
+                "-> timer:interval(2 sec) and not PresenceEvent(presence=true) ]");
 
 
         confirmation.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
-                System.out.println("Context::PresenceComp : confirmation agenda event");
+                System.out.println("Context::PresenceComp : confirmation calendar event");
             }
         });
         cancel.addListener(new UpdateListener() {
             @Override
             public void update(EventBean[] newData, EventBean[] oldData) {
                 if (!presence) {
-                    agendaChecker.getAgenda().getEvents().remove(
-                            agendaChecker.getAgenda().getEventByDate(new Date())
+                    calendarChecker.getCalendar().getEvents().remove(
+                            calendarChecker.getCalendar().getEventByDate(new Date())
                     );
-                    sendAgenda(agendaChecker.getAgenda());
-                    System.out.println("Context::PresenceComp : cancel agenda event");
+                    sendCalendar(calendarChecker.getCalendar());
+                    System.out.println("Context::PresenceComp : cancel calendar event");
                 }
             }
         });
@@ -107,12 +112,12 @@ public class PresenceManager implements PresenceListener {
             public void update(EventBean[] newData, EventBean[] oldData) {
                 //
                 Date now = new Date();
-                agendaChecker.getAgenda().getEvents().add(
-                        new AgendaEvent(now,
+                calendarChecker.getCalendar().getEvents().add(
+                        new CalendarEvent(now,
                                 new Date(now.getTime() + 900000) // 15 min
                         )
                 );
-                sendAgenda(agendaChecker.getAgenda());
+                sendCalendar(calendarChecker.getCalendar());
                 System.out.println("Context::PresenceComp : new presence");
             }
         });
@@ -122,16 +127,15 @@ public class PresenceManager implements PresenceListener {
                 System.out.println("Context::PresenceComp : end presence");
             }
         });
-
-        agendaChecker.start();
     }
 
-    public void setAgenda(LinkedList<AgendaEvent> events) {
-        agendaChecker.getAgenda().getEvents().clear();
-        agendaChecker.getAgenda().getEvents().addAll(events);
+    public void setCalendar(LinkedList<CalendarEvent> events) {
+        calendarChecker.getCalendar().getEvents().clear();
+        calendarChecker.getCalendar().getEvents().addAll(events);
     }
 
     public void stop() {
+        calendarChecker.setActive(false);
         var_presence.removeAllListeners();
         var_presence_true.removeAllListeners();
         var_presence_false.removeAllListeners();
@@ -153,11 +157,11 @@ public class PresenceManager implements PresenceListener {
     }
 
     @Override
-    public void sendAgenda(Agenda agenda) {
+    public void sendCalendar(Calendar calendar) {
         PresenceListener[] listeners = (PresenceListener[])
                 listenerList.getListeners(PresenceListener.class);
         for (int i = listeners.length - 1; i >= 0; i--) {
-            listeners[i].sendAgenda(agenda);
+            listeners[i].sendCalendar(calendar);
         }
     }
 }

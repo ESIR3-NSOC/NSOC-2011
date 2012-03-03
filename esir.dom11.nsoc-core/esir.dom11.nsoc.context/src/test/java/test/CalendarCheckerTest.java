@@ -1,31 +1,30 @@
 package test;
 
-import esir.dom11.nsoc.context.presence.Agenda;
-import esir.dom11.nsoc.context.presence.AgendaChecker;
-import esir.dom11.nsoc.context.presence.AgendaEvent;
-import esir.dom11.nsoc.context.presence.AgendaCheckerListener;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
+import esir.dom11.nsoc.context.presence.CalendarChecker;
+import esir.dom11.nsoc.context.presence.CalendarCheckerListener;
 import junit.framework.TestCase;
 
 import java.util.Date;
 import java.util.LinkedList;
 
-public class AgendaCheckerTest extends TestCase {
+public class CalendarCheckerTest extends TestCase {
 
-    public void testAgenda() {
+    public void testCalendar() {
 
 
         long currentTime = new Date().getTime();
-        LinkedList<AgendaEvent> events = new LinkedList<AgendaEvent>();
+        LinkedList<CalendarEvent> events = new LinkedList<CalendarEvent>();
         events.add(
-                new AgendaEvent(
+                new CalendarEvent(
                         new Date(currentTime + 3000),
                         new Date(currentTime + 6000)
                 )
         );
 
-        AgendaChecker agendaChecker = new AgendaChecker();
-        agendaChecker.getAgenda().getEvents().addAll(events);
-        agendaChecker.addAgendaEventListener(new AgendaCheckerListener() {
+        CalendarChecker calendarChecker = new CalendarChecker();
+        calendarChecker.getCalendar().getEvents().addAll(events);
+        calendarChecker.addCalendarEventListener(new CalendarCheckerListener() {
             @Override
             public void eventStart() {
                 System.out.println("start");
@@ -37,7 +36,7 @@ public class AgendaCheckerTest extends TestCase {
             }
         });
 
-        agendaChecker.start();
+        calendarChecker.start();
 
         try {
             Thread.sleep(10000);
@@ -45,7 +44,7 @@ public class AgendaCheckerTest extends TestCase {
             e.printStackTrace();
         }
 
-        agendaChecker.setActive(false);
+        calendarChecker.setActive(false);
     }
 
 }

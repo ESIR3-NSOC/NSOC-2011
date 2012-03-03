@@ -39,6 +39,7 @@ public class TestDAOMySQL extends TestCase {
         super.setUp();
         initProperties();
         _daoFactory = DAOFactory.getFactory(_dbProperties);
+
         _daoFactory.getHelperSetup().setupTable();
         _daoFactory.getHelperSetup().setupData();
     }

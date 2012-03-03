@@ -1,6 +1,7 @@
 package knx;
 
 
+import esir.dom11.nsoc.model.DataType;
 import tuwien.auto.calimero.CloseEvent;
 import tuwien.auto.calimero.FrameEvent;
 import tuwien.auto.calimero.GroupAddress;
@@ -33,7 +34,15 @@ public class ToConnect implements IntToConnect {
     //constructeurs
     public ToConnect() {
         adresseIP_maquette = searchSketch();
+        System.out.println("Sketch address " + adresseIP_maquette + " found");
         adresseIP_PC = NSLookup.IPAddress("localhost").toString();
+        System.out.println("Local address " + adresseIP_PC + " found");
+    }
+
+    public ToConnect(String adressePC) {
+        adresseIP_PC = adressePC;
+        adresseIP_maquette = searchSketch();
+        System.out.println("Sketch address " + adresseIP_maquette + " found");
     }
 
     public ToConnect(String adressePC, String adresseMaquette) {
@@ -101,20 +110,29 @@ public class ToConnect implements IntToConnect {
 
     //------------------------------------------------------------------------------------------------------
     @Override
-    public String read(String adresseGroupe) {
+    public String read(String adresseGroupe, DataType dataType) {
         // TODO Auto-generated method stub
-        String valeur = "";
+        Object valeur = "00";
         try {
-            valeur = pc.readString(new GroupAddress(adresseGroupe));
+            if(dataType.getValue().equals("SWITCH"))
+            {
+                valeur = (Boolean)pc.readBool(new GroupAddress(adresseGroupe));
+            }
+            else{
+                valeur = (float)pc.readFloat(new GroupAddress(adresseGroupe));
+            }
+
         } catch (KNXFormatException e) {
+            System.out.println("Can't read value! -> "+e);
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (KNXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Can't read value! -> "+e);
         }
         //System.out.println(valeur);
-        return valeur;
+        return valeur.toString();
     }
 
     //------------------------------------------------------------------------
@@ -159,7 +177,7 @@ public class ToConnect implements IntToConnect {
             for (SearchResponse r : resp) {
                 HPAI hpai = r.getControlEndpoint();
                 String ipMaq = hpai.getAddress().toString();
-                adresseIP_maquette = ipMaq;
+                adresseIP_maquette = ipMaq.replace("/", "");
                 System.out.println("ToConnect: Sketch is found");
                 System.out.println("ToConnect: Sketch address: " + ipMaq);
             }

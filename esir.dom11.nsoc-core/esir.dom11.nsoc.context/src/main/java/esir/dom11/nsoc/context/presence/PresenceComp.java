@@ -1,5 +1,7 @@
 package esir.dom11.nsoc.context.presence;
 
+import esir.dom11.nsoc.context.calendar.Calendar;
+import esir.dom11.nsoc.context.calendar.CalendarEvent;
 import org.kevoree.annotation.*;
 import org.kevoree.classloader.ClassLoaderInterface;
 import org.kevoree.classloader.ClassLoaderWrapper;
@@ -10,7 +12,7 @@ import org.osgi.framework.Bundle;
 
 @Provides({
         @ProvidedPort(name = "presence", type = PortType.MESSAGE),
-        @ProvidedPort(name = "agenda", type = PortType.MESSAGE)
+        @ProvidedPort(name = "calendar", type = PortType.MESSAGE)
 })
 @Requires({
         // presence prediction
@@ -44,8 +46,8 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Agenda agenda) {
-                sendPrediction(agenda);
+            public void sendCalendar(Calendar calendar) {
+                sendPrediction(calendar);
             }
         });
     }
@@ -62,8 +64,8 @@ public class PresenceComp extends AbstractComponentType {
         preMan.addPresenceEventListener(new PresenceListener() {
 
             @Override
-            public void sendAgenda(Agenda agenda) {
-                sendPrediction(agenda);
+            public void sendCalendar(Calendar calendar) {
+                sendPrediction(calendar);
             }
         });
     }
@@ -74,20 +76,24 @@ public class PresenceComp extends AbstractComponentType {
         preMan.getCepRT().sendEvent(presence);
     }
 
-    @Port(name = "agenda")
-    public void presenceAgenda(Object obj) {
+    @Port(name = "calendar")
+    public void receiveCalendar(Object obj) {
+
         try {
-            Agenda agenda = (Agenda) obj;
-            preMan.setAgenda(agenda.getEvents());
+            Calendar calendar = (Calendar) obj;
+            System.out.println("receive calendar");
+            for(CalendarEvent ev:calendar.getEvents()){
+                System.out.println(ev);
+            }
+            preMan.setCalendar(calendar.getEvents());
         } catch (Exception ex) {
             System.out.println(ex);
         }
     }
 
-
-    public void sendPrediction(Agenda agenda) {
+    public void sendPrediction(Calendar calendar) {
         if (this.isPortBinded("prediction")) {
-            this.getPortByName("prediction", MessagePort.class).process(agenda);
+            this.getPortByName("prediction", MessagePort.class).process(calendar);
         }
     }
 

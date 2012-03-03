@@ -40,6 +40,7 @@ public class ConnectionDbMySQL extends ConnectionDb {
             logger.info("database connect success");
         } catch(Exception exception){
             logger.error("Database connect error", exception);
+            System.out.println("Database connect error: "+ exception);
         }
     }
 

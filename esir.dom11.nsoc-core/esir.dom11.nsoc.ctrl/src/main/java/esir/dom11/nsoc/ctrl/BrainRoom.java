@@ -25,7 +25,7 @@ public class BrainRoom {
         this.roomLocation = location;
         this.fullAuto = false;
         this.devicesStates = new LinkedList<Data>();
-        presence = false;
+        presence = true;
     }
 
     /*
